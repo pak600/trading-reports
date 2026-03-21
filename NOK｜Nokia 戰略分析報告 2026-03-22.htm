@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOK｜Nokia 戰略分析報告 2026-03-22</title>
+<link href="NOK%EF%BD%9CNokia%20%E6%88%B0%E7%95%A5%E5%88%86%E6%9E%90%E5%A0%B1%E5%91%8A%202026-03-22_files/css2.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0d14;
+    --bg2: #0f1420;
+    --bg3: #141926;
+    --border: rgba(99,179,237,0.15);
+    --accent: #63b3ed;
+    --accent2: #f6ad55;
+    --accent3: #68d391;
+    --danger: #fc8181;
+    --text: #e2e8f0;
+    --text2: #a0aec0;
+    --text3: #718096;
+    --hold: #f6ad55;
+    --buy: #68d391;
+    --sell: #fc8181;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans TC', sans-serif; font-size: 14px; line-height: 1.7; overflow-x: hidden; }
+  .header { background: linear-gradient(135deg, #0a0d14 0%, #0d1a2e 50%, #0a0d14 100%); border-bottom: 1px solid var(--border); padding: 48px 40px 36px; position: relative; overflow: hidden; }
+  .header::before { content: 'NOK'; font-family: 'Bebas Neue', sans-serif; font-size: 240px; color: rgba(99,179,237,0.04); position: absolute; right: -20px; top: -40px; letter-spacing: -8px; user-select: none; }
+  .header-tag { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .header-tag::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent); }
+  .header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 64px; letter-spacing: 4px; color: #fff; line-height: 1; margin-bottom: 8px; }
+  .header h1 span { color: var(--accent); }
+  .header-sub { font-size: 16px; color: var(--text2); margin-bottom: 28px; }
+  .header-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+  .meta-item label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text3); letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 2px; }
+  .meta-item span { font-family: 'Space Mono', monospace; font-size: 20px; font-weight: 700; color: var(--text); }
+  .meta-item span.up { color: var(--accent3); }
+  .meta-item span.warn { color: var(--accent2); }
+  .verdict-banner { background: linear-gradient(90deg, rgba(246,173,85,0.12) 0%, rgba(246,173,85,0.04) 100%); border-left: 4px solid var(--hold); border-bottom: 1px solid rgba(246,173,85,0.2); padding: 20px 40px; display: flex; align-items: center; gap: 24px; }
+  .verdict-label { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: var(--hold); letter-spacing: 4px; white-space: nowrap; }
+  .verdict-desc { font-size: 14px; color: var(--text2); max-width: 700px; }
+  .verdict-desc strong { color: var(--text); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } .container { padding: 20px; } .header { padding: 32px 20px 24px; } .header h1 { font-size: 40px; } .verdict-banner { flex-direction: column; padding: 16px 20px; } }
+  .section { margin-bottom: 40px; animation: fadeIn 0.5s ease both; }
+  .section-title { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 24px; transition: border-color 0.2s; }
+  .card:hover { border-color: rgba(99,179,237,0.3); }
+  .card-title { font-size: 11px; font-family: 'Space Mono', monospace; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; }
+  .card-value { font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .card-sub { font-size: 12px; color: var(--text3); }
+  .card-sub.bull { color: var(--accent3); }
+  .card-sub.bear { color: var(--danger); }
+  .card-sub.neutral { color: var(--accent2); }
+  .price-level { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .price-level:last-child { border-bottom: none; }
+  .level-label { font-size: 13px; color: var(--text2); min-width: 160px; }
+  .level-price { font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 700; min-width: 100px; text-align: right; }
+  .level-bar-wrap { flex: 1; margin: 0 16px; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; position: relative; }
+  .level-bar { height: 100%; border-radius: 2px; position: absolute; left: 0; }
+  .res { color: var(--danger); }
+  .sup { color: var(--accent3); }
+  .cur { color: var(--accent2); }
+  .factor-list { list-style: none; }
+  .factor-list li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 13px; color: var(--text2); }
+  .factor-list li:last-child { border-bottom: none; }
+  .factor-list li .icon { font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  .data-table td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text2); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: rgba(99,179,237,0.04); }
+  .data-table td:first-child { color: var(--text); font-weight: 500; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; }
+  .tag-bull { background: rgba(104,211,145,0.15); color: var(--accent3); }
+  .tag-bear { background: rgba(252,129,129,0.15); color: var(--danger); }
+  .tag-neutral { background: rgba(246,173,85,0.15); color: var(--accent2); }
+  .trigger-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .trigger-header { padding: 16px 24px; border-bottom: 1px solid var(--border); font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+  .trigger-header.buy { color: var(--accent3); background: rgba(104,211,145,0.06); }
+  .trigger-header.hold { color: var(--accent2); background: rgba(246,173,85,0.06); }
+  .trigger-header.sell { color: var(--danger); background: rgba(252,129,129,0.06); }
+  .trigger-body { padding: 20px 24px; }
+  .trigger-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; font-size: 13px; color: var(--text2); }
+  .trigger-item:last-child { margin-bottom: 0; }
+  .trigger-num { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text3); min-width: 20px; }
+  .trigger-note { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text3); line-height: 1.6; }
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+  .timeline-item { position: relative; margin-bottom: 20px; }
+  .timeline-item::before { content: ''; position: absolute; left: -20px; top: 6px; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--accent); background: var(--bg); }
+  .timeline-date { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; margin-bottom: 4px; }
+  .timeline-text { font-size: 13px; color: var(--text2); }
+  .divider { height: 1px; background: var(--border); margin: 32px 0; }
+  .highlight-box { background: rgba(99,179,237,0.06); border: 1px solid rgba(99,179,237,0.2); border-radius: 8px; padding: 20px 24px; font-size: 14px; color: var(--text2); line-height: 1.8; }
+  .highlight-box strong { color: var(--text); }
+  .footer { border-top: 1px solid var(--border); padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--text3); font-family: 'Space Mono', monospace; font-size: 11px; }
+  .pulse { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent3); margin-right: 8px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)} }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)} }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">TradingAgents Analysis · AI Multi-Agent System</div>
+  <h1>NOKIA <span>NOK</span></h1>
+  <div class="header-sub">Nokia Oyj｜Helsinki Stock Exchange · NYSE ADR</div>
+  <div class="header-meta">
+    <div class="meta-item"><label>現價</label><span>$7.98</span></div>
+    <div class="meta-item"><label>年初至今漲幅</label><span class="up">+67%</span></div>
+    <div class="meta-item"><label>裁決</label><span class="warn">HOLD</span></div>
+    <div class="meta-item"><label>報告日期</label><span>2026.03.22</span></div>
+    <div class="meta-item"><label>硬止損</label><span>€6.85</span></div>
+  </div>
+</div>
+
+<div class="verdict-banner">
+  <div class="verdict-label">HOLD</div>
+  <div class="verdict-desc">
+    <strong>高確信度持有觀望</strong>，等待 Q1 2026 財報（預計4月中下旬）作為決策觸發點。現價 €7.98 的預期價值接近零，耐心等待是紀律，而非膽怯。<br>
+    <strong>關鍵觀察窗口：3–4週｜</strong>止損位：€6.85（硬性規則，無例外）
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <div class="section-title">關鍵技術指標</div>
+    <div class="grid-3">
+      <div class="card"><div class="card-title">現價 vs 10日EMA</div><div class="card-value">$7.98</div><div class="card-sub bear">⚠ 跌破10日EMA ($8.17)｜短線轉弱</div></div>
+      <div class="card"><div class="card-title">RSI 相對強弱指數</div><div class="card-value">53.19</div><div class="card-sub bear">⚠ 從高峰70.66急速冷卻，動能耗盡訊號</div></div>
+      <div class="card"><div class="card-title">MACD</div><div class="card-value">+0.285</div><div class="card-sub neutral">正值但斜率下行，動能減弱中</div></div>
+      <div class="card"><div class="card-title">50日SMA（關鍵支撐）</div><div class="card-value">$7.29</div><div class="card-sub bull">✅ 持守中，多頭結構維持</div></div>
+      <div class="card"><div class="card-title">200日SMA（長線支撐）</div><div class="card-value">$5.85</div><div class="card-sub bull">✅ 遠低於現價，長線牛市結構完整</div></div>
+      <div class="card"><div class="card-title">ATR 波動率</div><div class="card-value">0.361</div><div class="card-sub neutral">⚠ 高波動 + 動能衰退 = 方向不明</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">關鍵價位圖</div>
+    <div class="card">
+      <div class="price-level"><div class="level-label">🔴 強阻力區</div><div class="level-bar-wrap"><div class="level-bar" style="width:95%;background:rgba(252,129,129,0.4)"></div></div><div class="level-price res">$8.30–$8.65</div></div>
+      <div class="price-level"><div class="level-label">🟡 現價 / 布林中軌</div><div class="level-bar-wrap"><div class="level-bar" style="width:72%;background:rgba(246,173,85,0.7)"></div></div><div class="level-price cur">$7.98</div></div>
+      <div class="price-level"><div class="level-label">🟢 第一支撐｜50日SMA</div><div class="level-bar-wrap"><div class="level-bar" style="width:58%;background:rgba(104,211,145,0.4)"></div></div><div class="level-price sup">$7.29</div></div>
+      <div class="price-level"><div class="level-label">🟢 第二支撐｜10月突破位</div><div class="level-bar-wrap"><div class="level-bar" style="width:43%;background:rgba(104,211,145,0.3)"></div></div><div class="level-price sup">$6.85</div></div>
+      <div class="price-level"><div class="level-label">🟢 長線支撐｜200日SMA</div><div class="level-bar-wrap"><div class="level-bar" style="width:18%;background:rgba(104,211,145,0.2)"></div></div><div class="level-price sup">$5.85</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">多空論點對決</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" style="color:var(--accent3)">✅ 多方論點</div>
+        <ul class="factor-list">
+          <li><span class="icon">📈</span>從$4.77漲至$7.98，67%漲幅，長線趨勢完整健康</li>
+          <li><span class="icon">💰</span>€5.5B現金堡壘，淨現金部位€1.1B，財務極穩健</li>
+          <li><span class="icon">🤝</span>與NVIDIA、T-Mobile、Palo Alto戰略合作，卡位AI基礎建設</li>
+          <li><span class="icon">📡</span>Aurelis光網絡架構直接對準超大型資料中心需求</li>
+          <li><span class="icon">🏗️</span>5G + 光網絡基礎建設長期需求真實存在</li>
+          <li><span class="icon">📊</span>VWMA高於現價，機構在高位有支撐跡象</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--danger)">⚠️ 空方論點</div>
+        <ul class="factor-list">
+          <li><span class="icon">📉</span>Q4 2025毛利率45%含一次性退休金效益，正常化僅42-43%</li>
+          <li><span class="icon">⏳</span>DSO應收帳款天數87天偏高，現金回收效率疑慮</li>
+          <li><span class="icon">🎯</span>分析師共識目標價€6.21–6.50，低於現價13–17%</li>
+          <li><span class="icon">📊</span>近期漲勢成交量遞減，突破確認度不足</li>
+          <li><span class="icon">🌍</span>關稅地緣政治風險可能衝擊全球營收5–15%</li>
+          <li><span class="icon">❓</span>Goldman Sachs質疑AI ROI，影響超大型資料中心資本支出</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Q1 2026 財報決策觸發框架（4月中下旬）</div>
+    <div class="grid-3">
+      <div class="trigger-card">
+        <div class="trigger-header buy">🟢 買入觸發條件</div>
+        <div class="trigger-body">
+          <div class="trigger-item"><span class="trigger-num">01</span><span>正常化毛利率 <strong style="color:var(--accent3)">≥ 42.0%</strong></span></div>
+          <div class="trigger-item"><span class="trigger-num">02</span><span>DSO改善至 <strong style="color:var(--accent3)">≤ 83天</strong></span></div>
+          <div class="trigger-item"><span class="trigger-num">03</span><span>全年指引 <strong style="color:var(--accent3)">維持或上調 &gt; €0.43</strong></span></div>
+          <div class="trigger-note">入場區間：€7.00–7.50（財報後回調）<br>目標價：€8.75–9.50（12個月）<br>止損：€6.85 維持</div>
+        </div>
+      </div>
+      <div class="trigger-card">
+        <div class="trigger-header hold">🟡 繼續觀望條件</div>
+        <div class="trigger-body">
+          <div class="trigger-item"><span class="trigger-num">01</span><span>正常化毛利率介於 <strong style="color:var(--accent2)">40.5%–41.9%</strong></span></div>
+          <div class="trigger-item"><span class="trigger-num">02</span><span>DSO天數 <strong style="color:var(--accent2)">83–89天</strong> 持平</span></div>
+          <div class="trigger-item"><span class="trigger-num">03</span><span>指引維持但對H2 2026語氣謹慎</span></div>
+          <div class="trigger-note">等待Q2數據再確認<br>最多小倉位試探性持有</div>
+        </div>
+      </div>
+      <div class="trigger-card">
+        <div class="trigger-header sell">🔴 賣出觸發條件</div>
+        <div class="trigger-body">
+          <div class="trigger-item"><span class="trigger-num">01</span><span>正常化毛利率 <strong style="color:var(--danger)">&lt; 40.5%</strong></span></div>
+          <div class="trigger-item"><span class="trigger-num">02</span><span>DSO惡化至 <strong style="color:var(--danger)">&gt; 89天</strong></span></div>
+          <div class="trigger-item"><span class="trigger-num">03</span><span>全年指引 <strong style="color:var(--danger)">下修至 &lt; €0.40</strong></span></div>
+          <div class="trigger-note">立即出清所有倉位，不論成本<br>做空考量：€7.20–7.50，目標€6.00–6.50</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">財務快照（2025全年）</div>
+    <div class="card">
+      <table class="data-table">
+        <thead><tr><th>指標</th><th>數值</th><th>評級</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td>現金及等價物</td><td>€5,462M</td><td><span class="tag tag-bull">強健</span></td><td>占總資產23.3%，流動性無憂</td></tr>
+          <tr><td>淨現金部位</td><td>€+1.1B</td><td><span class="tag tag-bull">淨現金</span></td><td>現金超過總債務，財務堡壘</td></tr>
+          <tr><td>流動比率</td><td>1.58x</td><td><span class="tag tag-bull">改善中</span></td><td>從Q1 2025的1.36x持續提升</td></tr>
+          <tr><td>Q4 EBITDA毛利率</td><td>17.5%</td><td><span class="tag tag-neutral">注意</span></td><td>含一次性退休金效益，需正常化</td></tr>
+          <tr><td>TTM自由現金流</td><td>€1,465M</td><td><span class="tag tag-bull">正向</span></td><td>季度波動大（€88M–€721M）</td></tr>
+          <tr><td>資本支出強度</td><td>3.0%</td><td><span class="tag tag-bull">節制</span></td><td>輕資產模式，轉型服務/軟體</td></tr>
+          <tr><td>DSO應收帳款天數</td><td>87天</td><td><span class="tag tag-bear">警示</span></td><td>現金回收效率需改善，Q1關鍵觀察</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">行動計畫摘要</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">現有持倉者</div>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-date">立即執行</div><div class="timeline-text">繼續持有所有現有倉位，設定硬止損 <strong>€6.85</strong></div></div>
+          <div class="timeline-item"><div class="timeline-date">4月中下旬</div><div class="timeline-text">Q1 2026財報發布，根據三大觸發指標決定加碼或退出</div></div>
+          <div class="timeline-item"><div class="timeline-date">止損觸發時</div><div class="timeline-text">收盤價跌破 €6.85，<strong>無條件、無猶豫立即出場</strong></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">新資金部署</div>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-date">現在</div><div class="timeline-text">€7.50以上暫不部署新資金，等待財報降低不確定性</div></div>
+          <div class="timeline-item"><div class="timeline-date">例外情況</div><div class="timeline-text">若擔心錯過財報前漲勢，最多部署<strong>計畫倉位10%</strong>作為避險</div></div>
+          <div class="timeline-item"><div class="timeline-date">財報後確認</div><div class="timeline-text">Q1若確認，在€7.00–7.50回調時部署50–60%主倉位</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="highlight-box">
+      <strong>末將戰略總評：</strong>Nokia 是真實改善中的好公司，但現價 €7.98 已反映大部分利好，67%的漲幅讓新入場的風險報酬比趨近於零。分析師共識目標價低於現價 13–17%，Q4毛利率含一次性效益尚未經過最弱季度的壓力測試。<br><br>
+      <strong>結論：耐心不是軟弱，而是等待更好的資訊後再行動的紀律。Q1財報將在3–4週內提供決定性數據，屆時的決策品質將遠優於今天。</strong>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span><span class="pulse"></span>Generated by TradingAgents Multi-Agent System</span>
+  <span>分析日期：2026-03-22｜僅供參考，不構成投資建議</span>
+</div>
+
+
+
+</body></html>
