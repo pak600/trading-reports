@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSM 戰略分析報告｜2026.03.22</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #06080f;
+    --surface: #0a0d18;
+    --surface2: #0f1422;
+    --border: #151c30;
+    --border2: #1e2840;
+    --gold: #c9a84c;
+    --gold2: #e8c96a;
+    --silicon: #4fc3f7;
+    --red: #ef5350;
+    --green: #66bb6a;
+    --orange: #ffa726;
+    --muted: #1a2235;
+    --text: #8fa3c8;
+    --text2: #3a5070;
+    --white: #e8eef8;
+    --obv-up: #4fc3f7;
+    --obv-warn: #ffa726;
+    --obv-down: #ef5350;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* Subtle diagonal texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 30%, rgba(201,168,76,0.05) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 70%, rgba(79,195,247,0.04) 0%, transparent 45%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--border2);
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 100px);
+    font-weight: 900;
+    line-height: 0.88;
+    color: var(--white);
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .header-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text2);
+    letter-spacing: 2px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .hsep { color: var(--border2); margin: 0 14px; }
+
+  /* ── VERDICT ROW ── */
+  .analyst-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border2);
+    margin: 36px 0 0;
+  }
+  @media(max-width:680px){ .analyst-row { grid-template-columns: repeat(2,1fr); } }
+
+  .a-cell {
+    background: var(--surface);
+    padding: 18px 14px;
+    text-align: center;
+  }
+
+  .a-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--text2);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .v-pill {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 0;
+  }
+  .vp-hold { background: rgba(255,167,38,0.08); color: var(--orange); border: 1px solid rgba(255,167,38,0.25); }
+  .vp-buy  { background: rgba(102,187,106,0.08); color: var(--green); border: 1px solid rgba(102,187,106,0.25); }
+  .vp-sell { background: rgba(239,83,80,0.08); color: var(--red); border: 1px solid rgba(239,83,80,0.25); }
+
+  /* ── FINAL VERDICT ── */
+  .final-v {
+    margin: 12px 0 36px;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, rgba(239,83,80,0.05), transparent);
+    border: 1px solid rgba(239,83,80,0.18);
+    border-left: 5px solid var(--red);
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  @media(max-width:600px){ .final-v { flex-direction: column; gap: 14px; } }
+
+  .fv-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 0.9;
+    min-width: 200px;
+  }
+  .fv-big span { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 2px; color: rgba(239,83,80,0.5); margin-top: 10px; font-style: normal; }
+
+  .fv-body h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .fv-body p { font-size: 13px; line-height: 1.7; color: var(--text); }
+
+  /* ── METRICS GRID ── */
+  .mg {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border2);
+    margin: 28px 0;
+  }
+  @media(max-width:700px){ .mg { grid-template-columns: repeat(2,1fr); } }
+
+  .mc {
+    background: var(--surface);
+    padding: 18px 14px;
+    position: relative;
+  }
+  .mc::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .mc-bull::after { background: var(--green); }
+  .mc-bear::after { background: var(--red); }
+  .mc-warn::after { background: var(--orange); }
+  .mc-neu::after  { background: var(--muted); }
+  .mc-sil::after  { background: var(--silicon); }
+
+  .mc-lbl {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text2); margin-bottom: 8px;
+  }
+  .mc-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700;
+    color: var(--white); line-height: 1; margin-bottom: 4px;
+  }
+  .mc-sig { font-family: 'IBM Plex Mono', monospace; font-size: 10px; line-height: 1.4; }
+  .mc-bull .mc-sig { color: var(--green); }
+  .mc-bear .mc-sig { color: var(--red); }
+  .mc-warn .mc-sig { color: var(--orange); }
+  .mc-neu  .mc-sig { color: var(--text2); }
+  .mc-sil  .mc-sig { color: var(--silicon); }
+
+  /* ── SECTION ── */
+  section { margin: 56px 0; }
+
+  .sh {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--border2);
+  }
+  .sh-num { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; color: var(--gold); letter-spacing: 2px; }
+  .sh-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); }
+
+  /* ── DEBATE ── */
+  .dg { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:600px){ .dg { grid-template-columns: 1fr; } }
+
+  .dc {
+    background: var(--surface); border: 1px solid var(--border2); padding: 20px;
+  }
+  .dc-bull { border-top: 3px solid var(--green); }
+  .dc-bear { border-top: 3px solid var(--red); }
+
+  .dc h3 { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+  .dc-bull h3 { color: var(--green); }
+  .dc-bear h3 { color: var(--red); }
+
+  .fac { display: flex; gap: 10px; font-size: 12.5px; margin-bottom: 10px; line-height: 1.5; color: var(--text); }
+  .fi { flex-shrink: 0; }
+
+  /* ── PRICE LADDER ── */
+  .pl { background: var(--surface); border: 1px solid var(--border2); padding: 20px; }
+  .pl-row { display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid rgba(21,28,48,0.6); font-size: 12.5px; }
+  .pl-row:last-child { border-bottom: none; }
+  .pl-p { font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600; min-width: 72px; }
+  .pl-bw { flex: 1; height: 5px; background: var(--border); position: relative; }
+  .pl-bf { position: absolute; left: 0; top: 0; bottom: 0; }
+  .pl-l { font-size: 12px; color: var(--text2); min-width: 160px; }
+  .pl-t { min-width: 80px; text-align: right; }
+
+  /* ── TAG ── */
+  .tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 1px; padding: 2px 8px; }
+  .tg-bull { background: rgba(102,187,106,0.07); color: var(--green); border: 1px solid rgba(102,187,106,0.2); }
+  .tg-bear { background: rgba(239,83,80,0.07); color: var(--red); border: 1px solid rgba(239,83,80,0.2); }
+  .tg-warn { background: rgba(255,167,38,0.07); color: var(--orange); border: 1px solid rgba(255,167,38,0.2); }
+  .tg-hold { background: rgba(201,168,76,0.07); color: var(--gold); border: 1px solid rgba(201,168,76,0.2); }
+  .tg-sil  { background: rgba(79,195,247,0.07); color: var(--silicon); border: 1px solid rgba(79,195,247,0.2); }
+
+  /* ── OBV SECTION (highlight) ── */
+  .obv-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-top: 3px solid var(--silicon);
+    padding: 28px;
+    margin: 0;
+  }
+
+  .obv-intro {
+    font-size: 13px; line-height: 1.8; color: var(--text);
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .obv-intro strong { color: var(--silicon); }
+
+  /* OBV visual bar chart */
+  .obv-chart {
+    margin: 20px 0;
+  }
+
+  .obv-phase {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 10px;
+  }
+
+  .obv-phase-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text2);
+    min-width: 130px;
+    padding: 10px 12px 10px 0;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid var(--border2);
+    margin-right: 16px;
+  }
+
+  .obv-bar-area { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+
+  .obv-bar-row { display: flex; align-items: center; gap: 12px; }
+
+  .obv-bar-label { font-size: 11px; color: var(--text2); min-width: 60px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; }
+
+  .obv-bar-track { flex: 1; height: 10px; background: var(--border); position: relative; overflow: hidden; }
+
+  .obv-bar-fill {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    transition: width 1s ease;
+  }
+
+  .obv-bar-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; min-width: 60px; text-align: right;
+  }
+
+  /* OBV signals table */
+  .obv-table {
+    width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 20px 0;
+  }
+  .obv-table th {
+    font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--text2);
+    padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border2);
+  }
+  .obv-table td {
+    padding: 11px 12px; border-bottom: 1px solid rgba(21,28,48,0.5);
+    vertical-align: top; line-height: 1.5;
+  }
+  .obv-table tr:hover td { background: rgba(79,195,247,0.02); }
+
+  /* OBV divergence box */
+  .obv-divergence {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  @media(max-width:600px){ .obv-divergence { grid-template-columns: 1fr; } }
+
+  .div-box {
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    padding: 16px;
+  }
+  .div-box h4 {
+    font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+  .div-box p { font-size: 12.5px; color: var(--text); line-height: 1.6; }
+
+  .div-bull { border-top: 3px solid var(--silicon); }
+  .div-bull h4 { color: var(--silicon); }
+  .div-bear { border-top: 3px solid var(--red); }
+  .div-bear h4 { color: var(--red); }
+
+  /* OBV verdict */
+  .obv-verdict {
+    background: rgba(79,195,247,0.04);
+    border: 1px solid rgba(79,195,247,0.15);
+    border-left: 4px solid var(--silicon);
+    padding: 18px 22px;
+    margin-top: 20px;
+    font-size: 13px; line-height: 1.7; color: var(--text);
+  }
+  .obv-verdict strong { color: var(--silicon); }
+
+  /* ── ACTION PLAN ── */
+  .ap-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .ap-table th {
+    font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--text2);
+    padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border2);
+  }
+  .ap-table td { padding: 11px 12px; border-bottom: 1px solid rgba(21,28,48,0.5); vertical-align: top; line-height: 1.6; }
+  .ap-table tr:hover td { background: rgba(201,168,76,0.02); }
+
+  /* ── WARN BOX ── */
+  .wb {
+    background: rgba(239,83,80,0.03);
+    border: 1px solid rgba(239,83,80,0.15);
+    border-left: 4px solid var(--red);
+    padding: 16px 22px; margin: 16px 0;
+    font-size: 13px; line-height: 1.7; color: var(--text);
+  }
+  .wb strong { color: var(--red); }
+
+  /* ── SUMMARY ── */
+  .summary-box {
+    background: var(--surface); border: 1px solid var(--border2);
+    padding: 28px; font-size: 13px; line-height: 1.85; color: var(--text);
+  }
+  .summary-box p { margin-bottom: 14px; }
+  .summary-box p:last-child { margin-bottom: 0; color: var(--gold); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1px; }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--border2); padding: 28px 0; margin-top: 64px; }
+  .fi-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  footer p { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text2); letter-spacing: 1px; }
+
+  .disc {
+    background: rgba(201,168,76,0.02); border: 1px solid rgba(201,168,76,0.1);
+    padding: 14px 18px; margin-top: 20px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text2); line-height: 1.6;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .container > * { animation: fadeUp 0.5s ease both; }
+  header { animation-delay: 0s; }
+  .analyst-row { animation-delay: 0.06s; }
+  .final-v { animation-delay: 0.10s; }
+  .mg { animation-delay: 0.14s; }
+  section:nth-of-type(1) { animation-delay: 0.18s; }
+  section:nth-of-type(2) { animation-delay: 0.22s; }
+  section:nth-of-type(3) { animation-delay: 0.26s; }
+  section:nth-of-type(4) { animation-delay: 0.30s; }
+  section:nth-of-type(5) { animation-delay: 0.34s; }
+  section:nth-of-type(6) { animation-delay: 0.38s; }
+  section:nth-of-type(7) { animation-delay: 0.42s; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="eyebrow">NYSE · TSM · TAIWAN SEMICONDUCTOR · AI晶圓代工</div>
+    <h1>Taiwan<br><em>Semi</em></h1>
+    <div class="header-sub">
+      <span>現價 $329.24</span><span class="hsep">|</span>
+      <span>YoY +85%</span><span class="hsep">|</span>
+      <span>2026-03-22 23:10</span><span class="hsep">|</span>
+      <span>Claude Sonnet 4.6 + TradingAgents</span>
+    </div>
+  </header>
+
+  <!-- Analyst Verdicts -->
+  <div class="analyst-row">
+    <div class="a-cell"><div class="a-name">市場分析師</div><div class="v-pill vp-hold">HOLD</div></div>
+    <div class="a-cell"><div class="a-name">社群分析師</div><div class="v-pill vp-buy">BUY</div></div>
+    <div class="a-cell"><div class="a-name">基本面分析師</div><div class="v-pill vp-hold">HOLD</div></div>
+    <div class="a-cell"><div class="a-name">投資組合經理</div><div class="v-pill vp-sell">SELL/PROTECT</div></div>
+  </div>
+
+  <!-- Final Verdict -->
+  <div class="final-v">
+    <div class="fv-big">SELL<br>PROTECT<span>投組經理最終裁決</span></div>
+    <div class="fv-body">
+      <h2>最終裁決｜減倉保護，等待重新進場訊號</h2>
+      <p>投組經理裁決減倉至 <strong style="color:var(--red)">≤15% 投組比例</strong>，止損 $283（200日SMA），加 Collar 對沖。社群分析師是唯一看多者，基於強勁AI需求與機構資金流入。末將研判：<strong style="color:var(--gold)">TSM 長線論文完全正確，但短線三重跌破技術面（10EMA、50SMA、布林中軌）+ 伊朗地緣政治新變數，需謹慎設防</strong>。動態止損 $310–315 為折衷選擇。</p>
+    </div>
+  </div>
+
+  <!-- Metrics -->
+  <div class="mg">
+    <div class="mc mc-neu"><div class="mc-lbl">現價</div><div class="mc-val">$329</div><div class="mc-sig">52週 ~$178–$382</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">YoY漲幅</div><div class="mc-val">+85%</div><div class="mc-sig">▲ $178→$329，長線強勢</div></div>
+    <div class="mc mc-bear"><div class="mc-lbl">10日EMA</div><div class="mc-val">$341</div><div class="mc-sig">▼ 跌破，短線轉弱</div></div>
+    <div class="mc mc-bear"><div class="mc-lbl">50日SMA</div><div class="mc-val">$346</div><div class="mc-sig">▼ 跌破，中線承壓</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">200日SMA</div><div class="mc-val">$283</div><div class="mc-sig">▲ 長線支撐，遠在下方</div></div>
+    <div class="mc mc-bear"><div class="mc-lbl">MACD</div><div class="mc-val">-4.09</div><div class="mc-sig">▼ 負值且持續擴大</div></div>
+    <div class="mc mc-bear"><div class="mc-lbl">MACD柱狀圖</div><div class="mc-val">-3.19</div><div class="mc-sig">▼ 空頭加速訊號</div></div>
+    <div class="mc mc-sil"><div class="mc-lbl">BofA目標價</div><div class="mc-val">$470</div><div class="mc-sig">▲ 維持買入，+43%空間</div></div>
+  </div>
+
+  <!-- 01 Bull vs Bear -->
+  <section>
+    <div class="sh"><span class="sh-num">01</span><span class="sh-title">多空論戰</span></div>
+    <div class="dg">
+      <div class="dc dc-bull">
+        <h3>◆ 多方論點</h3>
+        <div class="fac"><span class="fi" style="color:var(--green)">▲</span><span>過去一年 +85%，200日SMA $283 遠低於現價，長線牛市結構完整</span></div>
+        <div class="fac"><span class="fi" style="color:var(--green)">▲</span><span>AI晶片需求推動2026年營收目標+30%，台積電為全球唯一能量產先進製程的代工廠</span></div>
+        <div class="fac"><span class="fi" style="color:var(--green)">▲</span><span>BofA維持買入，目標價 $470（+43%上行空間）；機構資金從美股轉向非美股，TSM為首選</span></div>
+        <div class="fac"><span class="fi" style="color:var(--green)">▲</span><span>Arizona、Kumamoto 產能擴張執行力獲驗證，地緣集中風險持續分散中</span></div>
+        <div class="fac"><span class="fi" style="color:var(--green)">▲</span><span>社群媒體對AI成長故事持續正面，StockTwits / r/Investing 多頭聲量佔優</span></div>
+      </div>
+      <div class="dc dc-bear">
+        <h3>◆ 空方論點</h3>
+        <div class="fac"><span class="fi" style="color:var(--red)">▼</span><span>伊朗戰爭衝擊氦氣供應——霍爾木茲海峽封鎖風險，先進製程高度依賴氦氣</span></div>
+        <div class="fac"><span class="fi" style="color:var(--red)">▼</span><span>MACD -4.09 擴大，歷史上此形態後70%概率出現5-10%短線回調</span></div>
+        <div class="fac"><span class="fi" style="color:var(--red)">▼</span><span>Tesla自建晶片鏈、Samsung $73B 投入——客戶自製與競爭者雙重威脅</span></div>
+        <div class="fac"><span class="fi" style="color:var(--red)">▼</span><span>台灣集中風險 >85% 產能，地緣政治折價難以完全消除</span></div>
+        <div class="fac"><span class="fi" style="color:var(--red)">▼</span><span>短線三重跌破（10EMA $341、50SMA $346、布林中軌 $353），技術面全面轉空</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Technical Levels -->
+  <section>
+    <div class="sh"><span class="sh-num">02</span><span class="sh-title">關鍵技術位階</span></div>
+    <div class="pl">
+      <div class="pl-row">
+        <div class="pl-p" style="color:var(--red)">$353</div>
+        <div class="pl-bw"><div class="pl-bf" style="width:92%; background:var(--red); opacity:0.3;"></div></div>
+        <div class="pl-l">布林中軌（阻力）</div>
+        <div class="pl-t"><span class="tag tg-bear">動態阻力</span></div>
+      </div>
+      <div class="pl-row">
+        <div class="pl-p" style="color:var(--red)">$346</div>
+        <div class="pl-bw"><div class="pl-bf" style="width:90%; background:var(--red); opacity:0.4;"></div></div>
+        <div class="pl-l">50日SMA 中線阻力</div>
+        <div class="pl-t"><span class="tag tg-bear">主要阻力</span></div>
+      </div>
+      <div class="pl-row">
+        <div class="pl-p" style="color:var(--red)">$341</div>
+        <div class="pl-bw"><div class="pl-bf" style="width:89%; background:var(--orange); opacity:0.5;"></div></div>
+        <div class="pl-l">10日EMA 短線阻力</div>
+        <div class="pl-t"><span class="tag tg-warn">短線阻力</span></div>
+      </div>
+      <div class="pl-row">
+        <div class="pl-p" style="color:var(--gold)">$329</div>
+        <div class="pl-bw"><div class="pl-bf" style="width:86%; background:var(--gold);"></div></div>
+        <div class="pl-l">現價</div>
+        <div class="pl-t"><span class="tag tg-hold">現價</span></div>
+      </div>
+      <div class="pl-row">
+        <div class="pl-p" style="color:var(--orange)">$310–315</div>
+        <div class="pl-bw"><div class="pl-bf" style="width:82%; background:var(--orange); opacity:0.5;"></div></div>
+        <div class="pl-l">末將建議動態止損區</div>
+        <div class="pl-t"><span class="tag tg-warn">止損建議</span></div>
+      </div>
+      <div class="pl-row">
+        <div class="pl-p" style="color:var(--green)">$283</div>
+        <div class="pl-bw"><div class="pl-bf" style="width:74%; background:var(--green); opacity:0.6;"></div></div>
+        <div class="pl-l">200日SMA 長線關鍵支撐</div>
+        <div class="pl-t"><span class="tag tg-bull">硬止損</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 OBV SECTION -->
+  <section>
+    <div class="sh"><span class="sh-num">03</span><span class="sh-title">OBV 能量潮策略完整分析</span></div>
+
+    <div class="obv-wrapper">
+      <div class="obv-intro">
+        <strong>OBV（On-Balance Volume，能量潮）</strong> 是將每日成交量依漲跌累積的動能指標。核心邏輯：<strong>價格是結果，成交量是原因</strong>。當 OBV 與價格方向一致，趨勢健康；當兩者背離，往往是趨勢反轉的早期預警。本次分析基於報告中的價量描述進行定性研判。
+      </div>
+
+      <!-- OBV Phase Chart -->
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:2px; color:var(--text2); margin-bottom:12px; text-transform:uppercase;">OBV 各階段研判</div>
+
+      <div class="obv-chart">
+        <!-- Phase 1 -->
+        <div class="obv-phase">
+          <div class="obv-phase-label">長線上漲期<br>Mar25→Jan26</div>
+          <div class="obv-bar-area">
+            <div class="obv-bar-row">
+              <div class="obv-bar-label">價格動能</div>
+              <div class="obv-bar-track"><div class="obv-bar-fill" style="width:85%; background:var(--green); opacity:0.7;"></div></div>
+              <div class="obv-bar-val" style="color:var(--green)">強 ▲</div>
+            </div>
+            <div class="obv-bar-row">
+              <div class="obv-bar-label">OBV方向</div>
+              <div class="obv-bar-track"><div class="obv-bar-fill" style="width:85%; background:var(--silicon);"></div></div>
+              <div class="obv-bar-val" style="color:var(--silicon)">上升 ▲</div>
+            </div>
+            <div class="obv-bar-row">
+              <div class="obv-bar-label">背離狀態</div>
+              <div class="obv-bar-track"><div class="obv-bar-fill" style="width:85%; background:var(--green); opacity:0.4;"></div></div>
+              <div class="obv-bar-val" style="color:var(--green)">無背離 ✓</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:8px;"></div>
+
+        <!-- Phase 2 -->
+        <div class="obv-phase">
+          <div class="obv-phase-label">近期回調期<br>$346→$329</div>
+          <div class="obv-bar-area">
+            <div class="obv-bar-row">
+              <div class="obv-bar-label">價格動能</div>
+              <div class="obv-bar-track"><div class="obv-bar-fill" style="width:35%; background:var(--red); opacity:0.7;"></div></div>
+              <div class="obv-bar-val" style="color:var(--red)">弱 ▼</div>
+            </div>
+            <div class="obv-bar-row">
+              <div class="obv-bar-label">OBV推估</div>
+              <div class="obv-bar-track"><div class="obv-bar-fill" style="width:60%; background:var(--orange);"></div></div>
+              <div class="obv-bar-val" style="color:var(--orange)">平緩 ⚠</div>
+            </div>
+            <div class="obv-bar-row">
+              <div class="obv-bar-label">背離狀態</div>
+              <div class="obv-bar-track"><div class="obv-bar-fill" style="width:55%; background:var(--silicon); opacity:0.5;"></div></div>
+              <div class="obv-bar-val" style="color:var(--silicon)">疑似看多背離</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:8px;"></div>
+
+        <!-- Phase 3 -->
+        <div class="obv-phase">
+          <div class="obv-phase-label">地緣衝擊期<br>氦氣/伊朗</div>
+          <div class="obv-bar-area">
+            <div class="obv-bar-row">
+              <div class="obv-bar-label">價格動能</div>
+              <div class="obv-bar-track"><div class="obv-bar-fill" style="width:25%; background:var(--red);"></div></div>
+              <div class="obv-bar-val" style="color:var(--red)">急跌 ▼▼</div>
+            </div>
+            <div class="obv-bar-row">
+              <div class="obv-bar-label">OBV推估</div>
+              <div class="obv-bar-track"><div class="obv-bar-fill" style="width:30%; background:var(--red); opacity:0.6;"></div></div>
+              <div class="obv-bar-val" style="color:var(--red)">跟跌 ▼</div>
+            </div>
+            <div class="obv-bar-row">
+              <div class="obv-bar-label">背離狀態</div>
+              <div class="obv-bar-track"><div class="obv-bar-fill" style="width:30%; background:var(--red); opacity:0.4;"></div></div>
+              <div class="obv-bar-val" style="color:var(--red)">事件驅動賣壓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OBV Signals Table -->
+      <table class="obv-table">
+        <thead>
+          <tr>
+            <th>OBV訊號類型</th>
+            <th>TSM 當前狀況</th>
+            <th>研判</th>
+            <th>行動意義</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--white)"><strong>長線OBV趨勢</strong></td>
+            <td>Mar25以來持續上升，機構持倉增加</td>
+            <td><span class="tag tg-bull">看多</span></td>
+            <td>長線資金未撤離，基礎穩固</td>
+          </tr>
+          <tr>
+            <td style="color:var(--white)"><strong>近期成交量特徵</strong></td>
+            <td>回調伴隨成交量平緩（非機構集中出逃）</td>
+            <td><span class="tag tg-sil">疑似看多背離</span></td>
+            <td>賣壓缺乏量能支撐，回調或為洗盤</td>
+          </tr>
+          <tr>
+            <td style="color:var(--white)"><strong>地緣衝擊成交量</strong></td>
+            <td>氦氣新聞觸發短線賣壓，但非系統性</td>
+            <td><span class="tag tg-warn">事件驅動</span></td>
+            <td>一旦地緣情勢緩和，賣壓可快速消退</td>
+          </tr>
+          <tr>
+            <td style="color:var(--white)"><strong>OBV vs MACD交叉</strong></td>
+            <td>MACD -4.09 擴大，但成交量未見爆量出逃</td>
+            <td><span class="tag tg-warn">謹慎</span></td>
+            <td>動能指標轉空但量能未確認，需觀察</td>
+          </tr>
+          <tr>
+            <td style="color:var(--white)"><strong>機構資金流向</strong></td>
+            <td>長線資金從美股轉向非美股，TSM為首選</td>
+            <td><span class="tag tg-bull">看多</span></td>
+            <td>被動資金持續流入，OBV長線支撐有效</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Divergence Analysis -->
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:2px; color:var(--text2); margin: 20px 0 12px; text-transform:uppercase;">背離情境分析</div>
+      <div class="obv-divergence">
+        <div class="div-box div-bull">
+          <h4>✦ 看多背離情境（較可能）</h4>
+          <p>若 OBV 在 $329 附近<strong style="color:var(--silicon)">維持高位或僅小幅下滑</strong>，而價格繼續整理——代表機構資金並未跟隨散戶出場。這是典型的「聰明錢留守」訊號，一旦地緣情勢緩和或MACD轉正，股價可能快速反彈至 $341（10EMA）。</p>
+        </div>
+        <div class="div-box div-bear">
+          <h4>▼ 看空背離情境（需警惕）</h4>
+          <p>若 OBV 跟隨價格<strong style="color:var(--red)">急速下滑</strong>且突破前期低點——代表機構開始系統性出清。此情境下，$310 支撐可能無法守住，需執行止損計畫，待 OBV 止跌回升後再評估重新進場時機。</p>
+        </div>
+      </div>
+
+      <!-- OBV Verdict -->
+      <div class="obv-verdict">
+        <strong>OBV 綜合研判：</strong>TSM 目前的回調<strong>缺乏成交量確認</strong>——這是關鍵訊號。賣壓主要來自地緣政治新聞（氦氣/伊朗）的情緒性反應，而非機構系統性出清。長線 OBV 趨勢依然健康。建議主公將 OBV 方向（平緩維持 vs 急速下滑）作為<strong>加碼或減倉的重要參考依據</strong>，優先順序高於單純的價格位置。
+        <br><br>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2);">⚠ 注意：本次OBV分析為定性研判，基於報告成交量描述推估。建議主公在 TradingAgents 設定中加入 OBV 作為正式指標以取得精確數值。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Action Plan -->
+  <section>
+    <div class="sh"><span class="sh-num">04</span><span class="sh-title">行動計畫框架</span></div>
+    <table class="ap-table">
+      <thead>
+        <tr><th>行動</th><th>執行細節</th><th>依據</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--white); font-weight:700;">減倉（投組經理）</td>
+          <td>減至 <strong style="color:var(--red)">≤15%</strong> 投組比例</td>
+          <td>技術面三重跌破 + 地緣風險</td>
+        </tr>
+        <tr>
+          <td style="color:var(--white); font-weight:700;">動態止損（末將建議）</td>
+          <td><strong style="color:var(--orange)">$310–315</strong>（近期支撐區）</td>
+          <td>OBV若持穩，不需執行至$283</td>
+        </tr>
+        <tr>
+          <td style="color:var(--white); font-weight:700;">硬止損</td>
+          <td><strong style="color:var(--red)">$283</strong>（200日SMA）</td>
+          <td>長線趨勢破壞訊號，無條件出場</td>
+        </tr>
+        <tr>
+          <td style="color:var(--white); font-weight:700;">Collar對沖</td>
+          <td>買5% OTM Put + 賣10% OTM Call</td>
+          <td>低成本鎖定下行，保留上行</td>
+        </tr>
+        <tr>
+          <td style="color:var(--white); font-weight:700;">重新進場觸發</td>
+          <td>MACD柱狀圖止跌 + 價格站回10EMA $341</td>
+          <td>技術面確認動能轉正</td>
+        </tr>
+        <tr>
+          <td style="color:var(--white); font-weight:700;">地緣監控</td>
+          <td>霍爾木茲海峽情勢 + 氦氣供應恢復</td>
+          <td>事件消退則賣壓快速消散</td>
+        </tr>
+        <tr>
+          <td style="color:var(--white); font-weight:700;">競爭監控</td>
+          <td>Samsung/Intel 產能利用率 >85% 則減碼</td>
+          <td>定價能力侵蝕的早期訊號</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="wb">
+      ⚠️ <strong>伊朗氦氣供應風險：</strong>台積電先進製程（3nm/2nm）大量使用液態氦進行晶圓清洗與環境控制。霍爾木茲海峽為全球主要氦氣運輸通道之一。若局勢升溫導致供應中斷，短期生產排程可能受影響，為目前最具破壞力的黑天鵝情境。
+    </div>
+  </section>
+
+  <!-- 05 Strategic Summary -->
+  <section>
+    <div class="sh"><span class="sh-num">05</span><span class="sh-title">末將戰略總評</span></div>
+    <div class="summary-box">
+      <p><strong style="color:var(--white)">TSM 是主公 AI 基礎建設核心持倉，長線論文無可挑剔。</strong>全球唯一能量產先進製程、AI晶片需求推動+30%營收、機構資金持續流入——這些都是無法被短線技術面否定的結構性優勢。</p>
+      <p>但短線三重跌破加上伊朗氦氣這個新變數，確實需要謹慎設防。<strong style="color:var(--gold)">OBV能量潮的關鍵觀察點：若回調伴隨的成交量持續低迷（OBV維持高位），這是機構留守的信號，逢低布局勝算較高。</strong></p>
+      <p>末將最終建議：不必像投組經理那樣減至15%，但設好 $310–315 動態止損，$283 硬止損，同時持續追蹤伊朗情勢與OBV走向。等MACD柱狀圖止跌，就是加碼時機。</p>
+      <p>◆ 核心守則：量能不確認，回調不加倉。OBV 持穩，持倉不動搖。</p>
+    </div>
+  </section>
+
+  <div class="disc">
+    ◆ 免責聲明｜本報告由 TradingAgents AI 多Agent系統（Claude Sonnet 4.6）自動生成，輔以 Claude AI 分析整理。OBV分析為定性推估，非精確數值計算。分析基於截至 2026-03-22 的公開資料。僅供參考，不構成任何投資建議。
+  </div>
+
+  <footer>
+    <div class="fi-row">
+      <p>© 2026 · TRADINGAGENTS REPORT · TSM · TAIWAN SEMICONDUCTOR</p>
+      <p>CLAUDE SONNET 4.6 + TRADINGAGENTS</p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
