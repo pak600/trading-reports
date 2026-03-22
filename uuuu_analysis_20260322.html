@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UUUU 戰略分析報告｜2026.03.22</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0800;
+    --surface: #110f00;
+    --surface2: #1a1600;
+    --border: #2a2400;
+    --border2: #3a3200;
+    --accent: #d4a017;
+    --accent2: #f0c040;
+    --uranium: #7fff00;
+    --red: #ff4433;
+    --orange: #ff8c00;
+    --muted: #5a5020;
+    --text: #c8b870;
+    --text2: #8a7840;
+    --white: #f5e8c0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Radioactive grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(212,160,23,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(127,255,0,0.03) 0%, transparent 50%),
+      linear-gradient(rgba(212,160,23,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,160,23,0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--border2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::after {
+    content: 'URANIUM';
+    position: absolute;
+    right: -40px;
+    top: 10px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 140px;
+    font-weight: 700;
+    color: rgba(212,160,23,0.04);
+    letter-spacing: 8px;
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .ticker-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--uranium);
+    border: 1px solid rgba(127,255,0,0.3);
+    padding: 5px 14px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+  }
+
+  .ticker-badge::before {
+    content: '☢';
+    font-size: 14px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(56px, 10vw, 120px);
+    font-weight: 700;
+    line-height: 0.85;
+    letter-spacing: 4px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  h1 .sub { color: var(--accent); font-size: 0.45em; letter-spacing: 6px; display: block; margin-bottom: 4px; }
+
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text2);
+    letter-spacing: 1px;
+  }
+
+  .meta-divider { color: var(--border2); }
+
+  /* Verdict */
+  .verdict-wrap {
+    margin: 36px 0;
+    position: relative;
+  }
+
+  .verdict-inner {
+    background: linear-gradient(135deg, rgba(212,160,23,0.06), rgba(212,160,23,0.02));
+    border: 1px solid rgba(212,160,23,0.25);
+    border-left: 5px solid var(--accent);
+    padding: 28px 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .verdict-word {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--accent2);
+    line-height: 0.9;
+    min-width: 180px;
+    letter-spacing: 2px;
+  }
+
+  .verdict-word .size { display: block; font-size: 0.4em; color: var(--accent); letter-spacing: 4px; margin-top: 8px; }
+
+  .verdict-content h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .verdict-content p { font-size: 13px; color: var(--text); line-height: 1.7; }
+
+  /* Key metrics grid */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border2);
+    margin: 32px 0;
+  }
+
+  @media (max-width: 700px) {
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .verdict-inner { flex-direction: column; gap: 16px; }
+    .verdict-word { font-size: 56px; min-width: auto; }
+    header::after { display: none; }
+  }
+
+  .metric-card {
+    background: var(--surface);
+    padding: 18px 16px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .metric-card:hover { background: var(--surface2); }
+
+  .metric-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .mc-bull::after { background: var(--uranium); }
+  .mc-bear::after { background: var(--red); }
+  .mc-warn::after { background: var(--orange); }
+  .mc-neutral::after { background: var(--muted); }
+
+  .metric-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text2);
+    margin-bottom: 8px;
+  }
+
+  .metric-val {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .metric-sig {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+  .mc-bull .metric-sig { color: var(--uranium); }
+  .mc-bear .metric-sig { color: var(--red); }
+  .mc-warn .metric-sig { color: var(--orange); }
+  .mc-neutral .metric-sig { color: var(--text2); }
+
+  /* Section */
+  section { margin: 52px 0; }
+
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .sec-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 2px;
+  }
+
+  .sec-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+  }
+
+  /* Bull/Bear */
+  .debate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .debate-grid { grid-template-columns: 1fr; } }
+
+  .debate-col {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    padding: 20px;
+  }
+  .bull-col { border-top: 3px solid var(--uranium); }
+  .bear-col { border-top: 3px solid var(--red); }
+
+  .debate-col h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .bull-col h3 { color: var(--uranium); }
+  .bear-col h3 { color: var(--red); }
+
+  .factor {
+    display: flex;
+    gap: 10px;
+    font-size: 12.5px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .factor-icon { flex-shrink: 0; }
+
+  /* Probability table */
+  .prob-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 16px 0;
+  }
+  .prob-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text2);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border2);
+  }
+  .prob-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(42,36,0,0.5);
+    vertical-align: middle;
+  }
+  .prob-table tr:hover td { background: rgba(212,160,23,0.03); }
+
+  .prob-bar-wrap { display: flex; align-items: center; gap: 10px; }
+  .prob-bar {
+    height: 6px;
+    border-radius: 0;
+    flex-shrink: 0;
+  }
+  .prob-bar.green { background: var(--uranium); }
+  .prob-bar.yellow { background: var(--accent2); }
+  .prob-bar.orange { background: var(--orange); }
+  .prob-bar.red { background: var(--red); }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+  }
+  .tag-bull { background: rgba(127,255,0,0.08); color: var(--uranium); border: 1px solid rgba(127,255,0,0.2); }
+  .tag-bear { background: rgba(255,68,51,0.08); color: var(--red); border: 1px solid rgba(255,68,51,0.2); }
+  .tag-warn { background: rgba(255,140,0,0.08); color: var(--orange); border: 1px solid rgba(255,140,0,0.2); }
+  .tag-hold { background: rgba(212,160,23,0.1); color: var(--accent2); border: 1px solid rgba(212,160,23,0.25); }
+
+  /* Technical levels visual */
+  .price-ladder {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    padding: 20px;
+    margin: 16px 0;
+  }
+
+  .ladder-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(42,36,0,0.4);
+    font-size: 13px;
+  }
+  .ladder-item:last-child { border-bottom: none; }
+
+  .ladder-price {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 70px;
+    color: var(--white);
+  }
+
+  .ladder-bar-wrap { flex: 1; position: relative; height: 8px; background: var(--border); }
+  .ladder-bar-fill { position: absolute; left: 0; top: 0; bottom: 0; }
+
+  .ladder-label { font-size: 12px; color: var(--text2); min-width: 120px; }
+  .ladder-tag { min-width: 80px; text-align: right; }
+
+  /* Milestone table */
+  .milestone-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .milestone-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text2);
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border2);
+  }
+  .milestone-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(42,36,0,0.4);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .milestone-table tr:hover td { background: rgba(212,160,23,0.02); }
+  .green { color: var(--uranium); }
+  .yellow { color: var(--accent2); }
+  .red-text { color: var(--red); }
+
+  /* Action boxes */
+  .action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  @media (max-width: 700px) { .action-grid { grid-template-columns: 1fr; } }
+
+  .action-box {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    padding: 20px;
+  }
+
+  .action-box h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .big-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 6px 0;
+  }
+
+  .action-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text2);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  /* Warning box */
+  .warning-box {
+    background: rgba(255,68,51,0.04);
+    border: 1px solid rgba(255,68,51,0.2);
+    border-left: 4px solid var(--red);
+    padding: 20px 24px;
+    margin: 20px 0;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .warning-box strong { color: var(--red); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border2);
+    padding: 28px 0;
+    margin-top: 60px;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text2);
+    letter-spacing: 1px;
+  }
+
+  .disclaimer {
+    background: rgba(212,160,23,0.03);
+    border: 1px solid rgba(212,160,23,0.12);
+    padding: 14px 18px;
+    margin-top: 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .container > * { animation: fadeUp 0.5s ease both; }
+  header { animation-delay: 0s; }
+  .verdict-wrap { animation-delay: 0.08s; }
+  .metrics-grid { animation-delay: 0.14s; }
+  section:nth-of-type(1) { animation-delay: 0.18s; }
+  section:nth-of-type(2) { animation-delay: 0.22s; }
+  section:nth-of-type(3) { animation-delay: 0.26s; }
+  section:nth-of-type(4) { animation-delay: 0.30s; }
+  section:nth-of-type(5) { animation-delay: 0.34s; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="ticker-badge">NYSE · UUUU · ENERGY FUELS INC · 鈾礦分析</div>
+    <h1>
+      <span class="sub">ENERGY FUELS</span>
+      UUUU
+    </h1>
+    <div class="meta-row">
+      <span class="meta-item">現價 $16.75</span>
+      <span class="meta-divider">|</span>
+      <span class="meta-item">距高點回檔 -40%</span>
+      <span class="meta-divider">|</span>
+      <span class="meta-item">生成時間 2026-03-22 14:29</span>
+      <span class="meta-divider">|</span>
+      <span class="meta-item">TRADINGAGENTS + CLAUDE</span>
+    </div>
+  </header>
+
+  <div class="verdict-wrap">
+    <div class="verdict-inner">
+      <div class="verdict-word">
+        BUY
+        <span class="size">1.0–1.5% 倉位</span>
+      </div>
+      <div class="verdict-content">
+        <h2>最終裁決｜非對稱小倉策略</h2>
+        <p>鈾礦結構性需求論文正確，但執行風險極高。現價 $16.75 已從高點回檔40%，期望值約 $18–22（+7～31%），但左尾風險肥厚。<strong style="color:var(--accent2)">小倉進場、分批DCA、嚴守里程碑</strong> — 三者缺一不可。SpaceX 盾牌計畫資金不得動用於此。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Metrics -->
+  <div class="metrics-grid">
+    <div class="metric-card mc-neutral">
+      <div class="metric-label">現價</div>
+      <div class="metric-val">$16.75</div>
+      <div class="metric-sig">52週 $8.50–$27.90</div>
+    </div>
+    <div class="metric-card mc-bear">
+      <div class="metric-label">距高點</div>
+      <div class="metric-val">-40%</div>
+      <div class="metric-sig">高點 $27.90 (1月28日)</div>
+    </div>
+    <div class="metric-card mc-bear">
+      <div class="metric-label">50日 SMA</div>
+      <div class="metric-val">$21.33</div>
+      <div class="metric-sig">▼ 價格跌破，空頭排列</div>
+    </div>
+    <div class="metric-card mc-warn">
+      <div class="metric-label">200日 SMA</div>
+      <div class="metric-val">$15.03</div>
+      <div class="metric-sig">⚠ 最後長線防線</div>
+    </div>
+    <div class="metric-card mc-warn">
+      <div class="metric-label">RSI (14)</div>
+      <div class="metric-val">36.4</div>
+      <div class="metric-sig">⚠ 接近超賣，非反轉</div>
+    </div>
+    <div class="metric-card mc-bear">
+      <div class="metric-label">MACD</div>
+      <div class="metric-val">-0.91</div>
+      <div class="metric-sig">▼ 從+2.52崩潰至負值</div>
+    </div>
+    <div class="metric-card mc-bear">
+      <div class="metric-label">布林下軌</div>
+      <div class="metric-val">$16.81</div>
+      <div class="metric-sig">▼ 已跌破，極度超賣</div>
+    </div>
+    <div class="metric-card mc-bull">
+      <div class="metric-label">長線漲幅</div>
+      <div class="metric-val">+165%</div>
+      <div class="metric-sig">▲ Aug25 $10.58→Jan26高點</div>
+    </div>
+  </div>
+
+  <!-- 01 Bull vs Bear -->
+  <section>
+    <div class="sec-header">
+      <span class="sec-num">01</span>
+      <span class="sec-title">多空論戰</span>
+    </div>
+    <div class="debate-grid">
+      <div class="debate-col bull-col">
+        <h3>☢ 多方論點</h3>
+        <div class="factor"><span class="factor-icon" style="color:var(--uranium)">▲</span><span>鈾礦結構性需求真實——核電廠實際上線，政策承諾明確，2026年條件有別於2010-2015週期</span></div>
+        <div class="factor"><span class="factor-icon" style="color:var(--uranium)">▲</span><span>毛利率改善至30%+，方向正確，顯示產品組合優化與成本控制初見成效</span></div>
+        <div class="factor"><span class="factor-icon" style="color:var(--uranium)">▲</span><span>200日SMA $15.03 提供強力長線支撐，$15.00 心理關口加持</span></div>
+        <div class="factor"><span class="factor-icon" style="color:var(--uranium)">▲</span><span>新CEO Bhappu 接任提供管理層重置機會，90天內將有關鍵信號</span></div>
+        <div class="factor"><span class="factor-icon" style="color:var(--uranium)">▲</span><span>稀土業務為潛在爆炸性催化劑，任何公開供貨協議即觸發加碼訊號</span></div>
+        <div class="factor"><span class="factor-icon" style="color:var(--uranium)">▲</span><span>賣壓近期成交量遞減，顯示拋售動能衰竭，非機構集中出逃</span></div>
+      </div>
+      <div class="debate-col bear-col">
+        <h3>☠ 空方論點</h3>
+        <div class="factor"><span class="factor-icon" style="color:var(--red)">▼</span><span>$675M 負債在鈾價高峰借入，管理層資本配置判斷存疑，非隨機厄運</span></div>
+        <div class="factor"><span class="factor-icon" style="color:var(--red)">▼</span><span>FCF仍為負值，執行風險高，季度盈利高度不穩定</span></div>
+        <div class="factor"><span class="factor-icon" style="color:var(--red)">▼</span><span>小市值商品股止損單可能跳空穿越，-28%止損假設過於樂觀，實際可能-40%</span></div>
+        <div class="factor"><span class="factor-icon" style="color:var(--red)">▼</span><span>執行概率非獨立變數——鈾價若跌至$50，執行概率從45%降至25%</span></div>
+        <div class="factor"><span class="factor-icon" style="color:var(--red)">▼</span><span>2028-2029年債務到期，市場將提前18-24個月開始定價再融資風險</span></div>
+        <div class="factor"><span class="factor-icon" style="color:var(--red)">▼</span><span>MACD從+2.52崩潰至-0.91，動能結構性破壞，無穩定跡象</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Technical Levels -->
+  <section>
+    <div class="sec-header">
+      <span class="sec-num">02</span>
+      <span class="sec-title">關鍵技術位階</span>
+    </div>
+    <div class="price-ladder">
+      <div class="ladder-item">
+        <div class="ladder-price" style="color:var(--red)">$27.90</div>
+        <div class="ladder-bar-wrap"><div class="ladder-bar-fill" style="width:100%; background:var(--red); opacity:0.4;"></div></div>
+        <div class="ladder-label">1月28日高點</div>
+        <div class="ladder-tag"><span class="tag tag-bear">歷史高點</span></div>
+      </div>
+      <div class="ladder-item">
+        <div class="ladder-price" style="color:var(--red)">$21.33</div>
+        <div class="ladder-bar-wrap"><div class="ladder-bar-fill" style="width:76%; background:var(--red); opacity:0.5;"></div></div>
+        <div class="ladder-label">50日SMA 主要阻力</div>
+        <div class="ladder-tag"><span class="tag tag-bear">強阻力</span></div>
+      </div>
+      <div class="ladder-item">
+        <div class="ladder-price" style="color:var(--accent2)">$16.75</div>
+        <div class="ladder-bar-wrap"><div class="ladder-bar-fill" style="width:60%; background:var(--accent2);"></div></div>
+        <div class="ladder-label">現價</div>
+        <div class="ladder-tag"><span class="tag tag-hold">現價</span></div>
+      </div>
+      <div class="ladder-item">
+        <div class="ladder-price" style="color:var(--uranium)">$15.03</div>
+        <div class="ladder-bar-wrap"><div class="ladder-bar-fill" style="width:54%; background:var(--uranium); opacity:0.6;"></div></div>
+        <div class="ladder-label">200日SMA 最後防線</div>
+        <div class="ladder-tag"><span class="tag tag-bull">關鍵支撐</span></div>
+      </div>
+      <div class="ladder-item">
+        <div class="ladder-price" style="color:var(--uranium)">$15.00</div>
+        <div class="ladder-bar-wrap"><div class="ladder-bar-fill" style="width:53%; background:var(--uranium); opacity:0.4;"></div></div>
+        <div class="ladder-label">心理整數關口</div>
+        <div class="ladder-tag"><span class="tag tag-bull">加碼區</span></div>
+      </div>
+      <div class="ladder-item">
+        <div class="ladder-price" style="color:var(--red)">$12.00</div>
+        <div class="ladder-bar-wrap"><div class="ladder-bar-fill" style="width:43%; background:var(--red); opacity:0.5;"></div></div>
+        <div class="ladder-label">硬止損位</div>
+        <div class="ladder-tag"><span class="tag tag-bear">強制出場</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Probability -->
+  <section>
+    <div class="sec-header">
+      <span class="sec-num">03</span>
+      <span class="sec-title">情境機率分佈</span>
+    </div>
+    <p style="font-size:12px; font-family:'IBM Plex Mono',monospace; color:var(--text2); margin-bottom:16px;">期望值約 $18–22｜隱含 +7～31% 上行空間｜但左尾風險肥厚</p>
+    <table class="prob-table">
+      <thead>
+        <tr>
+          <th>情境</th>
+          <th>機率</th>
+          <th>目標價</th>
+          <th>概率視覺</th>
+          <th>訊號</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>✅ 成功執行——鈾價支撐，產能達標</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--uranium);">35–40%</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--uranium);">$35–40</td>
+          <td><div class="prob-bar-wrap"><div class="prob-bar green" style="width:80px;"></div></div></td>
+          <td><span class="tag tag-bull">大漲</span></td>
+        </tr>
+        <tr>
+          <td>🟡 延遲執行——改善但時程落後</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--accent2);">30–35%</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--accent2);">$18–22</td>
+          <td><div class="prob-bar-wrap"><div class="prob-bar yellow" style="width:68px;"></div></div></td>
+          <td><span class="tag tag-hold">小漲</span></td>
+        </tr>
+        <tr>
+          <td>⚠️ 部分失敗——執行受挫，債務壓力</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--orange);">20–25%</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--orange);">$8–12</td>
+          <td><div class="prob-bar-wrap"><div class="prob-bar orange" style="width:48px;"></div></div></td>
+          <td><span class="tag tag-warn">大跌</span></td>
+        </tr>
+        <tr>
+          <td>❌ 災難性失敗——重組或稀釋螺旋</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--red);">10%</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--red);">$3–5</td>
+          <td><div class="prob-bar-wrap"><div class="prob-bar red" style="width:24px;"></div></div></td>
+          <td><span class="tag tag-bear">末日</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warning-box">
+      ⚠️ <strong>止損跳空風險警告：</strong>小市值商品股在機構同時出逃時，止損單無法保證在 $12 執行。實際虧損可能達 -35～40%（而非理論-28%）。倉位規模必須以此更悲觀情境計算。
+    </div>
+  </section>
+
+  <!-- 04 Action Plan -->
+  <section>
+    <div class="sec-header">
+      <span class="sec-num">04</span>
+      <span class="sec-title">具體行動計畫</span>
+    </div>
+    <div class="action-grid">
+      <div class="action-box">
+        <h3>初始倉位</h3>
+        <div class="big-num" style="color:var(--accent2);">1–1.5%</div>
+        <div class="action-note">投資組合比例<br>反映40–45%執行確信度<br>分8–10週DCA攤平</div>
+      </div>
+      <div class="action-box">
+        <h3>加碼區間</h3>
+        <div class="big-num" style="color:var(--uranium);">$15.00</div>
+        <div class="action-note">測試200日SMA支撐時加碼<br>$15心理關口強力支撐<br>不可在反彈中追高</div>
+      </div>
+      <div class="action-box">
+        <h3>硬止損</h3>
+        <div class="big-num" style="color:var(--red);">$12.00</div>
+        <div class="action-note">視為強制重新評估觸發點<br>接近$12即減至0.25%<br>不等跳空穿越</div>
+      </div>
+    </div>
+    <div style="background:var(--surface); border:1px solid var(--border2); border-left:4px solid var(--uranium); padding:20px 24px; margin-top:12px;">
+      <h3 style="font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; color:var(--uranium); margin-bottom:10px; text-transform:uppercase;">稀土催化劑——特別條款</h3>
+      <p style="font-size:13px; color:var(--text);">稀土業務目前估值為零。一旦宣布公開供貨協議或生產里程碑，即觸發向倉位上限擴張的考慮。此為非對稱爆發選項，不納入基礎期望值計算。</p>
+    </div>
+  </section>
+
+  <!-- 05 Milestone Framework -->
+  <section>
+    <div class="sec-header">
+      <span class="sec-num">05</span>
+      <span class="sec-title">五大里程碑監控框架</span>
+    </div>
+    <p style="font-size:12px; font-family:'IBM Plex Mono',monospace; color:var(--text2); margin-bottom:16px;">論文驗證期限：24–30個月｜2028-2029年債務到期前需完成驗證</p>
+    <table class="milestone-table">
+      <thead>
+        <tr>
+          <th>里程碑</th>
+          <th class="green">加碼至 2–2.5%</th>
+          <th class="yellow">維持 1–1.5%</th>
+          <th class="red-text">減至0.25%或出場</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:var(--white)">Q1營收</strong></td>
+          <td class="green">≥ $18M，Q2預測準確</td>
+          <td class="yellow">穩定但不一致</td>
+          <td class="red-text">< $15M 無合理解釋</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--white)">資本支出佔比</strong></td>
+          <td class="green">明確下降趨勢</td>
+          <td class="yellow">方向模糊</td>
+          <td class="red-text">> 25% 收入</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--white)">毛利率</strong></td>
+          <td class="green">穩定 ≥ 30%</td>
+          <td class="yellow">穩定但偏低</td>
+          <td class="red-text">持續惡化</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--white)">債務再融資</strong></td>
+          <td class="green">主動提前處理</td>
+          <td class="yellow">進行中</td>
+          <td class="red-text">困難或昂貴</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--white)">新CEO Bhappu 90天</strong></td>
+          <td class="green">具體成本削減/改善措施</td>
+          <td class="yellow">觀察中</td>
+          <td class="red-text">無實質行動</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 06 Strategic Warning -->
+  <section>
+    <div class="sec-header">
+      <span class="sec-num">06</span>
+      <span class="sec-title">末將戰略總評</span>
+    </div>
+    <div style="background:var(--surface); border:1px solid var(--border2); padding:24px; font-size:13px; line-height:1.8; color:var(--text);">
+      <p style="margin-bottom:14px;">空方在執行風險、槓桿危險和管理層質量方面論點更強。多方在結構性鈾礦需求、毛利率改善方向和非對稱上行方面論點更強。</p>
+      <p style="margin-bottom:14px;"><strong style="color:var(--accent2)">UUUU 是高風險非對稱機會，不是主流配置。</strong>鈾礦結構性論文正確，但執行風險已在估值中部分反映（相對Cameco）——這正是機會所在，也是危險所在。</p>
+      <p style="color:var(--uranium); font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;">⚡ 關鍵原則：大倉是錯誤。帶明確催化劑的小倉、止損管理位置、主動里程碑監控——是合理的非對稱押注。</p>
+    </div>
+    <div class="warning-box" style="margin-top:16px;">
+      🛡️ <strong>主公 SpaceX 盾牌計畫提醒：</strong>保留 $8,000 USD 現金的盾牌計畫不得與 UUUU 倉位混用。兩者為獨立策略，資金池嚴格分離。
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    ☢ 免責聲明｜本報告由 TradingAgents AI 多Agent系統自動生成，輔以 Claude AI 分析整理。分析基於截至 2026-03-22 的公開資料。僅供參考，不構成任何投資建議。投資涉及風險，請主公自行判斷並承擔投資責任。鈾礦類股波動劇烈，小市值商品股尤具流動性風險。
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 · TRADINGAGENTS REPORT · UUUU · ENERGY FUELS INC</p>
+      <p>POWERED BY TRADINGAGENTS + ANTHROPIC CLAUDE</p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
