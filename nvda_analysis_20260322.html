@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVDA 戰略分析報告｜2026.03.22</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #010a06;
+    --surface: #030f08;
+    --surface2: #061510;
+    --border: #0a2a14;
+    --border2: #0f3d1e;
+    --accent: #00ff88;
+    --accent2: #00cc6a;
+    --dim: #005530;
+    --red: #ff3b5c;
+    --orange: #ff8800;
+    --yellow: #ffe000;
+    --muted: #1a4a2a;
+    --text: #7ecfa0;
+    --text2: #2a6a40;
+    --white: #e0ffe8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 10% 10%, rgba(0,255,136,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 90%, rgba(0,204,106,0.03) 0%, transparent 50%),
+      linear-gradient(rgba(0,255,136,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,136,0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 28px 28px, 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 72px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    padding: 60px 0 44px;
+    border-bottom: 1px solid var(--border2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::after {
+    content: 'NVIDIA';
+    position: absolute;
+    right: -30px;
+    top: 0px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 160px;
+    font-weight: 900;
+    color: rgba(0,255,136,0.03);
+    letter-spacing: 6px;
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .chip-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent);
+    border: 1px solid rgba(0,255,136,0.25);
+    padding: 5px 14px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .chip-badge::before {
+    content: '⬡';
+    font-size: 16px;
+    animation: spin 8s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(52px, 9vw, 110px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: 6px;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+
+  h1 .sub {
+    display: block;
+    font-size: 0.28em;
+    letter-spacing: 8px;
+    color: var(--accent2);
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text2);
+    letter-spacing: 1px;
+  }
+  .meta-sep { color: var(--border2); }
+
+  /* Analyst verdict row */
+  .verdict-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border2);
+    margin: 32px 0 24px;
+  }
+
+  @media (max-width: 680px) {
+    .verdict-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .verdict-cell {
+    background: var(--surface);
+    padding: 16px;
+    text-align: center;
+  }
+
+  .verdict-cell .analyst-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text2);
+    margin-bottom: 10px;
+  }
+
+  .verdict-pill {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 6px 14px;
+  }
+
+  .pill-hold { background: rgba(255,224,0,0.08); color: var(--yellow); border: 1px solid rgba(255,224,0,0.25); }
+  .pill-sell { background: rgba(255,59,92,0.1); color: var(--red); border: 1px solid rgba(255,59,92,0.3); }
+  .pill-buy  { background: rgba(0,255,136,0.08); color: var(--accent); border: 1px solid rgba(0,255,136,0.25); }
+
+  /* Final verdict banner */
+  .final-verdict {
+    background: linear-gradient(135deg, rgba(255,59,92,0.06), rgba(255,59,92,0.02));
+    border: 1px solid rgba(255,59,92,0.2);
+    border-left: 5px solid var(--red);
+    padding: 24px 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 600px) {
+    .final-verdict { flex-direction: column; gap: 14px; }
+    header::after { display: none; }
+  }
+
+  .fv-word {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 0.9;
+    letter-spacing: 4px;
+    min-width: 160px;
+  }
+
+  .fv-word .fv-sub {
+    display: block;
+    font-size: 0.25em;
+    color: rgba(255,59,92,0.6);
+    letter-spacing: 3px;
+    margin-top: 8px;
+  }
+
+  .fv-content h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--red);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .fv-content p { font-size: 13px; color: var(--text); line-height: 1.7; }
+
+  /* Metrics grid */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border2);
+    margin: 28px 0;
+  }
+
+  @media (max-width: 700px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .mc {
+    background: var(--surface);
+    padding: 18px 14px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .mc:hover { background: var(--surface2); }
+  .mc::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .mc-bull::after { background: var(--accent); }
+  .mc-bear::after { background: var(--red); }
+  .mc-warn::after { background: var(--orange); }
+  .mc-neu::after  { background: var(--muted); }
+
+  .mc-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text2);
+    margin-bottom: 8px;
+  }
+
+  .mc-val {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+
+  .mc-sig {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+  .mc-bull .mc-sig { color: var(--accent); }
+  .mc-bear .mc-sig { color: var(--red); }
+  .mc-warn .mc-sig { color: var(--orange); }
+  .mc-neu .mc-sig  { color: var(--text2); }
+
+  /* Section */
+  section { margin: 52px 0; }
+
+  .sec-hdr {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .sec-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent2);
+    letter-spacing: 2px;
+  }
+
+  .sec-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 3px;
+  }
+
+  /* Bull/Bear grid */
+  .debate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .debate-grid { grid-template-columns: 1fr; } }
+
+  .dc {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    padding: 20px;
+  }
+  .dc-bull { border-top: 3px solid var(--accent); }
+  .dc-bear { border-top: 3px solid var(--red); }
+
+  .dc h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .dc-bull h3 { color: var(--accent); }
+  .dc-bear h3 { color: var(--red); }
+
+  .fac {
+    display: flex;
+    gap: 10px;
+    font-size: 12.5px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .fac-icon { flex-shrink: 0; }
+
+  /* Financials table */
+  .fin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .fin-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text2);
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border2);
+  }
+  .fin-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(10,42,20,0.6);
+    vertical-align: middle;
+  }
+  .fin-table tr:hover td { background: rgba(0,255,136,0.02); }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+  }
+  .tag-bull { background: rgba(0,255,136,0.07); color: var(--accent); border: 1px solid rgba(0,255,136,0.2); }
+  .tag-bear { background: rgba(255,59,92,0.07); color: var(--red); border: 1px solid rgba(255,59,92,0.2); }
+  .tag-warn { background: rgba(255,136,0,0.07); color: var(--orange); border: 1px solid rgba(255,136,0,0.2); }
+  .tag-hold { background: rgba(255,224,0,0.07); color: var(--yellow); border: 1px solid rgba(255,224,0,0.2); }
+
+  /* Price ladder */
+  .price-ladder {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    padding: 20px;
+    margin: 16px 0;
+  }
+
+  .ladder-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(10,42,20,0.4);
+    font-size: 12.5px;
+  }
+  .ladder-row:last-child { border-bottom: none; }
+
+  .lp {
+    font-family: 'Orbitron', monospace;
+    font-size: 15px;
+    font-weight: 700;
+    min-width: 72px;
+  }
+
+  .lbar-wrap { flex: 1; height: 6px; background: var(--border); position: relative; }
+  .lbar-fill { position: absolute; left: 0; top: 0; bottom: 0; }
+
+  .llabel { font-size: 12px; color: var(--text2); min-width: 140px; }
+  .ltag { min-width: 80px; text-align: right; }
+
+  /* Action plan */
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 16px 0;
+  }
+  @media (max-width: 700px) { .action-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .abox {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    padding: 18px 14px;
+  }
+
+  .abox h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .abox .bnum {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 6px 0;
+  }
+
+  .anote {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text2);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  /* Re-entry triggers */
+  .trigger-box {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-left: 4px solid var(--accent);
+    padding: 20px 24px;
+    margin: 14px 0;
+  }
+
+  .trigger-box h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .trigger-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 12.5px;
+    color: var(--text);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(10,42,20,0.4);
+    line-height: 1.5;
+  }
+  .trigger-row:last-child { border-bottom: none; }
+  .tnum {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent2);
+    min-width: 28px;
+    line-height: 1.2;
+  }
+
+  /* Scenario */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) { .scenario-grid { grid-template-columns: 1fr; } }
+
+  .sbox {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    padding: 16px;
+  }
+
+  .sbox h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .sbox .sprob {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 8px 0 4px;
+  }
+
+  .sbox p { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* Warning */
+  .warn-box {
+    background: rgba(255,59,92,0.04);
+    border: 1px solid rgba(255,59,92,0.18);
+    border-left: 4px solid var(--red);
+    padding: 18px 22px;
+    margin: 16px 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .warn-box strong { color: var(--red); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border2);
+    padding: 28px 0;
+    margin-top: 60px;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text2);
+    letter-spacing: 1px;
+  }
+
+  .disclaimer {
+    background: rgba(0,255,136,0.02);
+    border: 1px solid rgba(0,255,136,0.08);
+    padding: 14px 18px;
+    margin-top: 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .container > * { animation: fadeUp 0.5s ease both; }
+  header            { animation-delay: 0.00s; }
+  .verdict-row      { animation-delay: 0.06s; }
+  .final-verdict    { animation-delay: 0.10s; }
+  .metrics-grid     { animation-delay: 0.14s; }
+  section:nth-of-type(1) { animation-delay: 0.18s; }
+  section:nth-of-type(2) { animation-delay: 0.22s; }
+  section:nth-of-type(3) { animation-delay: 0.26s; }
+  section:nth-of-type(4) { animation-delay: 0.30s; }
+  section:nth-of-type(5) { animation-delay: 0.34s; }
+  section:nth-of-type(6) { animation-delay: 0.38s; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="chip-badge">NASDAQ · NVDA · NVIDIA CORPORATION · AI晶片龍頭</div>
+    <h1>
+      <span class="sub">NVIDIA CORPORATION</span>
+      NVDA
+    </h1>
+    <div class="meta-row">
+      <span class="meta-item">現價 $182.47</span>
+      <span class="meta-sep">|</span>
+      <span class="meta-item">52週 $86.62–$212.19</span>
+      <span class="meta-sep">|</span>
+      <span class="meta-item">生成 2026-03-22</span>
+      <span class="meta-sep">|</span>
+      <span class="meta-item">TRADINGAGENTS + CLAUDE</span>
+    </div>
+  </header>
+
+  <!-- Analyst verdicts -->
+  <div class="verdict-row">
+    <div class="verdict-cell">
+      <div class="analyst-name">市場分析師</div>
+      <div class="verdict-pill pill-hold">HOLD</div>
+    </div>
+    <div class="verdict-cell">
+      <div class="analyst-name">社群分析師</div>
+      <div class="verdict-pill pill-hold">HOLD</div>
+    </div>
+    <div class="verdict-cell">
+      <div class="analyst-name">基本面分析師</div>
+      <div class="verdict-pill pill-hold">HOLD</div>
+    </div>
+    <div class="verdict-cell">
+      <div class="analyst-name">投資組合經理</div>
+      <div class="verdict-pill pill-sell">SELL</div>
+    </div>
+  </div>
+
+  <!-- Final Verdict -->
+  <div class="final-verdict">
+    <div class="fv-word">
+      SELL
+      <span class="fv-sub">投組經理裁決</span>
+    </div>
+    <div class="fv-content">
+      <h2>最終裁決｜謹慎減倉，設防再進場</h2>
+      <p>三位分析師均主張 HOLD，但投資組合經理基於技術動能崩壞、Supermicro 監管風險外溢、估值定價完美執行三重壓力，最終裁決 SELL。建議 <strong style="color:#ff3b5c">$176–$180 出場</strong>，硬止損 $165，等待 Q2 財報（7月）確認後再考慮重新進場。末將傾向 <strong style="color:#ffe000">謹慎 HOLD + 動態止損</strong>，視主公持倉成本而定。</p>
+    </div>
+  </div>
+
+  <!-- Key Metrics -->
+  <div class="metrics-grid">
+    <div class="mc mc-neu">
+      <div class="mc-label">現價</div>
+      <div class="mc-val">$182.47</div>
+      <div class="mc-sig">52週 $86.62–$212.19</div>
+    </div>
+    <div class="mc mc-bull">
+      <div class="mc-label">200日 SMA</div>
+      <div class="mc-val">$178.42</div>
+      <div class="mc-sig">▲ 長線支撐仍守住</div>
+    </div>
+    <div class="mc mc-bear">
+      <div class="mc-label">50日 SMA</div>
+      <div class="mc-val">$184.59</div>
+      <div class="mc-sig">▼ 已跌破，中線轉弱</div>
+    </div>
+    <div class="mc mc-warn">
+      <div class="mc-label">10日 EMA</div>
+      <div class="mc-val">$180.10</div>
+      <div class="mc-sig">⚠ 接近，勉強守住</div>
+    </div>
+    <div class="mc mc-bear">
+      <div class="mc-label">MACD</div>
+      <div class="mc-val">-2.01</div>
+      <div class="mc-sig">▼ 負值且持續惡化</div>
+    </div>
+    <div class="mc mc-warn">
+      <div class="mc-label">RSI (14)</div>
+      <div class="mc-val">38–48</div>
+      <div class="mc-sig">⚠ 中性偏弱，未超賣</div>
+    </div>
+    <div class="mc mc-bull">
+      <div class="mc-label">季度營收</div>
+      <div class="mc-val">$68.1B</div>
+      <div class="mc-sig">▲ YoY +73%，怪獸成長</div>
+    </div>
+    <div class="mc mc-bull">
+      <div class="mc-label">淨利率</div>
+      <div class="mc-val">55.6%</div>
+      <div class="mc-sig">▲ 營業利潤率 65%</div>
+    </div>
+  </div>
+
+  <!-- 01 Bull vs Bear -->
+  <section>
+    <div class="sec-hdr">
+      <span class="sec-num">01</span>
+      <span class="sec-title">多空論戰</span>
+    </div>
+    <div class="debate-grid">
+      <div class="dc dc-bull">
+        <h3>⬡ 多方論點</h3>
+        <div class="fac"><span class="fac-icon" style="color:var(--accent)">▲</span><span>200日SMA $178.42 長線支撐仍守住，長線牛市結構未破壞</span></div>
+        <div class="fac"><span class="fac-icon" style="color:var(--accent)">▲</span><span>季度營收 $68.13B、年增+73%，規模與成長速度同步創高</span></div>
+        <div class="fac"><span class="fac-icon" style="color:var(--accent)">▲</span><span>淨利率55.6%、營業利潤率65%，全球頂尖盈利能力</span></div>
+        <div class="fac"><span class="fac-icon" style="color:var(--accent)">▲</span><span>Forward P/E 僅15.5x，若EPS +126% YoY兌現，估值實際偏低</span></div>
+        <div class="fac"><span class="fac-icon" style="color:var(--accent)">▲</span><span>Salesforce Agentforce 合作驗證 AI Agent 戰略，企業軟體收入新增長引擎</span></div>
+        <div class="fac"><span class="fac-icon" style="color:var(--accent)">▲</span><span>$36B 營業現金流，ROE 101%，財務堡壘級別</span></div>
+      </div>
+      <div class="dc dc-bear">
+        <h3>☠ 空方論點</h3>
+        <div class="fac"><span class="fac-icon" style="color:var(--red)">▼</span><span>MACD -2.01 且持續惡化，Histogram 負值擴大，動能結構性崩壞</span></div>
+        <div class="fac"><span class="fac-icon" style="color:var(--red)">▼</span><span>已跌破50日SMA，歷史上此形態後常見8-12%進一步回調</span></div>
+        <div class="fac"><span class="fac-icon" style="color:var(--red)">▼</span><span>Supermicro 走私案：間接暴露Nvidia，中國營收13%（每季$250-300M）面臨風險</span></div>
+        <div class="fac"><span class="fac-icon" style="color:var(--red)">▼</span><span>Beta 2.38，宏觀風險偏惡化時跌幅為大盤2.38倍</span></div>
+        <div class="fac"><span class="fac-icon" style="color:var(--red)">▼</span><span>市場已定價完美執行，EPS miss 10% 即推高P/E至19x，歷史對應14%修正</span></div>
+        <div class="fac"><span class="fac-icon" style="color:var(--red)">▼</span><span>UBS 警告 AI 泡沫，高Beta股首當其衝，合規成本$350-400M/季</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Technical levels -->
+  <section>
+    <div class="sec-hdr">
+      <span class="sec-num">02</span>
+      <span class="sec-title">關鍵技術位階</span>
+    </div>
+    <div class="price-ladder">
+      <div class="ladder-row">
+        <div class="lp" style="color:var(--red)">$212.19</div>
+        <div class="lbar-wrap"><div class="lbar-fill" style="width:100%; background:var(--red); opacity:0.3;"></div></div>
+        <div class="llabel">52週高點</div>
+        <div class="ltag"><span class="tag tag-bear">歷史高點</span></div>
+      </div>
+      <div class="ladder-row">
+        <div class="lp" style="color:var(--orange)">$184.59</div>
+        <div class="lbar-wrap"><div class="lbar-fill" style="width:87%; background:var(--orange); opacity:0.5;"></div></div>
+        <div class="llabel">50日SMA 阻力</div>
+        <div class="ltag"><span class="tag tag-warn">主要阻力</span></div>
+      </div>
+      <div class="ladder-row">
+        <div class="lp" style="color:var(--yellow)">$182.47</div>
+        <div class="lbar-wrap"><div class="lbar-fill" style="width:86%; background:var(--yellow);"></div></div>
+        <div class="llabel">現價</div>
+        <div class="ltag"><span class="tag tag-hold">現價</span></div>
+      </div>
+      <div class="ladder-row">
+        <div class="lp" style="color:var(--orange)">$180.10</div>
+        <div class="lbar-wrap"><div class="lbar-fill" style="width:85%; background:var(--orange); opacity:0.4;"></div></div>
+        <div class="llabel">10日EMA 短線支撐</div>
+        <div class="ltag"><span class="tag tag-warn">短線支撐</span></div>
+      </div>
+      <div class="ladder-row">
+        <div class="lp" style="color:var(--accent)">$178.42</div>
+        <div class="lbar-wrap"><div class="lbar-fill" style="width:84%; background:var(--accent); opacity:0.6;"></div></div>
+        <div class="llabel">200日SMA 關鍵防線</div>
+        <div class="ltag"><span class="tag tag-bull">長線支撐</span></div>
+      </div>
+      <div class="ladder-row">
+        <div class="lp" style="color:var(--orange)">$176–177</div>
+        <div class="lbar-wrap"><div class="lbar-fill" style="width:83%; background:var(--orange); opacity:0.5;"></div></div>
+        <div class="llabel">建議止損區（1×ATR）</div>
+        <div class="ltag"><span class="tag tag-warn">動態止損</span></div>
+      </div>
+      <div class="ladder-row">
+        <div class="lp" style="color:var(--red)">$165.00</div>
+        <div class="lbar-wrap"><div class="lbar-fill" style="width:78%; background:var(--red); opacity:0.5;"></div></div>
+        <div class="llabel">硬止損（200-SMA下方）</div>
+        <div class="ltag"><span class="tag tag-bear">強制出場</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Financials -->
+  <section>
+    <div class="sec-hdr">
+      <span class="sec-num">03</span>
+      <span class="sec-title">財務強健度</span>
+    </div>
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>指標</th>
+          <th>數值</th>
+          <th>評級</th>
+          <th>解讀</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>季度營收</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--accent)">$68.13B</td>
+          <td><span class="tag tag-bull">ELITE</span></td>
+          <td>YoY +73%，五季連續成長</td>
+        </tr>
+        <tr>
+          <td>淨利率</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--accent)">55.6%</td>
+          <td><span class="tag tag-bull">ELITE</span></td>
+          <td>持續高於50%，罕見</td>
+        </tr>
+        <tr>
+          <td>營業利潤率</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--accent)">65.0%</td>
+          <td><span class="tag tag-bull">ELITE</span></td>
+          <td>穩定，強成本控制</td>
+        </tr>
+        <tr>
+          <td>ROE</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--accent)">101%</td>
+          <td><span class="tag tag-bull">ELITE</span></td>
+          <td>高槓桿+高盈利驅動</td>
+        </tr>
+        <tr>
+          <td>TTM P/E</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--orange)">35.24x</td>
+          <td><span class="tag tag-warn">偏高</span></td>
+          <td>歷史偏貴，但Forward 15.5x合理</td>
+        </tr>
+        <tr>
+          <td>Forward P/E</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--accent)">15.5x</td>
+          <td><span class="tag tag-bull">合理</span></td>
+          <td>假設EPS +126% YoY兌現</td>
+        </tr>
+        <tr>
+          <td>Beta</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--red)">2.38</td>
+          <td><span class="tag tag-bear">高波動</span></td>
+          <td>宏觀惡化時放大跌幅</td>
+        </tr>
+        <tr>
+          <td>流動比率</td>
+          <td style="font-family:'IBM Plex Mono',monospace; color:var(--accent)">3.91</td>
+          <td><span class="tag tag-bull">健康</span></td>
+          <td>短期流動性充裕</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 04 Action Plan -->
+  <section>
+    <div class="sec-hdr">
+      <span class="sec-num">04</span>
+      <span class="sec-title">行動計畫</span>
+    </div>
+    <div class="action-grid">
+      <div class="abox">
+        <h3>出場區間</h3>
+        <div class="bnum" style="color:var(--red)">$176–180</div>
+        <div class="anote">若決定執行SELL<br>在此區間分批減倉</div>
+      </div>
+      <div class="abox">
+        <h3>動態止損</h3>
+        <div class="bnum" style="color:var(--orange)">$176–177</div>
+        <div class="anote">1×ATR 以下<br>HOLD策略的守門線</div>
+      </div>
+      <div class="abox">
+        <h3>硬止損</h3>
+        <div class="bnum" style="color:var(--red)">$165</div>
+        <div class="anote">200日SMA下方<br>無條件強制出場</div>
+      </div>
+      <div class="abox">
+        <h3>ATR</h3>
+        <div class="bnum" style="color:var(--accent)">~$6.0</div>
+        <div class="anote">波動適中可控<br>止損設1–1.5×ATR</div>
+      </div>
+    </div>
+
+    <div class="trigger-box">
+      <h3>重新進場觸發條件（Q2財報 7月）</h3>
+      <div class="trigger-row">
+        <div class="tnum">01</div>
+        <div>軟體 ARR 年增 <strong style="color:var(--accent)">≥30% YoY</strong> 且 MACD 轉正 <strong style="color:var(--accent)">≥2個交易日</strong>——同時滿足才考慮重新進場</div>
+      </div>
+      <div class="trigger-row">
+        <div class="tnum">02</div>
+        <div>確認無新增出口管制或 Supermicro 相關起訴擴大——監管風險若升溫，延後進場</div>
+      </div>
+      <div class="trigger-row">
+        <div class="tnum">03</div>
+        <div>不追高反彈，等待確認訊號後再行動——<strong style="color:var(--accent)">紀律優先，機會次之</strong></div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      ⚠️ <strong>Supermicro 風險提示：</strong>走私案若擴大至 Nvidia 直接制裁，每季合規成本可能從 $350-400M 翻倍。中國營收佔比13%（$250-300M/季）面臨歸零風險。此為低概率但高衝擊事件，建議持續追蹤。
+    </div>
+  </section>
+
+  <!-- 05 Scenario -->
+  <section>
+    <div class="sec-hdr">
+      <span class="sec-num">05</span>
+      <span class="sec-title">末將獨立情境研判</span>
+    </div>
+    <p style="font-size:12px; font-family:'IBM Plex Mono',monospace; color:var(--text2); margin-bottom:16px;">末將傾向謹慎 HOLD + 動態止損，視主公持倉成本而定</p>
+    <div class="scenario-grid">
+      <div class="sbox">
+        <h4 style="color:var(--accent)">守住200日SMA 反彈</h4>
+        <div class="sprob" style="color:var(--accent)">50%</div>
+        <p>$178 支撐有效，Q2財報催化，MACD轉正，股價重回$190+</p>
+      </div>
+      <div class="sbox">
+        <h4 style="color:var(--orange)">跌破200日SMA 修正</h4>
+        <div class="sprob" style="color:var(--orange)">35%</div>
+        <p>跌至$165止損區，需等待財報確認後再評估重新進場</p>
+      </div>
+      <div class="sbox">
+        <h4 style="color:var(--red)">黑天鵝監管衝擊</h4>
+        <div class="sprob" style="color:var(--red)">15%</div>
+        <p>Supermicro案擴大、出口管制升級，股價可能跌至$140-150</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Summary -->
+  <section>
+    <div class="sec-hdr">
+      <span class="sec-num">06</span>
+      <span class="sec-title">戰略總評</span>
+    </div>
+    <div style="background:var(--surface); border:1px solid var(--border2); padding:24px; font-size:13px; line-height:1.8; color:var(--text);">
+      <p style="margin-bottom:14px;"><strong style="color:var(--white)">NVDA 基本面毫無問題——問題完全在於短線技術面與外部風險的疊加。</strong>三位分析師 HOLD 的理由充分，投資組合經理 SELL 的風險意識也值得尊重。</p>
+      <p style="margin-bottom:14px;">主公若已持有 NVDA 且成本遠低於現價，<strong style="color:var(--yellow)">守住動態止損 $176-177，讓部位繼續持有</strong>是合理選擇。若成本接近現價，可考慮部分減倉鎖定利潤。</p>
+      <p style="color:var(--accent); font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;">⬡ 核心原則：200日SMA $178.42 是多空分水嶺。守則觀望，破則果斷執行止損計畫。</p>
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    ⬡ 免責聲明｜本報告由 TradingAgents AI 多Agent系統自動生成，輔以 Claude AI 分析整理。分析基於截至 2026-03-22 的公開資料。僅供參考，不構成任何投資建議。投資涉及風險，請主公自行判斷並承擔投資責任。
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 · TRADINGAGENTS REPORT · NVDA · NVIDIA CORPORATION</p>
+      <p>POWERED BY TRADINGAGENTS + ANTHROPIC CLAUDE</p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
