@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEG 戰略分析報告｜2026.03.23</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050a08;--surface:#080f0b;--surface2:#0c1510;
+    --border:#0f2015;--border2:#163020;
+    --nuclear:#39ff14;--gold:#ffd700;--red:#ff3b5c;
+    --orange:#ff8c00;--blue:#00bfff;
+    --text:#7ab890;--text2:#2a5a38;--white:#e0ffe8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 30% 30%,rgba(57,255,20,0.04) 0%,transparent 50%),radial-gradient(ellipse at 70% 70%,rgba(0,191,255,0.03) 0%,transparent 50%),linear-gradient(rgba(57,255,20,0.01) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,0.01) 1px,transparent 1px);background-size:100% 100%,100% 100%,28px 28px,28px 28px;pointer-events:none;z-index:0;}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 28px 80px;position:relative;z-index:1;}
+
+  header{padding:56px 0 40px;border-bottom:1px solid var(--border2);position:relative;overflow:hidden;}
+  header::after{content:'NUCLEAR';position:absolute;right:-20px;top:0;font-family:'Anton',sans-serif;font-size:160px;color:rgba(57,255,20,0.03);letter-spacing:4px;line-height:1;pointer-events:none;}
+  .atom{display:inline-block;font-size:24px;margin-right:8px;animation:spin 8s linear infinite;}
+  @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:3px;color:var(--nuclear);text-transform:uppercase;margin-bottom:16px;}
+  h1{font-family:'Anton',sans-serif;font-size:clamp(56px,9vw,110px);line-height:0.88;color:var(--white);letter-spacing:3px;margin-bottom:12px;}
+  h1 em{font-style:normal;color:var(--nuclear);}
+  .hmeta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);letter-spacing:1px;margin-top:18px;display:flex;flex-wrap:wrap;gap:0;}
+  .hms{color:var(--border2);margin:0 12px;}
+
+  .price-ok{background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.2);border-left:4px solid var(--nuclear);padding:12px 18px;margin:20px 0;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);}
+  .price-ok strong{color:var(--nuclear);}
+
+  .ar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border2);margin:28px 0 0;}
+  @media(max-width:680px){.ar{grid-template-columns:repeat(2,1fr);}}
+  .ac{background:var(--surface);padding:16px;text-align:center;}
+  .an{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--text2);text-transform:uppercase;margin-bottom:10px;}
+  .vp{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:2px;padding:4px 12px;}
+  .vhold{background:rgba(255,215,0,0.08);color:var(--gold);border:1px solid rgba(255,215,0,0.25);}
+  .vsell{background:rgba(255,59,92,0.08);color:var(--red);border:1px solid rgba(255,59,92,0.25);}
+  .vbuy{background:rgba(57,255,20,0.08);color:var(--nuclear);border:1px solid rgba(57,255,20,0.25);}
+
+  .fv{margin:12px 0 32px;padding:24px 28px;background:rgba(255,59,92,0.05);border:1px solid rgba(255,59,92,0.2);border-left:5px solid var(--red);display:flex;align-items:flex-start;gap:24px;}
+  @media(max-width:600px){.fv{flex-direction:column;gap:14px;header::after{display:none;}}}
+  .fvb{font-family:'Anton',sans-serif;font-size:64px;color:var(--red);line-height:0.9;min-width:140px;letter-spacing:2px;}
+  .fvb span{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;color:rgba(255,59,92,0.5);margin-top:10px;}
+  .fvc h2{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:10px;}
+  .fvc p{font-size:13px;line-height:1.7;color:var(--text);}
+
+  .mg{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border2);margin:28px 0;}
+  @media(max-width:700px){.mg{grid-template-columns:repeat(2,1fr);}}
+  .mc{background:var(--surface);padding:16px 14px;position:relative;}
+  .mc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+  .mc-bull::after{background:var(--nuclear);}
+  .mc-bear::after{background:var(--red);}
+  .mc-warn::after{background:var(--orange);}
+  .mc-blue::after{background:var(--blue);}
+  .mc-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-bottom:8px;}
+  .mc-val{font-family:'Anton',sans-serif;font-size:28px;color:var(--white);line-height:1;margin-bottom:4px;}
+  .mc-sig{font-family:'IBM Plex Mono',monospace;font-size:10px;line-height:1.4;}
+  .mc-bull .mc-sig{color:var(--nuclear);}
+  .mc-bear .mc-sig{color:var(--red);}
+  .mc-warn .mc-sig{color:var(--orange);}
+  .mc-blue .mc-sig{color:var(--blue);}
+
+  section{margin:48px 0;}
+  .sh{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border2);}
+  .sn{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;color:var(--nuclear);letter-spacing:2px;}
+  .st{font-family:'Anton',sans-serif;font-size:24px;color:var(--white);letter-spacing:2px;}
+
+  .dg{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:600px){.dg{grid-template-columns:1fr;}}
+  .dc{background:var(--surface);border:1px solid var(--border2);padding:20px;}
+  .dc-bull{border-top:3px solid var(--nuclear);}
+  .dc-bear{border-top:3px solid var(--red);}
+  .dc h3{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+  .dc-bull h3{color:var(--nuclear);}
+  .dc-bear h3{color:var(--red);}
+  .fac{display:flex;gap:10px;font-size:12.5px;margin-bottom:10px;line-height:1.5;color:var(--text);}
+
+  .obv-wrap{background:var(--surface);border:1px solid var(--border2);border-top:3px solid var(--blue);padding:22px;}
+  .obv-intro{font-size:13px;line-height:1.8;color:var(--text);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border2);}
+  .obv-intro strong{color:var(--blue);}
+  .obv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0;}
+  @media(max-width:600px){.obv-grid{grid-template-columns:1fr;}}
+  .obv-card{background:var(--bg);border:1px solid var(--border2);padding:14px;}
+  .obv-card h4{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+  .obv-card p{font-size:12px;color:var(--text);line-height:1.6;}
+  .obv-bull{border-top:2px solid var(--nuclear);}.obv-bull h4{color:var(--nuclear);}
+  .obv-warn{border-top:2px solid var(--gold);}.obv-warn h4{color:var(--gold);}
+  .obv-bear{border-top:2px solid var(--red);}.obv-bear h4{color:var(--red);}
+  .obv-verdict{background:rgba(0,191,255,0.04);border:1px solid rgba(0,191,255,0.15);border-left:4px solid var(--blue);padding:14px 18px;margin-top:16px;font-size:13px;line-height:1.7;color:var(--text);}
+  .obv-verdict strong{color:var(--blue);}
+
+  .pl{background:var(--surface);border:1px solid var(--border2);padding:18px;}
+  .pl-row{display:flex;align-items:center;gap:14px;padding:9px 0;border-bottom:1px solid rgba(15,32,21,0.6);font-size:12.5px;}
+  .pl-row:last-child{border-bottom:none;}
+  .pl-p{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;min-width:72px;}
+  .pl-bw{flex:1;height:5px;background:var(--border);position:relative;}
+  .pl-bf{position:absolute;left:0;top:0;bottom:0;}
+  .pl-l{font-size:12px;color:var(--text2);min-width:160px;}
+
+  .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1px;padding:2px 8px;}
+  .tg-bull{background:rgba(57,255,20,0.07);color:var(--nuclear);border:1px solid rgba(57,255,20,0.2);}
+  .tg-bear{background:rgba(255,59,92,0.07);color:var(--red);border:1px solid rgba(255,59,92,0.2);}
+  .tg-warn{background:rgba(255,215,0,0.07);color:var(--gold);border:1px solid rgba(255,215,0,0.2);}
+  .tg-blue{background:rgba(0,191,255,0.07);color:var(--blue);border:1px solid rgba(0,191,255,0.2);}
+
+  .catalyst-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+  @media(max-width:600px){.catalyst-grid{grid-template-columns:1fr;}}
+  .cat-box{background:var(--surface);border:1px solid var(--border2);padding:16px;}
+  .cat-box h3{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+  .cat-box p{font-size:12.5px;color:var(--text);line-height:1.6;}
+
+  .wb{background:rgba(255,59,92,0.04);border:1px solid rgba(255,59,92,0.15);border-left:4px solid var(--red);padding:14px 20px;margin:14px 0;font-size:13px;line-height:1.7;color:var(--text);}
+  .wb strong{color:var(--red);}
+
+  .sum{background:var(--surface);border:1px solid var(--border2);padding:24px;font-size:13px;line-height:1.85;color:var(--text);}
+  .sum p{margin-bottom:14px;}
+  .sum p:last-child{margin-bottom:0;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--nuclear);letter-spacing:1px;}
+
+  footer{border-top:1px solid var(--border2);padding:24px 0;margin-top:56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer p{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);letter-spacing:1px;}
+  .disc{background:rgba(57,255,20,0.02);border:1px solid rgba(57,255,20,0.08);padding:14px 18px;margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);line-height:1.6;}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  .wrap>*{animation:fadeUp 0.5s ease both;}
+  header{animation-delay:0s;}.price-ok{animation-delay:0.05s;}.ar{animation-delay:0.08s;}.fv{animation-delay:0.12s;}.mg{animation-delay:0.16s;}
+  section:nth-of-type(1){animation-delay:0.20s;}section:nth-of-type(2){animation-delay:0.24s;}section:nth-of-type(3){animation-delay:0.28s;}section:nth-of-type(4){animation-delay:0.32s;}section:nth-of-type(5){animation-delay:0.36s;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow"><span class="atom">⚛</span>NASDAQ · CEG · Constellation Energy · 核能+AI電力</div>
+    <h1>CONSTEL<br><em>CEG</em></h1>
+    <div class="hmeta">
+      <span>現價 $281.99（✅已查核）</span><span class="hms">|</span>
+      <span>52週 $161.35–$412.70</span><span class="hms">|</span>
+      <span>2026-03-23</span><span class="hms">|</span>
+      <span>Nemotron 3 Super + Claude</span>
+    </div>
+  </header>
+
+  <div class="price-ok">
+    ✅ <strong>現價查核通過</strong>｜報告內價格 $281.99 與實際收盤價完全一致。3/20單日暴跌 -10.9%（$316.47→$281.99），JPMorgan下調目標價至$400所致。數據可信，分析有效。
+  </div>
+
+  <div class="ar">
+    <div class="ac"><div class="an">市場分析師</div><div class="vp vhold">HOLD</div></div>
+    <div class="ac"><div class="an">新聞分析師</div><div class="vp vhold">HOLD</div></div>
+    <div class="ac"><div class="an">社群分析師</div><div class="vp vbuy">BUY</div></div>
+    <div class="ac"><div class="an">投資組合經理</div><div class="vp vsell">SELL</div></div>
+  </div>
+
+  <div class="fv">
+    <div class="fvb">SELL<span>投組經理裁決</span></div>
+    <div class="fvc">
+      <h2>最終裁決｜減倉 + 旋轉至NEE</h2>
+      <p>投組經理基於<strong style="color:var(--red)">三重理由裁決SELL</strong>：(1) 可持續核電ROIC約5.2%，低於WACC 6.5%；(2) 40%核電艦隊在PJM無ZEC保護，Q4 2025 PJM核電EBITDA已為-$12M；(3) Forward P/E 20.5x需要EPS幾乎翻倍，管理層自身2026年指引為EPS中性。建議旋轉至NextEra Energy（NEE）。末將補充：<strong style="color:var(--gold)">若BNP目標$407有效，$260–270可能是長線機會</strong>。</p>
+    </div>
+  </div>
+
+  <div class="mg">
+    <div class="mc mc-warn"><div class="mc-lbl">現價（✅查核）</div><div class="mc-val">$281.99</div><div class="mc-sig">3/20單日 -10.9%</div></div>
+    <div class="mc mc-bear"><div class="mc-lbl">50日SMA</div><div class="mc-val">$300.91</div><div class="mc-sig">▼ 死亡交叉確認</div></div>
+    <div class="mc mc-bear"><div class="mc-lbl">200日SMA</div><div class="mc-val">$328.76</div><div class="mc-sig">▼ 跌破 -14%</div></div>
+    <div class="mc mc-warn"><div class="mc-lbl">MACD</div><div class="mc-val">-0.048</div><div class="mc-sig">⚠ 剛跌破零軸</div></div>
+    <div class="mc mc-warn"><div class="mc-lbl">RSI (14)</div><div class="mc-val">37.84</div><div class="mc-sig">⚠ 接近超賣未到</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">ATR</div><div class="mc-val">14.74</div><div class="mc-sig">▲ 高波動，方向未定</div></div>
+    <div class="mc mc-blue"><div class="mc-lbl">BNP目標價</div><div class="mc-val">$407</div><div class="mc-sig">▲ Outperform +44%</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">FCF (TTM)</div><div class="mc-val">$1.26B</div><div class="mc-sig">▲ 正值，流動性充足</div></div>
+  </div>
+
+  <!-- 01 多空論戰 -->
+  <section>
+    <div class="sh"><span class="sn">01</span><span class="st">多空論戰</span></div>
+    <div class="dg">
+      <div class="dc dc-bull">
+        <h3>⚛ 多方論點</h3>
+        <div class="fac"><span style="color:var(--nuclear)">▲</span><span>Trump政府核電擴張計畫：目標四倍美國核電容量，CEG為全美最大核電商，直接受益</span></div>
+        <div class="fac"><span style="color:var(--nuclear)">▲</span><span>AI資料中心電力需求：Big Tech 20年長期合約（田納西泰坦、Nissan體育場），核電基載優勢無可替代</span></div>
+        <div class="fac"><span style="color:var(--nuclear)">▲</span><span>$5B 天然氣資產出售（LS Power），去碳轉型+去槓桿，BNP Paribas Outperform目標$407（+44%）</span></div>
+        <div class="fac"><span style="color:var(--nuclear)">▲</span><span>過去一年YoY +38%，分析師15位Buy/Outperform，平均目標$394，強烈機構背書</span></div>
+        <div class="fac"><span style="color:var(--nuclear)">▲</span><span>$260–270 可能是長線買點：ATR超賣、布林下軌跌破、Forward P/E跌至~18x（接近公用事業均值）</span></div>
+      </div>
+      <div class="dc dc-bear">
+        <h3>☢ 空方論點</h3>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>死亡交叉確認（50SMA $300 < 200SMA $328），歷史上此形態后CEG曾繼續跌至新低</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>可持續核電ROIC ~5.2%，低於WACC 6.5%——ZEC true-ups和保險收益剔除後，真實獲利能力令人質疑</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>40%核電艦隊在PJM無ZEC保護，Q4 2025 PJM核電EBITDA -$12M，停機期間現金為負</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>管理層2026年EPS指引：LS Power出售為「EPS中性」，超大規模PPA收入未納入2026-2028計畫</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>Forward P/E 20.5x需要EPS從$7.39→$13.73（+85%），管理層自身不相信這個成長路徑</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 技術位階 -->
+  <section>
+    <div class="sh"><span class="sn">02</span><span class="st">關鍵技術位階</span></div>
+    <div class="pl">
+      <div class="pl-row"><div class="pl-p" style="color:var(--red)">$412.70</div><div class="pl-bw"><div class="pl-bf" style="width:100%;background:var(--red);opacity:0.3;"></div></div><div class="pl-l">52週高點（歷史高點）</div><div><span class="tag tg-bear">歷史頂部</span></div></div>
+      <div class="pl-row"><div class="pl-p" style="color:var(--red)">$328.76</div><div class="pl-bw"><div class="pl-bf" style="width:80%;background:var(--red);opacity:0.5;"></div></div><div class="pl-l">200日SMA 已跌破</div><div><span class="tag tg-bear">長線破位</span></div></div>
+      <div class="pl-row"><div class="pl-p" style="color:var(--red)">$300.91</div><div class="pl-bw"><div class="pl-bf" style="width:73%;background:var(--orange);opacity:0.5;"></div></div><div class="pl-l">50日SMA（死亡交叉）</div><div><span class="tag tg-bear">死亡交叉</span></div></div>
+      <div class="pl-row"><div class="pl-p" style="color:var(--gold)">$281.99</div><div class="pl-bw"><div class="pl-bf" style="width:68%;background:var(--gold);"></div></div><div class="pl-l">現價（3/20收盤）</div><div><span class="tag tg-warn">現價</span></div></div>
+      <div class="pl-row"><div class="pl-p" style="color:var(--nuclear)">$276.12</div><div class="pl-bw"><div class="pl-bf" style="width:67%;background:var(--nuclear);opacity:0.5;"></div></div><div class="pl-l">籌碼積累支撐</div><div><span class="tag tg-bull">短線支撐</span></div></div>
+      <div class="pl-row"><div class="pl-p" style="color:var(--nuclear)">$260–270</div><div class="pl-bw"><div class="pl-bf" style="width:65%;background:var(--nuclear);opacity:0.4;"></div></div><div class="pl-l">長線買點區（新聞分析師建議）</div><div><span class="tag tg-bull">長線加碼</span></div></div>
+      <div class="pl-row"><div class="pl-p" style="color:var(--red)">$250.00</div><div class="pl-bw"><div class="pl-bf" style="width:61%;background:var(--red);opacity:0.4;"></div></div><div class="pl-l">硬止損（跌破論文失效）</div><div><span class="tag tg-bear">強制出場</span></div></div>
+    </div>
+  </section>
+
+  <!-- 03 OBV -->
+  <section>
+    <div class="sh"><span class="sn">03</span><span class="st">OBV 能量潮策略完整分析</span></div>
+    <div class="obv-wrap">
+      <div class="obv-intro"><strong>OBV（能量潮）</strong>對 CEG 這種高波動公用事業股特別重要。單日-10.9%的暴跌是否伴隨機構系統性出清？還是情緒性過度反應？OBV是回答這個問題的核心工具。投組經理的SELL裁決、社群分析師的BUY裁決，兩者都需要OBV來確認誰對誰錯。</div>
+      <div class="obv-grid">
+        <div class="obv-card obv-bull">
+          <h4>⚛ 核電政策利多期</h4>
+          <p>Trump核電擴張宣布後若伴隨機構大量買入（OBV急升），代表政策紅利被機構充分定價，長線資金積累中，逢低是機會。</p>
+        </div>
+        <div class="obv-card obv-warn">
+          <h4>⚠ 3/20暴跌OBV</h4>
+          <p>-10.9%單日暴跌的關鍵問題：成交量是否為異常爆量？若高量下跌（OBV急跌），確認機構出清；若成交量正常，屬情緒性過反應。</p>
+        </div>
+        <div class="obv-card obv-bear">
+          <h4>▼ 死亡交叉期OBV</h4>
+          <p>死亡交叉形成期間，歷史上CEG曾多次在布林下軌觸底後反彈，但也曾繼續下跌至新低。OBV方向是判斷反彈真假的唯一可靠指標。</p>
+        </div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:12.5px;margin:16px 0;">
+        <thead><tr style="border-bottom:1px solid var(--border2);">
+          <th style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);padding:10px 12px;text-align:left;">OBV訊號</th>
+          <th style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);padding:10px 12px;text-align:left;">CEG當前狀況</th>
+          <th style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);padding:10px 12px;text-align:left;">研判</th>
+          <th style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);padding:10px 12px;text-align:left;">行動意義</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;color:var(--white);font-weight:700;">3/20暴跌成交量</td><td style="padding:10px 12px;">單日600萬股，成交量+異常放大</td><td style="padding:10px 12px;"><span class="tag tg-bear">爆量下跌</span></td><td style="padding:10px 12px;">OBV急跌，空頭訊號確認</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;color:var(--white);font-weight:700;">死亡交叉期</td><td style="padding:10px 12px;">機構連續淨賣出（投組經理引用Block trade數據）</td><td style="padding:10px 12px;"><span class="tag tg-bear">機構分配</span></td><td style="padding:10px 12px;">OBV下降趨勢，非積累</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;color:var(--white);font-weight:700;">布林下軌跌破</td><td style="padding:10px 12px;">統計超賣，可能觸發技術反彈</td><td style="padding:10px 12px;"><span class="tag tg-warn">過賣反彈</span></td><td style="padding:10px 12px;">需OBV止跌回升才能確認</td></tr>
+          <tr><td style="padding:10px 12px;color:var(--white);font-weight:700;">AI電力合約OBV</td><td style="padding:10px 12px;">Big Tech長期合約若有新公告</td><td style="padding:10px 12px;"><span class="tag tg-blue">潛在看多</span></td><td style="padding:10px 12px;">新合約公告配合OBV上升=買訊</td></tr>
+        </tbody>
+      </table>
+      <div class="obv-verdict"><strong>OBV 核心研判：</strong>投組經理引用的Block trade數據顯示，<strong>機構自LS Power宣布後持續淨賣出</strong>，OBV下降趨勢確認。這支持SELL/減倉判斷。然而，若 $260–270 出現 <strong>OBV底部背離</strong>（價格創低但OBV未創低），配合核電政策新公告，可能是長線進場訊號。5月7日財報是下一個重要觀察點。</div>
+    </div>
+  </section>
+
+  <!-- 04 催化劑監控 -->
+  <section>
+    <div class="sh"><span class="sn">04</span><span class="st">雙面催化劑監控</span></div>
+    <div class="catalyst-grid">
+      <div class="cat-box" style="border-top:3px solid var(--nuclear);">
+        <h3 style="color:var(--nuclear);">⚛ 上行觸發（考慮重新進場）</h3>
+        <p>① 兩季連續調整後核電EBITDA>$0（剔除ZEC true-ups）<br>② 超大規模PPA：固定價>$30/MWh、Take-or-pay、期限≥10年<br>③ OBV底部背離 + 收復200SMA<br>④ 5/7財報Gemini AI合約收入具體量化</p>
+      </div>
+      <div class="cat-box" style="border-top:3px solid var(--red);">
+        <h3 style="color:var(--red);">☢ 下行觸發（加速退出）</h3>
+        <p>① 財報顯示AI相關收入成長停滯<br>② PJM批發電價跌破$22/MWh（機組停機現金為負）<br>③ 監管：DOJ拒絕LS Power出售或附加條件<br>④ 跌破 $250（論文完全失效，目前最低$161）</p>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;">
+      <div style="background:var(--surface);border:1px solid var(--border2);border-left:4px solid var(--nuclear);padding:18px 22px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;color:var(--nuclear);text-transform:uppercase;margin-bottom:10px;">旋轉至NEE（投組經理建議）</div>
+        <p style="font-size:13px;color:var(--text);line-height:1.7;">NextEra Energy（NEE）提供：regulated rate base 60%（隔絕merchant風險）、EBITDA CAGR 8-10%（有合約支撐）、調整後ROIC ~6.5%（高於CEG的5.2%）、Forward P/E 18.5x（合理）。投組經理認為CEG減倉後旋轉至NEE是最優選擇。</p>
+      </div>
+    </div>
+
+    <div class="wb" style="margin-top:12px;">⚠️ <strong>末將補充警告：</strong>投組經理的SELL裁決極為嚴謹，引用10-Q細節和Block trade數據，論述品質是本次所有分析中最高的。主公若持有CEG，應認真考慮至少部分減倉，設硬止損$250，不要對-10.9%暴跌抱有「反彈就好」的心態。</div>
+  </section>
+
+  <!-- 05 總評 -->
+  <section>
+    <div class="sh"><span class="sn">05</span><span class="st">末將戰略總評</span></div>
+    <div class="sum">
+      <p><strong style="color:var(--white)">CEG 是核電+AI電力的絕佳概念股，但當前結構性問題嚴重：可持續ROIC低於資本成本、PJM無保護區域現金為負、管理層自身不相信市場的成長假設。</strong></p>
+      <p>社群分析師的BUY論點有情感共鳴（$260買點、政策紅利），但投組經理的SELL論點有財務細節支撐（10-Q forensic accounting、Block trade數據、管理層EPS指引矛盾）。在深度分析的比拼中，投組經理勝出。</p>
+      <p>末將建議：<strong style="color:var(--gold)">若主公持有CEG，設$250硬止損，考慮部分減倉。若主公尚未持有，等$260–270出現OBV底部背離再布局，不要追跌後反彈。5月7日財報是最大分水嶺。</strong></p>
+      <p>☢ 核心守則：OBV確認機構重回買方才進場。止損嚴格執行，不等待「回本」。</p>
+    </div>
+  </section>
+
+  <div class="disc">☢ 免責聲明｜本報告由 TradingAgents AI（Nemotron 3 Super）自動生成，輔以 Claude AI 分析整理。OBV分析為定性推估。現價$281.99已查核（與3/20收盤完全一致）。僅供參考，不構成投資建議。</div>
+
+  <footer>
+    <p>© 2026 · PAK600 戰略研究室 · CEG · CONSTELLATION ENERGY</p>
+    <p>NEMOTRON 3 SUPER + CLAUDE AI | 現價已查核</p>
+  </footer>
+</div>
+<script data-goatcounter="https://pak600.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -11,6 +11,7 @@
   body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;}
   body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(201,168,76,0.05) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(0,212,255,0.03) 0%,transparent 50%),linear-gradient(rgba(201,168,76,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.012) 1px,transparent 1px);background-size:100% 100%,100% 100%,32px 32px,32px 32px;pointer-events:none;z-index:0;}
   .wrap{max-width:1000px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1;}
+
   header{padding:56px 0 40px;border-bottom:1px solid var(--border2);position:relative;overflow:hidden;}
   header::after{content:'REPORT';position:absolute;right:-20px;top:0;font-family:'Bebas Neue',sans-serif;font-size:180px;color:rgba(201,168,76,0.04);letter-spacing:4px;line-height:1;pointer-events:none;}
   .logo-badge{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:3px;color:var(--gold);border:1px solid rgba(201,168,76,0.3);padding:5px 14px;text-transform:uppercase;display:inline-block;margin-bottom:20px;}
@@ -20,17 +21,31 @@
   h1 span{color:var(--gold);}
   .hmeta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);letter-spacing:1px;margin-top:16px;display:flex;flex-wrap:wrap;gap:0;}
   .hms{color:var(--border2);margin:0 12px;}
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border2);margin:32px 0;}
-  @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr);}}
+
+  /* STATS ROW */
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border2);margin:32px 0;}
+  @media(max-width:640px){.stats{grid-template-columns:repeat(3,1fr);}}
   .sc{background:var(--surface);padding:18px 16px;}
   .sl{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-bottom:8px;}
   .sv{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--white);line-height:1;}
+
+  /* TOTAL VIEWS BANNER */
+  .views-banner{background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(0,212,255,0.04));border:1px solid rgba(201,168,76,0.2);padding:16px 24px;margin:16px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .vb-label{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:2px;color:var(--text2);text-transform:uppercase;}
+  .vb-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--gold2);line-height:1;}
+  .vb-sub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);margin-top:4px;}
+  .vb-right{text-align:right;}
+  .vb-link{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--cyan);text-decoration:none;letter-spacing:1px;}
+  .vb-link:hover{text-decoration:underline;}
+
   .sh{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border2);}
   .sn{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;color:var(--gold);letter-spacing:2px;}
   .st{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:2px;}
+
+  /* REPORT CARDS */
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:48px;}
   @media(max-width:640px){.grid{grid-template-columns:1fr;}}
-  .card{background:var(--surface);border:1px solid var(--border2);text-decoration:none;display:block;transition:background 0.2s;}
+  .card{background:var(--surface);border:1px solid var(--border2);text-decoration:none;display:block;transition:background 0.2s;position:relative;}
   .card:hover{background:var(--surface2);}
   .card:hover .arr{opacity:1;transform:translateX(0);}
   .ca{height:3px;width:100%;}
@@ -47,16 +62,26 @@
   .cf{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--border);}
   .cd{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);}
   .arr{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);opacity:0;transform:translateX(-6px);transition:all 0.2s;}
+
+  /* PAGE VIEW COUNTER ON CARD */
+  .card-views{position:absolute;top:14px;right:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);background:var(--border);padding:2px 8px;display:flex;align-items:center;gap:4px;}
+  .card-views::before{content:'👁';font-size:10px;}
+
   .news-box{background:var(--surface);border:1px solid var(--border2);border-left:4px solid var(--uranium);padding:18px 22px;margin-bottom:12px;text-decoration:none;display:block;transition:background 0.2s;}
   .news-box:hover{background:var(--surface2);}
   .nd{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text2);letter-spacing:1px;margin-bottom:6px;}
   .nt{font-size:13px;color:var(--white);line-height:1.6;margin-bottom:8px;}
   .ns{font-size:12px;color:var(--text);line-height:1.6;}
+
   .disc{background:rgba(201,168,76,0.02);border:1px solid rgba(201,168,76,0.1);padding:16px 20px;margin-top:40px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);line-height:1.7;}
   footer{border-top:1px solid var(--border2);padding:24px 0;margin-top:48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
   footer p{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);letter-spacing:1px;}
+
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
   .wrap>*{animation:fadeUp 0.5s ease both;}
+
+  /* Loading state */
+  .loading{color:var(--text2);font-size:11px;}
 </style>
 </head>
 <body>
@@ -72,19 +97,36 @@
     </div>
   </header>
 
+  <!-- STATS -->
   <div class="stats">
-    <div class="sc"><div class="sl">分析報告數</div><div class="sv" style="color:var(--gold2)">05</div></div>
+    <div class="sc"><div class="sl">分析報告數</div><div class="sv" style="color:var(--gold2)">07</div></div>
     <div class="sc"><div class="sl">買入裁決</div><div class="sv" style="color:var(--green)">02</div></div>
-    <div class="sc"><div class="sl">持有裁決</div><div class="sv" style="color:var(--orange)">02</div></div>
-    <div class="sc"><div class="sl">減倉裁決</div><div class="sv" style="color:var(--red)">01</div></div>
+    <div class="sc"><div class="sl">持有裁決</div><div class="sv" style="color:var(--orange)">03</div></div>
+    <div class="sc"><div class="sl">減倉裁決</div><div class="sv" style="color:var(--red)">02</div></div>
+    <div class="sc"><div class="sl">總點閱數</div><div class="sv" id="total-views" style="color:var(--cyan)"><span class="loading">...</span></div></div>
   </div>
 
+  <!-- VIEWS BANNER -->
+  <div class="views-banner">
+    <div>
+      <div class="vb-label">📊 網站總點閱統計</div>
+      <div class="vb-num" id="banner-total">—</div>
+      <div class="vb-sub">總訪客次數（GoatCounter 統計）</div>
+    </div>
+    <div class="vb-right">
+      <a class="vb-link" href="https://pak600.goatcounter.com" target="_blank">→ 查看詳細統計</a>
+      <div class="vb-sub" style="margin-top:6px;">即時更新 · 隱私友好</div>
+    </div>
+  </div>
+
+  <!-- REPORTS -->
   <div>
     <div class="sh"><span class="sn">01</span><span class="st">戰略分析報告</span></div>
     <div class="grid">
 
       <a class="card" href="amzn_analysis_20260323.html">
         <div class="ca" style="background:linear-gradient(90deg,#ff9900,#ffb300);"></div>
+        <div class="card-views" id="views-amzn">...</div>
         <div class="cb">
           <div class="ck">AMZN</div>
           <div class="cn">Amazon.com Inc · NASDAQ</div>
@@ -99,8 +141,43 @@
         </div>
       </a>
 
+      <a class="card" href="goog_analysis_20260323.html">
+        <div class="ca" style="background:linear-gradient(90deg,#1a73e8,#34a853,#fbbc04,#ea4335);"></div>
+        <div class="card-views" id="views-goog">...</div>
+        <div class="cb">
+          <div class="ck">GOOG</div>
+          <div class="cn">Alphabet Inc. Class C · NASDAQ</div>
+          <div class="vp vhold">HOLD*</div>
+          <div class="cm">現價 $298.79（已查核）<br>⚠ 報告內$248.91為錯誤數據<br>等50SMA收復+MACD線轉正</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(26,115,232,0.07);color:#1a73e8;border:1px solid rgba(26,115,232,0.2)">AI搜尋</span>
+            <span class="tag" style="background:rgba(255,167,38,0.07);color:#ffa726;border:1px solid rgba(255,167,38,0.2)">現價已修正</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">OBV分析</span>
+          </div>
+          <div class="cf"><span class="cd">2026-03-23 · Nemotron 3 Super</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ceg_analysis_20260323.html">
+        <div class="ca" style="background:linear-gradient(90deg,#39ff14,#00bfff);"></div>
+        <div class="card-views" id="views-ceg">...</div>
+        <div class="cb">
+          <div class="ck">CEG</div>
+          <div class="cn">Constellation Energy · NASDAQ</div>
+          <div class="vp vsell">SELL</div>
+          <div class="cm">現價 $281.99（✅已查核）<br>3/20單日-10.9%暴跌<br>旋轉至NEE，止損$250</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(57,255,20,0.07);color:#39ff14;border:1px solid rgba(57,255,20,0.2)">核電</span>
+            <span class="tag" style="background:rgba(0,191,255,0.07);color:#00bfff;border:1px solid rgba(0,191,255,0.2)">AI電力</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">OBV分析</span>
+          </div>
+          <div class="cf"><span class="cd">2026-03-23 · Nemotron 3 Super</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
       <a class="card" href="tsm_analysis_20260322.html">
         <div class="ca" style="background:linear-gradient(90deg,#c9a84c,#4fc3f7);"></div>
+        <div class="card-views" id="views-tsm">...</div>
         <div class="cb">
           <div class="ck">TSM</div>
           <div class="cn">Taiwan Semiconductor · NYSE</div>
@@ -109,7 +186,7 @@
           <div class="tags">
             <span class="tag" style="background:rgba(201,168,76,0.07);color:#c9a84c;border:1px solid rgba(201,168,76,0.2)">AI晶圓</span>
             <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">三重跌破</span>
-            <span class="tag" style="background:rgba(79,195,247,0.07);color:#4fc3f7;border:1px solid rgba(79,195,247,0.2)">OBV分析</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">OBV分析</span>
           </div>
           <div class="cf"><span class="cd">2026-03-22 · Sonnet 4.6</span><span class="arr">閱讀報告 →</span></div>
         </div>
@@ -117,6 +194,7 @@
 
       <a class="card" href="nvda_analysis_20260322.html">
         <div class="ca" style="background:linear-gradient(90deg,#00ff88,#00cc6a);"></div>
+        <div class="card-views" id="views-nvda">...</div>
         <div class="cb">
           <div class="ck">NVDA</div>
           <div class="cn">NVIDIA Corporation · NASDAQ</div>
@@ -125,7 +203,7 @@
           <div class="tags">
             <span class="tag" style="background:rgba(0,255,136,0.07);color:#00ff88;border:1px solid rgba(0,255,136,0.2)">AI晶片</span>
             <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">跌破50SMA</span>
-            <span class="tag" style="background:rgba(79,195,247,0.07);color:#4fc3f7;border:1px solid rgba(79,195,247,0.2)">OBV分析</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">OBV分析</span>
           </div>
           <div class="cf"><span class="cd">2026-03-22 · Haiku+Sonnet</span><span class="arr">閱讀報告 →</span></div>
         </div>
@@ -133,6 +211,7 @@
 
       <a class="card" href="uuuu_analysis_20260322.html">
         <div class="ca" style="background:linear-gradient(90deg,#7fff00,#d4a017);"></div>
+        <div class="card-views" id="views-uuuu">...</div>
         <div class="cb">
           <div class="ck">UUUU</div>
           <div class="cn">Energy Fuels Inc · 鈾礦+稀土</div>
@@ -141,7 +220,7 @@
           <div class="tags">
             <span class="tag" style="background:rgba(127,255,0,0.07);color:#7fff00;border:1px solid rgba(127,255,0,0.2)">鈾礦</span>
             <span class="tag" style="background:rgba(212,160,23,0.07);color:#d4a017;border:1px solid rgba(212,160,23,0.2)">稀土催化劑</span>
-            <span class="tag" style="background:rgba(79,195,247,0.07);color:#4fc3f7;border:1px solid rgba(79,195,247,0.2)">OBV分析</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">OBV分析</span>
           </div>
           <div class="cf"><span class="cd">2026-03-22 · Haiku+Sonnet</span><span class="arr">閱讀報告 →</span></div>
         </div>
@@ -149,6 +228,7 @@
 
       <a class="card" href="nok_analysis_20260322.html">
         <div class="ca" style="background:linear-gradient(90deg,#00d4ff,#0050ff);"></div>
+        <div class="card-views" id="views-nok">...</div>
         <div class="cb">
           <div class="ck">NOK</div>
           <div class="cn">Nokia Oyj · NYSE · 6G AI-RAN</div>
@@ -157,7 +237,7 @@
           <div class="tags">
             <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">6G</span>
             <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">AI-RAN</span>
-            <span class="tag" style="background:rgba(79,195,247,0.07);color:#4fc3f7;border:1px solid rgba(79,195,247,0.2)">OBV分析</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">OBV分析</span>
           </div>
           <div class="cf"><span class="cd">2026-03-22 · Haiku+Sonnet</span><span class="arr">閱讀報告 →</span></div>
         </div>
@@ -166,22 +246,96 @@
     </div>
   </div>
 
+  <!-- NEWS -->
   <div>
     <div class="sh"><span class="sn">02</span><span class="st">最新市場情報</span></div>
+
+    <a class="news-box" href="https://seekingalpha.com/article/4856490-alphabet-isnt-dead-its-our-top-2026-pick" target="_blank">
+      <div class="nd">2026-03-23 · Seeking Alpha · GOOG 🔵</div>
+      <div class="nt">📊 GOOG：Cloud收入年增34%，DOJ障礙消除，Gemini乘OpenAI失誤搶市佔</div>
+      <div class="ns">Alphabet 持續蟬聯2026年頂選股，Cloud收入34%成長驅動多元化，DOJ裁決移除重大法規障礙，Gemini於政府合約市場持續擴張，現價$298.79距高點-15%提供進場機會。→ 閱讀全文</div>
+    </a>
+
+    <a class="news-box" href="https://simplywall.st/stocks/us/utilities/nasdaq-ceg/constellation-energy/news/is-it-time-to-reassess-constellation-energy-ceg-after-the-re" target="_blank">
+      <div class="nd">2026-03-21 · Simply Wall St · CEG ⚛</div>
+      <div class="nt">⚛ CEG：DCF估值低估28.4%，目標價$393，Wells Fargo/Barclays維持買入</div>
+      <div class="ns">CEG 3/20單日暴跌-10.9%後，Simply Wall St DCF模型顯示內在價值約$393.77（較現價$281.99高28.4%）。Wells Fargo與Barclays維持買入，JPMorgan目標$400（從$410小幅下調）。Microsoft、Meta、CyrusOne長期PPA支撐AI電力平台轉型論文。→ 閱讀全文</div>
+    </a>
+
+    <a class="news-box" href="https://simplywall.st/stocks/us/utilities/nasdaq-ceg/constellation-energy/news/how-investors-are-reacting-to-constellation-energy-ceg-pivot" target="_blank">
+      <div class="nd">2026-03-18 · Simply Wall St · CEG ⚛</div>
+      <div class="nt">⚛ CEG：與Microsoft、Meta、CyrusOne簽署長期PPA，AI電力平台轉型加速</div>
+      <div class="ns">Constellation Energy 已與多家超大規模科技公司簽署長期電力採購協議，Calpine收購完成後成為全美最大私營電力生產商，核電基載優勢為AI資料中心24/7供電提供不可替代的結構優勢。→ 閱讀全文</div>
+    </a>
+
     <a class="news-box" href="https://cmnews.com.tw/article/newsyoudeservetoknow-f7602336-246e-11f1-8b81-496c64f1cf7b" target="_blank">
       <div class="nd">2026-03-20 · CMoney · UUUU ☢</div>
       <div class="nt">⚡ UUUU 最新：併購 ASM 卡位稀土鏈，爆量逾15%跌4%</div>
       <div class="ns">Energy Fuels 在 PDAC 2026 宣布與 ASM 合作，補齊稀土金屬化製程，打造獨立非中國垂直供應鏈。此為報告預測的稀土催化劑觸發點，但爆量後跌4%，建議等回檔$15–16再布局。→ 點擊閱讀全文</div>
     </a>
+
   </div>
 
-  <div class="disc">⚠ 免責聲明｜本網站所有報告由 TradingAgents AI 多Agent系統自動生成，輔以 Claude AI（Anthropic）分析整理，包含 OBV 能量潮定性研判。所有分析僅供參考，不構成任何投資建議。投資涉及風險，請自行判斷並承擔投資責任。</div>
+  <div class="disc">⚠ 免責聲明｜本網站所有報告由 TradingAgents AI 多Agent系統自動生成，輔以 Claude AI（Anthropic）分析整理，包含 OBV 能量潮定性研判。所有分析僅供參考，不構成任何投資建議。點閱統計由 GoatCounter 提供，隱私友好，無Cookie追蹤。</div>
 
   <footer>
     <p>© 2026 · PAK600 戰略研究室 · TRADINGAGENTS + CLAUDE</p>
     <p>最後更新 2026-03-23</p>
   </footer>
 </div>
+
+<!-- GoatCounter 追蹤 -->
 <script data-goatcounter="https://pak600.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<!-- 點閱數統計 Script -->
+<script>
+// 各報告路徑對應
+const pages = [
+  { id: 'views-amzn', path: '/amzn_analysis_20260323.html' },
+  { id: 'views-goog', path: '/goog_analysis_20260323.html' },
+  { id: 'views-ceg',  path: '/ceg_analysis_20260323.html' },
+  { id: 'views-tsm',  path: '/tsm_analysis_20260322.html' },
+  { id: 'views-nvda', path: '/nvda_analysis_20260322.html' },
+  { id: 'views-uuuu', path: '/uuuu_analysis_20260322.html' },
+  { id: 'views-nok',  path: '/nok_analysis_20260322.html' },
+];
+
+let totalViews = 0;
+let loadedCount = 0;
+
+function formatNum(n) {
+  if (n >= 1000) return (n/1000).toFixed(1) + 'k';
+  return String(n);
+}
+
+function updateTotal() {
+  loadedCount++;
+  if (loadedCount === pages.length) {
+    const el = document.getElementById('total-views');
+    const banner = document.getElementById('banner-total');
+    if (el) el.textContent = formatNum(totalViews);
+    if (banner) banner.textContent = totalViews.toLocaleString();
+  }
+}
+
+pages.forEach(function(page) {
+  const url = 'https://pak600.goatcounter.com/counter/' + encodeURIComponent(page.path) + '.json';
+  fetch(url)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      const count = data.count || 0;
+      const numStr = count.toLocaleString();
+      const el = document.getElementById(page.id);
+      if (el) el.textContent = numStr;
+      totalViews += count;
+      updateTotal();
+    })
+    .catch(function() {
+      const el = document.getElementById(page.id);
+      if (el) el.textContent = '—';
+      updateTotal();
+    });
+});
+</script>
 </body>
 </html>

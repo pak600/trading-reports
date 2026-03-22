@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOOG 戰略分析報告｜2026.03.23</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f8f6f0;--surface:#ffffff;--surface2:#f2efe8;
+    --border:#e0dbd0;--border2:#ccc7b8;
+    --google-blue:#1a73e8;--google-red:#ea4335;--google-yellow:#fbbc04;--google-green:#34a853;
+    --text:#3c3c3c;--text2:#888880;--white:#ffffff;
+    --red:#c5221f;--green:#1e7e34;--orange:#e37400;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 80% 10%,rgba(26,115,232,0.04) 0%,transparent 50%);pointer-events:none;z-index:0;}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 28px 80px;position:relative;z-index:1;}
+
+  /* HEADER */
+  header{padding:56px 0 40px;border-bottom:2px solid var(--border2);position:relative;}
+  .g-dots{display:flex;gap:8px;margin-bottom:20px;}
+  .dot{width:14px;height:14px;border-radius:50%;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:3px;color:var(--text2);text-transform:uppercase;margin-bottom:16px;}
+  h1{font-family:'DM Serif Display',serif;font-size:clamp(52px,8vw,100px);line-height:0.88;color:#1a1a1a;margin-bottom:12px;}
+  h1 em{font-style:italic;color:var(--google-blue);}
+  .hmeta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);letter-spacing:1px;margin-top:18px;display:flex;flex-wrap:wrap;gap:0;}
+  .hms{color:var(--border2);margin:0 12px;}
+
+  /* PRICE ALERT */
+  .price-alert{background:rgba(251,188,4,0.08);border:1px solid rgba(251,188,4,0.4);border-left:4px solid var(--google-yellow);padding:14px 20px;margin:24px 0;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);}
+  .price-alert strong{color:var(--orange);}
+
+  /* ANALYST ROW */
+  .ar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border2);margin:28px 0 0;}
+  @media(max-width:680px){.ar{grid-template-columns:repeat(2,1fr);}}
+  .ac{background:var(--surface);padding:16px;text-align:center;}
+  .an{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--text2);text-transform:uppercase;margin-bottom:10px;}
+  .vp{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:2px;padding:4px 12px;}
+  .vhold{background:rgba(251,188,4,0.08);color:var(--orange);border:1px solid rgba(251,188,4,0.3);}
+  .vsell{background:rgba(197,34,31,0.06);color:var(--red);border:1px solid rgba(197,34,31,0.2);}
+  .vbuy{background:rgba(52,168,83,0.06);color:var(--green);border:1px solid rgba(52,168,83,0.2);}
+
+  /* FINAL VERDICT */
+  .fv{margin:12px 0 32px;padding:24px 28px;background:rgba(251,188,4,0.05);border:1px solid rgba(251,188,4,0.25);border-left:5px solid var(--google-yellow);display:flex;align-items:flex-start;gap:24px;}
+  @media(max-width:600px){.fv{flex-direction:column;gap:14px;}}
+  .fvb{font-family:'DM Serif Display',serif;font-size:60px;color:var(--orange);line-height:0.9;min-width:150px;}
+  .fvb span{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;color:rgba(227,116,0,0.5);margin-top:10px;}
+  .fvc h2{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;color:var(--orange);text-transform:uppercase;margin-bottom:10px;}
+  .fvc p{font-size:13px;line-height:1.7;color:var(--text);}
+
+  /* METRICS */
+  .mg{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border2);margin:28px 0;}
+  @media(max-width:700px){.mg{grid-template-columns:repeat(2,1fr);}}
+  .mc{background:var(--surface);padding:16px 14px;position:relative;}
+  .mc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .mc-bull::after{background:var(--google-green);}
+  .mc-bear::after{background:var(--google-red);}
+  .mc-warn::after{background:var(--google-yellow);}
+  .mc-blue::after{background:var(--google-blue);}
+  .mc-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-bottom:8px;}
+  .mc-val{font-family:'DM Serif Display',serif;font-size:28px;color:#1a1a1a;line-height:1;margin-bottom:4px;}
+  .mc-sig{font-family:'IBM Plex Mono',monospace;font-size:10px;line-height:1.4;}
+  .mc-bull .mc-sig{color:var(--green);}
+  .mc-bear .mc-sig{color:var(--red);}
+  .mc-warn .mc-sig{color:var(--orange);}
+  .mc-blue .mc-sig{color:var(--google-blue);}
+
+  section{margin:48px 0;}
+  .sh{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--border);}
+  .sn{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;color:var(--google-blue);letter-spacing:2px;}
+  .st{font-family:'DM Serif Display',serif;font-size:26px;color:#1a1a1a;}
+
+  /* DEBATE */
+  .dg{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:600px){.dg{grid-template-columns:1fr;}}
+  .dc{background:var(--surface);border:1px solid var(--border2);padding:20px;}
+  .dc-bull{border-top:3px solid var(--google-green);}
+  .dc-bear{border-top:3px solid var(--google-red);}
+  .dc h3{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+  .dc-bull h3{color:var(--google-green);}
+  .dc-bear h3{color:var(--google-red);}
+  .fac{display:flex;gap:10px;font-size:12.5px;margin-bottom:10px;line-height:1.5;}
+
+  /* OBV */
+  .obv-wrap{background:var(--surface);border:1px solid var(--border2);border-top:3px solid var(--google-blue);padding:22px;}
+  .obv-intro{font-size:13px;line-height:1.8;color:var(--text);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+  .obv-intro strong{color:var(--google-blue);}
+  .obv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0;}
+  @media(max-width:600px){.obv-grid{grid-template-columns:1fr;}}
+  .obv-card{background:var(--surface2);border:1px solid var(--border);padding:14px;}
+  .obv-card h4{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+  .obv-card p{font-size:12px;color:var(--text);line-height:1.6;}
+  .obv-bull{border-top:2px solid var(--google-blue);}
+  .obv-bull h4{color:var(--google-blue);}
+  .obv-warn{border-top:2px solid var(--google-yellow);}
+  .obv-warn h4{color:var(--orange);}
+  .obv-bear{border-top:2px solid var(--google-red);}
+  .obv-bear h4{color:var(--red);}
+  .obv-verdict{background:rgba(26,115,232,0.04);border:1px solid rgba(26,115,232,0.15);border-left:4px solid var(--google-blue);padding:14px 18px;margin-top:16px;font-size:13px;line-height:1.7;color:var(--text);}
+  .obv-verdict strong{color:var(--google-blue);}
+
+  /* PRICE LADDER */
+  .pl{background:var(--surface);border:1px solid var(--border2);padding:18px;}
+  .pl-row{display:flex;align-items:center;gap:14px;padding:9px 0;border-bottom:1px solid var(--border);font-size:12.5px;}
+  .pl-row:last-child{border-bottom:none;}
+  .pl-p{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;min-width:72px;}
+  .pl-bw{flex:1;height:5px;background:var(--border);position:relative;}
+  .pl-bf{position:absolute;left:0;top:0;bottom:0;}
+  .pl-l{font-size:12px;color:var(--text2);min-width:160px;}
+
+  /* TAG */
+  .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1px;padding:2px 8px;}
+  .tg-bull{background:rgba(52,168,83,0.07);color:var(--green);border:1px solid rgba(52,168,83,0.2);}
+  .tg-bear{background:rgba(197,34,31,0.07);color:var(--red);border:1px solid rgba(197,34,31,0.2);}
+  .tg-warn{background:rgba(251,188,4,0.07);color:var(--orange);border:1px solid rgba(251,188,4,0.2);}
+  .tg-blue{background:rgba(26,115,232,0.07);color:var(--google-blue);border:1px solid rgba(26,115,232,0.2);}
+
+  /* RE-ENTRY */
+  .re-box{background:var(--surface2);border:1px solid var(--border2);border-left:4px solid var(--google-green);padding:18px 22px;margin:14px 0;font-size:13px;line-height:1.7;}
+  .re-box h3{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;color:var(--google-green);text-transform:uppercase;margin-bottom:10px;}
+
+  .wb{background:rgba(197,34,31,0.04);border:1px solid rgba(197,34,31,0.15);border-left:4px solid var(--google-red);padding:14px 20px;margin:14px 0;font-size:13px;line-height:1.7;}
+  .wb strong{color:var(--red);}
+
+  .sum{background:var(--surface);border:1px solid var(--border2);padding:24px;font-size:13px;line-height:1.85;}
+  .sum p{margin-bottom:14px;}
+  .sum p:last-child{margin-bottom:0;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--google-blue);letter-spacing:1px;}
+
+  footer{border-top:2px solid var(--border2);padding:24px 0;margin-top:56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer p{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);letter-spacing:1px;}
+  .disc{background:rgba(251,188,4,0.04);border:1px solid rgba(251,188,4,0.15);padding:14px 18px;margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);line-height:1.6;}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  .wrap>*{animation:fadeUp 0.5s ease both;}
+  header{animation-delay:0s;}.price-alert{animation-delay:0.05s;}.ar{animation-delay:0.08s;}.fv{animation-delay:0.12s;}.mg{animation-delay:0.16s;}
+  section:nth-of-type(1){animation-delay:0.20s;}section:nth-of-type(2){animation-delay:0.24s;}section:nth-of-type(3){animation-delay:0.28s;}section:nth-of-type(4){animation-delay:0.32s;}section:nth-of-type(5){animation-delay:0.36s;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="g-dots">
+      <div class="dot" style="background:#ea4335;"></div>
+      <div class="dot" style="background:#fbbc04;"></div>
+      <div class="dot" style="background:#34a853;"></div>
+      <div class="dot" style="background:#1a73e8;"></div>
+    </div>
+    <div class="eyebrow">NASDAQ · GOOG · Alphabet Inc. Class C · AI搜尋巨頭</div>
+    <h1>Alphabet<br><em>GOOG</em></h1>
+    <div class="hmeta">
+      <span>現價 $298.79（已查核）</span><span class="hms">|</span>
+      <span>52週 $142.66–$350.15</span><span class="hms">|</span>
+      <span>2026-03-23</span><span class="hms">|</span>
+      <span>Nemotron 3 Super + Claude</span>
+    </div>
+  </header>
+
+  <div class="price-alert">
+    ⚡ <strong>現價查核警告</strong>｜Report 1 內部價格 $248.91 為錯誤數據（TradingAgents抓取異常）。實際現價 <strong>$298.79</strong>（3/20收盤）。本報告已依正確現價修正所有分析。
+  </div>
+
+  <div class="ar">
+    <div class="ac"><div class="an">市場分析師</div><div class="vp vhold">HOLD</div></div>
+    <div class="ac"><div class="an">社群分析師</div><div class="vp vhold">HOLD</div></div>
+    <div class="ac"><div class="an">基本面分析師</div><div class="vp vbuy">BUY</div></div>
+    <div class="ac"><div class="an">投資組合經理</div><div class="vp vsell">SELL*</div></div>
+  </div>
+
+  <div class="fv">
+    <div class="fvb">HOLD<span>末將修正裁決</span></div>
+    <div class="fvc">
+      <h2>最終裁決｜等待50SMA收復</h2>
+      <p>投組經理原裁決 SELL 基於錯誤現價 $248，實際現價 $298.79。修正後：現價跌破50SMA（$317）約 <strong style="color:var(--red)">-6%</strong>，但距200SMA（$260）仍有 <strong style="color:var(--green)">+15%</strong> 緩衝。MACD Histogram 正值回升是唯一多頭訊號。末將裁決：<strong style="color:var(--orange)">HOLD，等50SMA收復 + MACD線轉正再考慮加碼。</strong>Q2財報4/28是關鍵催化劑。</p>
+    </div>
+  </div>
+
+  <div class="mg">
+    <div class="mc mc-warn"><div class="mc-lbl">現價（已查核）</div><div class="mc-val">$298.79</div><div class="mc-sig">⚠ 報告內$248.91為錯誤數據</div></div>
+    <div class="mc mc-bear"><div class="mc-lbl">50日SMA</div><div class="mc-val">$317.86</div><div class="mc-sig">▼ 跌破 -6%</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">200日SMA</div><div class="mc-val">$260.14</div><div class="mc-sig">▲ 高於 +15% 緩衝充足</div></div>
+    <div class="mc mc-warn"><div class="mc-lbl">MACD</div><div class="mc-val">-3.24</div><div class="mc-sig">⚠ 負值但Histogram回升</div></div>
+    <div class="mc mc-warn"><div class="mc-lbl">RSI (14)</div><div class="mc-val">39.60</div><div class="mc-sig">⚠ 接近超賣，非確認</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">Forward P/E</div><div class="mc-val">22.3×</div><div class="mc-sig">▲ 低於歷史均值，有吸引力</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">FCF（季）</div><div class="mc-val">$24.6B</div><div class="mc-sig">▲ 強勁現金生成能力</div></div>
+    <div class="mc mc-blue"><div class="mc-lbl">分析師目標價</div><div class="mc-val">$375</div><div class="mc-sig">▲ 上行空間 +25.5%</div></div>
+  </div>
+
+  <!-- 01 多空論戰 -->
+  <section>
+    <div class="sh"><span class="sn">01</span><span class="st">多空論戰</span></div>
+    <div class="dg">
+      <div class="dc dc-bull">
+        <h3>◆ 多方論點</h3>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>Gemini AI 超過100萬政府用戶，Stitch設計平台啟動，AI企業契約具體落地</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>Forward P/E 22.3x，PEG 0.78，FCF Yield 6.8%——相對Mag7具吸引力</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>MACD Histogram連續正值，成交量+15%surge，歷史上此形態後70%概率出現6-8%反彈</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>$52.4B 季度營業現金流，$30.7B 淨現金，財務堡壘</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>Mag7與大盤相關性轉負，個股催化劑可獨立驅動，Needham維持看多</span></div>
+      </div>
+      <div class="dc dc-bear">
+        <h3>◆ 空方論點</h3>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>AI收入（$0.9B廣告 + $3-5B Gemini ARR）相對$115B總收入佔比仍微小</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>監管風險：若被拆分可能損失$8-12B交叉銷售收入，廣告利潤率壓縮8%</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>利率若升1%，市值損失 >$1000億，Forward P/E假設未驗證的AI成長</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>MACD線仍為負值（-3.24），單根Histogram正值不足以確認反轉</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>管理層自身2026年EPS指引趨於中性，未納入AI高速成長假設</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 技術位階 -->
+  <section>
+    <div class="sh"><span class="sn">02</span><span class="st">關鍵技術位階（修正版）</span></div>
+    <div class="pl">
+      <div class="pl-row"><div class="pl-p" style="color:var(--red)">$350.15</div><div class="pl-bw"><div class="pl-bf" style="width:100%;background:var(--red);opacity:0.3;"></div></div><div class="pl-l">52週高點（2/3）</div><div><span class="tag tg-bear">歷史高點</span></div></div>
+      <div class="pl-row"><div class="pl-p" style="color:var(--red)">$317.86</div><div class="pl-bw"><div class="pl-bf" style="width:91%;background:var(--red);opacity:0.5;"></div></div><div class="pl-l">50日SMA 主要阻力</div><div><span class="tag tg-bear">需收復</span></div></div>
+      <div class="pl-row"><div class="pl-p" style="color:var(--orange)">$305.77</div><div class="pl-bw"><div class="pl-bf" style="width:87%;background:var(--orange);opacity:0.5;"></div></div><div class="pl-l">布林中軌</div><div><span class="tag tg-warn">動態阻力</span></div></div>
+      <div class="pl-row"><div class="pl-p" style="color:var(--orange)">$298.79</div><div class="pl-bw"><div class="pl-bf" style="width:85%;background:var(--google-yellow);"></div></div><div class="pl-l">現價（已查核）</div><div><span class="tag tg-warn">現價</span></div></div>
+      <div class="pl-row"><div class="pl-p" style="color:var(--green)">$260.14</div><div class="pl-bw"><div class="pl-bf" style="width:74%;background:var(--google-green);opacity:0.6;"></div></div><div class="pl-l">200日SMA 長線防線</div><div><span class="tag tg-bull">強支撐</span></div></div>
+      <div class="pl-row"><div class="pl-p" style="color:var(--red)">$240–245</div><div class="pl-bw"><div class="pl-bf" style="width:69%;background:var(--google-blue);opacity:0.5;"></div></div><div class="pl-l">Bull建議進場區（若跌至）</div><div><span class="tag tg-blue">加碼區</span></div></div>
+    </div>
+  </section>
+
+  <!-- 03 OBV -->
+  <section>
+    <div class="sh"><span class="sn">03</span><span class="st">OBV 能量潮策略完整分析</span></div>
+    <div class="obv-wrap">
+      <div class="obv-intro"><strong>OBV（能量潮）</strong>是判斷資金真實流向的核心工具。GOOG 面臨多空分歧時，OBV 能揭示機構是否真正出逃，遠比單純價格訊號更可靠。現價 $299 處於50SMA之下、200SMA之上的夾心區，OBV是確認下一步方向的關鍵。</div>
+      <div class="obv-grid">
+        <div class="obv-card obv-bull">
+          <h4>✦ AI催化劑期OBV</h4>
+          <p>Gemini 100萬政府用戶、Stitch平台宣布等重大消息發布後，若伴隨成交量放大且OBV上升，代表機構對AI論文有信心，長線資金未撤離。</p>
+        </div>
+        <div class="obv-card obv-warn">
+          <h4>⚠ 50SMA跌破期OBV</h4>
+          <p>現價跌破50SMA -6%，關鍵問題是成交量是否放大。若跌破伴隨低量（OBV平緩），屬技術回調；若爆量下跌（OBV急跌），確認空頭。</p>
+        </div>
+        <div class="obv-card obv-bear">
+          <h4>▼ 監管風險衝擊</h4>
+          <p>若DOJ/FTC有具體動作，預期出現高量恐慌性賣壓，OBV急速下滑。此時應嚴格執行止損，不以逢低為由留守。</p>
+        </div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:12.5px;margin:16px 0;">
+        <thead><tr style="border-bottom:1px solid var(--border2);">
+          <th style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);padding:10px 12px;text-align:left;">OBV訊號</th>
+          <th style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);padding:10px 12px;text-align:left;">GOOG當前狀況</th>
+          <th style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);padding:10px 12px;text-align:left;">研判</th>
+          <th style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);padding:10px 12px;text-align:left;">行動意義</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;color:#1a1a1a;font-weight:700;">長線OBV趨勢</td><td style="padding:10px 12px;">AI爆發期機構積累，長線OBV應仍在高位</td><td style="padding:10px 12px;"><span class="tag tg-bull">看多</span></td><td style="padding:10px 12px;">基礎資金未撤離</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;color:#1a1a1a;font-weight:700;">MACD牛叉量能</td><td style="padding:10px 12px;">Histogram正值需配合成交量確認</td><td style="padding:10px 12px;"><span class="tag tg-warn">待確認</span></td><td style="padding:10px 12px;">量能不足則牛叉為假訊號</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;color:#1a1a1a;font-weight:700;">50SMA跌破量能</td><td style="padding:10px 12px;">低量跌破 vs 高量跌破是關鍵分野</td><td style="padding:10px 12px;"><span class="tag tg-warn">關鍵觀察</span></td><td style="padding:10px 12px;">低量=洗盤；高量=確認空頭</td></tr>
+          <tr><td style="padding:10px 12px;color:#1a1a1a;font-weight:700;">4/28財報前OBV</td><td style="padding:10px 12px;">財報前機構通常會有明確方向性動作</td><td style="padding:10px 12px;"><span class="tag tg-blue">最重要</span></td><td style="padding:10px 12px;">財報前OBV方向是最佳進出依據</td></tr>
+        </tbody>
+      </table>
+      <div class="obv-verdict"><strong>OBV 核心研判：</strong>GOOG 跌破50SMA的過程中若 <strong>OBV 維持高位</strong>（成交量平緩），代表機構未跟隨散戶出場，是典型「聰明錢留守」訊號，一旦MACD線轉正則可考慮加碼。若 OBV 隨價格急速下滑，則應等待200SMA守穩後再評估。<strong>4月28日財報是最大催化劑</strong>，Gemini收入數據將決定論文成立與否。</div>
+    </div>
+  </section>
+
+  <!-- 04 行動計畫 -->
+  <section>
+    <div class="sh"><span class="sn">04</span><span class="st">行動計畫</span></div>
+    <div class="re-box">
+      <h3>HOLD 持有策略（末將修正版）</h3>
+      <p style="font-size:13px;line-height:1.7;">現價 $299 已反映部分風險。<strong style="color:var(--green)">不追高也不急於出場</strong>，設動態止損 $278–280（約-7%）。等待50SMA收復（$317）或MACD線轉正作為加碼訊號，財報前不輕易加倉。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:14px 0;">
+      <div style="background:var(--surface);border:1px solid var(--border2);border-top:3px solid var(--google-green);padding:16px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--google-green);text-transform:uppercase;margin-bottom:8px;">加碼觸發</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:22px;color:#1a1a1a;margin-bottom:6px;">$317+</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);">收復50SMA<br>+ MACD線轉正<br>+ 成交量確認</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border2);border-top:3px solid var(--google-yellow);padding:16px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--orange);text-transform:uppercase;margin-bottom:8px;">動態止損</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:22px;color:#1a1a1a;margin-bottom:6px;">$278–280</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);">現價-7%<br>OBV急跌即執行<br>不等200SMA</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border2);border-top:3px solid var(--google-blue);padding:16px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--google-blue);text-transform:uppercase;margin-bottom:8px;">財報催化劑</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:22px;color:#1a1a1a;margin-bottom:6px;">4/28</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);">Q2財報<br>Gemini收入數據<br>是最大分水嶺</div>
+      </div>
+    </div>
+    <div class="wb">⚠️ <strong>重新進場條件（非常嚴格）：</strong>需同時滿足：(a) 連續2季調整後核心AI收入 >$5B 且同比+30% (b) MACD線轉正持續3個交易日 (c) 收盤站穩50SMA以上。三者缺一不加碼。</div>
+  </section>
+
+  <!-- 05 總評 -->
+  <section>
+    <div class="sh"><span class="sn">05</span><span class="st">末將戰略總評</span></div>
+    <div class="sum">
+      <p><strong style="color:#1a1a1a">GOOG 基本面無可挑剔——$52B季度現金流、ROE 35.7%、Forward P/E 22x。問題不在基本面，在於短線技術面（跌破50SMA）+ AI收入何時真正出現在財報中。</strong></p>
+      <p>投組經理的SELL裁決基於錯誤現價$248，修正後正確現價$299使技術面並非那麼悲觀。OBV若在50SMA以下維持高位（機構留守），結合MACD Histogram正值，是難得的逢低機會。</p>
+      <p>◆ 核心守則：OBV配合 + MACD線轉正 = 加碼。4月28日財報是最大分水嶺，Gemini收入若超預期，論文完全驗證。</p>
+    </div>
+  </section>
+
+  <div class="disc">⚠ 免責聲明｜本報告由 TradingAgents AI（Nemotron 3 Super）自動生成，輔以 Claude AI 分析整理。⚡ 現價已查核修正（報告內$248.91為錯誤數據，實際$298.79）。OBV分析為定性推估。僅供參考，不構成投資建議。</div>
+
+  <footer>
+    <p>© 2026 · PAK600 戰略研究室 · GOOG · ALPHABET INC.</p>
+    <p>NEMOTRON 3 SUPER + CLAUDE AI | 已查核修正</p>
+  </footer>
+</div>
+<script data-goatcounter="https://pak600.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
