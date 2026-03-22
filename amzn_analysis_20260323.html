@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMZN 戰略分析報告｜2026.03.23</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=IBM+Plex+Mono:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0800;
+    --surface: #130e00;
+    --surface2: #1a1200;
+    --border: #2a1f00;
+    --border2: #3d2e00;
+    --orange: #ff9900;
+    --orange2: #ffb300;
+    --blue: #00a8e0;
+    --red: #e53935;
+    --green: #43a047;
+    --muted: #3d2e00;
+    --text: #c8a870;
+    --text2: #6a5020;
+    --white: #fff8e8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(255,153,0,0.06) 0%, transparent 50%),
+      linear-gradient(rgba(255,153,0,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,153,0,0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 36px 36px, 36px 36px;
+    pointer-events:none; z-index:0;
+  }
+  .container { max-width:1080px; margin:0 auto; padding:0 24px 80px; position:relative; z-index:1; }
+
+  header {
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--border2);
+    position:relative; overflow:hidden;
+  }
+  header::after {
+    content:'AMAZON';
+    position:absolute; right:-20px; top:0;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:160px; font-weight:900;
+    color:rgba(255,153,0,0.04);
+    letter-spacing:4px; line-height:1;
+    pointer-events:none; white-space:nowrap;
+  }
+  .eyebrow {
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px; font-weight:600;
+    letter-spacing:4px; color:var(--orange);
+    text-transform:uppercase; margin-bottom:16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before { content:''; display:inline-block; width:28px; height:1px; background:var(--orange); }
+  h1 {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:clamp(60px,10vw,120px);
+    font-weight:900; line-height:0.85;
+    color:var(--white); letter-spacing:2px; margin-bottom:12px;
+  }
+  h1 em { font-style:normal; color:var(--orange); }
+  .meta-row { display:flex; align-items:center; gap:0; flex-wrap:wrap; margin-top:16px; }
+  .mi { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text2); letter-spacing:1px; }
+  .ms { color:var(--border2); margin:0 12px; }
+
+  /* Analyst row */
+  .ar {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:1px; background:var(--border);
+    border:1px solid var(--border2); margin:32px 0 0;
+  }
+  @media(max-width:680px){ .ar { grid-template-columns:repeat(2,1fr); } }
+  .ac { background:var(--surface); padding:16px; text-align:center; }
+  .an { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--text2); text-transform:uppercase; margin-bottom:10px; }
+  .vp { display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; letter-spacing:2px; padding:4px 14px; }
+  .vp-hold { background:rgba(255,179,0,0.08); color:var(--orange2); border:1px solid rgba(255,179,0,0.25); }
+  .vp-buy  { background:rgba(67,160,71,0.08); color:var(--green); border:1px solid rgba(67,160,71,0.25); }
+  .vp-sell { background:rgba(229,57,53,0.08); color:var(--red); border:1px solid rgba(229,57,53,0.25); }
+
+  /* Final verdict */
+  .fv {
+    margin:12px 0 32px; padding:24px 28px;
+    background:linear-gradient(135deg,rgba(67,160,71,0.06),transparent);
+    border:1px solid rgba(67,160,71,0.2); border-left:5px solid var(--green);
+    display:flex; align-items:flex-start; gap:24px;
+  }
+  @media(max-width:600px){ .fv { flex-direction:column; gap:14px; header::after { display:none; } } }
+  .fvb {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:68px; font-weight:900; color:var(--green); line-height:0.85; min-width:160px; letter-spacing:2px;
+  }
+  .fvb span { display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; color:rgba(67,160,71,0.5); margin-top:8px; }
+  .fvc h2 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; color:var(--green); text-transform:uppercase; margin-bottom:10px; }
+  .fvc p { font-size:13px; line-height:1.7; color:var(--text); }
+
+  /* Metrics */
+  .mg { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border2); margin:28px 0; }
+  @media(max-width:700px){ .mg { grid-template-columns:repeat(2,1fr); } }
+  .mc { background:var(--surface); padding:16px 14px; position:relative; }
+  .mc::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .mc-bull::after { background:var(--green); }
+  .mc-bear::after { background:var(--red); }
+  .mc-warn::after { background:var(--orange); }
+  .mc-neu::after  { background:var(--muted); }
+  .mc-lbl { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text2); margin-bottom:8px; }
+  .mc-val { font-family:'Barlow Condensed',sans-serif; font-size:30px; font-weight:700; color:var(--white); line-height:1; margin-bottom:4px; }
+  .mc-sig { font-family:'IBM Plex Mono',monospace; font-size:10px; line-height:1.4; }
+  .mc-bull .mc-sig { color:var(--green); }
+  .mc-bear .mc-sig { color:var(--red); }
+  .mc-warn .mc-sig { color:var(--orange); }
+  .mc-neu  .mc-sig { color:var(--text2); }
+
+  section { margin:52px 0; }
+  .sh { display:flex; align-items:center; gap:14px; margin-bottom:22px; padding-bottom:10px; border-bottom:1px solid var(--border2); }
+  .sn { font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; color:var(--orange); letter-spacing:2px; }
+  .st { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:700; color:var(--white); letter-spacing:2px; }
+
+  .dg { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:600px){ .dg { grid-template-columns:1fr; } }
+  .dc { background:var(--surface); border:1px solid var(--border2); padding:20px; }
+  .dc-bull { border-top:3px solid var(--green); }
+  .dc-bear { border-top:3px solid var(--red); }
+  .dc h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; }
+  .dc-bull h3 { color:var(--green); }
+  .dc-bear h3 { color:var(--red); }
+  .fac { display:flex; gap:10px; font-size:12.5px; margin-bottom:10px; line-height:1.5; color:var(--text); }
+
+  /* OBV */
+  .obv-wrap { background:var(--surface); border:1px solid var(--border2); border-top:3px solid var(--blue); padding:24px; }
+  .obv-intro { font-size:13px; line-height:1.8; color:var(--text); margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border2); }
+  .obv-intro strong { color:var(--blue); }
+  .obv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  @media(max-width:600px){ .obv-grid { grid-template-columns:1fr; } }
+  .obv-card { background:var(--bg); border:1px solid var(--border2); padding:14px; }
+  .obv-card h4 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+  .obv-card p { font-size:12px; color:var(--text); line-height:1.6; }
+  .obv-bull h4 { color:var(--blue); }
+  .obv-warn h4 { color:var(--orange); }
+  .obv-bear h4 { color:var(--red); }
+  .obv-bull { border-top:2px solid var(--blue); }
+  .obv-warn { border-top:2px solid var(--orange); }
+  .obv-bear { border-top:2px solid var(--red); }
+
+  .obv-table { width:100%; border-collapse:collapse; font-size:12.5px; margin:16px 0; }
+  .obv-table th { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text2); padding:10px 12px; text-align:left; border-bottom:1px solid var(--border2); }
+  .obv-table td { padding:10px 12px; border-bottom:1px solid rgba(42,31,0,0.5); vertical-align:top; line-height:1.5; }
+  .obv-table tr:hover td { background:rgba(255,153,0,0.02); }
+
+  .obv-verdict { background:rgba(0,168,224,0.04); border:1px solid rgba(0,168,224,0.15); border-left:4px solid var(--blue); padding:16px 20px; margin-top:16px; font-size:13px; line-height:1.7; color:var(--text); }
+  .obv-verdict strong { color:var(--blue); }
+
+  /* Scale-in plan */
+  .scale-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  @media(max-width:700px){ .scale-grid { grid-template-columns:1fr; } }
+  .sbox { background:var(--surface); border:1px solid var(--border2); padding:18px; }
+  .sbox h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+  .sbox .bnum { font-family:'Barlow Condensed',sans-serif; font-size:40px; font-weight:700; line-height:1; margin:6px 0; }
+  .snote { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); margin-top:8px; line-height:1.5; }
+
+  .tag { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1px; padding:2px 8px; }
+  .tg-bull { background:rgba(67,160,71,0.07); color:var(--green); border:1px solid rgba(67,160,71,0.2); }
+  .tg-bear { background:rgba(229,57,53,0.07); color:var(--red); border:1px solid rgba(229,57,53,0.2); }
+  .tg-warn { background:rgba(255,153,0,0.07); color:var(--orange); border:1px solid rgba(255,153,0,0.2); }
+  .tg-blue { background:rgba(0,168,224,0.07); color:var(--blue); border:1px solid rgba(0,168,224,0.2); }
+
+  .trigger-box { background:var(--surface); border:1px solid var(--border2); border-left:4px solid var(--green); padding:18px 22px; margin:14px 0; }
+  .trigger-box h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:12px; }
+  .tr-row { display:flex; gap:12px; font-size:12.5px; padding:8px 0; border-bottom:1px solid rgba(42,31,0,0.4); line-height:1.5; color:var(--text); }
+  .tr-row:last-child { border-bottom:none; }
+  .trn { font-family:'Barlow Condensed',monospace; font-size:22px; font-weight:700; color:var(--orange); min-width:24px; line-height:1.2; }
+
+  .wb { background:rgba(229,57,53,0.03); border:1px solid rgba(229,57,53,0.15); border-left:4px solid var(--red); padding:16px 20px; margin:14px 0; font-size:13px; line-height:1.7; color:var(--text); }
+  .wb strong { color:var(--red); }
+
+  .sum-box { background:var(--surface); border:1px solid var(--border2); padding:24px; font-size:13px; line-height:1.85; color:var(--text); }
+  .sum-box p { margin-bottom:14px; }
+  .sum-box p:last-child { margin-bottom:0; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--orange); letter-spacing:1px; }
+
+  footer { border-top:1px solid var(--border2); padding:28px 0; margin-top:60px; }
+  .fi { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer p { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); letter-spacing:1px; }
+  .disc { background:rgba(255,153,0,0.02); border:1px solid rgba(255,153,0,0.08); padding:14px 18px; margin-top:20px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); line-height:1.6; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  .container > * { animation:fadeUp 0.5s ease both; }
+  header { animation-delay:0s; }
+  .ar { animation-delay:0.06s; }
+  .fv { animation-delay:0.10s; }
+  .mg { animation-delay:0.14s; }
+  section:nth-of-type(1) { animation-delay:0.18s; }
+  section:nth-of-type(2) { animation-delay:0.22s; }
+  section:nth-of-type(3) { animation-delay:0.26s; }
+  section:nth-of-type(4) { animation-delay:0.30s; }
+  section:nth-of-type(5) { animation-delay:0.34s; }
+  section:nth-of-type(6) { animation-delay:0.38s; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="eyebrow">NASDAQ · AMZN · AMAZON.COM INC · AI雲端巨頭</div>
+    <h1>AMAZON<br><em>AMZN</em></h1>
+    <div class="meta-row">
+      <span class="mi">現價 ~$215–220</span><span class="ms">|</span>
+      <span class="mi">死亡交叉確認</span><span class="ms">|</span>
+      <span class="mi">2026-03-23 00:42</span><span class="ms">|</span>
+      <span class="mi">Z.AI GLM 4.5 + TradingAgents</span>
+    </div>
+  </header>
+
+  <div class="ar">
+    <div class="ac"><div class="an">市場分析師</div><div class="vp vp-hold">HOLD</div></div>
+    <div class="ac"><div class="an">社群分析師</div><div class="vp vp-buy">BUY</div></div>
+    <div class="ac"><div class="an">基本面分析師</div><div class="vp vp-hold">HOLD</div></div>
+    <div class="ac"><div class="an">投資組合經理</div><div class="vp vp-buy">BUY</div></div>
+  </div>
+
+  <div class="fv">
+    <div class="fvb">BUY<span>患耐心分批進場</span></div>
+    <div class="fvc">
+      <h2>最終裁決｜Patient-Scale-In 策略</h2>
+      <p>投組經理裁決 BUY，但嚴格分批。初始倉位 <strong style="color:var(--green)">1% 投組比例</strong>，確認訊號後逐步加至3%上限。死亡交叉是警訊，但 MACD 牛叉 + $100B AI基金 + AWS $600B目標提供強力催化劑。<strong style="color:var(--orange)">不追高、不全押，等訊號確認再加碼。</strong></p>
+    </div>
+  </div>
+
+  <div class="mg">
+    <div class="mc mc-neu"><div class="mc-lbl">現價</div><div class="mc-val">$215–220</div><div class="mc-sig">布林中軌支撐區</div></div>
+    <div class="mc mc-bear"><div class="mc-lbl">50日SMA</div><div class="mc-val">$220.87</div><div class="mc-sig">▼ 死亡交叉確認</div></div>
+    <div class="mc mc-bear"><div class="mc-lbl">200日SMA</div><div class="mc-val">$224.81</div><div class="mc-sig">▼ 平緩，中性偏空</div></div>
+    <div class="mc mc-warn"><div class="mc-lbl">10日EMA</div><div class="mc-val">$210.10</div><div class="mc-sig">⚠ 低於現價但下滑</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">MACD</div><div class="mc-val">-2.29</div><div class="mc-sig">✅ 牛叉出現！高於信號線</div></div>
+    <div class="mc mc-warn"><div class="mc-lbl">MACD Histogram</div><div class="mc-val">+0.195</div><div class="mc-sig">⚠ 正值但快速衰退</div></div>
+    <div class="mc mc-warn"><div class="mc-lbl">RSI (14)</div><div class="mc-val">40.57</div><div class="mc-sig">⚠ 上升中，接近50</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">AWS目標營收</div><div class="mc-val">$600B</div><div class="mc-sig">▲ Andy Jassy 預測</div></div>
+  </div>
+
+  <!-- 01 Bull vs Bear -->
+  <section>
+    <div class="sh"><span class="sn">01</span><span class="st">多空論戰</span></div>
+    <div class="dg">
+      <div class="dc dc-bull">
+        <h3>▲ 多方論點</h3>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>$100B AI自動化基金，AWS-Nvidia GPU協議（2027前100萬顆晶片）</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>Andy Jassy 預測 AWS 達 $600B 年營收，有具體硬體供應鏈支撐</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>MACD 牛叉出現，RSI 從30低位回升至40.57，動能轉向訊號</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>$23.8B FCF 覆蓋資本支出，AI基金以4%低利率融資</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>Beta 1.42 在情緒轉向時提供非對稱反彈，Mag-7負相關創造折價進場</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>$4B 農村配送投資 + SailPoint AI治理合作，多引擎成長</span></div>
+      </div>
+      <div class="dc dc-bear">
+        <h3>▼ 空方論點</h3>
+        <div class="fac"><span style="color:var(--red)">▼</span><span><strong style="color:var(--red)">死亡交叉確認</strong>（50SMA $220.87 < 200SMA $224.81），中線結構偏空</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>MACD Histogram 從1.9急速衰退至0.195，牛叉訊號極度脆弱</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>AI資本支出短期壓制現金流，FCF若低於$10B即觸發退出</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>Bezos政治風險（Bernie Sanders批評），EU DMA監管罰款風險</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>油價上漲壓力 + 宏觀逆風，高Beta股放大跌幅</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 OBV -->
+  <section>
+    <div class="sh"><span class="sn">02</span><span class="st">OBV 能量潮策略完整分析</span></div>
+    <div class="obv-wrap">
+      <div class="obv-intro">
+        <strong>OBV（On-Balance Volume，能量潮）</strong>透過累積漲跌成交量判斷資金真實流向。核心邏輯：<strong>價格是結果，成交量是動機</strong>。死亡交叉 + MACD衰退的情況下，OBV 是判斷機構是否真正出逃的關鍵指標。
+      </div>
+
+      <div class="obv-grid">
+        <div class="obv-card obv-bull">
+          <h4>✦ 長線OBV趨勢</h4>
+          <p>AWS AI擴張期間機構資金持續流入，長線OBV估計仍維持上升趨勢。$100B AI基金宣布後應有明顯量能增加。</p>
+        </div>
+        <div class="obv-card obv-warn">
+          <h4>⚠ 近期回調OBV</h4>
+          <p>死亡交叉形成期間成交量特徵關鍵——若回調成交量平緩，代表機構未集中出逃，屬正常技術回調。</p>
+        </div>
+        <div class="obv-card obv-bear">
+          <h4>▼ MACD衰退期OBV</h4>
+          <p>MACD Histogram從1.9衰退至0.195，若OBV同步下滑則確認空頭；若OBV維持高位則為看多背離，逢低機會。</p>
+        </div>
+      </div>
+
+      <table class="obv-table">
+        <thead>
+          <tr><th>OBV訊號</th><th>AMZN當前狀況</th><th>研判</th><th>行動意義</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--white)"><strong>死亡交叉期OBV</strong></td>
+            <td>50/200SMA交叉期間成交量需觀察</td>
+            <td><span class="tag tg-warn">關鍵觀察</span></td>
+            <td>若量能平緩→洗盤；若爆量→真實下跌</td>
+          </tr>
+          <tr>
+            <td style="color:var(--white)"><strong>MACD牛叉成交量</strong></td>
+            <td>牛叉需配合量能增加才有效</td>
+            <td><span class="tag tg-blue">待確認</span></td>
+            <td>量能若未配合，牛叉為假訊號風險高</td>
+          </tr>
+          <tr>
+            <td style="color:var(--white)"><strong>AI催化劑成交量</strong></td>
+            <td>$100B基金 + AWS協議宣布後量能激增</td>
+            <td><span class="tag tg-bull">看多</span></td>
+            <td>機構對AI催化劑反應積極，OBV支撐</td>
+          </tr>
+          <tr>
+            <td style="color:var(--white)"><strong>Mag-7資金輪動</strong></td>
+            <td>非美股資金流入，AMZN為受益標的</td>
+            <td><span class="tag tg-bull">看多</span></td>
+            <td>被動資金流入支撐OBV長線趨勢</td>
+          </tr>
+          <tr>
+            <td style="color:var(--white)"><strong>RSI與OBV背離</strong></td>
+            <td>RSI從30回升，OBV若同步上升則確認</td>
+            <td><span class="tag tg-blue">確認中</span></td>
+            <td>兩者同向則進場信心增加</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="obv-verdict">
+        <strong>OBV 綜合研判：</strong>AMZN 的死亡交叉在 <strong>OBV 未出現爆量下跌</strong>的情況下，更可能是技術性洗盤而非趨勢反轉。關鍵觀察：MACD 牛叉若能配合 OBV 同步上揚，則進場信心大幅提升。建議主公將「<strong>成交量是否配合MACD牛叉</strong>」作為首要確認依據，優先於價格位置判斷。
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Action Plan -->
+  <section>
+    <div class="sh"><span class="sn">03</span><span class="st">Patient-Scale-In 行動計畫</span></div>
+    <div class="scale-grid">
+      <div class="sbox">
+        <h3>初始倉位</h3>
+        <div class="bnum" style="color:var(--green)">1%</div>
+        <div class="snote">投組比例<br>布林中軌支撐區進場<br>不追高、不全押</div>
+      </div>
+      <div class="sbox">
+        <h3>最大倉位上限</h3>
+        <div class="bnum" style="color:var(--orange)">3%</div>
+        <div class="snote">嚴格上限<br>分三次加碼，每次+1%<br>需訊號確認才加</div>
+      </div>
+      <div class="sbox">
+        <h3>止損設定</h3>
+        <div class="bnum" style="color:var(--red)">1.5×ATR</div>
+        <div class="snote">~$8.40 以下<br>每週動態調整<br>硬止損不妥協</div>
+      </div>
+    </div>
+
+    <div class="trigger-box">
+      <h3>加碼觸發條件（三個同時滿足）</h3>
+      <div class="tr-row"><div class="trn">01</div><div>價格收盤站穩 <strong style="color:var(--green)">50日SMA 連續2天</strong></div></div>
+      <div class="tr-row"><div class="trn">02</div><div>MACD Histogram <strong style="color:var(--green)">維持正值連續3個交易日</strong></div></div>
+      <div class="tr-row"><div class="trn">03</div><div>RSI <strong style="color:var(--green)">持續站穩 >50</strong></div></div>
+    </div>
+
+    <div class="wb">
+      ⚠️ <strong>宏觀對沖條件：</strong>油價突破 $90/桶 → 立即減倉50%。EU DMA罰款 >$10億 → 執行退出計畫。FCF < $10B → 無條件出場。
+    </div>
+  </section>
+
+  <!-- 04 Summary -->
+  <section>
+    <div class="sh"><span class="sn">04</span><span class="st">末將戰略總評</span></div>
+    <div class="sum-box">
+      <p><strong style="color:var(--white)">AMZN 是 AI 基礎建設時代的核心受益者，$100B AI基金 + AWS $600B目標不是空話，有具體硬體供應鏈支撐。</strong>死亡交叉是技術面警訊，但在 OBV 未確認大量出逃的情況下，更像是在 AI催化劑前的技術洗盤。</p>
+      <p>MACD 牛叉是難得的早期進場訊號，但 Histogram 衰退速度令人擔憂。Patient-Scale-In 策略正確——<strong style="color:var(--orange)">1% 先進場佔住位置，等三重確認（50SMA站穩、Histogram持正、RSI>50）再分批加至3%。</strong></p>
+      <p>▶ OBV配合 + MACD Histogram擴大 = 加碼。OBV下滑 + Histogram轉負 = 執行止損。紀律優先。</p>
+    </div>
+  </section>
+
+  <div class="disc">▶ 免責聲明｜本報告由 TradingAgents AI（Z.AI GLM 4.5 Air）自動生成，輔以 Claude AI 分析整理。OBV分析為定性推估。僅供參考，不構成投資建議。</div>
+
+  <footer>
+    <div class="fi">
+      <p>© 2026 · TRADINGAGENTS · AMZN · AMAZON.COM INC</p>
+      <p>Z.AI GLM 4.5 AIR + ANTHROPIC CLAUDE</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
