@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMZN 策略撤退令 | 20260328 | SELL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%);
+            color: #e0e0e0;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: rgba(30, 30, 30, 0.95);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(255, 80, 40, 0.15);
+            border: 1px solid rgba(255, 100, 50, 0.2);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff5722 0%, #d84315 100%);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.03) 10px,
+                rgba(255, 255, 255, 0.03) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+        
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50%, 50%); }
+        }
+        
+        .ticker {
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            letter-spacing: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .recommendation {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 15px;
+            letter-spacing: 2px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .date {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            margin-top: 12px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .alert-box {
+            background: linear-gradient(135deg, #b71c1c 0%, #c62828 100%);
+            border-left: 6px solid #f44336;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(183, 28, 28, 0.3);
+        }
+        
+        .alert-box h2 {
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .alert-icon {
+            font-size: 32px;
+        }
+        
+        .price-check {
+            background: rgba(50, 50, 50, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 152, 0, 0.3);
+        }
+        
+        .price-check h3 {
+            color: #ff9800;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .price-row:last-child {
+            border-bottom: none;
+        }
+        
+        .news-section {
+            background: rgba(40, 40, 40, 0.7);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        .news-section h3 {
+            color: #4caf50;
+            margin-bottom: 20px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .news-item {
+            padding: 15px;
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .news-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .news-item h4 {
+            color: #66bb6a;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section h2 {
+            color: #ff5722;
+            font-size: 26px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 87, 34, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section h3 {
+            color: #ffa726;
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+        }
+        
+        .key-points {
+            background: linear-gradient(135deg, rgba(255, 87, 34, 0.1) 0%, rgba(255, 152, 0, 0.1) 100%);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid #ff5722;
+            margin: 20px 0;
+        }
+        
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .key-points li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .key-points li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ff5722;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .metric-card {
+            background: rgba(255, 87, 34, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 87, 34, 0.3);
+            text-align: center;
+        }
+        
+        .metric-card .label {
+            color: #ff8a65;
+            font-size: 14px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .metric-card .value {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .metric-card .trend {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .trend.negative {
+            color: #ef5350;
+        }
+        
+        .trend.positive {
+            color: #66bb6a;
+        }
+        
+        .action-plan {
+            background: linear-gradient(135deg, rgba(198, 40, 40, 0.2) 0%, rgba(211, 47, 47, 0.2) 100%);
+            padding: 25px;
+            border-radius: 8px;
+            border: 2px solid #d32f2f;
+            margin: 25px 0;
+        }
+        
+        .action-plan h3 {
+            color: #ff5252;
+            margin-bottom: 15px;
+        }
+        
+        .action-plan ol {
+            padding-left: 25px;
+        }
+        
+        .action-plan li {
+            margin: 12px 0;
+            line-height: 1.8;
+        }
+        
+        .warning-box {
+            background: rgba(255, 152, 0, 0.1);
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .warning-box h4 {
+            color: #ffb74d;
+            margin-bottom: 10px;
+        }
+        
+        .obv-section {
+            background: linear-gradient(135deg, rgba(63, 81, 181, 0.15) 0%, rgba(48, 63, 159, 0.15) 100%);
+            padding: 30px;
+            border-radius: 8px;
+            border: 2px solid rgba(63, 81, 181, 0.4);
+            margin: 30px 0;
+        }
+        
+        .obv-section h2 {
+            color: #5c6bc0;
+            border-bottom-color: rgba(63, 81, 181, 0.3);
+        }
+        
+        .footer {
+            background: rgba(20, 20, 20, 0.9);
+            padding: 25px;
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer a {
+            color: #ff5722;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .ticker {
+                font-size: 36px;
+                letter-spacing: 4px;
+            }
+            
+            .recommendation {
+                font-size: 20px;
+                padding: 10px 20px;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="ticker">AMZN</div>
+            <div class="recommendation">⚠️ 策略撤退令：SELL</div>
+            <div class="date">報告日期：2026-03-28 | 生成時間：13:52 UTC+8</div>
+        </div>
+        
+        <div class="content">
+            <div class="alert-box">
+                <h2><span class="alert-icon">🚨</span> 核心警示</h2>
+                <p><strong>自由現金流崩潰 -47.8% YoY</strong> | CapEx失控 +42% YoY | FCF轉換率從38.9%跌至22.1% | 技術面確認機構分配非整理 | AWS邊際利潤連續4季萎縮</p>
+            </div>
+            
+            <div class="price-check">
+                <h3>⚡ 現價查核</h3>
+                <div class="price-row">
+                    <span>報告價格：</span>
+                    <span><strong>$201.07</strong> (2026-03-27)</span>
+                </div>
+                <div class="price-row">
+                    <span>最新價格：</span>
+                    <span><strong>$201.82</strong> (2026-03-27)</span>
+                </div>
+                <div class="price-row">
+                    <span>價差：</span>
+                    <span style="color: #66bb6a;"><strong>+0.37%</strong> ✅ 無顯著差異</span>
+                </div>
+            </div>
+            
+            <div class="news-section">
+                <h3>📰 最新市場動態</h3>
+                <div class="news-item">
+                    <h4>🤖 AI自主安全代理重擊網安股</h4>
+                    <p>Amazon推出最先進自主AI安全代理套件（Project Metis演進），具備自我修復能力，無需人工干預即可識別漏洞並部署修復代碼。此舉導致CrowdStrike單日暴跌超7%，凸顯Amazon在AI基礎設施的壟斷野心。</p>
+                </div>
+                <div class="news-item">
+                    <h4>🔧 Annapurna Labs關鍵主管離職</h4>
+                    <p>產品與客戶工程總監Gadi Hutt已離職，繼首席架構師Rami Sinno離職後再添人才流失案例。報告中明確指出「Trainium領導層出走，競爭對手大規模部署自研晶片」，驗證AI晶片戰略受挫。</p>
+                </div>
+                <div class="news-item">
+                    <h4>📊 華爾街維持強力買入（陷阱信號）</h4>
+                    <p>分析師共識目標價$280-$284（較現價+34-36%），但此共識建立於對AWS AI基礎設施的樂觀假設。報告警告：「分析師目標價無法改變當前現金流惡化與投資效率破產的事實」。</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🎯 最終裁決：SELL（立即執行）</h2>
+                <div class="key-points">
+                    <ul>
+                        <li><strong>自由現金流崩潰</strong>：從$62.2B → $32.5B（-47.8% YoY），FCF轉換率從38.9% → 22.1%</li>
+                        <li><strong>CapEx黑洞</strong>：$39.52B（+42% YoY），收入僅增13.6%，每$1收入增長耗費$1.40 CapEx</li>
+                        <li><strong>技術面確認分配</strong>：MACD -2.53、RSI 39、VWMA高於價格，機構利用反彈減倉</li>
+                        <li><strong>AWS利潤率萎縮</strong>：Q4營業利潤率29.1% → 28.1% → 27.8%，連續4季下滑</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="label">自由現金流</div>
+                    <div class="value">$32.5B</div>
+                    <div class="trend negative">▼ -47.8% YoY</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">CapEx</div>
+                    <div class="value">$39.52B</div>
+                    <div class="trend negative">▲ +42% YoY</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">FCF轉換率</div>
+                    <div class="value">22.1%</div>
+                    <div class="trend negative">▼ 從38.9%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">CapEx/收入比</div>
+                    <div class="value">18.5%</div>
+                    <div class="trend negative">▲ 歷史11%</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3>📉 四大核心論據</h3>
+                
+                <div class="warning-box">
+                    <h4>1️⃣ 自由現金流崩潰（非營運資金調整無法掩蓋）</h4>
+                    <p><strong>FCF從$62.2B → $32.5B（-47.8% YoY）</strong></p>
+                    <ul>
+                        <li>FCF轉換率從38.9% → 22.1%（單年下降16.8個百分點）</li>
+                        <li>營運現金流增長完全被CapEx吞噬（$39.52B vs $62.2B前期）</li>
+                        <li>報告明言：「保守派分析師正確：這不是短期營運資金波動，而是投資回報結構性惡化」</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>2️⃣ CapEx失控且非增值投資</h4>
+                    <p><strong>CapEx/收入比18.5%（歷史常態11%）</strong></p>
+                    <ul>
+                        <li>CapEx增速42% vs 收入增速13.6%：每$1收入增長耗費$1.40 CapEx</li>
+                        <li>AWS Q4營業利潤率改善0.4%（至11.7%）付出$18B CapEx代價→「利潤率保衛戰，非擴張戰」</li>
+                        <li>報告引述激進派：「這是財務縱火，而非有紀律的再投資」</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>3️⃣ 技術面確認機構分配（非整理）</h4>
+                    <ul>
+                        <li><strong>MACD -2.53</strong>：雖從-6.88回升，但仍為負值，未確認反轉</li>
+                        <li><strong>RSI 39</strong>：低於50但未超賣，缺乏反彈動能</li>
+                        <li><strong>VWMA $209.83 > 價格 $201.07</strong>：近期高成交量發生於更高價位，證明機構趁反彈減倉</li>
+                        <li><strong>10EMA < 50SMA < 200SMA</strong>：典型空頭排列，價格低於所有均線</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>4️⃣ AWS邊際利潤連續萎縮</h4>
+                    <ul>
+                        <li>Q4營業利潤率：29.1% → 28.5% → 28.1% → 27.8%（連續4季下滑）</li>
+                        <li>雖Q4整體利潤率微升至11.7%，但核心業務AWS衰退，國際業務收入增速僅9% YoY（MercadoLibre搶市）</li>
+                        <li>報告警告：「利潤率改善是透過會計操作保護利潤，而非真實增長」</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🎯 交易執行計畫</h2>
+                
+                <div class="action-plan">
+                    <h3>⚡ 立即執行（3-5個交易日）</h3>
+                    <ol>
+                        <li><strong>分批賣出</strong>：限價單$198-$202（當前區間）</li>
+                        <li><strong>為何現在</strong>：股價測試$200支撐，破位後可能加速跌向$180-$185（200日均線區）</li>
+                        <li><strong>避免心理陷阱</strong>：不等「確認破位」才賣（會賣更低），報告引述保守派：「現在賣不是放棄Amazon長期故事，而是堅持風險報酬比必須對我方有利才出手」</li>
+                    </ol>
+                </div>
+                
+                <div class="action-plan">
+                    <h3>🚫 重新進場條件（需連續2季達成）</h3>
+                    <ol>
+                        <li><strong>FCF增速 > 0% YoY</strong>（扣除營運資金變動，隔離真實現金生成能力）</li>
+                        <li><strong>CapEx增速 < 20% YoY</strong>（證明支出高峰為暫時性，非新常態）</li>
+                        <li><strong>AWS營業利潤率 QoQ正增長</strong>（終止當前連續4季下滑趨勢）</li>
+                        <li><strong>國際業務收入增速 > 15% YoY</strong>（反擊MercadoLibre搶市威脅，當前僅9%）</li>
+                    </ol>
+                    <p><strong>為何2季？</strong> 避免誤判單季異常，報告：「等待這些『希望』翻轉是機會成本；這是基於規則的觸發條件」</p>
+                </div>
+                
+                <div class="action-plan">
+                    <h3>⚙️ 風險管理（若持有空頭部位）</h3>
+                    <ul>
+                        <li><strong>規模限制</strong>：5-10%投資組合（管理宏觀事件波動）</li>
+                        <li><strong>Put履約價</strong>：$180-$190（現價下5-10%，3-6個月到期）</li>
+                        <li><strong>硬止損</strong>：$210（高於200日均線$224.68但低於近期高點，允許正常波動但防止災難性軋空）</li>
+                        <li><strong>嚴禁加碼多單</strong>：若股價下跌，等待上述重新進場條件觸發，報告警告：「在空頭均線排列中加碼攤平，會把5%帳面虧損變成20%實虧」</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="obv-section">
+                <h2>📊 OBV能量潮分析</h2>
+                
+                <h3>技術指標綜合研判</h3>
+                <p>報告雖未單獨列出OBV指標，但通過<strong>VWMA（成交量加權移動平均）</strong>與<strong>價格位置關係</strong>進行能量分析：</p>
+                
+                <div class="key-points">
+                    <ul>
+                        <li><strong>VWMA $209.83 > 價格 $201.07</strong>：近期高成交量交易發生於更高價位，證明<strong>機構利用反彈減倉</strong>，非散戶接盤</li>
+                        <li><strong>ATR穩定於5.71</strong>：波動率未異常擴張，但配合VWMA位置，顯示<strong>有序分配</strong>（controlled distribution）</li>
+                        <li><strong>MACD雖回升但仍負值</strong>：賣壓放緩≠買盤進場，報告明言：「這不是積累，而是機構利用寬鬆反彈向散戶貪婪卸貨」</li>
+                    </ul>
+                </div>
+                
+                <h3>能量潮信號解讀</h3>
+                <div class="warning-box">
+                    <h4>⚠️ 分配階段確認（非整理）</h4>
+                    <p>報告技術分析章節明確否定中立派「平坦200日均線=暫停非懸崖」論述：</p>
+                    <ul>
+                        <li>2021 Q4前例：平坦200日均線<strong>隨後暴跌40%</strong></li>
+                        <li>當前情境：價格低於所有均線（10EMA/50SMA/200SMA），200日均線$224.68仍高於現價</li>
+                        <li>情境1（報告明示）：若持續空頭排列，目標「200日均線<strong>或更低</strong>」→意味<strong>低於現價</strong>，近期擺盪低點$200即為下一支撐</li>
+                    </ul>
+                </div>
+                
+                <h3>持有成本分析</h3>
+                <p>報告保守派分析師直指核心矛盾：</p>
+                <blockquote style="border-left: 4px solid #5c6bc0; padding-left: 20px; margin: 20px 0; font-style: italic; color: #b0bec5;">
+                    「你想在區間內交易直到信號明確——但在整理或走弱趨勢中，區間破位向下比守住更常見。交易員計畫給了我們乾淨退出點，保護資本以便重新進場觸發條件<strong>真正</strong>閃現時（而非希望性）部署。」
+                </blockquote>
+                <p>翻譯：當前不是「等待突破」的積累區間，而是「破位在即」的分配尾聲，持有等待=坐視機會成本流失。</p>
+                
+                <h3>結論：能量確認賣出時機</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>✅ 高成交量發生於高價位（VWMA > 價格）</li>
+                        <li>✅ 所有均線空頭排列（10EMA < 50SMA < 200SMA < 價格）</li>
+                        <li>✅ MACD雖回升但仍負值（動能弱化非反轉）</li>
+                        <li>✅ 基本面惡化（FCF -47.8%、CapEx失控）與技術面共振</li>
+                        <li>⚠️ 能量潮訊號：<strong>機構分配進行中，散戶接最後一棒</strong></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🎓 為何賣出非悲觀而是風險管理</h2>
+                <p>報告最終強調：</p>
+                <blockquote style="border-left: 4px solid #ff5722; padding-left: 20px; margin: 20px 0; font-style: italic; color: #ffab91;">
+                    「現在賣出不是對Amazon長期故事失去信心，而是<strong>堅持只在風險報酬比對我方有利時出手</strong>。自由現金流質量惡化與投資效率破產的證據過於具體且嚴重，無法忽視。<strong>現在賣出，等待現金流證明投資價值，只有當數據支持時才重新進場。任何不及此的做法都是把錢留在桌上，誤把希望當策略。</strong>」
+                </blockquote>
+            </div>
+            
+            <div class="section">
+                <h2>📋 每週監控清單</h2>
+                <ul>
+                    <li>CapEx/收入比：目標持續下降至12%以下（歷史增值區間）</li>
+                    <li>自由現金流趨勢（扣除營運資金）：計算為（營運現金流 - CapEx）/ 營運現金流，調整ΔWC變化</li>
+                    <li>部門利潤率趨勢：AWS與廣告業務財報利潤率——要求<strong>環比改善</strong>，而非僅同比</li>
+                    <li>競爭代理指標：MercadoLibre YoY收入增速（拉美風向標；>15% YoY顯示Amazon重獲牽引力）</li>
+                    <li>AI進展：Bedrock收入增長與Anthropic更新——<strong>僅視為不對稱上行機會</strong>，非基準情境（符合保守派：「正面因素更偏營運與策略性質【中長期】」）</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>PAK600 戰略研究室</strong></p>
+            <p>模型：DeepSeek R1 0528 | 數據源：yfinance | 風格化：Claude Sonnet 4.6</p>
+            <p>報告索引：<a href="https://pak600.github.io/trading-reports/" target="_blank">pak600.github.io/trading-reports</a></p>
+            <p style="margin-top: 15px; font-size: 12px; color: #666;">
+                本報告僅供參考，不構成投資建議。投資有風險，決策需謹慎。
+            </p>
+        </div>
+    </div>
+    
+    <!-- GoatCounter 追蹤碼 -->
+    <script data-goatcounter="https://pak600.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
