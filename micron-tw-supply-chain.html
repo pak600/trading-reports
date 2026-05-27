@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美光（MU）大漲 ✕ 台灣供應鏈全圖 — PAK600 戰略研究室</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-dim: #8B7232;
+    --gold-light: #F0D98E;
+    --crimson: #B03A2E;
+    --teal: #1A7A6E;
+    --teal-light: #E8F5F3;
+    --ink: #1C1C1E;
+    --ink-2: #2C2C2E;
+    --slate: #48484A;
+    --muted: #8E8E93;
+    --surface: #F5F4EF;
+    --surface-2: #EDECE6;
+    --surface-3: #E4E2D9;
+    --white: #FAFAF8;
+    --border: #D1CFC4;
+    --border-gold: rgba(201,168,76,0.35);
+    --red-bg: #FEF2F0;
+    --red-text: #8B2418;
+    --green-bg: #EFF7F4;
+    --green-text: #0F5C4A;
+    --blue-bg: #EFF4FC;
+    --blue-text: #1A3E7A;
+    --amber-bg: #FEF8EC;
+    --amber-text: #7A5210;
+    --purple-bg: #F3F0FD;
+    --purple-text: #3D2580;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Noto Serif TC', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    border-bottom: 2px solid var(--gold);
+    padding: 32px 48px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  }
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .header-tag::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--gold);
+  }
+  header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header h1 span { color: var(--gold); }
+  .header-sub {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── ALERT BANNER ── */
+  .alert-banner {
+    background: var(--gold);
+    padding: 12px 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .alert-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--crimson);
+    animation: pulse 1.4s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.6; }
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 32px;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-gold);
+  }
+
+  /* ── MU STATS ROW ── */
+  .mu-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+  }
+  .stat-card.up::after { background: #16A34A; }
+  .stat-card.down::after { background: var(--crimson); }
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .stat-value.up { color: #16A34A; }
+  .stat-value.down { color: var(--crimson); }
+  .stat-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── NEWS SECTION ── */
+  .news-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .news-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: block;
+  }
+  .news-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 2px 12px rgba(201,168,76,0.15);
+  }
+  .news-source {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .news-headline {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+  .news-summary {
+    font-size: 12px;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+  .news-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 8px;
+    font-weight: 600;
+  }
+  .badge-hot { background: var(--red-bg); color: var(--red-text); }
+  .badge-fin { background: var(--blue-bg); color: var(--blue-text); }
+  .badge-chain { background: var(--green-bg); color: var(--green-text); }
+  .badge-risk { background: var(--amber-bg); color: var(--amber-text); }
+
+  /* ── SUPPLY CHAIN TABLE ── */
+  .chain-section { margin-bottom: 40px; }
+  .chain-tier {
+    margin-bottom: 24px;
+  }
+  .tier-header {
+    background: var(--ink-2);
+    color: var(--gold-light);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tier-num {
+    background: var(--gold);
+    color: var(--ink);
+    border-radius: 4px;
+    width: 20px; height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .stock-row {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: none;
+    display: grid;
+    grid-template-columns: 120px 80px 1fr 140px;
+    gap: 0;
+    align-items: stretch;
+  }
+  .stock-row:last-child { border-radius: 0 0 8px 8px; }
+  .stock-row + .stock-row { border-top: none; }
+  .stock-row:not(:last-child) { border-bottom: 1px solid var(--surface-3); }
+
+  .col-name {
+    padding: 14px 16px;
+    border-right: 1px solid var(--surface-3);
+  }
+  .stock-ticker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .stock-name-zh {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .col-data {
+    padding: 14px 12px;
+    border-right: 1px solid var(--surface-3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+  }
+  .eps-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: #16A34A;
+  }
+  .eps-label {
+    font-size: 10px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .rev-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .col-logic {
+    padding: 14px 16px;
+    border-right: 1px solid var(--surface-3);
+    font-size: 12.5px;
+    color: var(--slate);
+    line-height: 1.55;
+  }
+  .logic-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .col-signal {
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+  }
+  .signal-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .sig-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .sig-green { background: #16A34A; }
+  .sig-amber { background: #D97706; }
+  .sig-red { background: var(--crimson); }
+
+  /* ── CHART ── */
+  .chart-panel {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 24px 16px;
+    margin-bottom: 40px;
+  }
+  .chart-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .chart-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── RISK BOX ── */
+  .risk-box {
+    background: var(--amber-bg);
+    border: 1px solid rgba(183,120,16,0.25);
+    border-left: 3px solid #D97706;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 40px;
+  }
+  .risk-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--amber-text);
+    margin-bottom: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .risk-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .risk-list li {
+    font-size: 12.5px;
+    color: #6B4C0A;
+    padding-left: 14px;
+    position: relative;
+  }
+  .risk-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #D97706;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .footer-note {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--border-gold);
+    margin: 32px 0;
+  }
+
+  /* ── MU NEWS HEADLINE CARD ── */
+  .mu-headline-card {
+    background: var(--ink);
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .mu-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    width: 56px; height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .mu-headline-text h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .mu-metrics {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .mu-metric {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .mu-metric-val {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+  .mu-metric-label {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 24px 20px 18px; }
+    header h1 { font-size: 20px; }
+    .alert-banner { padding: 10px 20px; }
+    .container { padding: 24px 16px; }
+    .mu-stats { grid-template-columns: 1fr 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .stock-row { grid-template-columns: 1fr 1fr; }
+    .col-signal { display: none; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">PAK600 戰略研究室 ✕ 特急情報</div>
+  <h1>美光 <span>MU</span> 大漲 × 台灣供應鏈全圖</h1>
+  <div class="header-sub">2026.05.27 ｜ UBS 目標價 $1,625 ｜ 市值破兆美元</div>
+</header>
+
+<div class="alert-banner">
+  <span class="alert-dot"></span>
+  <span>🔴 LIVE — MU 今日盤前飆漲 +19%，兆元市值達成 ｜ UBS 目標價暴升至 $1,625</span>
+</div>
+
+<div class="container">
+
+  <!-- MU 核心數據 -->
+  <div class="section-title">美光（NASDAQ: MU）核心財報數據</div>
+
+  <div class="mu-headline-card">
+    <div class="mu-logo">MU</div>
+    <div class="mu-headline-text">
+      <h3>AI 記憶體超週期確立——HBM 供不應求、UBS 目標價直衝 $1,625，市值首破兆元大關</h3>
+      <div class="mu-metrics">
+        <div class="mu-metric">
+          <div class="mu-metric-val">$33.5B</div>
+          <div class="mu-metric-label">Q3 FY26 營收指引</div>
+        </div>
+        <div class="mu-metric">
+          <div class="mu-metric-val">81%</div>
+          <div class="mu-metric-label">Q3 毛利率指引</div>
+        </div>
+        <div class="mu-metric">
+          <div class="mu-metric-val">+19%</div>
+          <div class="mu-metric-label">今日盤前漲幅</div>
+        </div>
+        <div class="mu-metric">
+          <div class="mu-metric-val">$1.7T</div>
+          <div class="mu-metric-label">2030 AI 資料中心 TAM（BofA）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mu-stats">
+    <div class="stat-card up">
+      <div class="stat-label">Q2 FY26 營收</div>
+      <div class="stat-value up">$23.9B</div>
+      <div class="stat-sub">年增 約 3x</div>
+    </div>
+    <div class="stat-card up">
+      <div class="stat-label">Q2 EPS</div>
+      <div class="stat-value up">$12.07</div>
+      <div class="stat-sub">vs. 去年同期 $1.41</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">UBS 目標價</div>
+      <div class="stat-value" style="color:var(--gold)">$1,625</div>
+      <div class="stat-sub">前 $535 → 上調 3倍</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">台灣產能佔比</div>
+      <div class="stat-value" style="color:var(--teal)">60%+</div>
+      <div class="stat-sub">全球 HBM 總產能</div>
+    </div>
+  </div>
+
+  <!-- 近期重大新聞 -->
+  <div class="section-title">近期重大新聞</div>
+
+  <div class="news-grid">
+    <a class="news-card" href="https://www.cnbc.com/2026/05/26/micron-stock-trillion-market-cap.html" target="_blank">
+      <div class="news-source">CNBC ｜ 2026.05.26</div>
+      <div class="news-headline">美光市值首破兆元大關，單日暴漲 19%</div>
+      <div class="news-summary">UBS 將目標價從 $535 大幅上調至 $1,625，AI 記憶體供不應求格局確立，推動美光成為新兆元科技巨頭。</div>
+      <span class="news-badge badge-hot">🔴 頭條</span>
+    </a>
+    <a class="news-card" href="https://www.thestreet.com/investing/stocks/bank-of-america-massively-resets-micron-stock-price-target-after-surge" target="_blank">
+      <div class="news-source">TheStreet ｜ 2026.05</div>
+      <div class="news-headline">BofA 上調目標價至 $950，TAM 上修至 $1.7 兆</div>
+      <div class="news-summary">美銀將 2030 年 AI 資料中心 TAM 上修至 $1.7 兆，指出每顆 AI GPU 都必須搭配 HBM，美光市場份額同步放大。</div>
+      <span class="news-badge badge-fin">📊 法人觀點</span>
+    </a>
+    <a class="news-card" href="https://abmedia.io/micron-mu-stock-price-ai-memory-hbm-2026-analysis" target="_blank">
+      <div class="news-source">鏈新聞 ｜ 2026.03</div>
+      <div class="news-headline">美光收購力積電銅鑼 P5 廠，台灣 HBM4 量產啟動</div>
+      <div class="news-summary">美光在台投資超過新台幣 1 兆元，HBM4 已進入量產供應 NVIDIA Vera Rubin 平台，台灣產能佔全球 6 成。</div>
+      <span class="news-badge badge-chain">🔗 供應鏈</span>
+    </a>
+    <a class="news-card" href="https://cmnews.com.tw/article/cmoneyairesearcher-11d27608-56f6-11f1-9861-859b19c1b0b3" target="_blank">
+      <div class="news-source">CMoney ｜ 2026.05.25</div>
+      <div class="news-headline">HBM 爆單撐多頭，台廠訂單能見度延伸至 2027</div>
+      <div class="news-summary">SK 集團會長確認記憶體供應吃緊持續至 2030 年，台股伺服器供應鏈訂單能見度從 2026 年拉長至 2027 年，接單結構改變。</div>
+      <span class="news-badge badge-chain">🔗 台廠動態</span>
+    </a>
+    <a class="news-card" href="https://www.businesstoday.com.tw/article/category/183008/post/202605110001/" target="_blank">
+      <div class="news-source">今周刊 ｜ 2026.05.11</div>
+      <div class="news-headline">群聯狂賺 7 個股本，成記憶體族群救世主</div>
+      <div class="news-summary">群聯 Q1 EPS 達 68.8 元，激勵南亞科、華邦電同步亮燈。法人指出 NAND 每 3.5~4 年進入完整供需周期，2026 下半年缺口將擴大。</div>
+      <span class="news-badge badge-fin">📊 台股</span>
+    </a>
+    <a class="news-card" href="https://wantrich.chinatimes.com/news/20260504900115-420101" target="_blank">
+      <div class="news-source">旺得富 ｜ 2026.05.04</div>
+      <div class="news-headline">台股融資水位過高，法人示警記憶體追高風險</div>
+      <div class="news-summary">記憶體急漲後散戶參與度過熱，法人建議回測洗盤時分批佈局，低基期 ABF 載板與 CPO 族群更具補漲空間。</div>
+      <span class="news-badge badge-risk">⚠️ 風險提示</span>
+    </a>
+  </div>
+
+  <!-- EPS 比較圖 -->
+  <div class="section-title">台灣美光概念股 Q1 2026 財報比較</div>
+  <div class="chart-panel">
+    <div class="chart-title">Q1 2026 EPS 表現（元）</div>
+    <div class="chart-sub">資料來源：各公司自結財報 ｜ 2026 Q1（截至 3 月 31 日）</div>
+    <div style="position:relative;width:100%;height:280px;">
+      <canvas id="epsChart" role="img" aria-label="台灣美光概念股 Q1 2026 EPS 比較長條圖">群聯 68.8 元、南亞科 8.41 元、華邦電 2.25 元、力成 2.1 元</canvas>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:12px;color:#6B7280;">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#16A34A;"></span>正成長（年增）</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#D97706;border:1px dashed #D97706;background:repeating-linear-gradient(45deg,#D97706,#D97706 3px,transparent 3px,transparent 6px);"></span>季增</span>
+    </div>
+  </div>
+
+  <div class="chart-panel">
+    <div class="chart-title">Q1 2026 營收（億元）vs 年增率（%）</div>
+    <div class="chart-sub">資料來源：各公司公告合併財報</div>
+    <div style="position:relative;width:100%;height:260px;">
+      <canvas id="revChart" role="img" aria-label="台灣美光概念股 Q1 2026 營收比較">南亞科 490.87 億、群聯 409.67 億、華邦電 382.5 億、力成 約 65 億</canvas>
+    </div>
+  </div>
+
+  <!-- 供應鏈分層 -->
+  <div class="section-title">台灣供應鏈分層地圖</div>
+  <div class="chain-section">
+
+    <!-- Tier 1 -->
+    <div class="chain-tier">
+      <div class="tier-header">
+        <span class="tier-num">1</span>
+        最核心受惠 — 直接供應商 / 同業缺口填補
+      </div>
+
+      <div class="stock-row">
+        <div class="col-name">
+          <div class="stock-ticker">2330 TSM</div>
+          <div class="stock-name-zh">台積電</div>
+        </div>
+        <div class="col-data">
+          <div class="eps-label">CoWoS / HBM 封裝</div>
+          <div class="rev-val">策略核心</div>
+        </div>
+        <div class="col-logic">
+          <span class="logic-tag" style="background:var(--purple-bg);color:var(--purple-text)">先進封裝</span><br>
+          HBM 封裝規格協作唯一合作夥伴。美光必須取得台積電封裝規格才能設計 HBM；CoWoS 擴產直接受益。AI GPU 每顆都需 HBM，台積電是不可替代節點。
+        </div>
+        <div class="col-signal">
+          <div class="signal-row"><span class="sig-dot sig-green"></span> 2026 資本支出上修</div>
+          <div class="signal-row"><span class="sig-dot sig-green"></span> HBM4 獨家量產</div>
+          <div class="signal-row"><span class="sig-dot sig-amber"></span> 估值偏高</div>
+        </div>
+      </div>
+
+      <div class="stock-row">
+        <div class="col-name">
+          <div class="stock-ticker">6770 PSMC</div>
+          <div class="stock-name-zh">力積電</div>
+        </div>
+        <div class="col-data">
+          <div class="eps-label">策略收購標的</div>
+          <div class="rev-val">銅鑼 P5 廠</div>
+        </div>
+        <div class="col-logic">
+          <span class="logic-tag" style="background:var(--purple-bg);color:var(--purple-text)">廠房收購</span><br>
+          美光已完成收購力積電銅鑼科學園區 P5 晶圓廠，直接強化台灣 DRAM 產能布局，為美光台灣擴產計畫核心資產。
+        </div>
+        <div class="col-signal">
+          <div class="signal-row"><span class="sig-dot sig-green"></span> 廠房交割完成</div>
+          <div class="signal-row"><span class="sig-dot sig-amber"></span> 轉型期波動</div>
+        </div>
+      </div>
+
+      <div class="stock-row">
+        <div class="col-name">
+          <div class="stock-ticker">2408 NTC</div>
+          <div class="stock-name-zh">南亞科</div>
+        </div>
+        <div class="col-data">
+          <div class="eps-val">$8.41</div>
+          <div class="eps-label">Q1 EPS（歷史新高）</div>
+          <div class="rev-val">490.87 億 ↑582%</div>
+        </div>
+        <div class="col-logic">
+          <span class="logic-tag" style="background:var(--green-bg);color:var(--green-text)">DRAM 缺口</span><br>
+          美光轉產 HBM 後 DDR4 供應缺口由南亞科填補，2026 年全年供需缺口延續。Q1 毛利率 67.9%，DRAM 均售價季增超 70%。私募 787 億元強化財務與客戶綑綁。
+        </div>
+        <div class="col-signal">
+          <div class="signal-row"><span class="sig-dot sig-green"></span> EPS 歷史新高</div>
+          <div class="signal-row"><span class="sig-dot sig-green"></span> 毛利率 67.9%</div>
+          <div class="signal-row"><span class="sig-dot sig-amber"></span> 近期急漲回測中</div>
+        </div>
+      </div>
+
+      <div class="stock-row" style="border-radius:0 0 8px 8px;">
+        <div class="col-name">
+          <div class="stock-ticker">2344 WIN</div>
+          <div class="stock-name-zh">華邦電</div>
+        </div>
+        <div class="col-data">
+          <div class="eps-val">$2.25</div>
+          <div class="eps-label">Q1 EPS（近五年新高）</div>
+          <div class="rev-val">382.5 億 ↑91%</div>
+        </div>
+        <div class="col-logic">
+          <span class="logic-tag" style="background:var(--green-bg);color:var(--green-text)">利基 DRAM</span><br>
+          NOR Flash 與客製化記憶體（CMS）在 AI 邊緣運算領域具競爭優勢。產能滿載至 2027 年，CMS 缺口延伸至 2028 年，4月營收年增 182%。
+        </div>
+        <div class="col-signal">
+          <div class="signal-row"><span class="sig-dot sig-green"></span> 產能 100% 滿載</div>
+          <div class="signal-row"><span class="sig-dot sig-green"></span> CMS 缺口至 2028</div>
+          <div class="signal-row"><span class="sig-dot sig-green"></span> 投信外資買超</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier 2 -->
+    <div class="chain-tier">
+      <div class="tier-header">
+        <span class="tier-num">2</span>
+        封測 — HBM 堆疊 / AI 晶片委外封測
+      </div>
+      <div class="stock-row" style="border-radius:0 0 0 0;">
+        <div class="col-name">
+          <div class="stock-ticker">6239 KJCC</div>
+          <div class="stock-name-zh">力成科技</div>
+        </div>
+        <div class="col-data">
+          <div class="eps-label">記憶體封測龍頭</div>
+          <div class="rev-val">月營收穩健成長</div>
+        </div>
+        <div class="col-logic">
+          <span class="logic-tag" style="background:var(--blue-bg);color:var(--blue-text)">HBM 封測</span><br>
+          深耕記憶體封測多年，HBM 堆疊封裝及 AI 晶片封測需求升溫下技術護城河凸顯。AI 晶片委外封測訂單穩健，具備分紅與成長雙重題材。
+        </div>
+        <div class="col-signal">
+          <div class="signal-row"><span class="sig-dot sig-green"></span> HBM 封測需求上升</div>
+          <div class="signal-row"><span class="sig-dot sig-amber"></span> 客戶集中風險</div>
+        </div>
+      </div>
+      <div class="stock-row" style="border-radius:0 0 8px 8px;">
+        <div class="col-name">
+          <div class="stock-ticker">2449 KYEC</div>
+          <div class="stock-name-zh">京元電子</div>
+        </div>
+        <div class="col-data">
+          <div class="eps-label">AI 封測龍頭</div>
+          <div class="rev-val">七大賽道龍頭</div>
+        </div>
+        <div class="col-logic">
+          <span class="logic-tag" style="background:var(--blue-bg);color:var(--blue-text)">測試服務</span><br>
+          AI 晶片封測測試龍頭。HBM 測試需求直接受益，2026 年封測市場測試產值預估年增 34%，達 1,156 億元。法人共識七大 AI 賽道龍頭之一。
+        </div>
+        <div class="col-signal">
+          <div class="signal-row"><span class="sig-dot sig-green"></span> 測試市場高成長</div>
+          <div class="signal-row"><span class="sig-dot sig-green"></span> 法人共識買進</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier 3 -->
+    <div class="chain-tier">
+      <div class="tier-header">
+        <span class="tier-num">3</span>
+        載板 / 材料 — ABF 載板 AI GPU 配套
+      </div>
+      <div class="stock-row">
+        <div class="col-name">
+          <div class="stock-ticker">3037 UCC</div>
+          <div class="stock-name-zh">欣興電子</div>
+        </div>
+        <div class="col-data">
+          <div class="eps-label">ABF 載板龍頭</div>
+          <div class="rev-val">AI 佔比 &gt;50%</div>
+        </div>
+        <div class="col-logic">
+          <span class="logic-tag" style="background:var(--amber-bg);color:var(--amber-text)">ABF 載板</span><br>
+          ABF 載板龍頭，AI GPU 與 HBM 封裝不可或缺材料。AI 相關載板佔營收比重 2026 年預估突破 50%，訂單能見度延伸至 2027 年。
+        </div>
+        <div class="col-signal">
+          <div class="signal-row"><span class="sig-dot sig-green"></span> AI 訂單至 2027</div>
+          <div class="signal-row"><span class="sig-dot sig-amber"></span> 產能擴張 2-3 年</div>
+        </div>
+      </div>
+      <div class="stock-row" style="border-radius:0 0 8px 8px;">
+        <div class="col-name">
+          <div class="stock-ticker">8046 NAN</div>
+          <div class="stock-name-zh">南亞電路板</div>
+        </div>
+        <div class="col-data">
+          <div class="eps-label">FC-BGA 高階載板</div>
+          <div class="rev-val">AI 佔比突破 50%</div>
+        </div>
+        <div class="col-logic">
+          <span class="logic-tag" style="background:var(--amber-bg);color:var(--amber-text)">FC-BGA</span><br>
+          切入 FC-BGA 高階載板市場，AI 伺服器訂單能見度延伸至 2027 年。2026 年 AI 相關載板佔營收比重預估突破五成，長遠成長空間可期。
+        </div>
+        <div class="col-signal">
+          <div class="signal-row"><span class="sig-dot sig-green"></span> 高階載板成長</div>
+          <div class="signal-row"><span class="sig-dot sig-amber"></span> 估值需觀察</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier 4 -->
+    <div class="chain-tier">
+      <div class="tier-header">
+        <span class="tier-num">4</span>
+        SSD / NAND 控制器 — AI SSD 需求爆發
+      </div>
+      <div class="stock-row" style="border-radius:0 0 8px 8px;">
+        <div class="col-name">
+          <div class="stock-ticker">8299 PHI</div>
+          <div class="stock-name-zh">群聯電子</div>
+        </div>
+        <div class="col-data">
+          <div class="eps-val">$68.8</div>
+          <div class="eps-label">Q1 EPS（歷史新高）</div>
+          <div class="rev-val">409.67 億 ↑196%</div>
+        </div>
+        <div class="col-logic">
+          <span class="logic-tag" style="background:var(--teal-light);color:var(--teal)">AI SSD</span><br>
+          Q1 毛利率突破 61.3%、EPS 68.8 元創歷史新高。庫存增至 722 億元卡位 AI SSD 缺料潮。NVIDIA ICMS 架構合作開發夥伴，KV Cache NAND 需求 2027 年預計達總量 10%。法人最高目標價 $4,000。
+        </div>
+        <div class="col-signal">
+          <div class="signal-row"><span class="sig-dot sig-green"></span> NAND 寡占格局</div>
+          <div class="signal-row"><span class="sig-dot sig-green"></span> NVIDIA 合作</div>
+          <div class="signal-row"><span class="sig-dot sig-green"></span> 毛利率逾 60%</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end chain-section -->
+
+  <!-- 風險提示 -->
+  <div class="risk-box">
+    <div class="risk-title">⚠ 末將風險提示</div>
+    <ul class="risk-list">
+      <li>台股記憶體族群近期乖離過大，融資水位頻創高，短線追高風險高，建議等待回測洗盤機會。</li>
+      <li>HBM 需求能見度關鍵：需觀察法說會訂單能見度是否從 2026 年延伸至 2027 年，能見度拉長方確認非短期拉貨。</li>
+      <li>美光 SK 海力士仍為 NVIDIA HBM 最大供應商（市占約 62%），美光 2027 年前需持續驗證良率與出貨速度。</li>
+      <li>超大型雲端商（微軟、Google、Amazon、Meta 合計承諾 $7,000 億）若資本支出節奏放緩，訂單能見度恐比市場預期更脆弱。</li>
+      <li>記憶體歷史週期：美光曾於 FY2023 因 DRAM 過剩導致營收腰斬，需持續追蹤 2027-2028 年新產能釋放節奏。</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+  <div style="font-size:11px;color:var(--muted);text-align:center;font-family:'JetBrains Mono',monospace;">
+    本報告僅供參考，不構成任何投資建議。投資具有風險，請審慎評估。<br>
+    PAK600 戰略研究室 ｜ 末將呈報主公 ｜ 2026.05.27
+  </div>
+
+</div><!-- end container -->
+
+<footer>
+  <div class="footer-brand">PAK600 戰略研究室</div>
+  <div class="footer-note">MU 美光供應鏈台股情報 ｜ 2026.05.27 特急定期報告</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.07)';
+const textColor = isDark ? '#A1A1AA' : '#6B7280';
+const inkColor = isDark ? '#F4F4F5' : '#1C1C1E';
+
+new Chart(document.getElementById('epsChart'), {
+  type: 'bar',
+  data: {
+    labels: ['群聯 8299', '南亞科 2408', '華邦電 2344', '力成 6239'],
+    datasets: [{
+      label: 'Q1 2026 EPS（元）',
+      data: [68.8, 8.41, 2.25, 2.1],
+      backgroundColor: ['#16A34A','#16A34A','#16A34A','#16A34A'],
+      borderRadius: 4,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' EPS: $' + ctx.parsed.y + ' 元'
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { color: textColor, font: { family: 'JetBrains Mono', size: 11 }, autoSkip: false },
+        grid: { color: gridColor }
+      },
+      y: {
+        ticks: {
+          color: textColor,
+          font: { family: 'JetBrains Mono', size: 11 },
+          callback: v => '$' + v
+        },
+        grid: { color: gridColor }
+      }
+    }
+  }
+});
+
+new Chart(document.getElementById('revChart'), {
+  type: 'bar',
+  data: {
+    labels: ['南亞科 2408', '群聯 8299', '華邦電 2344', '力成 6239'],
+    datasets: [
+      {
+        label: 'Q1 2026 營收（億元）',
+        data: [490.87, 409.67, 382.5, 65],
+        backgroundColor: ['#C9A84C','#C9A84C','#C9A84C','#C9A84C'],
+        borderRadius: 4,
+        yAxisID: 'y',
+        borderSkipped: false,
+      },
+      {
+        label: '年增率（%）',
+        data: [582.91, 196, 91.3, 43],
+        type: 'line',
+        borderColor: '#16A34A',
+        backgroundColor: 'rgba(22,163,74,0.1)',
+        borderWidth: 2,
+        pointBackgroundColor: '#16A34A',
+        pointRadius: 5,
+        yAxisID: 'y2',
+        tension: 0.3,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false }
+    },
+    scales: {
+      x: {
+        ticks: { color: textColor, font: { family: 'JetBrains Mono', size: 11 }, autoSkip: false },
+        grid: { color: gridColor }
+      },
+      y: {
+        position: 'left',
+        ticks: {
+          color: textColor,
+          font: { family: 'JetBrains Mono', size: 11 },
+          callback: v => v + '億'
+        },
+        grid: { color: gridColor }
+      },
+      y2: {
+        position: 'right',
+        ticks: {
+          color: '#16A34A',
+          font: { family: 'JetBrains Mono', size: 11 },
+          callback: v => '+' + v + '%'
+        },
+        grid: { display: false }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
