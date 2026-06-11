@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台灣人開設新加坡匯豐銀行帳戶 完整說明</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  :root {
+    --navy:   #1A3A4A;
+    --green:  #2E7D5E;
+    --amber:  #B8721A;
+    --red:    #B83232;
+    --bg:     #F7F6F2;
+    --card:   #FFFFFF;
+    --border: #DDD9CE;
+    --text:   #2C2C2C;
+    --muted:  #666057;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.85;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 40px 24px 36px;
+    text-align: center;
+  }
+  header .eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7FB8CC;
+    margin-bottom: 10px;
+  }
+  header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+  header .subtitle {
+    font-size: 14px;
+    color: #A8C8D8;
+  }
+
+  /* ── Main container ── */
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 28px 18px 60px;
+  }
+
+  /* ── Section cards ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 26px 24px;
+    margin-bottom: 22px;
+  }
+  .card-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .icon { font-size: 20px; }
+
+  /* ── Answer box ── */
+  .answer-box {
+    background: #EEF6F1;
+    border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 16px;
+  }
+  .answer-box strong { color: var(--green); }
+
+  /* ── Warning box ── */
+  .warn-box {
+    background: #FFF8EC;
+    border-left: 4px solid var(--amber);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 15px;
+  }
+  .warn-box strong { color: var(--amber); }
+
+  /* ── Alert box ── */
+  .alert-box {
+    background: #FDF0F0;
+    border-left: 4px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 15px;
+  }
+  .alert-box strong { color: var(--red); }
+
+  /* ── Table ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    margin: 14px 0;
+  }
+  th {
+    background: var(--navy);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 500;
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #F5F3EF; }
+
+  /* ── Steps ── */
+  .steps { margin: 14px 0; }
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .step-body { flex: 1; }
+  .step-body strong {
+    display: block;
+    color: var(--navy);
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+  .step-body span { font-size: 14px; color: var(--muted); }
+
+  /* ── Logic diagram ── */
+  .diagram {
+    background: #F0F4F7;
+    border-radius: 8px;
+    padding: 18px 20px;
+    font-size: 14px;
+    font-family: monospace;
+    line-height: 2;
+    margin: 14px 0;
+    color: var(--navy);
+  }
+
+  /* ── Checklist ── */
+  .checklist { list-style: none; margin: 10px 0; }
+  .checklist li {
+    padding: 7px 0 7px 30px;
+    position: relative;
+    border-bottom: 1px solid #EDEBE5;
+    font-size: 15px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  p { margin-bottom: 10px; }
+  p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 480px) {
+    header h1 { font-size: 21px; }
+    .card { padding: 20px 16px; }
+    table { font-size: 13px; }
+    th, td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">資產配置參考資料</div>
+  <h1>台灣人開設新加坡匯豐銀行帳戶<br>完整說明指南</h1>
+  <div class="subtitle">資料整理日期：2026年6月　　資料來源：HSBC 官方網站及各財經媒體</div>
+</header>
+
+<main>
+
+  <!-- 1. 摘要 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span>一、重點摘要</div>
+    <p>台灣人可以透過台灣匯豐銀行，在<strong>不用出國、不用臨櫃</strong>的情況下，全程使用手機 App 開立新加坡匯豐銀行帳戶。</p>
+    <p>主要條件是：需要先在<strong>台灣匯豐</strong>達到「卓越理財」會員資格（台灣帳戶內的資產達新臺幣 300 萬元以上）。</p>
+    <div class="answer-box">
+      <strong>✅ 結論：</strong>整個流程可以完全在台灣完成，新加坡的銀行卡和帳戶資料會從新加坡<strong>國際郵寄到您在台灣的住家地址</strong>。
+    </div>
+  </div>
+
+  <!-- 2. 常見問題Q&A -->
+  <div class="card">
+    <div class="card-title"><span class="icon">❓</span>二、常見問題解答</div>
+
+    <p><strong style="color:var(--navy)">Q1：300萬是台灣和新加坡帳戶的錢加在一起嗎？</strong></p>
+    <div class="answer-box">
+      <strong>不是。</strong> 300萬是指<strong>台灣匯豐帳戶內</strong>的資產，與新加坡帳戶完全分開計算。台灣這邊維持 300萬，即可取得全球卓越理財資格，再以此身份開立新加坡帳戶。
+    </div>
+
+    <p><strong style="color:var(--navy)">Q2：300萬一定要是現金嗎？</strong></p>
+    <div class="answer-box">
+      <strong>不一定。</strong> 台灣匯豐帳戶內的以下項目都可以合併計入：<br>
+      活期存款、定期存款、基金、海外股票／ETF、透過匯豐投保的保險保費
+    </div>
+
+    <p><strong style="color:var(--navy)">Q3：銀行卡和帳戶文件如何領取？</strong></p>
+    <div class="answer-box">
+      <strong>從新加坡寄到台灣住家。</strong> 開戶成功後，匯豐新加坡會分批以國際掛號寄出：提款卡（ATM Card）、Debit Card，以及密碼通知信。收到後致電 HSBC 客服啟用即可，全程不需要去新加坡。
+    </div>
+
+    <p><strong style="color:var(--navy)">Q4：開戶需要哪些資料？</strong></p>
+    <ul class="checklist">
+      <li>護照正本（效期需 6 個月以上）</li>
+      <li>護照影本（資料頁彩色掃描）</li>
+      <li>台灣居住地址英文翻譯（可至郵局官網免費翻譯）</li>
+      <li>近 3 個月台灣銀行英文對帳單（作為地址及資金來源證明）</li>
+    </ul>
+  </div>
+
+  <!-- 3. 台灣→新加坡 HSBC 流程 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🪜</span>三、開戶流程（全程在台灣完成）</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>確認台灣匯豐卓越理財資格</strong>
+          <span>台灣帳戶內資產（存款＋投資＋保險）合計達 NTD 300萬，即符合「卓越理財」身份</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>透過 HSBC 手機 App 申請開立新加坡帳戶</strong>
+          <span>選擇「海外開戶」→ 目的地選新加坡，上傳護照、地址證明，填寫個人資料</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>等待開戶審核（通常數個工作天）</strong>
+          <span>匯豐新加坡審核通過後，寄出開戶確認 Email</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>收到新加坡寄來的實體卡片（國際郵寄至台灣住家）</strong>
+          <span>提款卡、Debit Card、密碼信會分批寄出，請耐心等候</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <strong>致電 HSBC 客服啟用帳戶及卡片</strong>
+          <span>完成後即可透過 App 操作新加坡帳戶，不論人在哪裡都能使用</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 轉帳與功能 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">💱</span>四、台灣 ↔ 新加坡 轉帳說明</div>
+    <p>擁有卓越理財帳戶後，台灣匯豐與新加坡匯豐之間可享「環球轉帳」服務：</p>
+    <table>
+      <tbody><tr><th>項目</th><th>說明</th></tr>
+      <tr><td>手續費</td><td>✅ 完全免費</td></tr>
+      <tr><td>到帳時間</td><td>即時到帳，無時差</td></tr>
+      <tr><td>每筆上限</td><td>等值新臺幣 50 萬元</td></tr>
+      <tr><td>每日累計上限</td><td>等值新臺幣 50 萬元</td></tr>
+      <tr><td>多幣種支援</td><td>可持有美元、新幣、港幣、歐元等多種貨幣</td></tr>
+    </tbody></table>
+    <div class="warn-box">
+      <strong>⚠️ 注意：</strong> 若每次需轉移較大金額（超過 50萬），可透過一般 SWIFT 電匯辦理，單筆等值新臺幣 50萬以上的匯款需向台灣央行申報（由銀行行員協助填寫，屬正常手續，並非違法）。
+    </div>
+  </div>
+
+  <!-- 5. 台海風險保護說明 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🛡️</span>五、資產保護：新加坡帳戶的實際作用</div>
+
+    <p>許多台灣人開立新加坡帳戶，是為了因應萬一發生兩岸特殊情況時，資產仍能受保護並可在海外使用。以下是客觀的說明：</p>
+
+    <table>
+      <tbody><tr><th>保護面向</th><th>說明</th></tr>
+      <tr><td>帳戶管轄</td><td>新加坡帳戶受<strong>新加坡金融管理局（MAS）</strong>監管，與台灣金管會完全獨立</td></tr>
+      <tr><td>資產所在地</td><td>存放在新加坡的資金，受新加坡法律保護</td></tr>
+      <tr><td>存款保障</td><td>新加坡政府保障每人最高 SGD 75,000（約新臺幣 170萬）</td></tr>
+      <tr><td>遠端操作</td><td>只要有網路，全球任何地方皆可透過 App 存取帳戶</td></tr>
+      <tr><td>ATM 提款</td><td>持卡可在全球 HSBC ATM 免手續費提款</td></tr>
+    </tbody></table>
+
+    <div class="diagram">
+【平時：現在就行動】
+台灣資產 ──合法電匯──→ 新加坡帳戶  ✅ 自由匯出，無限制
+
+【萬一發生特殊情況後】
+台灣銀行若受影響 ──→ 無法再匯出     ❌
+已在新加坡的資金 ──→ 完全不受影響   ✅
+    </div>
+
+    <div class="alert-box">
+      <strong>🔑 最重要的觀念：</strong><br>
+      新加坡帳戶是「<strong>事先建立的避風港</strong>」，而不是「事後逃跑的出口」。<br>
+      資金必須在風險發生<strong>之前</strong>就已合法移轉過去，才能真正發揮保護作用。<br>
+      越早規劃，保障越充分。
+    </div>
+  </div>
+
+  <!-- 6. 維持資格條件 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span>六、帳戶維持條件</div>
+    <p>新加坡 HSBC 卓越理財帳戶的維持，只需符合以下<strong>任一條件</strong>即可：</p>
+    <table>
+      <tbody><tr><th>方式</th><th>條件</th></tr>
+      <tr>
+        <td>方式 A（建議）</td>
+        <td>繼續維持台灣匯豐帳戶資產達 NTD <strong>300 萬</strong>以上</td>
+      </tr>
+      <tr>
+        <td>方式 B</td>
+        <td>新加坡帳戶自身日均餘額達 <strong>SGD 200,000</strong>（約新臺幣 460 萬）以上</td>
+      </tr>
+    </tbody></table>
+    <div class="answer-box">
+      <strong>💡 彈性說明：</strong> 日後若逐漸將資金移轉至新加坡，台灣這邊低於 300萬時，只要新加坡帳戶本身達到 SGD 200,000，卓越理財等級仍可維持。兩個條件是獨立的，只要一個符合就夠。
+    </div>
+  </div>
+
+  <!-- 7. 合法申報說明 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">⚖️</span>七、合法匯款申報說明</div>
+    <p>將台灣資金合法匯至新加坡是完全合法的行為，以下是相關規定：</p>
+    <table>
+      <tbody><tr><th>規定項目</th><th>說明</th></tr>
+      <tr><td>申報門檻</td><td>單筆等值 <strong>NTD 50萬以上</strong>的跨境匯款，需向台灣央行申報</td></tr>
+      <tr><td>申報方式</td><td>透過銀行辦理電匯時，由行員協助填寫申報書，是標準程序</td></tr>
+      <tr><td>是否違法</td><td>✅ 完全合法，屬於正常的外匯申報手續</td></tr>
+      <tr><td>個人每年上限</td><td>等值 <strong>USD 500萬</strong>（約新臺幣 1.5 億），一般民眾完全不受限</td></tr>
+    </tbody></table>
+  </div>
+
+  <!-- 8. 注意事項 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📌</span>八、重要注意事項</div>
+    <ul class="checklist">
+      <li>300萬門檻是台灣匯豐帳戶內的資產（含存款、基金、保險），與新加坡帳戶分開計算</li>
+      <li>若未達 300萬，台灣匯豐每月會收取新臺幣 1,000 元帳戶管理費</li>
+      <li>新加坡帳戶開設後，銀行卡以國際郵件寄至台灣住家，無需親赴新加坡</li>
+      <li>資金應在平時就合法、分批移轉至新加坡，而非等到緊急時才行動</li>
+      <li>請勿透過坊間代辦業者（收費高且有風險），直接透過 HSBC 官方 App 或分行辦理</li>
+      <li>銀行政策可能隨時調整，辦理前建議直接致電台灣匯豐確認最新條件：<strong>0800-600-602</strong></li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  本文件內容整理自 HSBC 官方網站及各財經媒體公開資料（2025–2026年），僅供參考。<br>
+  銀行政策如有異動，以 HSBC 官方最新公告為準。如有疑問，請洽台灣匯豐銀行理財專員。
+</footer>
+
+
+
+</body></html>
