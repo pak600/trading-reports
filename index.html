@@ -93,16 +93,16 @@
       <span>TradingAgents AI 生成</span><span class="hms">|</span>
       <span>Claude AI 深度分析</span><span class="hms">|</span>
       <span>含 OBV 能量潮策略</span><span class="hms">|</span>
-      <span>最後更新 2026-03-23</span>
+      <span>最後更新 <!--S-DATE-->2026-11-14<!--/S-DATE--></span>
     </div>
   </header>
 
   <!-- STATS -->
   <div class="stats">
-    <div class="sc"><div class="sl">分析報告數</div><div class="sv" style="color:var(--gold2)">07</div></div>
-    <div class="sc"><div class="sl">買入裁決</div><div class="sv" style="color:var(--green)">02</div></div>
-    <div class="sc"><div class="sl">持有裁決</div><div class="sv" style="color:var(--orange)">03</div></div>
-    <div class="sc"><div class="sl">減倉裁決</div><div class="sv" style="color:var(--red)">02</div></div>
+    <div class="sc"><div class="sl">分析報告數</div><div class="sv" style="color:var(--gold2)"><!--S-TOTAL-->23<!--/S-TOTAL--></div></div>
+    <div class="sc"><div class="sl">買入裁決</div><div class="sv" style="color:var(--green)"><!--S-BUY-->05<!--/S-BUY--></div></div>
+    <div class="sc"><div class="sl">持有裁決</div><div class="sv" style="color:var(--orange)"><!--S-HOLD-->05<!--/S-HOLD--></div></div>
+    <div class="sc"><div class="sl">減倉裁決</div><div class="sv" style="color:var(--red)"><!--S-SELL-->13<!--/S-SELL--></div></div>
     <div class="sc"><div class="sl">總點閱數</div><div class="sv" id="total-views" style="color:var(--cyan)"><span class="loading">...</span></div></div>
   </div>
 
@@ -119,21 +119,302 @@
     </div>
   </div>
 
-  <!-- REPORTS -->
+  <!-- ROTATION -->
   <div>
-    <div class="sh"><span class="sn">01</span><span class="st">戰略分析報告</span></div>
+    <div class="sh"><span class="sn">01</span><span class="st">持股輪替監控｜TradingAgents 三日輪替</span></div>
     <div class="grid">
-
+<!-- PAK600-HOME-CARDS:START -->
       <a class="card" href="ta/index.html">
         <div class="ca" style="background:linear-gradient(90deg,#c9a84c,#00d4ff);"></div>
         <div class="cb">
           <div class="ck">ROTATION</div>
-          <div class="cn">TradingAgents 持股三日輪替監控</div>
+          <div class="cn">TradingAgents 持股三日輪替 · 總表與歷史</div>
           <div class="vp vbuy">LIVE</div>
-          <div class="cm">全部持股每三個交易日重新分析<br>Claude 補充最新新聞與盲點校正</div>
-          <div class="cf"><span class="cd">自動更新</span><span class="arr">進入監控 →</span></div>
+          <div class="cm">每檔每三個交易日重新分析<br>Claude 補充最新新聞與盲點校正<br>目標價為 12 個月前瞻估值，非買進訊號</div>
+          <div class="cf"><span class="cd">自動更新</span><span class="arr">進入總表 →</span></div>
         </div>
       </a>
+
+      <a class="card" href="ta/gfs_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#76b900,#c9a84c);"></div>
+        <div class="card-views" id="views-ta-gfs_20261113">...</div>
+        <div class="cb">
+          <div class="ck">GFS</div>
+          <div class="cn">GLOBALFOUNDRIES · NASDAQ</div>
+          <div class="vp vbuy">OVERWEIGHT</div>
+          <div class="cm">收盤 $42.6<br>目標／空間 $54.85／+28.7%<br>淨現金＋低估值，分批小量建倉；目標價即 200 日線</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">半導體</span>
+            <span class="tag" style="background:rgba(102,187,106,0.07);color:#66bb6a;border:1px solid rgba(102,187,106,0.2)">Overweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/tsm_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#76b900,#c9a84c);"></div>
+        <div class="card-views" id="views-ta-tsm_20261113">...</div>
+        <div class="cb">
+          <div class="ck">TSM</div>
+          <div class="cn">TAIWAN SEMICONDUCTOR · NYSE</div>
+          <div class="vp vbuy">OVERWEIGHT</div>
+          <div class="cm">收盤 $405.5<br>目標／空間 $455.00／+12.2%<br>基本面強、僅守 200 日線；目標下修至 $455，NVDA 11/17 財報為關鍵</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">半導體</span>
+            <span class="tag" style="background:rgba(102,187,106,0.07);color:#66bb6a;border:1px solid rgba(102,187,106,0.2)">Overweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/viav_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#00d4ff,#4fc3f7);"></div>
+        <div class="card-views" id="views-ta-viav_20261113">...</div>
+        <div class="cb">
+          <div class="ck">VIAV</div>
+          <div class="cn">VIAVI SOLUTIONS · NASDAQ</div>
+          <div class="vp vbuy">OVERWEIGHT</div>
+          <div class="cm">收盤 $32.54<br>目標／空間 $36.34／+11.7%<br>營收加速＋MACD 翻正，小倉位試單；目標價即 50 日線</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">AI光通訊</span>
+            <span class="tag" style="background:rgba(102,187,106,0.07);color:#66bb6a;border:1px solid rgba(102,187,106,0.2)">Overweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/ceg_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#ffa726,#ffcc80);"></div>
+        <div class="card-views" id="views-ta-ceg_20261113">...</div>
+        <div class="cb">
+          <div class="ck">CEG</div>
+          <div class="cn">CONSTELLATION ENERGY · NASDAQ</div>
+          <div class="vp vhold">HOLD</div>
+          <div class="cm">收盤 $282.4<br>目標／空間 $300.00／+6.2%<br>財報上調指引、站回均線；報告債務／現金流數字疑似單位錯誤</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">AI電力基建</span>
+            <span class="tag" style="background:rgba(255,167,38,0.07);color:#ffa726;border:1px solid rgba(255,167,38,0.2)">Hold</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/nvda_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#76b900,#c9a84c);"></div>
+        <div class="card-views" id="views-ta-nvda_20261113">...</div>
+        <div class="cb">
+          <div class="ck">NVDA</div>
+          <div class="cn">NVIDIA CORP · NASDAQ</div>
+          <div class="vp vhold">HOLD</div>
+          <div class="cm">收盤 $166.2<br>目標／空間 $204.00／+22.8%<br>執行長辭職＋11/17 財報；估值低但治理風險未明，報告漏掉此事件</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">半導體</span>
+            <span class="tag" style="background:rgba(255,167,38,0.07);color:#ffa726;border:1px solid rgba(255,167,38,0.2)">Hold</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/aapl_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#66bb6a,#a5d6a7);"></div>
+        <div class="card-views" id="views-ta-aapl_20261113">...</div>
+        <div class="cb">
+          <div class="ck">AAPL</div>
+          <div class="cn">APPLE INC. · NASDAQ</div>
+          <div class="vp vsell">UNDERWEIGHT</div>
+          <div class="cm">收盤 $355<br>目標／空間 $325.00／-8.5%<br>技術面強但估值偏高；記憶體成本壓縮毛利率</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">核心大型股</span>
+            <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">Underweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/fn_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#00d4ff,#4fc3f7);"></div>
+        <div class="card-views" id="views-ta-fn_20261113">...</div>
+        <div class="cb">
+          <div class="ck">FN</div>
+          <div class="cn">FABRINET · NYSE</div>
+          <div class="vp vsell">UNDERWEIGHT</div>
+          <div class="cm">收盤 $353.8<br>目標／空間 $320.00／-9.6%<br>現金流轉換惡化＋大客戶被併購不確定；技術面仍在 200 日線下 32%</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">AI光通訊</span>
+            <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">Underweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/gev_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#ffa726,#ffcc80);"></div>
+        <div class="card-views" id="views-ta-gev_20261113">...</div>
+        <div class="cb">
+          <div class="ck">GEV</div>
+          <div class="cn">GE VERNOVA · NYSE</div>
+          <div class="vp vsell">SELL</div>
+          <div class="cm">收盤 $818.5<br>目標／空間 $760.00／-7.1%<br>技術面破位、估值偏高；訂單強勁但報告財務數字量級可疑</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">AI電力基建</span>
+            <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">Sell</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/glw_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#00d4ff,#4fc3f7);"></div>
+        <div class="card-views" id="views-ta-glw_20261113">...</div>
+        <div class="cb">
+          <div class="ck">GLW</div>
+          <div class="cn">CORNING · NYSE</div>
+          <div class="vp vsell">UNDERWEIGHT</div>
+          <div class="cm">收盤 $119.5<br>目標／空間 $130.00／+8.8%<br>技術面破位但基本面有拐點；報告債務數字疑似單位錯誤</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">AI光通訊</span>
+            <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">Underweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/lite_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#00d4ff,#4fc3f7);"></div>
+        <div class="card-views" id="views-ta-lite_20261113">...</div>
+        <div class="cb">
+          <div class="ck">LITE</div>
+          <div class="cn">LUMENTUM · NASDAQ</div>
+          <div class="vp vsell">UNDERWEIGHT</div>
+          <div class="cm">收盤 $624.7<br>目標／空間 未給出<br>技術面嚴重破位＋併購價差 18%；換股使 LITE 綁定 MRVL 股價</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">AI光通訊</span>
+            <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">Underweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/nbis_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#7e57c2,#b39ddb);"></div>
+        <div class="card-views" id="views-ta-nbis_20261113">...</div>
+        <div class="cb">
+          <div class="ck">NBIS</div>
+          <div class="cn">NEBIUS GROUP · NASDAQ</div>
+          <div class="vp vsell">SELL</div>
+          <div class="cm">收盤 $128.6<br>目標／空間 $114.00／-11.4%<br>燒錢與負營運槓桿；報告未計入 MSFT／Meta 長約能見度</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">AI軟體</span>
+            <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">Sell</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/000660-ks_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#ea0029,#ff8a80);"></div>
+        <div class="card-views" id="views-ta-000660-ks_20261113">...</div>
+        <div class="cb">
+          <div class="ck">SK HYNIX</div>
+          <div class="cn">SK HYNIX · KRX</div>
+          <div class="vp vsell">UNDERWEIGHT</div>
+          <div class="cm">收盤 ₩1,254,000<br>目標／空間 ₩1,080,000／-13.9%<br>回撤 57%、週期頂部疑慮；報告營收／淨利數據錯誤，長約能見度被低估</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">記憶體HBM</span>
+            <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">Underweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/spcx_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#5c6bc0,#9fa8da);"></div>
+        <div class="card-views" id="views-ta-spcx_20261113">...</div>
+        <div class="cb">
+          <div class="ck">SPCX</div>
+          <div class="cn">SPACEX · NASDAQ</div>
+          <div class="vp vsell">UNDERWEIGHT</div>
+          <div class="cm">收盤 $139.9<br>目標／空間 $120.00／-14.2%<br>技術面偏空、估值高；Starship 15 試飛結果為週一變數</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">太空</span>
+            <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">Underweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/tlt_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#78909c,#cfd8dc);"></div>
+        <div class="card-views" id="views-ta-tlt_20261113">...</div>
+        <div class="cb">
+          <div class="ck">TLT</div>
+          <div class="cn">ISHARES 20+ YEAR TREASURY · NASDAQ</div>
+          <div class="vp vsell">UNDERWEIGHT</div>
+          <div class="cm">收盤 $79.72<br>目標／空間 未給出<br>殖利率 5.15%＋12 月升息預期，降低長天期存續期曝險</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">長債</span>
+            <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">Underweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/tsla_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#66bb6a,#a5d6a7);"></div>
+        <div class="card-views" id="views-ta-tsla_20261113">...</div>
+        <div class="cb">
+          <div class="ck">TSLA</div>
+          <div class="cn">TESLA INC. · NASDAQ</div>
+          <div class="vp vsell">UNDERWEIGHT</div>
+          <div class="cm">收盤 $397.5<br>目標／空間 $380.00／-4.4%<br>短線技術轉強但基本面惡化、估值極高；減碼而非出清</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">核心大型股</span>
+            <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">Underweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="ta/vst_20261113.html">
+        <div class="ca" style="background:linear-gradient(90deg,#ffa726,#ffcc80);"></div>
+        <div class="card-views" id="views-ta-vst_20261113">...</div>
+        <div class="cb">
+          <div class="ck">VST</div>
+          <div class="cn">VISTRA CORP · NYSE</div>
+          <div class="vp vsell">UNDERWEIGHT</div>
+          <div class="cm">收盤 $134.5<br>目標／空間 $105.00／-21.9%<br>死亡交叉＋德州資料中心政策風險；2027 發電量多已避險</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">AI電力基建</span>
+            <span class="tag" style="background:rgba(239,83,80,0.07);color:#ef5350;border:1px solid rgba(239,83,80,0.2)">Underweight</span>
+            <span class="tag" style="background:rgba(0,212,255,0.07);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">幕僚校正</span>
+          </div>
+          <div class="cf"><span class="cd">2026-11-13 · Nemotron 免費模型</span><span class="arr">閱讀報告 →</span></div>
+        </div>
+      </a>
+
+<!-- PAK600-HOME-CARDS:END -->
+    </div>
+  </div>
+
+  <!-- REPORTS -->
+  <div>
+    <div class="sh"><span class="sn">02</span><span class="st">戰略分析報告（專題）</span></div>
+    <div class="grid">
 
       <a class="card" href="amzn_analysis_20260323.html">
         <div class="ca" style="background:linear-gradient(90deg,#ff9900,#ffb300);"></div>
@@ -259,7 +540,7 @@
 
   <!-- NEWS -->
   <div>
-    <div class="sh"><span class="sn">02</span><span class="st">最新市場情報</span></div>
+    <div class="sh"><span class="sn">03</span><span class="st">最新市場情報</span></div>
 
     <a class="news-box" href="https://seekingalpha.com/article/4856490-alphabet-isnt-dead-its-our-top-2026-pick" target="_blank">
       <div class="nd">2026-03-23 · Seeking Alpha · GOOG 🔵</div>
@@ -291,7 +572,7 @@
 
   <footer>
     <p>© 2026 · PAK600 戰略研究室 · TRADINGAGENTS + CLAUDE</p>
-    <p>最後更新 2026-03-23</p>
+    <p>最後更新 <!--S-DATE2-->2026-11-14<!--/S-DATE2--></p>
   </footer>
 </div>
 
@@ -302,6 +583,24 @@
 <script>
 // 各報告路徑對應
 const pages = [
+// PAK600-HOME-PAGES:START
+  { id: 'views-ta-gfs_20261113', path: '/ta/gfs_20261113.html' },
+  { id: 'views-ta-tsm_20261113', path: '/ta/tsm_20261113.html' },
+  { id: 'views-ta-viav_20261113', path: '/ta/viav_20261113.html' },
+  { id: 'views-ta-ceg_20261113', path: '/ta/ceg_20261113.html' },
+  { id: 'views-ta-nvda_20261113', path: '/ta/nvda_20261113.html' },
+  { id: 'views-ta-aapl_20261113', path: '/ta/aapl_20261113.html' },
+  { id: 'views-ta-fn_20261113', path: '/ta/fn_20261113.html' },
+  { id: 'views-ta-gev_20261113', path: '/ta/gev_20261113.html' },
+  { id: 'views-ta-glw_20261113', path: '/ta/glw_20261113.html' },
+  { id: 'views-ta-lite_20261113', path: '/ta/lite_20261113.html' },
+  { id: 'views-ta-nbis_20261113', path: '/ta/nbis_20261113.html' },
+  { id: 'views-ta-000660-ks_20261113', path: '/ta/000660-ks_20261113.html' },
+  { id: 'views-ta-spcx_20261113', path: '/ta/spcx_20261113.html' },
+  { id: 'views-ta-tlt_20261113', path: '/ta/tlt_20261113.html' },
+  { id: 'views-ta-tsla_20261113', path: '/ta/tsla_20261113.html' },
+  { id: 'views-ta-vst_20261113', path: '/ta/vst_20261113.html' },
+// PAK600-HOME-PAGES:END
   { id: 'views-amzn', path: '/amzn_analysis_20260323.html' },
   { id: 'views-goog', path: '/goog_analysis_20260323.html' },
   { id: 'views-ceg',  path: '/ceg_analysis_20260323.html' },
