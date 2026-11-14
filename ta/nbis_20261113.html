@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NBIS 輪替分析｜2026.11.13</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #06080f;
+    --surface: #0a0d18;
+    --surface2: #0f1422;
+    --border: #151c30;
+    --border2: #1e2840;
+    --gold: #c9a84c;
+    --gold2: #e8c96a;
+    --silicon: #4fc3f7;
+    --red: #ef5350;
+    --green: #66bb6a;
+    --orange: #ffa726;
+    --muted: #1a2235;
+    --text: #8fa3c8;
+    --text2: #3a5070;
+    --white: #e8eef8;
+    --obv-up: #4fc3f7;
+    --obv-warn: #ffa726;
+    --obv-down: #ef5350;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* Subtle diagonal texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 30%, rgba(201,168,76,0.05) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 70%, rgba(79,195,247,0.04) 0%, transparent 45%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--border2);
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 100px);
+    font-weight: 900;
+    line-height: 0.88;
+    color: var(--white);
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .header-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text2);
+    letter-spacing: 2px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .hsep { color: var(--border2); margin: 0 14px; }
+
+  /* ── VERDICT ROW ── */
+  .analyst-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border2);
+    margin: 36px 0 0;
+  }
+  @media(max-width:680px){ .analyst-row { grid-template-columns: repeat(2,1fr); } }
+
+  .a-cell {
+    background: var(--surface);
+    padding: 18px 14px;
+    text-align: center;
+  }
+
+  .a-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--text2);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .v-pill {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 0;
+  }
+  .vp-hold { background: rgba(255,167,38,0.08); color: var(--orange); border: 1px solid rgba(255,167,38,0.25); }
+  .vp-buy  { background: rgba(102,187,106,0.08); color: var(--green); border: 1px solid rgba(102,187,106,0.25); }
+  .vp-sell { background: rgba(239,83,80,0.08); color: var(--red); border: 1px solid rgba(239,83,80,0.25); }
+
+  /* ── FINAL VERDICT ── */
+  .final-v {
+    margin: 12px 0 36px;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, rgba(239,83,80,0.05), transparent);
+    border: 1px solid rgba(239,83,80,0.18);
+    border-left: 5px solid var(--red);
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  @media(max-width:600px){ .final-v { flex-direction: column; gap: 14px; } }
+
+  .fv-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 0.9;
+    min-width: 200px;
+  }
+  .fv-big span { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 2px; color: rgba(239,83,80,0.5); margin-top: 10px; font-style: normal; }
+
+  .fv-body h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .fv-body p { font-size: 13px; line-height: 1.7; color: var(--text); }
+
+  /* ── METRICS GRID ── */
+  .mg {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border2);
+    margin: 28px 0;
+  }
+  @media(max-width:700px){ .mg { grid-template-columns: repeat(2,1fr); } }
+
+  .mc {
+    background: var(--surface);
+    padding: 18px 14px;
+    position: relative;
+  }
+  .mc::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .mc-bull::after { background: var(--green); }
+  .mc-bear::after { background: var(--red); }
+  .mc-warn::after { background: var(--orange); }
+  .mc-neu::after  { background: var(--muted); }
+  .mc-sil::after  { background: var(--silicon); }
+
+  .mc-lbl {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text2); margin-bottom: 8px;
+  }
+  .mc-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700;
+    color: var(--white); line-height: 1; margin-bottom: 4px;
+  }
+  .mc-sig { font-family: 'IBM Plex Mono', monospace; font-size: 10px; line-height: 1.4; }
+  .mc-bull .mc-sig { color: var(--green); }
+  .mc-bear .mc-sig { color: var(--red); }
+  .mc-warn .mc-sig { color: var(--orange); }
+  .mc-neu  .mc-sig { color: var(--text2); }
+  .mc-sil  .mc-sig { color: var(--silicon); }
+
+  /* ── SECTION ── */
+  section { margin: 56px 0; }
+
+  .sh {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--border2);
+  }
+  .sh-num { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; color: var(--gold); letter-spacing: 2px; }
+  .sh-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); }
+
+  /* ── DEBATE ── */
+  .dg { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:600px){ .dg { grid-template-columns: 1fr; } }
+
+  .dc {
+    background: var(--surface); border: 1px solid var(--border2); padding: 20px;
+  }
+  .dc-bull { border-top: 3px solid var(--green); }
+  .dc-bear { border-top: 3px solid var(--red); }
+
+  .dc h3 { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+  .dc-bull h3 { color: var(--green); }
+  .dc-bear h3 { color: var(--red); }
+
+  .fac { display: flex; gap: 10px; font-size: 12.5px; margin-bottom: 10px; line-height: 1.5; color: var(--text); }
+  .fi { flex-shrink: 0; }
+
+  /* ── PRICE LADDER ── */
+  .pl { background: var(--surface); border: 1px solid var(--border2); padding: 20px; }
+  .pl-row { display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid rgba(21,28,48,0.6); font-size: 12.5px; }
+  .pl-row:last-child { border-bottom: none; }
+  .pl-p { font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600; min-width: 72px; }
+  .pl-bw { flex: 1; height: 5px; background: var(--border); position: relative; }
+  .pl-bf { position: absolute; left: 0; top: 0; bottom: 0; }
+  .pl-l { font-size: 12px; color: var(--text2); min-width: 160px; }
+  .pl-t { min-width: 80px; text-align: right; }
+
+  /* ── TAG ── */
+  .tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 1px; padding: 2px 8px; }
+  .tg-bull { background: rgba(102,187,106,0.07); color: var(--green); border: 1px solid rgba(102,187,106,0.2); }
+  .tg-bear { background: rgba(239,83,80,0.07); color: var(--red); border: 1px solid rgba(239,83,80,0.2); }
+  .tg-warn { background: rgba(255,167,38,0.07); color: var(--orange); border: 1px solid rgba(255,167,38,0.2); }
+  .tg-hold { background: rgba(201,168,76,0.07); color: var(--gold); border: 1px solid rgba(201,168,76,0.2); }
+  .tg-sil  { background: rgba(79,195,247,0.07); color: var(--silicon); border: 1px solid rgba(79,195,247,0.2); }
+
+  /* ── OBV SECTION (highlight) ── */
+  .obv-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-top: 3px solid var(--silicon);
+    padding: 28px;
+    margin: 0;
+  }
+
+  .obv-intro {
+    font-size: 13px; line-height: 1.8; color: var(--text);
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .obv-intro strong { color: var(--silicon); }
+
+  /* OBV visual bar chart */
+  .obv-chart {
+    margin: 20px 0;
+  }
+
+  .obv-phase {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 10px;
+  }
+
+  .obv-phase-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text2);
+    min-width: 130px;
+    padding: 10px 12px 10px 0;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid var(--border2);
+    margin-right: 16px;
+  }
+
+  .obv-bar-area { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+
+  .obv-bar-row { display: flex; align-items: center; gap: 12px; }
+
+  .obv-bar-label { font-size: 11px; color: var(--text2); min-width: 60px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; }
+
+  .obv-bar-track { flex: 1; height: 10px; background: var(--border); position: relative; overflow: hidden; }
+
+  .obv-bar-fill {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    transition: width 1s ease;
+  }
+
+  .obv-bar-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; min-width: 60px; text-align: right;
+  }
+
+  /* OBV signals table */
+  .obv-table {
+    width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 20px 0;
+  }
+  .obv-table th {
+    font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--text2);
+    padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border2);
+  }
+  .obv-table td {
+    padding: 11px 12px; border-bottom: 1px solid rgba(21,28,48,0.5);
+    vertical-align: top; line-height: 1.5;
+  }
+  .obv-table tr:hover td { background: rgba(79,195,247,0.02); }
+
+  /* OBV divergence box */
+  .obv-divergence {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  @media(max-width:600px){ .obv-divergence { grid-template-columns: 1fr; } }
+
+  .div-box {
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    padding: 16px;
+  }
+  .div-box h4 {
+    font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+  .div-box p { font-size: 12.5px; color: var(--text); line-height: 1.6; }
+
+  .div-bull { border-top: 3px solid var(--silicon); }
+  .div-bull h4 { color: var(--silicon); }
+  .div-bear { border-top: 3px solid var(--red); }
+  .div-bear h4 { color: var(--red); }
+
+  /* OBV verdict */
+  .obv-verdict {
+    background: rgba(79,195,247,0.04);
+    border: 1px solid rgba(79,195,247,0.15);
+    border-left: 4px solid var(--silicon);
+    padding: 18px 22px;
+    margin-top: 20px;
+    font-size: 13px; line-height: 1.7; color: var(--text);
+  }
+  .obv-verdict strong { color: var(--silicon); }
+
+  /* ── ACTION PLAN ── */
+  .ap-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .ap-table th {
+    font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--text2);
+    padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border2);
+  }
+  .ap-table td { padding: 11px 12px; border-bottom: 1px solid rgba(21,28,48,0.5); vertical-align: top; line-height: 1.6; }
+  .ap-table tr:hover td { background: rgba(201,168,76,0.02); }
+
+  /* ── WARN BOX ── */
+  .wb {
+    background: rgba(239,83,80,0.03);
+    border: 1px solid rgba(239,83,80,0.15);
+    border-left: 4px solid var(--red);
+    padding: 16px 22px; margin: 16px 0;
+    font-size: 13px; line-height: 1.7; color: var(--text);
+  }
+  .wb strong { color: var(--red); }
+
+  /* ── SUMMARY ── */
+  .summary-box {
+    background: var(--surface); border: 1px solid var(--border2);
+    padding: 28px; font-size: 13px; line-height: 1.85; color: var(--text);
+  }
+  .summary-box p { margin-bottom: 14px; }
+  .summary-box p:last-child { margin-bottom: 0; color: var(--gold); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1px; }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--border2); padding: 28px 0; margin-top: 64px; }
+  .fi-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  footer p { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text2); letter-spacing: 1px; }
+
+  .disc {
+    background: rgba(201,168,76,0.02); border: 1px solid rgba(201,168,76,0.1);
+    padding: 14px 18px; margin-top: 20px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text2); line-height: 1.6;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .container > * { animation: fadeUp 0.5s ease both; }
+  header { animation-delay: 0s; }
+  .analyst-row { animation-delay: 0.06s; }
+  .final-v { animation-delay: 0.10s; }
+  .mg { animation-delay: 0.14s; }
+  section:nth-of-type(1) { animation-delay: 0.18s; }
+  section:nth-of-type(2) { animation-delay: 0.22s; }
+  section:nth-of-type(3) { animation-delay: 0.26s; }
+  section:nth-of-type(4) { animation-delay: 0.30s; }
+  section:nth-of-type(5) { animation-delay: 0.34s; }
+  section:nth-of-type(6) { animation-delay: 0.38s; }
+  section:nth-of-type(7) { animation-delay: 0.42s; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="eyebrow">NASDAQ · NBIS · NEBIUS GROUP · 三日輪替監控</div>
+    <h1>Nebi<em>us</em></h1>
+    <div class="header-sub">
+      <span>收盤參考 $128.64</span><span class="hsep">|</span>
+      <span>分析日 2026-11-13</span><span class="hsep">|</span>
+      <span>TradingAgents（NVIDIA Nemotron 免費模型）＋ Claude 幕僚校正</span>
+    </div>
+  </header>
+
+  <div class="analyst-row">
+    <div class="a-cell"><div class="a-name">技術面</div><div class="v-pill vp-sell">偏空</div></div><div class="a-cell"><div class="a-name">基本面</div><div class="v-pill vp-sell">燒錢</div></div><div class="a-cell"><div class="a-name">交易員</div><div class="v-pill vp-sell">SELL</div></div><div class="a-cell"><div class="a-name">投資組合經理</div><div class="v-pill vp-sell">SELL</div></div>
+  </div>
+
+  <div class="final-v" style="background:linear-gradient(135deg, rgba(239,83,80,0.05), transparent);border:1px solid rgba(239,83,80,0.18);border-left:5px solid var(--red)">
+    <div class="fv-big" style="font-size:44px;min-width:230px;color:var(--red)">SELL<span style="color:rgba(239,83,80,0.5)">投組經理最終裁決</span></div>
+    <div class="fv-body">
+      <h2 style="color:var(--red)">最終裁決｜全數出場，等待雙重確認</h2>
+      <p>營收快速成長但營業虧損擴大、資本支出龐大，形成負營運槓桿；11/12 財報日單日重挫約 17% 且爆量，技術面跌破所有關鍵均線。投組經理建議 100% 出場，僅在連兩季營業利益轉正、自由現金流接近損益兩平、且放量站回 50 日線時重新評估。</p>
+    </div>
+  </div>
+
+  <div class="mg">
+    <div class="mc mc-neu"><div class="mc-lbl">收盤參考</div><div class="mc-val">$128.6</div><div class="mc-sig">11/12 收盤</div></div><div class="mc mc-bear"><div class="mc-lbl">200日SMA</div><div class="mc-val">$179.4</div><div class="mc-sig">▼ 現價低 28%</div></div><div class="mc mc-bear"><div class="mc-lbl">50日SMA</div><div class="mc-val">$194.6</div><div class="mc-sig">▼ 現價低 34%</div></div><div class="mc mc-bear"><div class="mc-lbl">MACD</div><div class="mc-val">-19.1</div><div class="mc-sig">▼ 持續惡化</div></div><div class="mc mc-warn"><div class="mc-lbl">RSI</div><div class="mc-val">35.8</div><div class="mc-sig">接近超賣</div></div><div class="mc mc-bear"><div class="mc-lbl">ATR</div><div class="mc-val">18.4</div><div class="mc-sig">高波動</div></div><div class="mc mc-bear"><div class="mc-lbl">VWMA</div><div class="mc-val">$140.3</div><div class="mc-sig">▼ 多方力道不足</div></div><div class="mc mc-sil"><div class="mc-lbl">模型目標價</div><div class="mc-val">$114.00</div><div class="mc-sig">距收盤參考 -11.4%（12 個月前瞻）</div></div>
+  </div>
+
+  <section>
+    <div class="sh"><span class="sh-num">01</span><span class="sh-title">多空論戰</span></div>
+    <div class="dg">
+      <div class="dc dc-bull">
+        <h3>◆ 多方論點</h3>
+        <div class="fac"><span class="fi" style="color:var(--green)">▲</span><span>與 Microsoft（約 $174–194 億）、Meta（最高約 $270 億）簽有大型長約（幕僚補充）</span></div><div class="fac"><span class="fi" style="color:var(--green)">▲</span><span>管理層目標 12 月年化營收 $70–90 億，較 6 月底約 $30 億大幅成長</span></div><div class="fac"><span class="fi" style="color:var(--green)">▲</span><span>流動比率約 4 倍、帳上現金約 $80 億（報告數據）</span></div><div class="fac"><span class="fi" style="color:var(--green)">▲</span><span>RSI 35.8 接近超賣，可能出現技術性反彈</span></div>
+      </div>
+      <div class="dc dc-bear">
+        <h3>◆ 空方論點</h3>
+        <div class="fac"><span class="fi" style="color:var(--red)">▼</span><span>最新季營業虧損擴大至 -$1.76 億，營業支出吞噬 74% 毛利</span></div><div class="fac"><span class="fi" style="color:var(--red)">▼</span><span>季度自由現金流約 -$34 億、資本支出 $57 億，現金僅撐 2–3 季</span></div><div class="fac"><span class="fi" style="color:var(--red)">▼</span><span>債務增至約 $102 億、利息費用暴增</span></div><div class="fac"><span class="fi" style="color:var(--red)">▼</span><span>11/12 單日重挫約 17%、成交 6,950 萬股，派發特徵</span></div><div class="fac"><span class="fi" style="color:var(--red)">▼</span><span>Microsoft 收緊部分新雲端資料中心專案監督的報導（10 月底）</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="sh-num">02</span><span class="sh-title">交易計畫與風險團隊</span></div>
+    <div class="summary-box">
+      <p><strong style="color:var(--white)">交易員：SELL</strong>｜出清 100% 多單；營業利益連兩季轉正、FCF 趨近平衡、站回 50 日線前不建新倉。</p>
+      <p><strong style="color:var(--green)">激進派</strong>：燒錢陷阱明確，保留部位等於「希望而非分析」。</p>
+      <p><strong style="color:var(--red)">保守派</strong>：雖然流動比率高，但無法扭轉燒錢速度加快。</p>
+      <p><strong style="color:var(--orange)">中性派</strong>：主張減碼 1/2–2/3 並設硬停損，但未被採納；投組經理選擇全數出場。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="sh-num">03</span><span class="sh-title">幕僚校正｜模型沒看到的事</span></div>
+    <div class="summary-box">
+      <p><strong style="color:var(--gold)">① 新聞缺口：</strong>本次執行時 Yahoo 個股新聞來源不穩，以下為幕僚補充的近期事件——10/29–11/05 NBIS 一週內跌約 30%（$172→$120），因 Bloomberg 報導 Microsoft 收緊部分 neocloud 資料中心專案監督；11/04 期中選舉結果亦衝擊 neocloud 族群；11/12 公布 Q3 財報後再度大跌。</p>
+      <p><strong style="color:var(--gold)">② 可疑數據：</strong>報告提到「最新季營運現金流約 $225 億」，報告本身已註明疑為資料錯誤；另「PEG 0.36」在前瞻 EPS 為負時無意義。報告未納入 Microsoft／Meta 長約金額，對未來營收能見度的描述偏片面。收盤參考價為報告使用的 11/12 收盤，未反映 11/13 盤勢。</p>
+      <p><strong style="color:var(--gold)">③ 模型品質：</strong>本報告使用 OpenRouter 免費模型（NVIDIA Nemotron），常見單位錯誤與推理跳躍，建議作為參考而非唯一依據。</p>
+      <p><strong style="color:var(--gold)">④ 目標價說明：</strong>目標價 $114.00 為模型的 12 個月前瞻估值（報告時間框架 3–6 個月），不是買進訊號；距收盤參考價 -11.4%，達成前可能經歷大幅波動。</p>
+      <p>新聞來源：<a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-november-13-dow-sp-500-nasdaq-nvidia-ppi-141451558.html" style="color:var(--gold2)" target="_blank" rel="noopener">Yahoo Finance 11/13 盤勢</a>、<a href="https://vistapglobal.com/weekly-stock-market-summary-november-13-2026-nasdaq-slides-as-inflation-and-ai-risks-shape-wall-street-ant-eprx-googl-gs-modd-msft-nvda-ser-spcx/" style="color:var(--gold2)" target="_blank" rel="noopener">Weekly Market Summary 11/13</a>、<a href="https://www.tikr.com/blog/nebius-stock-dropped-30-in-a-week-is-it-time-to-sell-or-load-up" style="color:var(--gold2)" target="_blank" rel="noopener">TIKR：Nebius 一週跌 30%</a></p>
+    </div>
+  </section>
+
+  <div class="disc">
+    ◆ 免責聲明｜本頁由 TradingAgents 多 Agent 系統自動生成，Claude 補充新聞與校正，僅供研究參考，不構成投資建議。<a href="index.html" style="color:var(--gold2)">← 返回輪替監控</a>
+  </div>
+
+  <footer>
+    <div class="fi-row">
+      <p>© 2026 · PAK600 戰略研究室 · NBIS · ROTATION WATCH</p>
+      <p>TRADINGAGENTS + CLAUDE</p>
+    </div>
+  </footer>
+
+</div>
+<script data-goatcounter="https://pak600.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
