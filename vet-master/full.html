@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>跨考動物醫學相關碩士：方向評析與補強</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --card:#ffffff; --ink:#1f2421; --muted:#5d655f; --line:#e3dfd5;
+  --accent:#1f6f5c; --accent-soft:#e3f0ec; --warn:#a14a1a; --warn-soft:#fbeee4;
+  --ok:#2f6b2f; --ok-soft:#e8f3e5; --gold:#8a6a12; --gold-soft:#f7f0da;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",system-ui,sans-serif;line-height:1.75;font-size:16px}
+.wrap{max-width:860px;margin:0 auto;padding:28px 18px 64px}
+header .kicker{font-size:13px;letter-spacing:.12em;color:var(--accent);font-weight:700}
+h1{font-family:"Noto Serif TC",serif;font-size:clamp(26px,5.4vw,36px);line-height:1.3;margin:6px 0 10px}
+.sub{color:var(--muted);font-size:15px;margin:0}
+h2{font-family:"Noto Serif TC",serif;font-size:clamp(21px,4.2vw,26px);margin:44px 0 14px;padding-top:10px;border-top:2px solid var(--ink)}
+h3{font-size:18px;margin:0 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;margin:14px 0}
+.tldr{background:var(--accent);color:#fff;border:none}
+.tldr h3{color:#fff}
+.tldr li{margin-bottom:6px}
+.tldr strong{color:#fff;background:rgba(255,255,255,.14);padding:0 4px;border-radius:4px}
+ul,ol{padding-left:1.25em;margin:6px 0 10px}
+li{margin-bottom:4px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;margin:0 6px 6px 0;white-space:nowrap}
+.t-ok{background:var(--ok-soft);color:var(--ok)}
+.t-warn{background:var(--warn-soft);color:var(--warn)}
+.t-gold{background:var(--gold-soft);color:var(--gold)}
+.t-acc{background:var(--accent-soft);color:var(--accent)}
+.alert{border-left:5px solid var(--warn);background:var(--warn-soft)}
+.alert h3{color:var(--warn)}
+.dir-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:8px}
+.num{flex:0 0 38px;height:38px;border-radius:10px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px}
+.num.new{background:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 18px;margin:10px 0 12px}
+@media(min-width:640px){.grid{grid-template-columns:repeat(4,1fr)}}
+.meter{font-size:13px;color:var(--muted)}
+.bar{height:7px;background:#ece8de;border-radius:4px;margin-top:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:4px}
+.label{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.04em;margin:10px 0 2px}
+.fix{background:#faf8f3;border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin:8px 0}
+.fix b{color:var(--warn)}
+.verdict{font-weight:700;color:var(--accent)}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14.5px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#efebe2;font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.c{text-align:center}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+.d3{background:var(--ok)}.d2{background:var(--gold)}.d1{background:#c9c3b6}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.toc a{font-size:13.5px;text-decoration:none;color:var(--accent);background:var(--accent-soft);padding:5px 11px;border-radius:999px}
+.small{font-size:13.5px;color:var(--muted)}
+.src li{font-size:14px;word-break:break-word}
+.src a{color:var(--accent)}
+footer{margin-top:40px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">研究所選題評析 · Gemini × ChatGPT × 查證 · 2026.11</div>
+  <h1>跨考動物醫學相關碩士：<br>五大方向評析與補強</h1>
+  <p class="sub">以 Gemini 提出的五個方向為底稿，並與 ChatGPT 整理的分析文件交叉比對：逐項查證、修正誇大之處，補上兩者都沒提到的方向、系所、薪資數據與實際準備步驟。</p>
+  <p style="margin:14px 0 0"><a href="./" style="color:var(--accent);font-weight:700">📱 切換到手機版</a></p>
+  <nav class="toc">
+    <a href="#compare">三方比較</a>
+    <a href="#bottom-line">先講底線</a>
+    <a href="#five">五大方向評析</a>
+    <a href="#added">補充的六個方向</a>
+    <a href="#matrix">背景對照表</a>
+    <a href="#schools">系所速查</a>
+    <a href="#fixes">說法修正一覽</a>
+    <a href="#salary">薪資與投報</a>
+    <a href="#plan">準備步驟</a>
+  </nav>
+</header>
+
+<div class="card tldr">
+  <h3>一頁結論</h3>
+  <ul>
+    <li>Gemini 的五個方向大致正確，但<strong>普遍高估了台灣的職缺數量與薪資</strong>，也沒講清楚「碩士不等於獸醫師」。</li>
+    <li>對跨考生最穩的是 <strong>③ 臨床前動物試驗／實驗動物</strong> 與 <strong>② 疫苗與檢驗試劑</strong>，兩者在台灣都有明確對口的研究所，也有法規撐起的固定需求。</li>
+    <li>① 寵物營養市場確實大，但台灣多是<strong>技術業務與品保</strong>職缺，配方研發集中在海外總部；相關系所多在「動物科學系」，而非獸醫學院。</li>
+    <li>④ 動物行為與福利在台灣職缺最少，<strong>適合當副專長，不適合當主修押注</strong>。</li>
+    <li>Gemini 漏了幾個對跨考生很實際的方向：<strong>獸醫公共衛生（One Health）、法規事務、生物資訊／AI 數位病理、水產動物健康</strong>。</li>
+    <li>ChatGPT 的版本比 Gemini <strong>保守、方法論較好</strong>（例如建議先蒐集職缺、反推該讀哪個研究所），但<strong>沒有任何數據、系所名稱或法規細節</strong>，也把薪資和市場規模列為「待查證」。本頁已補上這些。</li>
+    <li>薪資現實：生技研發人員的年薪中位數，<strong>碩士約 60 萬、學士約 49 萬</strong>。碩士最大的價值不在加薪，而在<strong>取得「碩士以上」職缺的報考資格</strong>。</li>
+  </ul>
+</div>
+
+
+<!-- ===================== -->
+<h2 id="compare">〇、三方比較：Gemini × ChatGPT × 本頁</h2>
+<div class="tbl-wrap">
+<table>
+<thead><tr><th>面向</th><th>Gemini</th><th>ChatGPT 文件</th><th>本頁補強</th></tr></thead>
+<tbody>
+<tr><td><b>語氣</b></td><td>樂觀、推銷感強（「藍海」「幾乎不會失業」）</td><td>保守、處處加但書</td><td>以公開資料為準，誇大的地方逐條修正</td></tr>
+<tr><td><b>數據</b></td><td>無出處</td><td>完全沒有，列為待查證</td><td>市場規模、招生名額、薪資中位數皆附來源</td></tr>
+<tr><td><b>系所</b></td><td>只提地區</td><td>刻意不列</td><td>台大、中興、屏科大等對口系所＋收跨考與否</td></tr>
+<tr><td><b>執照界線</b></td><td>只在病理一項帶過</td><td>病理一項講清楚，其他未提</td><td>台灣、香港、實驗動物三種情境全部釐清</td></tr>
+<tr><td><b>舉例企業</b></td><td>外商品牌（多數在台無研發）</td><td>提醒列舉不代表有職缺</td><td>指出外商研發多在海外，補上本土業者</td></tr>
+<tr><td><b>方法論</b></td><td>無</td><td><b>強項</b>：職缺反向分析、機會成本、問畢業生流向</td><td>直接採用，並代入實際薪資數字試算</td></tr>
+<tr><td><b>漏掉的方向</b></td><td>公衛、法規、生資、水產等</td><td>同 Gemini，只有原本五項</td><td>補上 A～F 六個方向</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="card">
+  <h3>ChatGPT 文件裡值得保留的五個觀點</h3>
+  <ol>
+    <li><b>研發職位未必都要求碩士</b>（寵物營養尤其明顯）：先看目標職缺再決定要不要讀。</li>
+    <li><b>臨床前工作內容要先確認能否接受</b>：給藥、採血、解剖、安樂死是日常工作。台灣這類職缺的工作內容確實會直接寫明「保定、注射、採血、犧牲、組織處理」等技術。</li>
+    <li><b>高階 CRO 與研究管理職偏好博士或多年 GLP 經驗</b>：碩士是入場券，不是終點。</li>
+    <li><b>寵物行為諮詢和經濟動物福利稽核是兩個不同市場</b>，不能混為一談。這點比 Gemini 精準。</li>
+    <li><b>地理與生活成本</b>：生技職缺集中在特定地區。實際查職缺，臨床前與生技研發多集中在南港、汐止、內湖一帶。</li>
+  </ol>
+  <h3 style="margin-top:14px">ChatGPT 的不足</h3>
+  <ul>
+    <li>整份文件是「框架」不是「答案」：讀完還是不知道該報哪間學校。</li>
+    <li>沒有挑戰 Gemini 的誇大說法，只是把語氣調得比較保守。</li>
+    <li>它的比較表把五個方向的「跨產業性」幾乎都評為中到高，<b>沒有拉開差異</b>，對決策幫助有限。</li>
+  </ul>
+</div>
+
+<!-- ===================== -->
+<h2 id="bottom-line">一、先講清楚的底線（Gemini 沒說）</h2>
+
+<div class="card alert">
+  <h3>⚠️ 讀這些碩士，不會讓你變成獸醫師</h3>
+  <ul>
+    <li><b>台灣：</b>獸醫師須為獸醫學系畢業並通過國考。跨考生讀獸醫學院的研究所，拿的是研究型碩士，<b>不能看診、不能開立處方、不能簽發病理報告</b>。</li>
+    <li><b>香港：</b>城大（CityU）的獸醫學碩士 MVetMed 只收已持有 BVM／DVM 學位的人，而且官方明講<b>不能據此</b>報考內地執業獸醫資格考試或向香港獸醫管理局註冊。對跨考生來說這條路不存在。</li>
+    <li><b>實驗動物領域：</b>法規要求每個做動物實驗的機構都要設「實驗動物照護及使用委員會」，其中<b>至少一名委員必須是獸醫師</b>，所以「實驗動物獸醫師」這個職位跨考生拿不到。但委員會另設的<b>執行秘書</b>，只要求受過 12 小時以上的動物實驗管理訓練並取得證書，<b>非獸醫背景也能擔任</b>。這是跨考生真正可以卡位的角色。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>評分方式</h3>
+  <p class="small">以下每個方向用四個指標打分（滿格 5），是依公開招生資訊與產業結構所做的<b>定性判斷</b>，不是統計數據：</p>
+  <ul class="small">
+    <li><b>跨考友善</b>：非獸醫背景入學、上手的難度</li>
+    <li><b>台灣職缺量</b>：在台灣實際可投的職位多寡</li>
+    <li><b>薪資天花板</b>：做到資深後的上限</li>
+    <li><b>不可替代性</b>：碩士學歷＋技術能否形成門檻</li>
+  </ul>
+</div>
+
+<!-- ===================== -->
+<h2 id="five">二、Gemini 五大方向：逐項評析</h2>
+
+<!-- 1 -->
+<div class="card">
+  <div class="dir-head"><div class="num">1</div><div><h3>伴侶動物營養與保健品研發</h3>
+  <span class="tag t-ok">市場最大</span><span class="tag t-warn">研發職缺被高估</span></div></div>
+  <div class="grid">
+    <div class="meter">跨考友善<div class="bar"><i style="width:90%"></i></div></div>
+    <div class="meter">台灣職缺量<div class="bar"><i style="width:60%"></i></div></div>
+    <div class="meter">薪資天花板<div class="bar"><i style="width:60%"></i></div></div>
+    <div class="meter">不可替代性<div class="bar"><i style="width:40%"></i></div></div>
+  </div>
+  <div class="label">查證</div>
+  <p>台經院推估台灣寵物市場已超過新台幣 800 億元，<b>寵物食品約占 53%</b>，是最大的消費項目；農業部 2025 年調查的家犬家貓數量也已突破 320 萬隻。市場成長是真的。</p>
+  <div class="fix"><b>修正：</b>「企業急需懂代謝的研發人才」說得太滿。像 Royal Canin、Hill's 這類外商，在台灣主要是業務、行銷與學術推廣；集團的研發中心多設在海外（例如瑪氏 2022 年把亞太區寵物營養研發中心設在泰國，研究人員約 30 名）。統一、大成的主力也偏向經濟動物飼料，不是寵物。</div>
+  <div class="label">Gemini 沒提的補充</div>
+  <ul>
+    <li><b>法規正在成形：</b>農業部 2024 年 9 月預告了《寵物食品管理法》草案，2025 年 5 月底送行政院審議。一旦上路，品保（QA）、法規（RA）、標示審核、原料管理這些職缺會先長出來，而且比配方研發多。</li>
+    <li><b>系所其實在動物科學系：</b>寵物營養研究在台灣多半掛在台大、中興、屏科大的<b>動物科學系所</b>，不是獸醫學院。</li>
+    <li><b>職涯天花板：</b>做到產品經理或品牌技術顧問後，就要靠商業能力往上走，碩士學歷本身的門檻效果有限。</li>
+  </ul>
+  <p class="verdict">→ 適合食品、營養、商管背景；目標設定為「技術型產品經理／法規品保」比「配方研發」更務實。</p>
+</div>
+
+<!-- 2 -->
+<div class="card">
+  <div class="dir-head"><div class="num">2</div><div><h3>動物疫苗、檢驗試劑與生技新藥</h3>
+  <span class="tag t-ok">技術壁壘真實</span><span class="tag t-gold">外商研發不在台</span></div></div>
+  <div class="grid">
+    <div class="meter">跨考友善<div class="bar"><i style="width:70%"></i></div></div>
+    <div class="meter">台灣職缺量<div class="bar"><i style="width:60%"></i></div></div>
+    <div class="meter">薪資天花板<div class="bar"><i style="width:75%"></i></div></div>
+    <div class="meter">不可替代性<div class="bar"><i style="width:80%"></i></div></div>
+  </div>
+  <div class="label">查證</div>
+  <p>屏科大<b>動物疫苗科技研究所</b>是台灣大專院校中唯一的動物疫苗研究所，設有符合 cGMP 的試量產中心，教授公開表示歡迎跨域學生。屏科大的動物製劑研究中心也招募<b>生技、動物科學相關科系的碩士級研究助理</b>，非獸醫背景可以進入。</p>
+  <div class="fix"><b>修正：</b>「只要會 PCR、細胞培養、蛋白純化、ELISA，畢業後幾乎不會失業」太樂觀。這四項是生技碩士的<b>基本配備</b>，不是差異化優勢。真正拉開差距的是 <b>GMP／品管、製程放大、法規查驗登記</b>。另外，碩騰、百靈佳在台灣以商業部門為主，「在台灣做研發」的機會主要在本土疫苗廠、研究機構與檢驗中心。</div>
+  <div class="label">Gemini 沒提的補充</div>
+  <ul>
+    <li><b>產業訊號：</b>屏科大疫苗所 2025 年徵聘「生物資訊或專利法規」領域的教師，代表這兩項能力是業界缺口。修課時優先補這兩塊。</li>
+    <li><b>經濟動物疫苗才是台灣主戰場：</b>豬、禽、水產疫苗的需求比寵物疫苗穩定得多，論文題目可以往這裡靠。</li>
+  </ul>
+  <p class="verdict">→ 生科、生技、化學、藥學背景首選之一。</p>
+</div>
+
+<!-- 3 -->
+<div class="card">
+  <div class="dir-head"><div class="num">3</div><div><h3>臨床前動物試驗與藥理毒理學</h3>
+  <span class="tag t-ok">跨考最穩</span><span class="tag t-ok">有法規撐需求</span></div></div>
+  <div class="grid">
+    <div class="meter">跨考友善<div class="bar"><i style="width:85%"></i></div></div>
+    <div class="meter">台灣職缺量<div class="bar"><i style="width:75%"></i></div></div>
+    <div class="meter">薪資天花板<div class="bar"><i style="width:70%"></i></div></div>
+    <div class="meter">不可替代性<div class="bar"><i style="width:75%"></i></div></div>
+  </div>
+  <div class="label">查證</div>
+  <p>台大<b>分子暨比較病理生物學研究所</b>的招生簡章直接寫明：非獸醫系學生只要對生技研發與<b>實驗動物科學／實驗動物醫學</b>有興趣即可報考，招收對象包括生技、動物科學、生命科學科系。這是五個方向中唯一有頂大系所明文為跨考生開門的。</p>
+  <div class="fix"><b>修正：</b>「極度缺乏」是誇大，但需求確實穩定。每個做動物實驗的機構依法都要有照護委員會、遵守 3R 原則（替代、減量、精緻化），這是法規強制、不受景氣影響的需求。只是<b>實驗動物獸醫師</b>一職須具獸醫師資格，跨考生的位置在研究員、GLP 試驗負責人、設施管理與委員會執行秘書。</div>
+  <div class="label">Gemini 沒提的補充</div>
+  <ul>
+    <li><b>入學前就能先拿的證書：</b>中央主管機關指定的動物實驗管理訓練（12 小時以上）。有這張證書，履歷上就能直接對應「執行秘書」職缺。</li>
+    <li><b>就業地圖補完：</b>CRO 與新藥公司之外，還有國家生物模式中心（NCB），以及各醫學中心的動物中心。</li>
+    <li><b>職涯延伸：</b>做到資深後可以轉往法規科學、非臨床試驗專案管理，薪資上限比留在實驗台高。</li>
+  </ul>
+  <p class="verdict">→ 綜合來看，最推薦跨考生選擇的方向。</p>
+</div>
+
+<!-- 4 -->
+<div class="card">
+  <div class="dir-head"><div class="num">4</div><div><h3>動物行為學與動物福利</h3>
+  <span class="tag t-warn">台灣職缺最少</span><span class="tag t-gold">適合當副專長</span></div></div>
+  <div class="grid">
+    <div class="meter">跨考友善<div class="bar"><i style="width:90%"></i></div></div>
+    <div class="meter">台灣職缺量<div class="bar"><i style="width:20%"></i></div></div>
+    <div class="meter">薪資天花板<div class="bar"><i style="width:35%"></i></div></div>
+    <div class="meter">不可替代性<div class="bar"><i style="width:35%"></i></div></div>
+  </div>
+  <div class="label">評析</div>
+  <p>對心理、文科背景來說，這是學術銜接最順的方向，但 Gemini 稱之為「新興藍海」需要打折。</p>
+  <div class="fix"><b>修正：</b>台灣的寵物行為諮詢目前<b>沒有專業證照制度</b>，從業者多是訓練師或獸醫師兼任，碩士學歷很難轉成定價能力。「食品集團動物福利稽核／ESG 部門」在台灣的職位數也很少。</div>
+  <div class="label">更好的用法</div>
+  <ul>
+    <li><b>綁定方向 ③：</b>實驗動物的 3R 與環境豐富化是法規強制的福利工作，有穩定職缺。用「行為／福利」當論文題目、「實驗動物」當就業出口，風險低很多。</li>
+    <li><b>往香港看：</b>城大傑志獸醫學院設有動物健康與福利中心（CAHW），是區域內少數有系統做這個題目的研究單位。</li>
+  </ul>
+  <p class="verdict">→ 不建議單押；當副專長加在 ③ 上效果最好。</p>
+</div>
+
+<!-- 5 -->
+<div class="card">
+  <div class="dir-head"><div class="num">5</div><div><h3>比較病理生物學與細胞學</h3>
+  <span class="tag t-acc">專業度高</span><span class="tag t-warn">技術員薪資陷阱</span></div></div>
+  <div class="grid">
+    <div class="meter">跨考友善<div class="bar"><i style="width:55%"></i></div></div>
+    <div class="meter">台灣職缺量<div class="bar"><i style="width:45%"></i></div></div>
+    <div class="meter">薪資天花板<div class="bar"><i style="width:50%"></i></div></div>
+    <div class="meter">不可替代性<div class="bar"><i style="width:65%"></i></div></div>
+  </div>
+  <div class="label">查證</div>
+  <p>中興<b>獸醫病理生物學研究所</b> 115 學年碩士甄試招收獸醫、醫學相關及其他生物相關科系畢業生；台大分子暨比較病理生物學研究所也收非獸醫背景。入學管道是存在的。</p>
+  <div class="fix"><b>修正：</b>Gemini 自己也承認最終病理報告要由獸醫病理專科醫師簽發。跨考生能做的切片製作、IHC 染色、初步判讀，在市場上多以<b>技術員</b>定位，薪資成長有限。「不可替代性強」只對獸醫背景的人成立。</div>
+  <div class="label">Gemini 沒提的補充</div>
+  <ul>
+    <li><b>差異化出口是數位病理＋AI 影像判讀：</b>會病理又會影像分析或程式的人才很少，這是跨考生能真正建立門檻的地方（見下方補充方向 D）。</li>
+    <li><b>腫瘤研究的比較醫學價值：</b>犬貓自發性腫瘤是人類癌症研究的模型，可以銜接人醫生技公司，就業面比純獸醫病理寬。</li>
+  </ul>
+  <p class="verdict">→ 單讀病理風險高；搭配 AI／影像分析才值得投入。</p>
+</div>
+
+<!-- ===================== -->
+<h2 id="added">三、Gemini 漏掉的六個方向</h2>
+
+<div class="card">
+  <div class="dir-head"><div class="num new">A</div><div><h3>獸醫公共衛生／One Health／人畜共通傳染病</h3>
+  <span class="tag t-ok">公職出路</span><span class="tag t-ok">跨考友善</span></div></div>
+  <p>疫情之後，這是需求成長最明確的領域。中興<b>微生物暨公共衛生學研究所</b>分成微生物學與公共衛生學兩組，公衛組考的是微生物、食品衛生與流行病學，對公衛、食品、醫技背景非常友善。台大分子暨比較病理生物學研究所的筆試也以人畜共通疾病為主。</p>
+  <ul>
+    <li><b>出路：</b>動植物防疫檢疫署、疾管署、地方衛生與動保機關、食品檢驗機構、邊境檢疫。</li>
+    <li><b>優勢：</b>這條路沒有獸醫師執照的障礙；公職類科（如公共衛生、食品衛生）的應考資格依學歷認定，報考前請查考選部規定。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="dir-head"><div class="num new">B</div><div><h3>法規事務（RA）與品質保證（QA）</h3>
+  <span class="tag t-ok">商管／文科可切入</span><span class="tag t-gold">不一定需要讀碩士</span></div></div>
+  <p>動物用藥品查驗登記、疫苗 GMP、即將上路的《寵物食品管理法》，都需要懂科學又能寫文件的人。這是 Gemini 五個方向背後共同的缺口，卻沒被單獨列出。</p>
+  <ul>
+    <li><b>適合：</b>商管、法律、文科背景，但需要補基礎生物學。</li>
+    <li><b>提醒：</b>這條路可以「先就業、後在職進修」，不一定要先讀兩年全職碩士。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="dir-head"><div class="num new">C</div><div><h3>水產動物健康與水產疫苗</h3>
+  <span class="tag t-acc">台灣產業強項</span></div></div>
+  <p>台灣養殖漁業與觀賞魚產業規模大，魚病診斷、水產疫苗、益生菌製劑都有實際需求。香港城大也把水產動物健康列為獸醫教育的重點領域。Gemini 的清單完全以陸生動物為主，漏了這一塊。</p>
+  <ul><li><b>相關系所：</b>屏科大、海洋大學等水產養殖系所；疫苗方向可詢問屏科大動物疫苗所是否有水產相關實驗室。</li></ul>
+</div>
+
+<div class="card">
+  <div class="dir-head"><div class="num new">D</div><div><h3>獸醫生物資訊／AI 數位病理／寵物科技</h3>
+  <span class="tag t-ok">差異化最強</span><span class="tag t-acc">資工、數據背景首選</span></div></div>
+  <p>把方向 ②、⑤ 的濕實驗結合乾實驗：基因體分析、疫苗抗原設計、病理切片的 AI 判讀、寵物健康穿戴數據。屏科大疫苗所公開徵聘生物資訊專長教師，就是業界缺這類人才的訊號。</p>
+  <ul><li><b>做法：</b>挑一位做病理或疫苗、但需要計算支援的指導教授，以「我幫實驗室解決數據問題」的定位進去，比和生科本科生硬拚濕實驗容易得多。</li></ul>
+</div>
+
+<div class="card">
+  <div class="dir-head"><div class="num new">E</div><div><h3>野生動物保育醫學</h3>
+  <span class="tag t-warn">職缺很少</span><span class="tag t-acc">熱情導向</span></div></div>
+  <p>相關系所有屏科大野生動物保育研究所等，出路包括林業及自然保育署、動物園、生物多樣性研究機構。這個方向職缺稀少、多屬計畫型聘用，適合有強烈熱情、可以接受薪資較低的人。</p>
+</div>
+
+<div class="card">
+  <div class="dir-head"><div class="num new">F</div><div><h3>經濟動物生產醫學（豬、禽）</h3>
+  <span class="tag t-acc">需求穩定</span><span class="tag t-gold">不夠吸睛</span></div></div>
+  <p>Gemini 的清單明顯偏重寵物，但台灣動物用藥、飼料、疫苗的營收大宗仍來自經濟動物。豬病、禽流感防治、飼料添加物這類題目在產學合作上資源最多，畢業後進飼料廠、動藥廠、大型牧場的技術服務部門，是最「無聊但穩」的路線。</p>
+</div>
+
+<!-- ===================== -->
+<h2 id="matrix">四、你的大學背景 × 推薦方向</h2>
+<div class="tbl-wrap">
+<table>
+<thead><tr><th>大學背景</th><th>首選</th><th>次選</th><th>避開／謹慎</th></tr></thead>
+<tbody>
+<tr><td><b>生科／生技／醫技</b></td><td>③ 臨床前、② 疫苗</td><td>A 公衛、⑤＋D</td><td>④ 單押</td></tr>
+<tr><td><b>食品／營養</b></td><td>① 寵物營養（動科系所）</td><td>A 食品衛生、B 品保</td><td>⑤ 病理</td></tr>
+<tr><td><b>化學／藥學</b></td><td>③ 藥理毒理</td><td>② 疫苗製程／品管</td><td>④</td></tr>
+<tr><td><b>心理／文科</b></td><td>④ 行為＋③ 實驗動物福利</td><td>B 法規（先就業）</td><td>②⑤ 濕實驗重</td></tr>
+<tr><td><b>商管</b></td><td>B 法規／品保</td><td>① 技術型 PM</td><td>⑤ 病理</td></tr>
+<tr><td><b>資工／統計</b></td><td>D 生資／AI 病理</td><td>② 抗原設計</td><td>④</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===================== -->
+<h2 id="schools">五、系所速查（需以當年簡章為準）</h2>
+<div class="tbl-wrap">
+<table>
+<thead><tr><th>系所</th><th>對應方向</th><th>收跨考？</th><th>重點</th></tr></thead>
+<tbody>
+<tr><td><b>台大</b> 分子暨比較病理生物學研究所</td><td>③⑤A</td><td class="c"><span class="dot d3"></span>明文收</td><td>收獸醫、生技、動科、生命科學；115 甄試名額 8 名；一般考筆試「微生物學（以人畜共通疾病為主）」＋口試</td></tr>
+<tr><td><b>中興</b> 獸醫病理生物學研究所</td><td>⑤</td><td class="c"><span class="dot d3"></span>收</td><td>115 甄試收獸醫、醫學相關及生物相關科系，名額 5 名；與微衛所聯招，可填 2 志願</td></tr>
+<tr><td><b>中興</b> 微生物暨公共衛生學研究所</td><td>A②</td><td class="c"><span class="dot d3"></span>收</td><td>分微生物學、公共衛生學兩組；公衛組考微生物、食品衛生、流行病學</td></tr>
+<tr><td><b>屏科大</b> 動物疫苗科技研究所</td><td>②C</td><td class="c"><span class="dot d3"></span>歡迎跨域</td><td>全台唯一動物疫苗所；有 cGMP 試量產中心，產學連結強</td></tr>
+<tr><td><b>台大／中興／屏科大</b> 動物科學系所</td><td>①F</td><td class="c"><span class="dot d2"></span>依組別</td><td>寵物與經濟動物營養研究的主要所在</td></tr>
+<tr><td><b>嘉大</b> 獸醫學系碩士班</td><td>依實驗室</td><td class="c"><span class="dot d2"></span>需查簡章</td><td>依指導教授專長而定，報考前先聯絡老師</td></tr>
+<tr><td><b>香港城大</b> MVetMed</td><td>—</td><td class="c"><span class="dot d1"></span>不收</td><td>只收 BVM／DVM；也不能作為執業資格。對跨考生無用</td></tr>
+<tr><td><b>大灣區</b>（如華南農大獸醫學院）</td><td>依專業</td><td class="c"><span class="dot d2"></span>需查</td><td>台生走「面向港澳台招生」管道，學制多為 3 年；須查當年目錄，並評估學歷採認與兩岸政策風險</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small"><span class="dot d3"></span>簡章明文接受非獸醫背景　<span class="dot d2"></span>有條件或需逐年確認　<span class="dot d1"></span>不適用</p>
+
+<!-- ===================== -->
+<h2 id="fixes">六、Gemini 說法修正一覽</h2>
+<div class="tbl-wrap">
+<table>
+<thead><tr><th>Gemini 原說法</th><th>實際狀況</th><th>判定</th></tr></thead>
+<tbody>
+<tr><td>寵物市場是港澳台及大灣區成長最迅猛的消費市場</td><td>台灣寵物市場超過 800 億元、成長快是事實，但「最迅猛」沒有出處</td><td><span class="tag t-gold">誇大</span></td></tr>
+<tr><td>企業急需懂動物營養代謝的研發人才</td><td>外商研發多在海外；台灣以技術業務、品保法規職缺為主</td><td><span class="tag t-warn">高估</span></td></tr>
+<tr><td>掌握 PCR、細胞培養、ELISA 幾乎不會失業</td><td>屬基本技能；差異化在 GMP、法規、生物資訊</td><td><span class="tag t-warn">過度樂觀</span></td></tr>
+<tr><td>CRO 極度缺乏懂實驗動物的碩士</td><td>需求穩定且受法規支撐，但「極度缺乏」誇大；獸醫師職位非跨考生可任</td><td><span class="tag t-gold">部分正確</span></td></tr>
+<tr><td>動物行為與福利是新興藍海</td><td>台灣無行為諮詢證照制度，職缺很少</td><td><span class="tag t-warn">高估</span></td></tr>
+<tr><td>病理領域需要大量碩士研究人員</td><td>入學管道存在，但跨考生多以技術員定位，薪資有限</td><td><span class="tag t-gold">部分正確</span></td></tr>
+<tr><td>（未提）碩士與執照的關係</td><td>不論台灣或香港，跨考碩士都不能取得獸醫師資格</td><td><span class="tag t-warn">重大遺漏</span></td></tr>
+</tbody>
+</table>
+</div>
+
+
+<!-- ===================== -->
+<h2 id="salary">七、薪資現實與讀碩士的投報試算</h2>
+<p class="small">補上 ChatGPT 列為「待查證」的薪資資料。以下為公開職缺與人力銀行統計，各職缺實際條件以企業公告為準。</p>
+<div class="tbl-wrap">
+<table>
+<thead><tr><th>職務／資料</th><th>薪資</th><th>來源年份</th></tr></thead>
+<tbody>
+<tr><td>生物科技研發人員（學士）年薪中位數</td><td>約 49 萬</td><td>104／Cake 統計</td></tr>
+<tr><td>生物科技研發人員（碩士）年薪中位數</td><td>約 60.2 萬</td><td>同上</td></tr>
+<tr><td>生物科技研發人員（博士）年薪中位數</td><td>約 92.1 萬</td><td>同上</td></tr>
+<tr><td>醫藥業務代表（碩士）平均年薪</td><td>約 108.6 萬（含獎金）</td><td>同上</td></tr>
+<tr><td>生技公司細胞製劑研發職缺</td><td>碩士 3.8 萬起／學士 3.2 萬起（月薪）</td><td>104 職缺</td></tr>
+<tr><td>寵物食品品質檢驗專員（牧羊人集團）</td><td>月薪 3.0～3.5 萬</td><td>校園徵才資料</td></tr>
+<tr><td>寵物食品業務（福壽，徵獸醫系、疫苗所等）</td><td>月薪 3.43～6 萬</td><td>屏科大校園徵才</td></tr>
+<tr><td>寵物食品研發人員（舊資料）</td><td>月薪 3.0～4.3 萬</td><td>104，2021 年</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="card">
+  <h3>粗估：讀兩年碩士划不划算？</h3>
+  <ul>
+    <li><b>年薪差距：</b>碩士與學士的研發職年薪中位數差約 <b>11.2 萬</b>（60.2－49）。</li>
+    <li><b>機會成本：</b>兩年不工作，以學士中位數計約少賺 <b>98 萬</b>，另加學費與生活費。</li>
+    <li><b>單看加薪回本：</b>約需 <b>8～9 年</b>。如果只為加薪，讀碩士很不划算。</li>
+    <li><b>真正的價值：</b>許多研發、CRO、GLP 職缺直接寫「碩士以上」。碩士買到的是<b>報考資格</b>，加上兩年實驗室訓練，而不是那 11 萬的差距。</li>
+    <li><b>最高槓桿的路線：</b>研發碩士＋懂市場，轉往<b>技術業務或產品經理</b>。醫藥業務碩士的平均年薪約為研發碩士的 1.8 倍。這也呼應 ① 寵物營養方向「技術型 PM」的建議。</li>
+  </ul>
+  <p class="small">以上是粗略試算：沒有計入研究生助學金、在學兼任助理收入、學費差異與通膨，只用來比較量級。</p>
+</div>
+
+<!-- ===================== -->
+<h2 id="plan">八、實際準備步驟</h2>
+<div class="card">
+  <ol>
+    <li><b>先做職缺反向分析（採用 ChatGPT 的方法）：</b>每個有興趣的方向，在 104 等平台蒐集 15～20 個目標職缺，拆成「學歷／科系／技術／法規／年資／薪資」六欄。看到「碩士以上」比例高的方向才值得讀碩士；比例低的（如寵物食品品保、業務）可以直接就業。</li>
+    <li><b>確認自己能接受工作內容：</b>選 ③ 前，先到動物中心參訪或短期打工，親眼看過給藥、採血、安樂死的流程再決定。</li>
+    <li><b>先選方向，再找老師：</b>台灣研究型碩士的經驗好壞，取決於指導教授。從上方系所網頁找出論文題目符合你方向的 2～3 位老師，報考前寄信附上履歷與研究興趣。</li>
+    <li><b>補先修科目：</b>普通生物、生物化學、微生物學、分子生物學是共同門檻；選公衛加修流行病學與生物統計，選 D 方向加 Python／R。</li>
+    <li><b>取得動物實驗管理訓練證書：</b>這張證書很便宜，又能直接對應法規要求的職位，對 ② ③ 方向特別加分。</li>
+    <li><b>累積實驗室經驗：</b>到目標實驗室或研究中心當兼任／專任助理半年到一年，是跨考生最有效的履歷補強。屏科大動物製劑研究中心就有公開招募碩士級研究助理。</li>
+    <li><b>抓好時程：</b>
+      <ul>
+        <li><b>甄試：</b>每年約 10 月報名、10 月底到 11 月初口試（例如屏科大疫苗所 115 學年的碩甄口試是 114 年 11 月 1 日）。</li>
+        <li><b>一般入學：</b>約 11 月底到隔年 1 月報名，2～3 月筆試與口試（例如台大分子比較病理所 114 學年的口試在 3 月 7 日）。</li>
+      </ul>
+    </li>
+    <li><b>問畢業生流向：</b>寫信或口試時直接問指導教授：近三到五屆學生去了哪些公司、做什麼職位。答不出來是警訊。</li>
+    <li><b>英文不能放：</b>台大部分系所設有英文最低分門檻，英文未達標準就算總分夠高也不予錄取。</li>
+  </ol>
+</div>
+
+<!-- ===================== -->
+<h2>參考來源</h2>
+<ul class="src">
+  <li><a href="https://exam.aca.ntu.edu.tw/graf/brochure/115/190.pdf">臺大 115 學年 分子暨比較病理生物學研究所碩士班甄試簡章</a></li>
+  <li><a href="https://exam.aca.ntu.edu.tw/grab/Brochure/PDF/114/633.pdf">臺大 114 學年 分子暨比較病理生物學研究所碩士班一般入學簡章</a></li>
+  <li><a href="https://ivp.nchu.edu.tw/storage/news/01K60302EG3XV5Q4TQJRZ96G95.pdf">中興 獸醫病理生物學研究所 115 學年碩士班甄試公告</a></li>
+  <li><a href="https://ivp.nchu.edu.tw/storage/news/20211129104328320.pdf">中興 微生物暨公共衛生學研究所／獸病所 招生公告（111 學年）</a></li>
+  <li><a href="https://www.gvm.com.tw/article/86515">遠見：全台唯一動物疫苗所 屏科大培育生技菁英</a></li>
+  <li><a href="https://avt.npust.edu.tw/wp-content/uploads/2023/09/研究生手冊112新版.pdf">屏科大 動物疫苗科技研究所 研究生手冊</a></li>
+  <li><a href="https://personnel.npust.edu.tw/wp-content/uploads/2025/01/114-1國立屏東科技大學徵聘「專任教師」公告疫苗所1140109.pdf">屏科大疫苗所 徵聘生物資訊／專利法規領域教師公告</a></li>
+  <li><a href="https://www.npust.edu.tw/portaldoc/news/114301_1.docx">屏科大 動物製劑研究中心 徵才公告</a></li>
+  <li><a href="https://adas.npust.edu.tw/wp-content/uploads/2025/10/115-疫苗所碩甄面試資訊.pdf">屏科大疫苗所 115 學年碩甄口試資訊</a></li>
+  <li><a href="https://www.cdc.gov.tw/Uploads/files/201809/a20fa736-d4a5-48b1-b1e0-fd59947aa26a.pdf">實驗動物照護及使用委員會或小組設置及管理辦法</a></li>
+  <li><a href="https://www.foodnext.net/news/newsnow/paper/6351177298">食力：寵物市場破 800 億、寵物食品占 53%、寵物食品管理法草案進度</a></li>
+  <li><a href="https://www.managertoday.com.tw/topic/view/232/post/72315">經理人：台經院寵物市場調查</a></li>
+  <li><a href="https://www.ctee.com.tw/news/20250519701808-431401">工商時報：瑪氏亞太區寵物營養研發中心</a></li>
+  <li><a href="https://www.cityu.edu.hk/en/jcc/education/postgraduate-programmes/master-of-veterinary-medicine">香港城市大學 MVetMed 課程說明</a></li>
+  <li><a href="https://uptogo.com.tw/?p=1673485">生科相關職務薪資統計（引 104 薪資情報與 Cake）</a></li>
+  <li><a href="https://www.104.com.tw/job/similar/88ptt?page=4">104：生技研發職缺（含碩士／學士起薪）</a></li>
+  <li><a href="https://www.104.com.tw/job/similar/8rhk8?page=2">104：臨床前動物實驗相關職缺</a></li>
+  <li><a href="https://otc.uch.edu.tw/uploads/bulletin_file/file/6aa104a88861620f35000c33/%E7%89%A7%E7%BE%8A%E4%BA%BA%E9%9B%86%E5%9C%98%E6%9A%A8%E6%B1%AA%E5%96%B5%E6%98%9F%E7%90%83.pdf">牧羊人集團暨汪喵星球 校園徵才職缺</a></li>
+  <li><a href="https://careerservice.npust.edu.tw/WebFiles/90c61692-fdac-4090-9960-fcfd20ddf01c.pdf">屏科大校園徵才：福壽實業職缺</a></li>
+  <li><a href="https://blog.104.com.tw/104data-pet-business-opportunity-vacancies/">104 玩數據：寵物產業職缺與薪資（2021）</a></li>
+  <li><a href="https://www.cityu.edu.hk/en/jcc/education/undergraduate-programmes/bachelor-veterinary-medicine/themes">香港城市大學 BVM 課程重點領域（動物福利、水產、One Health）</a></li>
+</ul>
+
+<footer>
+  比較對象：Gemini 對話截圖與 ChatGPT 整理文件。評分為定性判斷，不是統計數據；招生名額、考科、日期每年會變動，報考前請以各校當年簡章為準。<br>
+  整理日期：2026-11-16
+</footer>
+
+</div>
+</body>
+</html>
