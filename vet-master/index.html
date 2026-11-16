@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f6f5c">
+<title>跨考動物醫學碩士｜手機版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f2ec;--card:#fff;--ink:#1d2320;--muted:#636b65;--line:#e4e0d6;
+  --acc:#1f6f5c;--acc2:#e2efea;--warn:#b0501c;--warn2:#fcece1;
+  --ok:#2e6d33;--ok2:#e6f2e3;--gold:#8b6a10;--gold2:#f7efd6;
+  --safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(64px + var(--safe-t))}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",system-ui,sans-serif;font-size:17px;line-height:1.7;padding-bottom:calc(30px + var(--safe-b))}
+main{max-width:560px;margin:0 auto;padding:0 14px}
+/* hero */
+.hero{background:var(--acc);color:#fff;padding:calc(26px + var(--safe-t)) 20px 22px;border-radius:0 0 22px 22px}
+.hero .k{font-size:12px;letter-spacing:.14em;opacity:.85;font-weight:700}
+.hero h1{font-size:26px;line-height:1.35;margin:6px 0 8px;font-weight:900}
+.hero p{margin:0;font-size:14.5px;opacity:.92}
+/* sticky nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(244,242,236,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:calc(10px + var(--safe-t)) 0 10px;margin:0 -14px;border-bottom:1px solid var(--line)}
+nav .row{display:flex;gap:8px;overflow-x:auto;padding:0 14px;scrollbar-width:none}
+nav .row::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;font-size:14px;font-weight:700;text-decoration:none;color:var(--acc);background:var(--acc2);padding:8px 14px;border-radius:999px;min-height:36px;display:flex;align-items:center}
+/* sections */
+section{padding-top:20px}
+h2{font-size:21px;font-weight:900;margin:8px 2px 12px;display:flex;align-items:center;gap:8px}
+h2 .n{font-size:13px;background:var(--ink);color:#fff;border-radius:8px;padding:2px 8px}
+h3{font-size:17px;margin:0 0 6px}
+p{margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:0 0 12px}
+.tldr{background:#fff;border:2px solid var(--acc)}
+.tldr li{margin-bottom:8px}
+ul,ol{padding-left:1.2em;margin:4px 0 6px}
+li{margin-bottom:6px}
+.alert{background:var(--warn2);border-color:#f0cdb6}
+.alert h3{color:var(--warn)}
+.small{font-size:14px;color:var(--muted)}
+b.hl{background:linear-gradient(transparent 60%,#ffe9a8 60%)}
+/* tags */
+.tags{margin:2px 0 8px}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:999px;margin:0 6px 6px 0}
+.ok{background:var(--ok2);color:var(--ok)}.wa{background:var(--warn2);color:var(--warn)}.go{background:var(--gold2);color:var(--gold)}.ac{background:var(--acc2);color:var(--acc)}
+/* accordion */
+details.card{padding:0;overflow:hidden}
+details summary{list-style:none;cursor:pointer;padding:16px 46px 14px 16px;position:relative}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"";position:absolute;right:18px;top:24px;width:10px;height:10px;border-right:2.5px solid var(--muted);border-bottom:2.5px solid var(--muted);transform:rotate(45deg);transition:transform .2s}
+details[open] summary::after{transform:rotate(-135deg);top:28px}
+details .body{padding:0 16px 14px;border-top:1px solid var(--line);padding-top:12px}
+.sh{display:flex;gap:12px;align-items:center}
+.badge{flex:0 0 40px;height:40px;border-radius:12px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px}
+.badge.new{background:var(--acc)}
+.sh .t{font-weight:700;font-size:16.5px;line-height:1.4}
+.verdict{background:var(--acc2);color:var(--acc);font-weight:700;border-radius:10px;padding:9px 12px;margin-top:10px;font-size:15.5px}
+.fix{background:#faf7f0;border-left:4px solid var(--warn);border-radius:8px;padding:9px 12px;margin:8px 0;font-size:15.5px}
+.fix b{color:var(--warn)}
+.lbl{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.05em;margin:12px 0 2px}
+/* meters */
+.meters{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin:6px 0 4px}
+.m{font-size:13px;color:var(--muted)}
+.m .bar{height:7px;background:#ece8de;border-radius:4px;margin-top:3px;overflow:hidden}
+.m .bar i{display:block;height:100%;background:var(--acc)}
+/* stat tiles */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.stat .v{font-size:24px;font-weight:900;color:var(--acc);line-height:1.2}
+.stat .d{font-size:13px;color:var(--muted)}
+/* key-value list (replaces tables) */
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;font-size:15px;margin:6px 0}
+.kv dt{font-weight:700;color:var(--muted);white-space:nowrap}
+.kv dd{margin:0}
+.row-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin-bottom:10px}
+.row-card .h{font-weight:700;margin-bottom:4px}
+.pill{display:inline-block;font-size:12.5px;font-weight:700;border-radius:6px;padding:1px 8px;margin-left:4px;vertical-align:2px}
+/* salary bars */
+.sal{margin:4px 0 2px}
+.sal .r{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:14.5px}
+.sal .r span:first-child{flex:0 0 72px;color:var(--muted)}
+.sal .b{height:22px;background:var(--acc);border-radius:6px;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;padding-left:8px;white-space:nowrap}
+.sal .b.alt{background:var(--gold)}
+/* steps */
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding:0 0 0 42px;margin-bottom:14px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:15px}
+.src a{color:var(--acc);word-break:break-word;font-size:14px}
+.src li{margin-bottom:8px}
+.totop{position:fixed;right:16px;bottom:calc(18px + var(--safe-b));width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:20px;box-shadow:0 4px 14px rgba(0,0,0,.18);z-index:30}
+footer{font-size:13px;color:var(--muted);text-align:center;padding:18px 10px 40px}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="k">研究所選題評析 · 手機版</div>
+  <h1>跨考動物醫學相關碩士<br>該選哪條路？</h1>
+  <p>整合 Gemini、ChatGPT 的建議，逐項查證、修正誇大之處，補上數據、系所與薪資。</p>
+</header>
+
+<main>
+<nav><div class="row">
+  <a href="#tldr">結論</a>
+  <a href="#line">底線</a>
+  <a href="#five">五大方向</a>
+  <a href="#more">補充方向</a>
+  <a href="#fit">背景對照</a>
+  <a href="#school">系所</a>
+  <a href="#money">薪資</a>
+  <a href="#ai">AI比較</a>
+  <a href="#todo">準備步驟</a>
+</div></nav>
+
+<!-- TLDR -->
+<section id="tldr">
+  <h2><span class="n">1</span>30 秒結論</h2>
+  <div class="card tldr">
+    <ul>
+      <li><b class="hl">最推薦：臨床前動物試驗</b>，其次是<b>動物疫苗與檢驗試劑</b>。兩者都有頂大系所明文收跨考生，也有法規撐起的固定需求。</li>
+      <li><b>寵物營養</b>的市場最大，但台灣多是業務、品保職缺，配方研發多在海外。</li>
+      <li><b>動物行為與福利</b>職缺最少，適合當副專長。</li>
+      <li>讀碩士<b>不會讓你成為獸醫師</b>。</li>
+      <li>碩士一年只比學士多約 11 萬，價值在<b>取得「碩士以上」職缺的報考資格</b>。</li>
+    </ul>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="v">800億+</div><div class="d">台灣寵物市場規模</div></div>
+    <div class="stat"><div class="v">53%</div><div class="d">其中寵物食品占比</div></div>
+    <div class="stat"><div class="v">60.2萬</div><div class="d">生技研發碩士年薪中位數</div></div>
+    <div class="stat"><div class="v">8～9年</div><div class="d">只看加薪的回本時間</div></div>
+  </div>
+</section>
+
+<!-- LINE -->
+<section id="line">
+  <h2><span class="n">2</span>先講底線</h2>
+  <div class="card alert">
+    <h3>⚠️ 碩士 ≠ 獸醫師</h3>
+    <ul>
+      <li><b>台灣：</b>獸醫師要獸醫系畢業並考照。跨考生讀研究所，<b>不能看診、開處方、簽病理報告</b>。</li>
+      <li><b>香港：</b>城大的獸醫學碩士只收已是獸醫系畢業的人，官方也明講這個學位不能拿來報考執業資格。</li>
+      <li><b>實驗動物：</b>法規規定照護委員會<b>必須有獸醫師</b>，這個位置跨考生拿不到。但委員會的<b>執行秘書</b>只要受過 12 小時以上訓練並取得證書，<b>非獸醫背景也能擔任</b>。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FIVE -->
+<section id="five">
+  <h2><span class="n">3</span>五大方向評析</h2>
+  <p class="small">點開看詳細。評分是依招生資訊與產業結構所做的判斷，不是統計數據。</p>
+
+  <details class="card">
+    <summary><div class="sh"><div class="badge">①</div><div><div class="t">伴侶動物營養與保健品</div>
+      <div class="tags"><span class="tag ok">市場最大</span><span class="tag wa">研發職缺被高估</span></div></div></div></summary>
+    <div class="body">
+      <div class="meters">
+        <div class="m">跨考友善<div class="bar"><i style="width:90%"></i></div></div>
+        <div class="m">台灣職缺量<div class="bar"><i style="width:60%"></i></div></div>
+        <div class="m">薪資天花板<div class="bar"><i style="width:60%"></i></div></div>
+        <div class="m">不可替代性<div class="bar"><i style="width:40%"></i></div></div>
+      </div>
+      <p>市場規模是真的：家犬家貓已超過 320 萬隻，寵物食品占整體市場約 53%。</p>
+      <div class="fix"><b>修正：</b>外商在台灣以業務、行銷為主，研發中心多在海外（例如瑪氏的亞太研發中心設在泰國）。</div>
+      <div class="lbl">補充</div>
+      <ul>
+        <li>《寵物食品管理法》草案已送行政院，上路後<b>品保、法規職缺</b>會先增加。</li>
+        <li>寵物營養研究多在<b>動物科學系</b>，不在獸醫學院。</li>
+        <li>研發職位未必都要碩士，先查職缺再決定。</li>
+      </ul>
+      <div class="verdict">→ 目標設定為技術型產品經理或法規品保</div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary><div class="sh"><div class="badge">②</div><div><div class="t">動物疫苗、檢驗試劑、生技新藥</div>
+      <div class="tags"><span class="tag ok">技術壁壘真實</span><span class="tag go">外商研發不在台</span></div></div></div></summary>
+    <div class="body">
+      <div class="meters">
+        <div class="m">跨考友善<div class="bar"><i style="width:70%"></i></div></div>
+        <div class="m">台灣職缺量<div class="bar"><i style="width:60%"></i></div></div>
+        <div class="m">薪資天花板<div class="bar"><i style="width:75%"></i></div></div>
+        <div class="m">不可替代性<div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p>屏科大<b>動物疫苗科技研究所</b>是全台唯一的動物疫苗研究所，歡迎跨域學生；附屬研究中心也徵生技、動科背景的碩士級助理。</p>
+      <div class="fix"><b>修正：</b>「會 PCR、ELISA 就不會失業」太樂觀，這些是基本技能。真正拉開差距的是 <b>GMP 品管、製程、法規、生物資訊</b>。</div>
+      <div class="verdict">→ 生科、生技、化學、藥學背景首選</div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><div class="sh"><div class="badge">③</div><div><div class="t">臨床前動物試驗與藥理毒理</div>
+      <div class="tags"><span class="tag ok">跨考最穩</span><span class="tag ok">法規撐需求</span></div></div></div></summary>
+    <div class="body">
+      <div class="meters">
+        <div class="m">跨考友善<div class="bar"><i style="width:85%"></i></div></div>
+        <div class="m">台灣職缺量<div class="bar"><i style="width:75%"></i></div></div>
+        <div class="m">薪資天花板<div class="bar"><i style="width:70%"></i></div></div>
+        <div class="m">不可替代性<div class="bar"><i style="width:75%"></i></div></div>
+      </div>
+      <p>台大<b>分子暨比較病理生物學研究所</b>的簡章明文收非獸醫背景，只要對實驗動物科學有興趣即可報考。</p>
+      <div class="fix"><b>注意：</b>日常工作包括保定、給藥、採血、犧牲動物。<b>先確認自己能否接受。</b>高階職位偏好博士或多年 GLP 經驗。</div>
+      <div class="lbl">加分做法</div>
+      <ul>
+        <li>入學前先考<b>動物實驗管理訓練證書</b>（12 小時以上）。</li>
+        <li>出路：CRO、新藥公司、國家生物模式中心、醫學中心的動物中心。</li>
+      </ul>
+      <div class="verdict">→ 綜合最推薦</div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary><div class="sh"><div class="badge">④</div><div><div class="t">動物行為學與動物福利</div>
+      <div class="tags"><span class="tag wa">職缺最少</span><span class="tag go">適合當副專長</span></div></div></div></summary>
+    <div class="body">
+      <div class="meters">
+        <div class="m">跨考友善<div class="bar"><i style="width:90%"></i></div></div>
+        <div class="m">台灣職缺量<div class="bar"><i style="width:20%"></i></div></div>
+        <div class="m">薪資天花板<div class="bar"><i style="width:35%"></i></div></div>
+        <div class="m">不可替代性<div class="bar"><i style="width:35%"></i></div></div>
+      </div>
+      <div class="fix"><b>修正：</b>台灣的寵物行為諮詢<b>沒有證照制度</b>，企業的動物福利稽核職缺也很少。而且寵物行為和經濟動物福利是兩個不同市場。</div>
+      <p><b>更好的用法：</b>論文做行為／福利，就業走③實驗動物（3R 與環境豐富化是法規要求的福利工作）。</p>
+      <div class="verdict">→ 不建議單押，加在③上當副專長</div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary><div class="sh"><div class="badge">⑤</div><div><div class="t">比較病理生物學與細胞學</div>
+      <div class="tags"><span class="tag ac">專業度高</span><span class="tag wa">技術員薪資陷阱</span></div></div></div></summary>
+    <div class="body">
+      <div class="meters">
+        <div class="m">跨考友善<div class="bar"><i style="width:55%"></i></div></div>
+        <div class="m">台灣職缺量<div class="bar"><i style="width:45%"></i></div></div>
+        <div class="m">薪資天花板<div class="bar"><i style="width:50%"></i></div></div>
+        <div class="m">不可替代性<div class="bar"><i style="width:65%"></i></div></div>
+      </div>
+      <p>中興<b>獸醫病理生物學研究所</b>收醫學與生物相關科系。</p>
+      <div class="fix"><b>修正：</b>病理報告只能由獸醫病理醫師簽發。跨考生做切片、染色，市場上多定位為<b>技術員</b>，薪資成長有限。</div>
+      <div class="verdict">→ 搭配 AI 影像判讀才值得投入</div>
+    </div>
+  </details>
+</section>
+
+<!-- MORE -->
+<section id="more">
+  <h2><span class="n">4</span>兩家 AI 都漏掉的方向</h2>
+
+  <div class="row-card"><div class="h">A｜獸醫公共衛生（One Health） <span class="pill ok">公職出路</span></div>
+    <div class="small">中興微生物暨公共衛生學研究所。出路：防檢署、疾管署、衛生局、食品檢驗。沒有執照障礙。</div></div>
+  <div class="row-card"><div class="h">B｜法規事務與品保 <span class="pill ok">商管文科可切</span></div>
+    <div class="small">動物藥品查驗登記、疫苗 GMP、寵物食品法規。可以先就業、再在職進修。</div></div>
+  <div class="row-card"><div class="h">C｜水產動物健康 <span class="pill ac">台灣強項</span></div>
+    <div class="small">魚病診斷、水產疫苗、益生菌。相關系所有屏科大、海洋大學等水產養殖系所。</div></div>
+  <div class="row-card"><div class="h">D｜生物資訊／AI 判讀病理切片 <span class="pill ok">差異化最強</span></div>
+    <div class="small">屏科大疫苗所公開徵聘生物資訊專長教師，代表業界缺這類人才。資工、統計背景首選。</div></div>
+  <div class="row-card"><div class="h">E｜野生動物保育醫學 <span class="pill wa">職缺很少</span></div>
+    <div class="small">出路是林業及自然保育署、動物園、研究機構，多為計畫型聘用。</div></div>
+  <div class="row-card"><div class="h">F｜經濟動物（豬、禽） <span class="pill ac">穩但不吸睛</span></div>
+    <div class="small">動藥、飼料、疫苗的營收大宗。產學合作資源最多。</div></div>
+</section>
+
+<!-- FIT -->
+<section id="fit">
+  <h2><span class="n">5</span>你是什麼背景？</h2>
+  <div class="row-card"><div class="h">🧬 生科／生技／醫技</div><dl class="kv"><dt>首選</dt><dd>③ 臨床前、② 疫苗</dd><dt>次選</dt><dd>A 公衛、⑤＋D</dd></dl></div>
+  <div class="row-card"><div class="h">🥣 食品／營養</div><dl class="kv"><dt>首選</dt><dd>① 寵物營養（動科系所）</dd><dt>次選</dt><dd>A 食品衛生、B 品保</dd></dl></div>
+  <div class="row-card"><div class="h">⚗️ 化學／藥學</div><dl class="kv"><dt>首選</dt><dd>③ 藥理毒理</dd><dt>次選</dt><dd>② 疫苗製程、品管</dd></dl></div>
+  <div class="row-card"><div class="h">🧠 心理／文科</div><dl class="kv"><dt>首選</dt><dd>④ 行為＋③ 實驗動物福利</dd><dt>次選</dt><dd>B 法規（先就業）</dd></dl></div>
+  <div class="row-card"><div class="h">📊 商管</div><dl class="kv"><dt>首選</dt><dd>B 法規、品保</dd><dt>次選</dt><dd>① 技術型 PM</dd></dl></div>
+  <div class="row-card"><div class="h">💻 資工／統計</div><dl class="kv"><dt>首選</dt><dd>D 生資、AI 病理</dd><dt>次選</dt><dd>② 抗原設計</dd></dl></div>
+</section>
+
+<!-- SCHOOL -->
+<section id="school">
+  <h2><span class="n">6</span>系所速查</h2>
+  <p class="small">名額與考科每年會變，報考前以當年簡章為準。</p>
+  <div class="row-card"><div class="h">台大 分子暨比較病理生物學研究所 <span class="pill ok">明文收跨考</span></div>
+    <div class="small">對應方向 ③⑤A。115 學年甄試名額 8 名；一般考的筆試是微生物學（以人畜共通疾病為主）加口試。</div></div>
+  <div class="row-card"><div class="h">中興 獸醫病理生物學研究所 <span class="pill ok">收</span></div>
+    <div class="small">對應方向 ⑤。115 學年甄試名額 5 名，與微衛所聯招，可填 2 個志願。</div></div>
+  <div class="row-card"><div class="h">中興 微生物暨公共衛生學研究所 <span class="pill ok">收</span></div>
+    <div class="small">對應方向 A②。分微生物學、公共衛生學兩組。</div></div>
+  <div class="row-card"><div class="h">屏科大 動物疫苗科技研究所 <span class="pill ok">歡迎跨域</span></div>
+    <div class="small">對應方向 ②C。全台唯一，有 cGMP 試量產中心。</div></div>
+  <div class="row-card"><div class="h">台大／中興／屏科大 動物科學系所 <span class="pill go">依組別</span></div>
+    <div class="small">對應方向 ①F，是寵物與經濟動物營養研究的主要所在。</div></div>
+  <div class="row-card"><div class="h">嘉大 獸醫學系碩士班 <span class="pill go">需查簡章</span></div>
+    <div class="small">依指導教授專長而定，報考前先寫信聯絡老師。</div></div>
+  <div class="row-card"><div class="h">香港城大 MVetMed <span class="pill wa">不收跨考</span></div>
+    <div class="small">只收獸醫系畢業生，也不能作為執業資格。</div></div>
+</section>
+
+<!-- MONEY -->
+<section id="money">
+  <h2><span class="n">7</span>薪資現實</h2>
+  <div class="card">
+    <h3>生技研發人員年薪中位數</h3>
+    <div class="sal">
+      <div class="r"><span>學士</span><div class="b" style="width:43%">49 萬</div></div>
+      <div class="r"><span>碩士</span><div class="b" style="width:53%">60.2 萬</div></div>
+      <div class="r"><span>博士</span><div class="b" style="width:81%">92.1 萬</div></div>
+      <div class="r"><span>醫藥業務*</span><div class="b alt" style="width:95%">108.6 萬</div></div>
+    </div>
+    <p class="small">* 醫藥業務為碩士平均年薪，含業績獎金。資料來源：104 薪資情報與 Cake 統計。</p>
+  </div>
+  <div class="card">
+    <h3>寵物產業職缺參考（月薪）</h3>
+    <dl class="kv">
+      <dt>品質檢驗</dt><dd>3.0～3.5 萬（牧羊人集團）</dd>
+      <dt>寵物食品業務</dt><dd>3.43～6 萬（福壽）</dd>
+      <dt>寵物食品研發</dt><dd>3.0～4.3 萬（2021 年資料）</dd>
+    </dl>
+  </div>
+  <div class="card">
+    <h3>讀碩士划算嗎？</h3>
+    <ul>
+      <li>碩士一年多賺約 <b>11.2 萬</b>。</li>
+      <li>兩年不工作約少賺 <b>98 萬</b>，另加學費與生活費。</li>
+      <li>只看加薪：約 <b>8～9 年</b>才回本。</li>
+      <li><b class="hl">真正的價值是取得「碩士以上」職缺的資格</b>，以及兩年的實驗室訓練。</li>
+      <li>收入最高的路線：研發碩士轉往<b>技術業務或產品經理</b>。</li>
+    </ul>
+    <p class="small">粗估，未計入研究生助學金、兼任助理收入與學費差異。</p>
+  </div>
+</section>
+
+<!-- AI -->
+<section id="ai">
+  <h2><span class="n">8</span>Gemini vs ChatGPT</h2>
+  <div class="row-card"><div class="h">Gemini</div>
+    <dl class="kv"><dt>優點</dt><dd>方向清楚、課題具體</dd><dt>缺點</dt><dd>過度樂觀（「藍海」「不會失業」），數據沒有出處，舉例的外商在台多半沒有研發部門</dd></dl></div>
+  <div class="row-card"><div class="h">ChatGPT</div>
+    <dl class="kv"><dt>優點</dt><dd>方法好：先蒐集職缺反推、算機會成本、問畢業生流向、確認能否接受實驗工作</dd><dt>缺點</dt><dd>沒有數據、系所與法規細節，讀完還是不知道要報哪間；沒有挑戰 Gemini 的誇大說法</dd></dl></div>
+  <div class="row-card"><div class="h">本頁補強</div>
+    <div class="small">市場與薪資數據、對口系所、執照界線、六個新方向、回本試算。</div></div>
+
+  <details class="card">
+    <summary><div class="t" style="font-weight:700">Gemini 說法修正一覽（7 項）</div></summary>
+    <div class="body">
+      <div class="row-card"><div class="h">寵物市場「成長最迅猛」<span class="pill go">誇大</span></div><div class="small">成長快是事實，但「最迅猛」沒有出處。</div></div>
+      <div class="row-card"><div class="h">企業急需營養研發人才<span class="pill wa">高估</span></div><div class="small">台灣以業務與品保職缺為主。</div></div>
+      <div class="row-card"><div class="h">會 PCR、ELISA 就不會失業<span class="pill wa">過度樂觀</span></div><div class="small">這些是基本技能。</div></div>
+      <div class="row-card"><div class="h">CRO 極度缺人<span class="pill go">部分正確</span></div><div class="small">需求穩定，但不到「極度缺乏」。</div></div>
+      <div class="row-card"><div class="h">行為與福利是藍海<span class="pill wa">高估</span></div><div class="small">台灣沒有證照制度，職缺很少。</div></div>
+      <div class="row-card"><div class="h">病理需要大量碩士<span class="pill go">部分正確</span></div><div class="small">跨考生多以技術員定位。</div></div>
+      <div class="row-card"><div class="h">（未提）碩士與執照的關係<span class="pill wa">重大遺漏</span></div><div class="small">跨考碩士不能取得獸醫師資格。</div></div>
+    </div>
+  </details>
+</section>
+
+<!-- TODO -->
+<section id="todo">
+  <h2><span class="n">9</span>準備步驟</h2>
+  <div class="card">
+    <ol class="steps">
+      <li><b>職缺反向分析：</b>每個方向在 104 找 15～20 個職缺，整理學歷、技術、薪資要求。「碩士以上」比例高的方向才讀碩士。</li>
+      <li><b>確認能否接受工作內容：</b>選③前，先到動物中心參訪或打工。</li>
+      <li><b>找指導教授：</b>挑 2～3 位研究題目符合你方向的老師，報考前寄信附履歷。</li>
+      <li><b>問畢業生流向：</b>近三到五屆的學生去了哪裡？答不出來是警訊。</li>
+      <li><b>補先修科目：</b>普通生物、生化、微生物、分子生物學；走 D 方向要加 Python 或 R。</li>
+      <li><b>考動物實驗管理訓練證書：</b>花費低，又能直接對應職缺要求。</li>
+      <li><b>抓好時程：</b>甄試約 10 月報名、10 月底到 11 月初口試；一般入學約 11 月底到 1 月報名、2～3 月考試。</li>
+      <li><b>英文要顧：</b>台大部分系所英文未達最低分就不錄取，總分再高也一樣。</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <details class="card">
+    <summary><div class="t" style="font-weight:700">參考來源</div></summary>
+    <div class="body">
+      <ul class="src">
+        <li><a href="https://exam.aca.ntu.edu.tw/graf/brochure/115/190.pdf">臺大 分子暨比較病理所 115 甄試簡章</a></li>
+        <li><a href="https://exam.aca.ntu.edu.tw/grab/Brochure/PDF/114/633.pdf">臺大 分子暨比較病理所 114 一般入學簡章</a></li>
+        <li><a href="https://ivp.nchu.edu.tw/storage/news/01K60302EG3XV5Q4TQJRZ96G95.pdf">中興 獸醫病理生物學研究所 115 甄試公告</a></li>
+        <li><a href="https://www.gvm.com.tw/article/86515">遠見：全台唯一動物疫苗所</a></li>
+        <li><a href="https://personnel.npust.edu.tw/wp-content/uploads/2025/01/114-1國立屏東科技大學徵聘「專任教師」公告疫苗所1140109.pdf">屏科大疫苗所 徵聘生物資訊／專利法規教師</a></li>
+        <li><a href="https://www.cdc.gov.tw/Uploads/files/201809/a20fa736-d4a5-48b1-b1e0-fd59947aa26a.pdf">實驗動物照護及使用委員會設置及管理辦法</a></li>
+        <li><a href="https://www.foodnext.net/news/newsnow/paper/6351177298">食力：寵物市場破 800 億</a></li>
+        <li><a href="https://www.ctee.com.tw/news/20250519701808-431401">工商時報：瑪氏亞太寵物營養研發中心</a></li>
+        <li><a href="https://www.cityu.edu.hk/en/jcc/education/postgraduate-programmes/master-of-veterinary-medicine">香港城大 MVetMed</a></li>
+        <li><a href="https://uptogo.com.tw/?p=1673485">生科職務薪資統計（引 104／Cake）</a></li>
+        <li><a href="https://www.104.com.tw/job/similar/8rhk8?page=2">104：臨床前動物實驗職缺</a></li>
+        <li><a href="https://otc.uch.edu.tw/uploads/bulletin_file/file/6aa104a88861620f35000c33/%E7%89%A7%E7%BE%8A%E4%BA%BA%E9%9B%86%E5%9C%98%E6%9A%A8%E6%B1%AA%E5%96%B5%E6%98%9F%E7%90%83.pdf">牧羊人集團校園徵才職缺</a></li>
+        <li><a href="https://careerservice.npust.edu.tw/WebFiles/90c61692-fdac-4090-9960-fcfd20ddf01c.pdf">屏科大校園徵才：福壽實業</a></li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<footer>整理日期 2026-11-16｜評分為定性判斷，不是統計數據</footer>
+</main>
+
+<a class="totop" href="#top" aria-label="回到頂部">↑</a>
+</body>
+</html>
