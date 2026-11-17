@@ -1,0 +1,50 @@
+[
+ {
+  "date": "2026-11-16",
+  "source": "Yahoo Finance",
+  "tag": "NVDA 半導體 🧠",
+  "title": "🧠 NVDA 財報前夕再跌 4%，美國收緊海外晶片存取",
+  "summary": "NVDA 收 $156.14（-4.1%），董事會傳不考慮讓黃仁勳回任；商務部限制中國客戶經海外資料中心使用先進晶片。11/17 盤後財報將左右 AI 半導體與 HBM 供應鏈走向。",
+  "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-16-dow-sp-500-nasdaq-nvidia-oil-091631084.html"
+ },
+ {
+  "date": "2026-11-16",
+  "source": "BNN Bloomberg",
+  "tag": "總體 📉",
+  "title": "📉 科技股拖累美股連三跌，10 年期殖利率仍在 5.13%",
+  "summary": "S&P 500 -1.9%、Nasdaq -2.5%。10 年期殖利率 5.13%，遠高於月初 4.80% 低點；布蘭特原油跌 3.5% 稍解通膨壓力。高利率同時壓抑長債與高估值 AI 股。",
+  "url": "https://bnnbloomberg.ca/markets/nasdaq/2026/11/16/stocks-decline-on-tech-sell-off-as-concerns-over-the-nvidia-fallout-persist"
+ },
+ {
+  "date": "2026-11-16",
+  "source": "24/7 Wall St.",
+  "tag": "記憶體／SK 海力士 💾",
+  "title": "💾 SK 海力士一個月跌 16%，DRAM 訴訟獲准續行",
+  "summary": "SK 海力士 ADR 再跌約 6% 逼近 52 週低點，同期 MU 跌約 21%。指控三大記憶體廠聯手限制 DRAM 供給的集體訴訟獲准續行，NVDA 對 HBM 需求的評論為短線關鍵。",
+  "url": "https://247wallst.com/investing/2026/11/16/sk-hynix-is-down-16-in-a-month-what-will-it-take-to-get-skhy-stock-back-to-150/"
+ },
+ {
+  "date": "2026-11-16",
+  "source": "BNN Bloomberg",
+  "tag": "AI 電力基建 ⚡",
+  "title": "⚡ AI 基建股同步重挫，GE Vernova -4.9%",
+  "summary": "AI 股領跌擴散：CoreWeave -6.1%、GE Vernova -4.9%、Broadcom -3.9%。資料中心電力與算力題材在 NVDA 風波與高利率下評價承壓，液冷與電力設備波動恐放大。",
+  "url": "https://bnnbloomberg.ca/markets/nasdaq/2026/11/16/stocks-decline-on-tech-sell-off-as-concerns-over-the-nvidia-fallout-persist"
+ },
+ {
+  "date": "2026-11-16",
+  "source": "Yahoo Finance",
+  "tag": "黃金 GLD 🥇",
+  "title": "🥇 金價守在 $3,862，高實質利率仍是逆風",
+  "summary": "現貨金收約 $3,862（+0.24%），盤中逼近 2025 年 10 月以來低點。10 年期 TIPS 實質殖利率約 2.78%、名目殖利率逾 5.1%，持有黃金機會成本高，ETF 資金仍在流出。",
+  "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-16-dow-sp-500-nasdaq-nvidia-oil-091631084.html"
+ },
+ {
+  "date": "2026-11-16",
+  "source": "Yahoo Finance",
+  "tag": "AI 軟體 🤖",
+  "title": "🤖 Anthropic 預計週四掛牌，目標估值約 1.4 兆美元",
+  "summary": "Anthropic 預計 11/19 開始交易，可能成為史上最大 IPO；Vanda Research 認為散戶需求恐創紀錄並排擠其他 AI 股。高估值 AI 軟體股短線面臨資金分流與估值重新比較。",
+  "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-16-dow-sp-500-nasdaq-nvidia-oil-091631084.html"
+ }
+]

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLY 輪替分析｜2026-11-16</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=IBM+Plex+Mono:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0800;
+    --surface: #130e00;
+    --surface2: #1a1200;
+    --border: #2a1f00;
+    --border2: #3d2e00;
+    --orange: #ff9900;
+    --orange2: #ffb300;
+    --blue: #00a8e0;
+    --red: #e53935;
+    --green: #43a047;
+    --muted: #3d2e00;
+    --text: #c8a870;
+    --text2: #6a5020;
+    --white: #fff8e8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(255,153,0,0.06) 0%, transparent 50%),
+      linear-gradient(rgba(255,153,0,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,153,0,0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 36px 36px, 36px 36px;
+    pointer-events:none; z-index:0;
+  }
+  .container { max-width:1080px; margin:0 auto; padding:0 24px 80px; position:relative; z-index:1; }
+
+  header {
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--border2);
+    position:relative; overflow:hidden;
+  }
+  header::after {
+    content:'AMAZON';
+    position:absolute; right:-20px; top:0;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:160px; font-weight:900;
+    color:rgba(255,153,0,0.04);
+    letter-spacing:4px; line-height:1;
+    pointer-events:none; white-space:nowrap;
+  }
+  .eyebrow {
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px; font-weight:600;
+    letter-spacing:4px; color:var(--orange);
+    text-transform:uppercase; margin-bottom:16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before { content:''; display:inline-block; width:28px; height:1px; background:var(--orange); }
+  h1 {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:clamp(60px,10vw,120px);
+    font-weight:900; line-height:0.85;
+    color:var(--white); letter-spacing:2px; margin-bottom:12px;
+  }
+  h1 em { font-style:normal; color:var(--orange); }
+  .meta-row { display:flex; align-items:center; gap:0; flex-wrap:wrap; margin-top:16px; }
+  .mi { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text2); letter-spacing:1px; }
+  .ms { color:var(--border2); margin:0 12px; }
+
+  /* Analyst row */
+  .ar {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:1px; background:var(--border);
+    border:1px solid var(--border2); margin:32px 0 0;
+  }
+  @media(max-width:680px){ .ar { grid-template-columns:repeat(2,1fr); } }
+  .ac { background:var(--surface); padding:16px; text-align:center; }
+  .an { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--text2); text-transform:uppercase; margin-bottom:10px; }
+  .vp { display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; letter-spacing:2px; padding:4px 14px; }
+  .vp-hold { background:rgba(255,179,0,0.08); color:var(--orange2); border:1px solid rgba(255,179,0,0.25); }
+  .vp-buy  { background:rgba(67,160,71,0.08); color:var(--green); border:1px solid rgba(67,160,71,0.25); }
+  .vp-sell { background:rgba(229,57,53,0.08); color:var(--red); border:1px solid rgba(229,57,53,0.25); }
+
+  /* Final verdict */
+  .fv {
+    margin:12px 0 32px; padding:24px 28px;
+    background:linear-gradient(135deg,rgba(67,160,71,0.06),transparent);
+    border:1px solid rgba(67,160,71,0.2); border-left:5px solid var(--green);
+    display:flex; align-items:flex-start; gap:24px;
+  }
+  @media(max-width:600px){ .fv { flex-direction:column; gap:14px; header::after { display:none; } } }
+  .fvb {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:68px; font-weight:900; color:var(--green); line-height:0.85; min-width:160px; letter-spacing:2px;
+  }
+  .fvb span { display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; color:rgba(67,160,71,0.5); margin-top:8px; }
+  .fvc h2 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; color:var(--green); text-transform:uppercase; margin-bottom:10px; }
+  .fvc p { font-size:13px; line-height:1.7; color:var(--text); }
+
+  /* Metrics */
+  .mg { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border2); margin:28px 0; }
+  @media(max-width:700px){ .mg { grid-template-columns:repeat(2,1fr); } }
+  .mc { background:var(--surface); padding:16px 14px; position:relative; }
+  .mc::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .mc-bull::after { background:var(--green); }
+  .mc-bear::after { background:var(--red); }
+  .mc-warn::after { background:var(--orange); }
+  .mc-neu::after  { background:var(--muted); }
+  .mc-lbl { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text2); margin-bottom:8px; }
+  .mc-val { font-family:'Barlow Condensed',sans-serif; font-size:30px; font-weight:700; color:var(--white); line-height:1; margin-bottom:4px; }
+  .mc-sig { font-family:'IBM Plex Mono',monospace; font-size:10px; line-height:1.4; }
+  .mc-bull .mc-sig { color:var(--green); }
+  .mc-bear .mc-sig { color:var(--red); }
+  .mc-warn .mc-sig { color:var(--orange); }
+  .mc-neu  .mc-sig { color:var(--text2); }
+
+  section { margin:52px 0; }
+  .sh { display:flex; align-items:center; gap:14px; margin-bottom:22px; padding-bottom:10px; border-bottom:1px solid var(--border2); }
+  .sn { font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; color:var(--orange); letter-spacing:2px; }
+  .st { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:700; color:var(--white); letter-spacing:2px; }
+
+  .dg { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:600px){ .dg { grid-template-columns:1fr; } }
+  .dc { background:var(--surface); border:1px solid var(--border2); padding:20px; }
+  .dc-bull { border-top:3px solid var(--green); }
+  .dc-bear { border-top:3px solid var(--red); }
+  .dc h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; }
+  .dc-bull h3 { color:var(--green); }
+  .dc-bear h3 { color:var(--red); }
+  .fac { display:flex; gap:10px; font-size:12.5px; margin-bottom:10px; line-height:1.5; color:var(--text); }
+
+  /* OBV */
+  .obv-wrap { background:var(--surface); border:1px solid var(--border2); border-top:3px solid var(--blue); padding:24px; }
+  .obv-intro { font-size:13px; line-height:1.8; color:var(--text); margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border2); }
+  .obv-intro strong { color:var(--blue); }
+  .obv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  @media(max-width:600px){ .obv-grid { grid-template-columns:1fr; } }
+  .obv-card { background:var(--bg); border:1px solid var(--border2); padding:14px; }
+  .obv-card h4 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+  .obv-card p { font-size:12px; color:var(--text); line-height:1.6; }
+  .obv-bull h4 { color:var(--blue); }
+  .obv-warn h4 { color:var(--orange); }
+  .obv-bear h4 { color:var(--red); }
+  .obv-bull { border-top:2px solid var(--blue); }
+  .obv-warn { border-top:2px solid var(--orange); }
+  .obv-bear { border-top:2px solid var(--red); }
+
+  .obv-table { width:100%; border-collapse:collapse; font-size:12.5px; margin:16px 0; }
+  .obv-table th { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text2); padding:10px 12px; text-align:left; border-bottom:1px solid var(--border2); }
+  .obv-table td { padding:10px 12px; border-bottom:1px solid rgba(42,31,0,0.5); vertical-align:top; line-height:1.5; }
+  .obv-table tr:hover td { background:rgba(255,153,0,0.02); }
+
+  .obv-verdict { background:rgba(0,168,224,0.04); border:1px solid rgba(0,168,224,0.15); border-left:4px solid var(--blue); padding:16px 20px; margin-top:16px; font-size:13px; line-height:1.7; color:var(--text); }
+  .obv-verdict strong { color:var(--blue); }
+
+  /* Scale-in plan */
+  .scale-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  @media(max-width:700px){ .scale-grid { grid-template-columns:1fr; } }
+  .sbox { background:var(--surface); border:1px solid var(--border2); padding:18px; }
+  .sbox h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+  .sbox .bnum { font-family:'Barlow Condensed',sans-serif; font-size:40px; font-weight:700; line-height:1; margin:6px 0; }
+  .snote { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); margin-top:8px; line-height:1.5; }
+
+  .tag { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1px; padding:2px 8px; }
+  .tg-bull { background:rgba(67,160,71,0.07); color:var(--green); border:1px solid rgba(67,160,71,0.2); }
+  .tg-bear { background:rgba(229,57,53,0.07); color:var(--red); border:1px solid rgba(229,57,53,0.2); }
+  .tg-warn { background:rgba(255,153,0,0.07); color:var(--orange); border:1px solid rgba(255,153,0,0.2); }
+  .tg-blue { background:rgba(0,168,224,0.07); color:var(--blue); border:1px solid rgba(0,168,224,0.2); }
+
+  .trigger-box { background:var(--surface); border:1px solid var(--border2); border-left:4px solid var(--green); padding:18px 22px; margin:14px 0; }
+  .trigger-box h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:12px; }
+  .tr-row { display:flex; gap:12px; font-size:12.5px; padding:8px 0; border-bottom:1px solid rgba(42,31,0,0.4); line-height:1.5; color:var(--text); }
+  .tr-row:last-child { border-bottom:none; }
+  .trn { font-family:'Barlow Condensed',monospace; font-size:22px; font-weight:700; color:var(--orange); min-width:24px; line-height:1.2; }
+
+  .wb { background:rgba(229,57,53,0.03); border:1px solid rgba(229,57,53,0.15); border-left:4px solid var(--red); padding:16px 20px; margin:14px 0; font-size:13px; line-height:1.7; color:var(--text); }
+  .wb strong { color:var(--red); }
+
+  .sum-box { background:var(--surface); border:1px solid var(--border2); padding:24px; font-size:13px; line-height:1.85; color:var(--text); }
+  .sum-box p { margin-bottom:14px; }
+  .sum-box p:last-child { margin-bottom:0; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--orange); letter-spacing:1px; }
+
+  footer { border-top:1px solid var(--border2); padding:28px 0; margin-top:60px; }
+  .fi { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer p { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); letter-spacing:1px; }
+  .disc { background:rgba(255,153,0,0.02); border:1px solid rgba(255,153,0,0.08); padding:14px 18px; margin-top:20px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); line-height:1.6; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  .container > * { animation:fadeUp 0.5s ease both; }
+  header { animation-delay:0s; }
+  .ar { animation-delay:0.06s; }
+  .fv { animation-delay:0.10s; }
+  .mg { animation-delay:0.14s; }
+  section:nth-of-type(1) { animation-delay:0.18s; }
+  section:nth-of-type(2) { animation-delay:0.22s; }
+  section:nth-of-type(3) { animation-delay:0.26s; }
+  section:nth-of-type(4) { animation-delay:0.30s; }
+  section:nth-of-type(5) { animation-delay:0.34s; }
+  section:nth-of-type(6) { animation-delay:0.38s; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="eyebrow">NYSE · LLY · ELI LILLY AND COMPANY · 製藥／GLP-1</div>
+    <h1>Eli Lilly<br><em>LLY</em></h1>
+    <div class="meta-row">
+      <span class="mi">收盤參考 $1,431.67（11/16）</span><span class="ms">|</span><span class="mi">分析日 2026-11-16</span><span class="ms">|</span><span class="mi">三日輪替第 3 組</span><span class="ms">|</span><span class="mi">TradingAgents（Nemotron 免費模型）＋ Claude 幕僚校正</span>
+    </div>
+  </header>
+
+  <div class="ar">
+    <div class="ac"><div class="an">技術面</div><div class="vp vp-buy">多頭偏熱</div></div>
+    <div class="ac"><div class="an">基本面</div><div class="vp vp-buy">極強</div></div>
+    <div class="ac"><div class="an">交易員</div><div class="vp vp-buy">BUY</div></div>
+    <div class="ac"><div class="an">投資組合經理</div><div class="vp vp-buy">OVERWEIGHT</div></div>
+  </div>
+
+  <div class="fv" style="border-left-color:var(--green);background:linear-gradient(135deg, rgba(102,187,106,0.06), transparent)">
+    <div class="fvb" style="color:var(--green)">OVER<br>WEIGHT<span>投組經理最終裁決</span></div>
+    <div class="fvc">
+      <h2 style="color:var(--green)">最終裁決｜分三批進場，上限 1.25 倍常規權重</h2>
+      <p>首批於 10 日 EMA（$1,400–1,410）附近建立 0.5–0.75 倍常規權重；第二批 $1,280–1,310；第三批於 50 日線（$1,240–1,260）完成。總倉位上限 1.25 倍。硬停損 $1,180（跌破 50 日線並放量），獲利後改用 10 日 EMA 或 1.5 倍 ATR 移動停損。持有期 6–12 個月，追蹤 CapEx、FCF 拐點、醫保談判與 Kisunla 報銷數據。</p>
+    </div>
+  </div>
+
+  <div class="mg">
+    <div class="mc mc-neu"><div class="mc-lbl">收盤參考</div><div class="mc-val">$1,431.67</div><div class="mc-sig">11/16 收盤</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">50日SMA</div><div class="mc-val">$1,245.28</div><div class="mc-sig">▲ 現價高 15.0%</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">200日SMA</div><div class="mc-val">$1,108.29</div><div class="mc-sig">▲ 現價高 29.2%</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">MACD</div><div class="mc-val">55.99</div><div class="mc-sig">▲ 正值上升</div></div>
+    <div class="mc mc-warn"><div class="mc-lbl">RSI</div><div class="mc-val">67.0</div><div class="mc-sig">⚠ 接近超買</div></div>
+    <div class="mc mc-neu"><div class="mc-lbl">ATR</div><div class="mc-val">未提供</div><div class="mc-sig">報告未給出</div></div>
+    <div class="mc mc-bear"><div class="mc-lbl">硬停損</div><div class="mc-val">$1,180</div><div class="mc-sig">距現價 -17.6%</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">模型目標價</div><div class="mc-val">$1,525</div><div class="mc-sig">距現價 +6.5%（12 個月前瞻）</div></div>
+  </div>
+
+  <!-- 01 Bull vs Bear -->
+  <section>
+    <div class="sh"><span class="sn">01</span><span class="st">多空論戰</span></div>
+    <div class="dg">
+      <div class="dc dc-bull">
+        <h3>▲ 多方論點</h3>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>營收年增 38.6%、季營收跑率 $240 億+、毛利率 84%</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>GIP/GLP-1 雙重促效劑仍供不應求，定價力即護城河</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>11/12 中國核准口服減重藥 orforglipron，領先 Novo 進入中國</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>OBV 52 週 88.8 百分位，量價同步上漲</span></div>
+      </div>
+      <div class="dc dc-bear">
+        <h3>▼ 空方論點</h3>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>價格偏離 200 日線約 29%，RSI 67 接近超買</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>現金減半至約 $490 億、FCF 由 $60 億降至 $42 億</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>P/B 31.68，估值零容錯</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>IRA 醫保談判懸頂，保險業者對 Medicare 減重藥給付態度保守</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 OBV -->
+  <section>
+    <div class="sh"><span class="sn">02</span><span class="st">OBV 能量潮策略完整分析</span></div>
+    <div class="obv-wrap">
+      <div class="obv-intro"><strong>OBV（能量潮）</strong>以累積漲跌成交量判斷資金流向。以下數字皆來自 11/16 OBV JSON（以 50 日均量倍數正規化）。LLY 是本輪少數量價同步走強的標的。</div>
+      <div class="obv-grid">
+        <div class="obv-card obv-bull"><h4>✦ 長線 OBV 趨勢</h4><p>60 日價格 +14.04%、OBV +4.43 日均量，量價同步上漲確認多頭；OBV 位於 52 週 <strong>88.8 百分位</strong>，OBV 在 20 日 EMA 之上且 20EMA 高於 50EMA，長線資金持續流入。</p></div>
+        <div class="obv-card obv-warn"><h4>⚠ 近期 OBV</h4><p>20 日價格 +15.43%、OBV +4.27 日均量；20 日上漲/下跌量比 1.44，買方主導。不過 OBV 未創 60 日新高，價格漲幅略快於量能。</p></div>
+        <div class="obv-card obv-bear"><h4>▼ 量價背離與風險</h4><p>近 10 日爆量日為 11/5：量 1.89 倍 50 日均量、當日 -3.76%，大盤崩跌日的放量下跌。近 9 週淨量：+2.76、-2.84、+1.83、+3.39、-0.19、+6.06、-4.50、+3.33、-1.19，11/6 週 -4.50 後隨即 +3.33 回補。</p></div>
+      </div>
+      <table class="obv-table">
+        <thead><tr><th>OBV 訊號</th><th>當前狀況</th><th>研判</th><th>行動意義</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--white)"><strong>OBV 均線</strong></td><td>OBV > 20EMA > 50EMA</td><td><span class="tag tg-bull">多頭</span></td><td>趨勢健康，可依計畫分批</td></tr>
+          <tr><td style="color:var(--white)"><strong>20/60 日量價</strong></td><td>價 +15.4%/+14.0%，OBV +4.27/+4.43</td><td><span class="tag tg-bull">確認</span></td><td>上漲有量能支撐</td></tr>
+          <tr><td style="color:var(--white)"><strong>52 週百分位</strong></td><td>88.8%，未達 60 日新高</td><td><span class="tag tg-warn">高檔</span></td><td>價格略領先量能，追高宜分批</td></tr>
+          <tr><td style="color:var(--white)"><strong>爆量日</strong></td><td>11/5 量 1.89 倍、-3.76%</td><td><span class="tag tg-warn">大盤拖累</span></td><td>隔週即回補，非趨勢性出貨</td></tr>
+          <tr><td style="color:var(--white)"><strong>上漲/下跌量比</strong></td><td>20 日 1.44</td><td><span class="tag tg-bull">買方主導</span></td><td>支持首批在 10 日 EMA 附近</td></tr>
+        </tbody>
+      </table>
+      <div class="obv-verdict"><strong>OBV 綜合研判：</strong>OBV 與 Overweight 裁決<strong>一致</strong>：量價同步上漲、OBV 在高位階且均線多頭排列。唯一警訊是 OBV 未隨價格創 60 日新高，加上 RSI 67，追價風險升高；依計畫在 10 日 EMA 附近分批、而非一次到位，與資金面相符。</div>
+    </div>
+  </section>
+
+  <!-- 03 Plan -->
+  <section>
+    <div class="sh"><span class="sn">03</span><span class="st">交易計畫</span></div>
+    <div class="scale-grid">
+      <div class="sbox"><h3>首批</h3><div class="bnum" style="color:var(--green)">0.5–0.75×</div><div class="snote">10 日 EMA $1,400–1,410<br>常規權重倍數</div></div>
+      <div class="sbox"><h3>加碼區</h3><div class="bnum" style="color:var(--orange)">$1,240–1,310</div><div class="snote">第二、三批<br>回測 50 日線附近</div></div>
+      <div class="sbox"><h3>硬停損</h3><div class="bnum" style="color:var(--red)">$1,180</div><div class="snote">跌破 50 日線並放量<br>獲利後改移動停損</div></div>
+    </div>
+    <div class="trigger-box">
+      <h3>持續追蹤指標</h3>
+      <div class="tr-row"><div class="trn">01</div><div>季度 CapEx 軌跡與 FCF 拐點</div></div>
+      <div class="tr-row"><div class="trn">02</div><div>IRA／Medicare 減重藥給付與價格談判進度</div></div>
+      <div class="tr-row"><div class="trn">03</div><div>Kisunla 報銷數據與 orforglipron 全球上市節奏</div></div>
+    </div>
+    <div class="wb">⚠️ 交易員原提案為 1.5–2 倍常規權重、首批 $1,350–1,380；投組經理已下修為 1.25 倍上限、首批改在 10 日 EMA。</div>
+  </section>
+
+  <!-- 04 Summary -->
+  <section>
+    <div class="sh"><span class="sn">04</span><span class="st">幕僚戰略總評</span></div>
+    <div class="sum-box">
+      <p><strong style="color:var(--white)">投組經理結論：</strong>Overweight——基本面動能太強不宜只持有，技術與財務風險太實不宜大舉買入，以價格紀律超配。</p>
+      <p><strong style="color:var(--white)">風險團隊觀點：</strong>激進派強調供給限制即定價力；保守派強調現金減半、FCF 下滑與估值零容錯；中立派主張從 10 日 EMA 起步並降低至 1.25 倍，投組經理採納。</p>
+      <p><strong style="color:var(--orange)">① 新聞補充：</strong>11/12 中國藥監核准 LLY 口服減重藥 orforglipron，盤前漲約 2.8%，領先 Novo 口服 Wegovy；同時與 Richter 達成 estetrol 女性健康合作。在 11/16 科技股重挫中，醫療防禦股相對抗跌。</p>
+      <p><strong style="color:var(--orange)">② 可疑數據：</strong>報告「現金減半至 $490 億」與「FCF $60 億→$42 億」未見季度口徑說明，請以官方財報核對；報告收盤參考約 $1,443.50，11/16 實際 $1,431.67。報告未提供 ATR。</p>
+      <p><strong style="color:var(--orange)">③ 模型品質：</strong>本報告使用 OpenRouter 免費模型（NVIDIA Nemotron），常見單位錯誤、引用過期收盤價與推理跳躍，請作為參考而非唯一依據。</p>
+      <p><strong style="color:var(--orange)">④ 目標價說明：</strong>$1,525 為模型 12 個月前瞻估值，<strong>不是買進訊號</strong>；距現價僅 +6.5%，上行空間有限。</p>
+      <p>新聞來源：<a href="https://uk.finance.yahoo.com/news/eli-lilly-stock-rises-china-103812557.html" style="color:var(--orange2)" target="_blank" rel="noopener">Yahoo Finance：中國核准 orforglipron</a>、<a href="https://bnnbloomberg.ca/markets/nasdaq/2026/11/16/stocks-decline-on-tech-sell-off-as-concerns-over-the-nvidia-fallout-persist" style="color:var(--orange2)" target="_blank" rel="noopener">BNN Bloomberg 11/16</a></p>
+    </div>
+  </section>
+
+  <div class="disc">▶ 免責聲明｜本頁由 TradingAgents 多 Agent 系統（OpenRouter 免費模型 NVIDIA Nemotron）自動生成，OBV 數據由輪替腳本依 Yahoo 日線計算，Claude 補充新聞與校正。僅供研究參考，不構成投資建議。<a href="index.html" style="color:var(--orange2)">← 返回輪替監控</a></div>
+
+  <footer>
+    <div class="fi">
+      <p>© 2026 · PAK600 戰略研究室 · LLY · ROTATION WATCH · <a href="index.html" style="color:var(--orange2)">返回 index.html</a></p>
+      <p>TRADINGAGENTS + ANTHROPIC CLAUDE</p>
+    </div>
+  </footer>
+</div>
+<script data-goatcounter="https://pak600.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
