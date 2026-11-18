@@ -1,50 +1,50 @@
 [
  {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "source": "Yahoo Finance",
   "tag": "NVDA 半導體 🧠",
-  "title": "🧠 NVDA 財報前夕再跌 4%，美國收緊海外晶片存取",
-  "summary": "NVDA 收 $156.14（-4.1%），董事會傳不考慮讓黃仁勳回任；商務部限制中國客戶經海外資料中心使用先進晶片。11/17 盤後財報將左右 AI 半導體與 HBM 供應鏈走向。",
-  "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-16-dow-sp-500-nasdaq-nvidia-oil-091631084.html"
+  "title": "🧠 Nvidia 財報優於預期，宣布 1,500 億美元回購",
+  "summary": "Q3 營收 1,158 億美元、年增 103%，Q4 指引約 1,300 億美元高於預期。黃仁勳辭職後首份財報，盤後 Nebius、CoreWeave 跟漲，AI 算力需求敘事暫獲支撐。",
+  "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-17-222310679.html"
  },
  {
-  "date": "2026-11-16",
-  "source": "BNN Bloomberg",
+  "date": "2026-11-17",
+  "source": "Reuters",
   "tag": "總體 📉",
-  "title": "📉 科技股拖累美股連三跌，10 年期殖利率仍在 5.13%",
-  "summary": "S&P 500 -1.9%、Nasdaq -2.5%。10 年期殖利率 5.13%，遠高於月初 4.80% 低點；布蘭特原油跌 3.5% 稍解通膨壓力。高利率同時壓抑長債與高估值 AI 股。",
-  "url": "https://bnnbloomberg.ca/markets/nasdaq/2026/11/16/stocks-decline-on-tech-sell-off-as-concerns-over-the-nvidia-fallout-persist"
+  "title": "📉 美股四連跌，S&P 500 各類股全面下跌",
+  "summary": "S&P 500 跌 1.0%、Dow 跌 1.7%，9 月以來首見四連跌；12 月升息 1 碼機率約 95%。費半年初至今漲幅由 6 月高峰 106% 縮至約 34%，軟體股最弱。",
+  "url": "https://www.marketscreener.com/news/wall-street-ends-lower-ahead-of-nvidia-earnings-anthropic-debut-ce785edcdc8df226"
  },
  {
-  "date": "2026-11-16",
-  "source": "24/7 Wall St.",
-  "tag": "記憶體／SK 海力士 💾",
-  "title": "💾 SK 海力士一個月跌 16%，DRAM 訴訟獲准續行",
-  "summary": "SK 海力士 ADR 再跌約 6% 逼近 52 週低點，同期 MU 跌約 21%。指控三大記憶體廠聯手限制 DRAM 供給的集體訴訟獲准續行，NVDA 對 HBM 需求的評論為短線關鍵。",
-  "url": "https://247wallst.com/investing/2026/11/16/sk-hynix-is-down-16-in-a-month-what-will-it-take-to-get-skhy-stock-back-to-150/"
- },
- {
-  "date": "2026-11-16",
-  "source": "BNN Bloomberg",
-  "tag": "AI 電力基建 ⚡",
-  "title": "⚡ AI 基建股同步重挫，GE Vernova -4.9%",
-  "summary": "AI 股領跌擴散：CoreWeave -6.1%、GE Vernova -4.9%、Broadcom -3.9%。資料中心電力與算力題材在 NVDA 風波與高利率下評價承壓，液冷與電力設備波動恐放大。",
-  "url": "https://bnnbloomberg.ca/markets/nasdaq/2026/11/16/stocks-decline-on-tech-sell-off-as-concerns-over-the-nvidia-fallout-persist"
- },
- {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "source": "Yahoo Finance",
-  "tag": "黃金 GLD 🥇",
-  "title": "🥇 金價守在 $3,862，高實質利率仍是逆風",
-  "summary": "現貨金收約 $3,862（+0.24%），盤中逼近 2025 年 10 月以來低點。10 年期 TIPS 實質殖利率約 2.78%、名目殖利率逾 5.1%，持有黃金機會成本高，ETF 資金仍在流出。",
-  "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-16-dow-sp-500-nasdaq-nvidia-oil-091631084.html"
+  "tag": "利率／Fed 🏦",
+  "title": "🏦 Musalem 呼籲再升息，10 年期殖利率維持 5.1%",
+  "summary": "St. Louis Fed 總裁 Musalem 主張近期再升息，暗示春季前還有更多。高殖利率同時壓抑長債與高估值成長股，也推高電力基建等資本密集產業的融資成本。",
+  "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-17-dow-sp-500-nasdaq-nvidia-earnings-retail-sales-143848454.html"
  },
  {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "source": "Yahoo Finance",
-  "tag": "AI 軟體 🤖",
-  "title": "🤖 Anthropic 預計週四掛牌，目標估值約 1.4 兆美元",
-  "summary": "Anthropic 預計 11/19 開始交易，可能成為史上最大 IPO；Vanda Research 認為散戶需求恐創紀錄並排擠其他 AI 股。高估值 AI 軟體股短線面臨資金分流與估值重新比較。",
-  "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-16-dow-sp-500-nasdaq-nvidia-oil-091631084.html"
+  "tag": "GLW 光通訊 🔦",
+  "title": "🔦 傳美限制中國資料中心設備進口，康寧漲幅收斂",
+  "summary": "報導指美國將限制中國製資料中心設備進口，康寧盤中漲幅收斂。光纖與光通訊供應鏈可能受惠在地化，但細節未明；AI 光通訊股仍在機構拋售後整理。",
+  "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-17-dow-sp-500-nasdaq-nvidia-earnings-retail-sales-143848454.html"
+ },
+ {
+  "date": "2026-11-14",
+  "source": "Yahoo Finance",
+  "tag": "長債 TLT 📉",
+  "title": "📉 10 年期殖利率站上 5%，12 月升息幾成定局",
+  "summary": "10 月 CPI 月增 0.4% 高於預期，10 年期殖利率重回 5% 以上，10 月高點 5.34% 為 2002 年來最高。市場幾乎完全計價 12/9 升息，長天期公債與房市相關資產承壓。",
+  "url": "https://finance.yahoo.com/economy/policy/articles/wall-street-watching-troubling-move-170300570.html"
+ },
+ {
+  "date": "2026-11-12",
+  "source": "Nebius",
+  "tag": "NBIS AI 雲 ☁️",
+  "title": "☁️ Nebius 營收增 571%，資料中心延誤下修指引",
+  "summary": "Q3 營收 9.81 億美元優於預期，但資料中心延誤使 2026 營收降至指引低端，資本支出上調至約 270 億美元；首度給出 2027 營收 120–130 億美元指引。",
+  "url": "https://nebius.com/newsroom/nebius-reports-third-quarter-2026-financial-results"
  }
 ]

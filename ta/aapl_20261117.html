@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAPL 輪替分析｜2026-11-17</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=IBM+Plex+Mono:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0800;
+    --surface: #130e00;
+    --surface2: #1a1200;
+    --border: #2a1f00;
+    --border2: #3d2e00;
+    --orange: #ff9900;
+    --orange2: #ffb300;
+    --blue: #00a8e0;
+    --red: #e53935;
+    --green: #43a047;
+    --muted: #3d2e00;
+    --text: #c8a870;
+    --text2: #6a5020;
+    --white: #fff8e8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(255,153,0,0.06) 0%, transparent 50%),
+      linear-gradient(rgba(255,153,0,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,153,0,0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 36px 36px, 36px 36px;
+    pointer-events:none; z-index:0;
+  }
+  .container { max-width:1080px; margin:0 auto; padding:0 24px 80px; position:relative; z-index:1; }
+
+  header {
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--border2);
+    position:relative; overflow:hidden;
+  }
+  header::after {
+    content:'APPLE';
+    position:absolute; right:-20px; top:0;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:160px; font-weight:900;
+    color:rgba(255,153,0,0.04);
+    letter-spacing:4px; line-height:1;
+    pointer-events:none; white-space:nowrap;
+  }
+  .eyebrow {
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px; font-weight:600;
+    letter-spacing:4px; color:var(--orange);
+    text-transform:uppercase; margin-bottom:16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before { content:''; display:inline-block; width:28px; height:1px; background:var(--orange); }
+  h1 {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:clamp(60px,10vw,120px);
+    font-weight:900; line-height:0.85;
+    color:var(--white); letter-spacing:2px; margin-bottom:12px;
+  }
+  h1 em { font-style:normal; color:var(--orange); }
+  .meta-row { display:flex; align-items:center; gap:0; flex-wrap:wrap; margin-top:16px; }
+  .mi { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text2); letter-spacing:1px; }
+  .ms { color:var(--border2); margin:0 12px; }
+
+  /* Analyst row */
+  .ar {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:1px; background:var(--border);
+    border:1px solid var(--border2); margin:32px 0 0;
+  }
+  @media(max-width:680px){ .ar { grid-template-columns:repeat(2,1fr); } }
+  .ac { background:var(--surface); padding:16px; text-align:center; }
+  .an { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--text2); text-transform:uppercase; margin-bottom:10px; }
+  .vp { display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; letter-spacing:2px; padding:4px 14px; }
+  .vp-hold { background:rgba(255,179,0,0.08); color:var(--orange2); border:1px solid rgba(255,179,0,0.25); }
+  .vp-buy  { background:rgba(67,160,71,0.08); color:var(--green); border:1px solid rgba(67,160,71,0.25); }
+  .vp-sell { background:rgba(229,57,53,0.08); color:var(--red); border:1px solid rgba(229,57,53,0.25); }
+
+  /* Final verdict */
+  .fv {
+    margin:12px 0 32px; padding:24px 28px;
+    background:linear-gradient(135deg,rgba(67,160,71,0.06),transparent);
+    border:1px solid rgba(67,160,71,0.2); border-left:5px solid var(--green);
+    display:flex; align-items:flex-start; gap:24px;
+  }
+  @media(max-width:600px){ .fv { flex-direction:column; gap:14px; header::after { display:none; } } }
+  .fvb {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:68px; font-weight:900; color:var(--green); line-height:0.85; min-width:160px; letter-spacing:2px;
+  }
+  .fvb span { display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; color:rgba(67,160,71,0.5); margin-top:8px; }
+  .fvc h2 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; color:var(--green); text-transform:uppercase; margin-bottom:10px; }
+  .fvc p { font-size:13px; line-height:1.7; color:var(--text); }
+
+  /* Metrics */
+  .mg { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border2); margin:28px 0; }
+  @media(max-width:700px){ .mg { grid-template-columns:repeat(2,1fr); } }
+  .mc { background:var(--surface); padding:16px 14px; position:relative; }
+  .mc::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .mc-bull::after { background:var(--green); }
+  .mc-bear::after { background:var(--red); }
+  .mc-warn::after { background:var(--orange); }
+  .mc-neu::after  { background:var(--muted); }
+  .mc-lbl { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text2); margin-bottom:8px; }
+  .mc-val { font-family:'Barlow Condensed',sans-serif; font-size:30px; font-weight:700; color:var(--white); line-height:1; margin-bottom:4px; }
+  .mc-sig { font-family:'IBM Plex Mono',monospace; font-size:10px; line-height:1.4; }
+  .mc-bull .mc-sig { color:var(--green); }
+  .mc-bear .mc-sig { color:var(--red); }
+  .mc-warn .mc-sig { color:var(--orange); }
+  .mc-neu  .mc-sig { color:var(--text2); }
+
+  section { margin:52px 0; }
+  .sh { display:flex; align-items:center; gap:14px; margin-bottom:22px; padding-bottom:10px; border-bottom:1px solid var(--border2); }
+  .sn { font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; color:var(--orange); letter-spacing:2px; }
+  .st { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:700; color:var(--white); letter-spacing:2px; }
+
+  .dg { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:600px){ .dg { grid-template-columns:1fr; } }
+  .dc { background:var(--surface); border:1px solid var(--border2); padding:20px; }
+  .dc-bull { border-top:3px solid var(--green); }
+  .dc-bear { border-top:3px solid var(--red); }
+  .dc h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; }
+  .dc-bull h3 { color:var(--green); }
+  .dc-bear h3 { color:var(--red); }
+  .fac { display:flex; gap:10px; font-size:12.5px; margin-bottom:10px; line-height:1.5; color:var(--text); }
+
+  /* OBV */
+  .obv-wrap { background:var(--surface); border:1px solid var(--border2); border-top:3px solid var(--blue); padding:24px; }
+  .obv-intro { font-size:13px; line-height:1.8; color:var(--text); margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border2); }
+  .obv-intro strong { color:var(--blue); }
+  .obv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  @media(max-width:600px){ .obv-grid { grid-template-columns:1fr; } }
+  .obv-card { background:var(--bg); border:1px solid var(--border2); padding:14px; }
+  .obv-card h4 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+  .obv-card p { font-size:12px; color:var(--text); line-height:1.6; }
+  .obv-bull h4 { color:var(--blue); }
+  .obv-warn h4 { color:var(--orange); }
+  .obv-bear h4 { color:var(--red); }
+  .obv-bull { border-top:2px solid var(--blue); }
+  .obv-warn { border-top:2px solid var(--orange); }
+  .obv-bear { border-top:2px solid var(--red); }
+
+  .obv-table { width:100%; border-collapse:collapse; font-size:12.5px; margin:16px 0; }
+  .obv-table th { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text2); padding:10px 12px; text-align:left; border-bottom:1px solid var(--border2); }
+  .obv-table td { padding:10px 12px; border-bottom:1px solid rgba(42,31,0,0.5); vertical-align:top; line-height:1.5; }
+  .obv-table tr:hover td { background:rgba(255,153,0,0.02); }
+
+  .obv-verdict { background:rgba(0,168,224,0.04); border:1px solid rgba(0,168,224,0.15); border-left:4px solid var(--blue); padding:16px 20px; margin-top:16px; font-size:13px; line-height:1.7; color:var(--text); }
+  .obv-verdict strong { color:var(--blue); }
+
+  /* Scale-in plan */
+  .scale-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  @media(max-width:700px){ .scale-grid { grid-template-columns:1fr; } }
+  .sbox { background:var(--surface); border:1px solid var(--border2); padding:18px; }
+  .sbox h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+  .sbox .bnum { font-family:'Barlow Condensed',sans-serif; font-size:40px; font-weight:700; line-height:1; margin:6px 0; }
+  .snote { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); margin-top:8px; line-height:1.5; }
+
+  .tag { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1px; padding:2px 8px; }
+  .tg-bull { background:rgba(67,160,71,0.07); color:var(--green); border:1px solid rgba(67,160,71,0.2); }
+  .tg-bear { background:rgba(229,57,53,0.07); color:var(--red); border:1px solid rgba(229,57,53,0.2); }
+  .tg-warn { background:rgba(255,153,0,0.07); color:var(--orange); border:1px solid rgba(255,153,0,0.2); }
+  .tg-blue { background:rgba(0,168,224,0.07); color:var(--blue); border:1px solid rgba(0,168,224,0.2); }
+
+  .trigger-box { background:var(--surface); border:1px solid var(--border2); border-left:4px solid var(--green); padding:18px 22px; margin:14px 0; }
+  .trigger-box h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:12px; }
+  .tr-row { display:flex; gap:12px; font-size:12.5px; padding:8px 0; border-bottom:1px solid rgba(42,31,0,0.4); line-height:1.5; color:var(--text); }
+  .tr-row:last-child { border-bottom:none; }
+  .trn { font-family:'Barlow Condensed',monospace; font-size:22px; font-weight:700; color:var(--orange); min-width:24px; line-height:1.2; }
+
+  .wb { background:rgba(229,57,53,0.03); border:1px solid rgba(229,57,53,0.15); border-left:4px solid var(--red); padding:16px 20px; margin:14px 0; font-size:13px; line-height:1.7; color:var(--text); }
+  .wb strong { color:var(--red); }
+
+  .sum-box { background:var(--surface); border:1px solid var(--border2); padding:24px; font-size:13px; line-height:1.85; color:var(--text); }
+  .sum-box p { margin-bottom:14px; }
+  .sum-box p:last-child { margin-bottom:0; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--orange); letter-spacing:1px; }
+
+  footer { border-top:1px solid var(--border2); padding:28px 0; margin-top:60px; }
+  .fi { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer p { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); letter-spacing:1px; }
+  .disc { background:rgba(255,153,0,0.02); border:1px solid rgba(255,153,0,0.08); padding:14px 18px; margin-top:20px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); line-height:1.6; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  .container > * { animation:fadeUp 0.5s ease both; }
+  header { animation-delay:0s; }
+  .ar { animation-delay:0.06s; }
+  .fv { animation-delay:0.10s; }
+  .mg { animation-delay:0.14s; }
+  section:nth-of-type(1) { animation-delay:0.18s; }
+  section:nth-of-type(2) { animation-delay:0.22s; }
+  section:nth-of-type(3) { animation-delay:0.26s; }
+  section:nth-of-type(4) { animation-delay:0.30s; }
+  section:nth-of-type(5) { animation-delay:0.34s; }
+  section:nth-of-type(6) { animation-delay:0.38s; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="eyebrow">NASDAQ · AAPL · APPLE INC. · 消費電子／服務平台</div>
+    <h1>Apple<br><em>AAPL</em></h1>
+    <div class="meta-row">
+      <span class="mi">收盤參考 $351.91（11/17）</span><span class="ms">|</span><span class="mi">分析日 2026-11-17</span><span class="ms">|</span><span class="mi">三日輪替第 1 組</span><span class="ms">|</span><span class="mi">TradingAgents（Nemotron 免費模型）＋ Claude 幕僚校正</span>
+    </div>
+  </header>
+
+  <div class="ar">
+    <div class="ac"><div class="an">技術面</div><div class="vp vp-buy">多頭排列</div></div>
+    <div class="ac"><div class="an">基本面</div><div class="vp vp-hold">獲利穩／估值高</div></div>
+    <div class="ac"><div class="an">交易員</div><div class="vp vp-sell">SELL</div></div>
+    <div class="ac"><div class="an">投資組合經理</div><div class="vp vp-sell">UNDERWEIGHT</div></div>
+  </div>
+
+  <div class="fv" style="border-left-color:var(--red);background:linear-gradient(135deg, rgba(239,83,80,0.06), transparent)">
+    <div class="fvb" style="color:var(--red)">UNDER<br>WEIGHT<span>投組經理最終裁決</span></div>
+    <div class="fvc">
+      <h2 style="color:var(--red)">最終裁決｜$355–360 阻力區減碼 25–35%</h2>
+      <p>模型建議於 $355–360 阻力區分批減碼 25–35%，資金轉為現金或估值較具吸引力的標的；單一個股權重上限 3–4%，持有期 3–6 個月。模型的回補條件為股價跌破 50 日線（約 $340）且 MACD 確認死叉後分批回補。</p>
+    </div>
+  </div>
+
+  <div class="mg">
+    <div class="mc mc-neu"><div class="mc-lbl">收盤參考</div><div class="mc-val">$351.91</div><div class="mc-sig">11/17 收盤（報告用 $352.78）</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">50日SMA</div><div class="mc-val">$340.17</div><div class="mc-sig">▲ 現價高 3.5%</div></div>
+    <div class="mc mc-bull"><div class="mc-lbl">200日SMA</div><div class="mc-val">$301.72</div><div class="mc-sig">▲ 現價高 16.6%</div></div>
+    <div class="mc mc-warn"><div class="mc-lbl">MACD</div><div class="mc-val">4.09</div><div class="mc-sig">⚠ 高於訊號線 3.60，柱體收斂</div></div>
+    <div class="mc mc-neu"><div class="mc-lbl">RSI</div><div class="mc-val">56.3</div><div class="mc-sig">中性偏多</div></div>
+    <div class="mc mc-neu"><div class="mc-lbl">ATR</div><div class="mc-val">—</div><div class="mc-sig">報告未提供</div></div>
+    <div class="mc mc-warn"><div class="mc-lbl">減碼區</div><div class="mc-val">$355–360</div><div class="mc-sig">距現價 +0.9%／+2.3%</div></div>
+    <div class="mc mc-bear"><div class="mc-lbl">模型目標價</div><div class="mc-val">$325</div><div class="mc-sig">距現價 -7.6%</div></div>
+  </div>
+
+  <!-- 01 Bull vs Bear -->
+  <section>
+    <div class="sh"><span class="sn">01</span><span class="st">多空論戰</span></div>
+    <div class="dg">
+      <div class="dc dc-bull">
+        <h3>▲ 多方論點</h3>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>季營收 $1,144.8 億、淨利率約 27%，獲利穩定</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>TTM 自由現金流約 $258.6 億，持續回購與配息</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>價格站上 10/50/200 日線，50 日線仍上升</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>距 52 週高點 $360.83 僅 2.5%</span></div>
+      </div>
+      <div class="dc dc-bear">
+        <h3>▼ 空方論點</h3>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>前瞻本益比 33.3、PEG 2.85、市淨率 45.6，估值無安全邊際</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>記憶體晶片價格上漲壓縮硬體毛利</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>中國市場份額流失、歐盟 DMA 衝擊 App Store 抽成</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>OBV 20/60 日皆為看空背離</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>科技股遭機構賣壓，最大權重股首當其衝</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 OBV -->
+  <section>
+    <div class="sh"><span class="sn">02</span><span class="st">OBV 能量潮策略完整分析</span></div>
+    <div class="obv-wrap">
+      <div class="obv-intro"><strong>OBV（能量潮）</strong>以累積漲跌成交量判斷資金流向。以下數字皆來自 11/17 OBV JSON（以 50 日均量倍數正規化）。AAPL 的量價出現<strong>看空背離</strong>：股價走高但資金沒有跟上。</div>
+      <div class="obv-grid">
+        <div class="obv-card obv-bull"><h4>✦ 長線 OBV 趨勢</h4><p>60 日價格 +13.39%、OBV -0.42 日均量，判讀為「看空背離（價漲量虛，疑似派發）」。OBV 位於 52 週 75.4 百分位，長線籌碼仍在高檔。</p></div>
+        <div class="obv-card obv-warn"><h4>⚠ 近期 OBV</h4><p>20 日價格 +3.66%、OBV -4.66 日均量，同樣看空背離，近期流出明顯；20 日上漲/下跌量比 0.65。OBV 低於 20 日 EMA，20EMA 低於 50EMA。</p></div>
+        <div class="obv-card obv-bear"><h4>▼ 量價背離與風險</h4><p>近 10 日爆量日 11/4：量 2.05 倍 50 日均量、當日 +5.31%（財報後大漲）。近 9 週淨量：+1.13、-0.56、+0.63、+3.09、-0.63、-1.46、-3.63、+1.41、-1.97，財報後多數週為淨流出。</p></div>
+      </div>
+      <table class="obv-table">
+        <thead><tr><th>OBV 訊號</th><th>當前狀況</th><th>研判</th><th>行動意義</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--white)"><strong>20 日量價</strong></td><td>價 +3.7%，OBV -4.66</td><td><span class="tag tg-bear">看空背離</span></td><td>股價高檔但資金流出</td></tr>
+          <tr><td style="color:var(--white)"><strong>60 日量價</strong></td><td>價 +13.4%，OBV -0.42</td><td><span class="tag tg-warn">看空背離</span></td><td>漲勢未獲量能確認</td></tr>
+          <tr><td style="color:var(--white)"><strong>52 週百分位</strong></td><td>75.4%，非 60 日新高</td><td><span class="tag tg-warn">偏高</span></td><td>長線籌碼仍穩</td></tr>
+          <tr><td style="color:var(--white)"><strong>爆量日</strong></td><td>11/4 量 2.05 倍、+5.31%</td><td><span class="tag tg-bull">財報買盤</span></td><td>之後未延續</td></tr>
+          <tr><td style="color:var(--white)"><strong>上漲/下跌量比</strong></td><td>20 日 0.65</td><td><span class="tag tg-bear">賣量較大</span></td><td>跌破 50 日線前不宜追高</td></tr>
+        </tbody>
+      </table>
+      <div class="obv-verdict"><strong>OBV 綜合研判：</strong>價格接近 52 週高點，但 OBV 20 日流出 4.66 日均量、量比 0.65，<strong>看空背離</strong>明確。財報日的爆量上漲之後買盤沒有延續，支持模型「高檔減碼」的方向；OBV 52 週 75.4 百分位代表長線籌碼並未瓦解，屬調節而非出清。</div>
+    </div>
+  </section>
+
+  <!-- 03 Plan -->
+  <section>
+    <div class="sh"><span class="sn">03</span><span class="st">交易計畫</span></div>
+    <div class="scale-grid">
+      <div class="sbox"><h3>減碼幅度</h3><div class="bnum" style="color:var(--red)">25–35%</div><div class="snote">$355–360 阻力區分批<br>（交易員同步）</div></div>
+      <div class="sbox"><h3>單一上限</h3><div class="bnum" style="color:var(--orange)">3–4%</div><div class="snote">投資組合權重</div></div>
+      <div class="sbox"><h3>模型目標</h3><div class="bnum" style="color:var(--green)">$325</div><div class="snote">距現價 -7.6%</div></div>
+    </div>
+    <div class="trigger-box">
+      <h3>觀察與回補條件</h3>
+      <div class="tr-row"><div class="trn">01</div><div>反彈至 <strong>$355–360</strong>（距現價 +0.9%／+2.3%）為模型減碼區</div></div>
+      <div class="tr-row"><div class="trn">02</div><div>跌破 50 日線 <strong>約 $340</strong> 且 MACD 死叉時，模型才考慮回補</div></div>
+      <div class="tr-row"><div class="trn">03</div><div>OBV 重新站回 20 日 EMA，代表背離解除</div></div>
+    </div>
+    <div class="wb">⚠️ 模型「跌破 50 日線且 MACD 死叉後才回補」屬於在下跌趨勢確認後買進，邏輯與停損常規相反；報告未設停損，也未提供 ATR。</div>
+  </section>
+
+  <!-- 04 Summary -->
+  <section>
+    <div class="sh"><span class="sn">04</span><span class="st">幕僚戰略總評</span></div>
+    <div class="sum-box">
+      <p><strong style="color:var(--white)">投組經理結論：</strong>Underweight——估值無安全邊際、動能轉弱，於阻力區分批減碼。</p>
+      <p><strong style="color:var(--white)">風險團隊觀點：</strong>激進派強調非對稱下行風險；中立派主張分批減碼降低時機風險；保守派認為現金流護城河仍在，反對大幅減碼。</p>
+      <p><strong style="color:var(--orange)">① 新聞補充：</strong>11/11 Motley Fool：Apple 雖創單季營收紀錄，但記憶體晶片價格上漲壓縮獲利，股價自財報後高點回落。11/17 美股四連跌，S&P 500 各類股全面下跌；Nvidia 盤後財報優於預期。</p>
+      <p><strong style="color:var(--orange)">② 可疑數據：</strong>決策稿稱「MACD 柱狀圖由 4.21 收斂至 4.09」，4.21／4.09 實為 MACD 線數值，柱狀圖約 0.49（4.09−3.60）。季度營收、淨利、現金流數字與原表一致；市值「5.11 兆美元」與股價量級相符。</p>
+      <p><strong style="color:var(--orange)">③ 模型品質：</strong>本報告使用 OpenRouter 免費模型（NVIDIA Nemotron），常見單位錯誤、引用過期收盤價與推理跳躍，請作為參考而非唯一依據。</p>
+      <p><strong style="color:var(--orange)">④ 目標價說明：</strong>目標價為模型 12 個月前瞻估值，<strong>不是買進訊號</strong>；$325 低於現價 7.6%。</p>
+      <p>新聞來源：<a href="https://fool.com/investing/2026/11/11/why-apple-stock-fell-despite-a-record-quarter" style="color:var(--orange2)" target="_blank" rel="noopener">Motley Fool：Apple 創紀錄季度後為何下跌</a>、<a href="https://www.marketscreener.com/news/wall-street-ends-lower-ahead-of-nvidia-earnings-anthropic-debut-ce785edcdc8df226" style="color:var(--orange2)" target="_blank" rel="noopener">Reuters／MarketScreener 11/17 收盤</a></p>
+    </div>
+  </section>
+
+
+  <!-- 05 Staff Review -->
+  <section>
+    <div class="sh"><span class="sn">05</span><span class="st">幕僚複審辯論</span></div>
+    <div class="obv-wrap">
+      <div class="obv-intro"><strong>複審方法：</strong>以 TradingAgents 分析師提供的原始數據（技術面、基本面、OBV），先以 11/17 收盤價 $351.91 校正，並補查近期新聞，再由幕僚獨立進行一輪多空辯論。標示為「疑似錯誤」的數據不作為論據。</div>
+      <table class="obv-table">
+        <thead><tr><th>數據</th><th>報告值</th><th>校正後</th><th>狀態</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--white)"><strong>收盤價</strong></td><td>$352.78（11/16）</td><td>$351.91（11/17）</td><td><span class="tag tg-warn">報告過期</span></td></tr>
+          <tr><td style="color:var(--white)"><strong>距 50 日線</strong></td><td>+$12.6</td><td>+$11.7（+3.5%）</td><td><span class="tag tg-bull">已驗證</span></td></tr>
+          <tr><td style="color:var(--white)"><strong>MACD 柱狀圖</strong></td><td>4.21 → 4.09</td><td>4.09 為 MACD 線，柱體約 0.49</td><td><span class="tag tg-warn">疑似錯誤</span></td></tr>
+          <tr><td style="color:var(--white)"><strong>估值</strong></td><td>前瞻 P/E 33、PEG 2.85</td><td>與原表一致</td><td><span class="tag tg-bull">已驗證</span></td></tr>
+          <tr><td style="color:var(--white)"><strong>記憶體成本</strong></td><td>未量化</td><td>DRAM 漲價壓縮硬體毛利</td><td><span class="tag tg-blue">幕僚補充</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="dg">
+      <div class="dc dc-bull">
+        <h3>▲ 多方最強論證</h3>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>淨利率約 27%、TTM 自由現金流約 $259 億，現金流護城河仍在</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>價格站上 50/200 日線，OBV 52 週 75.4 百分位</span></div>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>距 52 週高點僅 2.5%，趨勢仍向上</span></div>
+      </div>
+      <div class="dc dc-bear">
+        <h3>▼ 空方最強論證</h3>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>OBV 20 日 -4.66 日均量、60 日 -0.42，價漲量虛的看空背離</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>前瞻本益比 33、PEG 2.85，10 年期殖利率 5.1% 下估值壓力最大</span></div>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>記憶體成本上升直接衝擊硬體毛利</span></div>
+      </div>
+    </div>
+    <div class="trigger-box">
+      <h3>交叉反駁</h3>
+      <div class="tr-row"><div class="trn">01</div><div>多方回應：財報創紀錄、趨勢向上，高估值有現金流支撐，不必急著減碼。</div></div>
+      <div class="tr-row"><div class="trn">02</div><div>空方回應：在殖利率 5% 以上時，33 倍本益比需要更快的成長；OBV 顯示買盤正在退場。</div></div>
+      <div class="tr-row"><div class="trn">03</div><div>勝負關鍵：<strong>OBV 看空背離＋利率</strong>。價格強但資金不跟，在高利率環境下，估值溢價最容易被壓縮。</div></div>
+    </div>
+    <div class="sum-box">
+      <p><strong style="color:var(--white)">幕僚評級：</strong><span class="vp vp-sell" style="display:inline-block;margin:0 8px">UNDERWEIGHT</span>與模型一致</p>
+      <p>與模型一致。OBV 20/60 日看空背離與高估值支持高檔減碼；但趨勢仍在 50/200 日線上方、OBV 長線位階 75.4，屬調節而非出清，所以不降為 Sell。</p>
+      <p><strong style="color:var(--orange)">依現價的觀察條件：</strong></p><p>▶ $355–360 為模型減碼區；跌破 50 日線 $340.17 代表趨勢轉弱</p><p>▶ OBV 站回 20 日 EMA、量比回升至 1.0 以上，背離才算解除</p><p>▶ 記憶體價格走勢與 12 月 FOMC 對高估值大型股的影響</p>
+      <p style="color:var(--muted)">幕僚複審使用與模型相同的原始資料，只是加上資料校正、最新價格與補查新聞，並非獨立資料來源；僅供研究參考。</p>
+    </div>
+  </section>
+
+  <div class="disc">▶ 免責聲明｜本頁由 TradingAgents 多 Agent 系統（OpenRouter 免費模型 NVIDIA Nemotron）自動生成，OBV 數據由輪替腳本依 Yahoo 日線計算，Claude 補充新聞與校正。僅供研究參考，不構成投資建議。<a href="index.html" style="color:var(--orange2)">← 返回輪替監控</a></div>
+
+  <footer>
+    <div class="fi">
+      <p>© 2026 · PAK600 戰略研究室 · AAPL · ROTATION WATCH · <a href="index.html" style="color:var(--orange2)">返回 index.html</a></p>
+      <p>TRADINGAGENTS + ANTHROPIC CLAUDE</p>
+    </div>
+  </footer>
+</div>
+<script data-goatcounter="https://pak600.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
