@@ -1,50 +1,42 @@
 [
  {
-  "date": "2026-11-17",
-  "source": "Yahoo Finance",
-  "tag": "NVDA 半導體 🧠",
-  "title": "🧠 Nvidia 財報優於預期，宣布 1,500 億美元回購",
-  "summary": "Q3 營收 1,158 億美元、年增 103%，Q4 指引約 1,300 億美元高於預期。黃仁勳辭職後首份財報，盤後 Nebius、CoreWeave 跟漲，AI 算力需求敘事暫獲支撐。",
-  "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-17-222310679.html"
- },
- {
-  "date": "2026-11-17",
-  "source": "Reuters",
+  "date": "2026-11-18",
+  "source": "Bloomberg",
   "tag": "總體 📉",
-  "title": "📉 美股四連跌，S&P 500 各類股全面下跌",
-  "summary": "S&P 500 跌 1.0%、Dow 跌 1.7%，9 月以來首見四連跌；12 月升息 1 碼機率約 95%。費半年初至今漲幅由 6 月高峰 106% 縮至約 34%，軟體股最弱。",
-  "url": "https://www.marketscreener.com/news/wall-street-ends-lower-ahead-of-nvidia-earnings-anthropic-debut-ce785edcdc8df226"
+  "title": "📉 美股五連跌，10 年期殖利率回落至 5.06%、金價重挫 2.7%",
+  "summary": "S&P 500 五連跌；債市反彈使 10 年期殖利率降至 5.06%，但 Fed 理事 Waller 稱通膨仍往錯誤方向。金價跌 2.7% 至 3,744 美元、美元走強，長債與黃金同受利率主導。",
+  "url": "https://www.swissinfo.ch/eng/stocks-fall-as-nvidias-earnings-rally-sputters:-markets-wrap/92397458"
+ },
+ {
+  "date": "2026-11-18",
+  "source": "Yahoo Finance",
+  "tag": "記憶體 SK 海力士 💾",
+  "title": "💾 Nvidia 財報後漲轉跌，Kospi 由 SK 海力士領漲 2%",
+  "summary": "Nvidia 開盤漲 2.7% 後翻黑跌 2.6%，美光由漲轉跌 3%、CoreWeave 跌 5.8%。亞洲盤 Kospi 漲 2%，由三星與 SK 海力士帶動，記憶體在 AI 股震盪中仍有承接。",
+  "url": "https://ca.finance.yahoo.com/news/asian-markets-mostly-decline-wall-035255840.html"
  },
  {
   "date": "2026-11-17",
-  "source": "Yahoo Finance",
-  "tag": "利率／Fed 🏦",
-  "title": "🏦 Musalem 呼籲再升息，10 年期殖利率維持 5.1%",
-  "summary": "St. Louis Fed 總裁 Musalem 主張近期再升息，暗示春季前還有更多。高殖利率同時壓抑長債與高估值成長股，也推高電力基建等資本密集產業的融資成本。",
-  "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-17-dow-sp-500-nasdaq-nvidia-earnings-retail-sales-143848454.html"
+  "source": "CNBC",
+  "tag": "NVDA 半導體 🧠",
+  "title": "🧠 Nvidia Q3 營收 1,158 億美元，Q4 指引 1,300 億",
+  "summary": "Q3 營收年增約 103%、資料中心 1,076 億美元；Q4 指引約 1,300 億美元優於預期，並追加 1,500 億美元回購。對台積電、光通訊與記憶體供應鏈是需求面的正面訊號。",
+  "url": "https://www.cnbc.com/2026/11/17/nvidia-nvda-earnings-report-q3-2027.html"
  },
  {
   "date": "2026-11-17",
-  "source": "Yahoo Finance",
-  "tag": "GLW 光通訊 🔦",
-  "title": "🔦 傳美限制中國資料中心設備進口，康寧漲幅收斂",
-  "summary": "報導指美國將限制中國製資料中心設備進口，康寧盤中漲幅收斂。光纖與光通訊供應鏈可能受惠在地化，但細節未明；AI 光通訊股仍在機構拋售後整理。",
-  "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-17-dow-sp-500-nasdaq-nvidia-earnings-retail-sales-143848454.html"
+  "source": "Seeking Alpha",
+  "tag": "NVDA 治理 ⚖️",
+  "title": "⚖️ Nvidia 董事長：黃仁勳不會回任執行長",
+  "summary": "財報優於預期並擴大回購，但董事長表示黃仁勳不會回任；他 11/12 辭職後已被要求赴國會作證。治理不確定性與 AI 支出放緩疑慮，仍壓抑 AI 半導體評價。",
+  "url": "https://seekingalpha.com/news/4673703-nvidia-perks-up-as-q3-results-guidance-top-estimates-adds-150b-to-buyback"
  },
  {
-  "date": "2026-11-14",
-  "source": "Yahoo Finance",
-  "tag": "長債 TLT 📉",
-  "title": "📉 10 年期殖利率站上 5%，12 月升息幾成定局",
-  "summary": "10 月 CPI 月增 0.4% 高於預期，10 年期殖利率重回 5% 以上，10 月高點 5.34% 為 2002 年來最高。市場幾乎完全計價 12/9 升息，長天期公債與房市相關資產承壓。",
-  "url": "https://finance.yahoo.com/economy/policy/articles/wall-street-watching-troubling-move-170300570.html"
- },
- {
-  "date": "2026-11-12",
-  "source": "Nebius",
-  "tag": "NBIS AI 雲 ☁️",
-  "title": "☁️ Nebius 營收增 571%，資料中心延誤下修指引",
-  "summary": "Q3 營收 9.81 億美元優於預期，但資料中心延誤使 2026 營收降至指引低端，資本支出上調至約 270 億美元；首度給出 2027 營收 120–130 億美元指引。",
-  "url": "https://nebius.com/newsroom/nebius-reports-third-quarter-2026-financial-results"
+  "date": "2026-11-13",
+  "source": "Motley Fool",
+  "tag": "NBIS AI 雲端 ☁️",
+  "title": "☁️ Nebius 容量延遲下修 ARR 目標，股價兩日重挫",
+  "summary": "Q3 營收年增 571% 至 9.81 億美元，但第三方機房延遲，ARR 目標改為 2027 年 2 月約 70 億美元並上調資本支出。AI 雲端瓶頸已從 GPU 轉向電力與機房交付。",
+  "url": "https://fool.com/investing/2026/11/13/why-nebius-group-stock-plunged-again-today"
  }
 ]
