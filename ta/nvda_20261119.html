@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVDA 輪替分析｜2026-11-19</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=IBM+Plex+Mono:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0800;
+    --surface: #130e00;
+    --surface2: #1a1200;
+    --border: #2a1f00;
+    --border2: #3d2e00;
+    --orange: #ff9900;
+    --orange2: #ffb300;
+    --blue: #00a8e0;
+    --red: #e53935;
+    --green: #43a047;
+    --muted: #3d2e00;
+    --text: #c8a870;
+    --text2: #6a5020;
+    --white: #fff8e8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(255,153,0,0.06) 0%, transparent 50%),
+      linear-gradient(rgba(255,153,0,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,153,0,0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 36px 36px, 36px 36px;
+    pointer-events:none; z-index:0;
+  }
+  .container { max-width:1080px; margin:0 auto; padding:0 24px 80px; position:relative; z-index:1; }
+
+  header {
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--border2);
+    position:relative; overflow:hidden;
+  }
+  header::after {
+    content:'TREASURY';
+    position:absolute; right:-20px; top:0;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:160px; font-weight:900;
+    color:rgba(255,153,0,0.04);
+    letter-spacing:4px; line-height:1;
+    pointer-events:none; white-space:nowrap;
+  }
+  .eyebrow {
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px; font-weight:600;
+    letter-spacing:4px; color:var(--orange);
+    text-transform:uppercase; margin-bottom:16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before { content:''; display:inline-block; width:28px; height:1px; background:var(--orange); }
+  h1 {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:clamp(60px,10vw,120px);
+    font-weight:900; line-height:0.85;
+    color:var(--white); letter-spacing:2px; margin-bottom:12px;
+  }
+  h1 em { font-style:normal; color:var(--orange); }
+  .meta-row { display:flex; align-items:center; gap:0; flex-wrap:wrap; margin-top:16px; }
+  .mi { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text2); letter-spacing:1px; }
+  .ms { color:var(--border2); margin:0 12px; }
+
+  /* Analyst row */
+  .ar {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:1px; background:var(--border);
+    border:1px solid var(--border2); margin:32px 0 0;
+  }
+  @media(max-width:680px){ .ar { grid-template-columns:repeat(2,1fr); } }
+  .ac { background:var(--surface); padding:16px; text-align:center; }
+  .an { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--text2); text-transform:uppercase; margin-bottom:10px; }
+  .vp { display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; letter-spacing:2px; padding:4px 14px; }
+  .vp-hold { background:rgba(255,179,0,0.08); color:var(--orange2); border:1px solid rgba(255,179,0,0.25); }
+  .vp-buy  { background:rgba(67,160,71,0.08); color:var(--green); border:1px solid rgba(67,160,71,0.25); }
+  .vp-sell { background:rgba(229,57,53,0.08); color:var(--red); border:1px solid rgba(229,57,53,0.25); }
+
+  /* Final verdict */
+  .fv {
+    margin:12px 0 32px; padding:24px 28px;
+    background:linear-gradient(135deg,rgba(67,160,71,0.06),transparent);
+    border:1px solid rgba(67,160,71,0.2); border-left:5px solid var(--green);
+    display:flex; align-items:flex-start; gap:24px;
+  }
+  @media(max-width:600px){ .fv { flex-direction:column; gap:14px; header::after { display:none; } } }
+  .fvb {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:68px; font-weight:900; color:var(--green); line-height:0.85; min-width:160px; letter-spacing:2px;
+  }
+  .fvb span { display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; color:rgba(67,160,71,0.5); margin-top:8px; }
+  .fvc h2 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; color:var(--green); text-transform:uppercase; margin-bottom:10px; }
+  .fvc p { font-size:13px; line-height:1.7; color:var(--text); }
+
+  /* Metrics */
+  .mg { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border2); margin:28px 0; }
+  @media(max-width:700px){ .mg { grid-template-columns:repeat(2,1fr); } }
+  .mc { background:var(--surface); padding:16px 14px; position:relative; }
+  .mc::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .mc-bull::after { background:var(--green); }
+  .mc-bear::after { background:var(--red); }
+  .mc-warn::after { background:var(--orange); }
+  .mc-neu::after  { background:var(--muted); }
+  .mc-lbl { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text2); margin-bottom:8px; }
+  .mc-val { font-family:'Barlow Condensed',sans-serif; font-size:30px; font-weight:700; color:var(--white); line-height:1; margin-bottom:4px; }
+  .mc-sig { font-family:'IBM Plex Mono',monospace; font-size:10px; line-height:1.4; }
+  .mc-bull .mc-sig { color:var(--green); }
+  .mc-bear .mc-sig { color:var(--red); }
+  .mc-warn .mc-sig { color:var(--orange); }
+  .mc-neu  .mc-sig { color:var(--text2); }
+
+  section { margin:52px 0; }
+  .sh { display:flex; align-items:center; gap:14px; margin-bottom:22px; padding-bottom:10px; border-bottom:1px solid var(--border2); }
+  .sn { font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; color:var(--orange); letter-spacing:2px; }
+  .st { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:700; color:var(--white); letter-spacing:2px; }
+
+  .dg { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:600px){ .dg { grid-template-columns:1fr; } }
+  .dc { background:var(--surface); border:1px solid var(--border2); padding:20px; }
+  .dc-bull { border-top:3px solid var(--green); }
+  .dc-bear { border-top:3px solid var(--red); }
+  .dc h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; }
+  .dc-bull h3 { color:var(--green); }
+  .dc-bear h3 { color:var(--red); }
+  .fac { display:flex; gap:10px; font-size:12.5px; margin-bottom:10px; line-height:1.5; color:var(--text); }
+
+  /* OBV */
+  .obv-wrap { background:var(--surface); border:1px solid var(--border2); border-top:3px solid var(--blue); padding:24px; }
+  .obv-intro { font-size:13px; line-height:1.8; color:var(--text); margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border2); }
+  .obv-intro strong { color:var(--blue); }
+  .obv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  @media(max-width:600px){ .obv-grid { grid-template-columns:1fr; } }
+  .obv-card { background:var(--bg); border:1px solid var(--border2); padding:14px; }
+  .obv-card h4 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+  .obv-card p { font-size:12px; color:var(--text); line-height:1.6; }
+  .obv-bull h4 { color:var(--blue); }
+  .obv-warn h4 { color:var(--orange); }
+  .obv-bear h4 { color:var(--red); }
+  .obv-bull { border-top:2px solid var(--blue); }
+  .obv-warn { border-top:2px solid var(--orange); }
+  .obv-bear { border-top:2px solid var(--red); }
+
+  .obv-table { width:100%; border-collapse:collapse; font-size:12.5px; margin:16px 0; }
+  .obv-table th { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text2); padding:10px 12px; text-align:left; border-bottom:1px solid var(--border2); }
+  .obv-table td { padding:10px 12px; border-bottom:1px solid rgba(42,31,0,0.5); vertical-align:top; line-height:1.5; }
+  .obv-table tr:hover td { background:rgba(255,153,0,0.02); }
+
+  .obv-verdict { background:rgba(0,168,224,0.04); border:1px solid rgba(0,168,224,0.15); border-left:4px solid var(--blue); padding:16px 20px; margin-top:16px; font-size:13px; line-height:1.7; color:var(--text); }
+  .obv-verdict strong { color:var(--blue); }
+
+  /* Scale-in plan */
+  .scale-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  @media(max-width:700px){ .scale-grid { grid-template-columns:1fr; } }
+  .sbox { background:var(--surface); border:1px solid var(--border2); padding:18px; }
+  .sbox h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+  .sbox .bnum { font-family:'Barlow Condensed',sans-serif; font-size:40px; font-weight:700; line-height:1; margin:6px 0; }
+  .snote { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); margin-top:8px; line-height:1.5; }
+
+  .tag { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1px; padding:2px 8px; }
+  .tg-bull { background:rgba(67,160,71,0.07); color:var(--green); border:1px solid rgba(67,160,71,0.2); }
+  .tg-bear { background:rgba(229,57,53,0.07); color:var(--red); border:1px solid rgba(229,57,53,0.2); }
+  .tg-warn { background:rgba(255,153,0,0.07); color:var(--orange); border:1px solid rgba(255,153,0,0.2); }
+  .tg-blue { background:rgba(0,168,224,0.07); color:var(--blue); border:1px solid rgba(0,168,224,0.2); }
+
+  .trigger-box { background:var(--surface); border:1px solid var(--border2); border-left:4px solid var(--green); padding:18px 22px; margin:14px 0; }
+  .trigger-box h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:12px; }
+  .tr-row { display:flex; gap:12px; font-size:12.5px; padding:8px 0; border-bottom:1px solid rgba(42,31,0,0.4); line-height:1.5; color:var(--text); }
+  .tr-row:last-child { border-bottom:none; }
+  .trn { font-family:'Barlow Condensed',monospace; font-size:22px; font-weight:700; color:var(--orange); min-width:24px; line-height:1.2; }
+
+  .wb { background:rgba(229,57,53,0.03); border:1px solid rgba(229,57,53,0.15); border-left:4px solid var(--red); padding:16px 20px; margin:14px 0; font-size:13px; line-height:1.7; color:var(--text); }
+  .wb strong { color:var(--red); }
+
+  .sum-box { background:var(--surface); border:1px solid var(--border2); padding:24px; font-size:13px; line-height:1.85; color:var(--text); }
+  .sum-box p { margin-bottom:14px; }
+  .sum-box p:last-child { margin-bottom:0; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--orange); letter-spacing:1px; }
+
+  footer { border-top:1px solid var(--border2); padding:28px 0; margin-top:60px; }
+  .fi { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer p { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); letter-spacing:1px; }
+  .disc { background:rgba(255,153,0,0.02); border:1px solid rgba(255,153,0,0.08); padding:14px 18px; margin-top:20px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); line-height:1.6; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  .container > * { animation:fadeUp 0.5s ease both; }
+  header { animation-delay:0s; }
+  .ar { animation-delay:0.06s; }
+  .fv { animation-delay:0.10s; }
+  .mg { animation-delay:0.14s; }
+  section:nth-of-type(1) { animation-delay:0.18s; }
+  section:nth-of-type(2) { animation-delay:0.22s; }
+  section:nth-of-type(3) { animation-delay:0.26s; }
+  section:nth-of-type(4) { animation-delay:0.30s; }
+  section:nth-of-type(5) { animation-delay:0.34s; }
+  section:nth-of-type(6) { animation-delay:0.38s; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="eyebrow">NASDAQ · NVDA · NVIDIA CORPORATION · AI 半導體</div>
+    <h1>輝達<br><em>NVDA</em></h1>
+    <div class="meta-row">
+      <span class="mi">收盤參考 $145.98（11/19）</span><span class="ms">|</span><span class="mi">分析日 2026-11-19</span><span class="ms">|</span><span class="mi">三日輪替第 3 組</span><span class="ms">|</span><span class="mi">TradingAgents（Nemotron 免費模型）＋ Claude 幕僚校正</span>
+    </div>
+  </header>
+
+  <div class="ar">
+    <div class="ac"><div class="an">技術面</div><div class="vp vp-sell">全面破位</div></div><div class="ac"><div class="an">基本面</div><div class="vp vp-buy">極強</div></div><div class="ac"><div class="an">交易員</div><div class="vp vp-sell">SELL</div></div><div class="ac"><div class="an">投資組合經理</div><div class="vp vp-sell">UNDERWEIGHT</div></div>
+  </div>
+
+  <div class="fv" style="border-left-color:var(--red);background:linear-gradient(135deg, rgba(255,61,0,0.06), transparent)">
+    <div class="fvb" style="color:var(--red)">UNDER<br>WEIGHT<span>投組經理最終裁決</span></div>
+    <div class="fvc">
+      <h2 style="color:var(--red)">最終裁決｜減碼 30–40%，反彈再減</h2>
+      <p>模型建議立即減碼 30–40%，反彈至 10 日 EMA $168.47（+15.4%）或 VWMA $171.28（+17.3%）再減；保留小部位作為 Blackwell／自由現金流選擇權。心理停損為布林下軌 $142.24（-2.6%），跌破可能下探 $120–125（-17.8%～-14.4%）。決策檔在投資論點中途截斷，未給出明確目標價，期間 3–6 個月。</p>
+    </div>
+  </div>
+
+  <div class="mg">
+    <div class="mc mc-neu"><div class="mc-lbl">收盤參考</div><div class="mc-val">$145.98</div><div class="mc-sig">11/19 收盤，52 週新低（報告用 11/18 $150.96）</div></div><div class="mc mc-bear"><div class="mc-lbl">50日SMA</div><div class="mc-val">$210.30</div><div class="mc-sig">▼ 現價低 30.6%</div></div><div class="mc mc-bear"><div class="mc-lbl">200日SMA</div><div class="mc-val">$203.45</div><div class="mc-sig">▼ 現價低 28.2%</div></div><div class="mc mc-bear"><div class="mc-lbl">MACD</div><div class="mc-val">-16.94</div><div class="mc-sig">▼ 低於訊號線 -13.11</div></div><div class="mc mc-warn"><div class="mc-lbl">RSI</div><div class="mc-val">21.10</div><div class="mc-sig">⚠ 極端超賣</div></div><div class="mc mc-warn"><div class="mc-lbl">ATR</div><div class="mc-val">9.68</div><div class="mc-sig">約 6.6% 日波動</div></div><div class="mc mc-neu"><div class="mc-lbl">前瞻本益比</div><div class="mc-val">8.8x</div><div class="mc-sig">前瞻 EPS $16.61</div></div><div class="mc mc-neu"><div class="mc-lbl">模型目標價</div><div class="mc-val">未給出</div><div class="mc-sig">決策檔截斷；止盈參考 $168–171</div></div>
+  </div>
+
+  <!-- 01 Bull vs Bear -->
+  <section>
+    <div class="sh"><span class="sn">01</span><span class="st">多空論戰</span></div>
+    <div class="dg">
+      <div class="dc dc-bull">
+        <h3>▲ 多方論點</h3>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>Nvidia 11/17 公布 Q3 營收 1,158 億美元、年增 103%，Q4 指引約 1,300 億美元</span></div><div class="fac"><span style="color:var(--green)">▲</span><span>前瞻本益比約 8.8 倍、PEG 0.18</span></div><div class="fac"><span style="color:var(--green)">▲</span><span>營業利潤率約 66%、ROE 117%</span></div><div class="fac"><span style="color:var(--green)">▲</span><span>流動比率 4.08</span></div><div class="fac"><span style="color:var(--green)">▲</span><span>RSI 21 極端超賣、MACD 柱狀體收斂</span></div>
+      </div>
+      <div class="dc dc-bear">
+        <h3>▼ 空方論點</h3>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>股價低於 10/50/200 日線，11/19 收在 52 週新低 $145.98</span></div><div class="fac"><span style="color:var(--red)">▼</span><span>應收帳款由 278 億升至 631 億、存貨由 150 億升至 316 億美元（五季）</span></div><div class="fac"><span style="color:var(--red)">▼</span><span>四大雲端廠自研 TPU、Trainium、Maia、MTIA</span></div><div class="fac"><span style="color:var(--red)">▼</span><span>黃仁勳 11/12 辭職，治理與策略延續性存疑</span></div><div class="fac"><span style="color:var(--red)">▼</span><span>美國 11/16 收緊中國企業透過海外資料中心遠端使用先進晶片</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 OBV -->
+  <section>
+    <div class="sh"><span class="sn">02</span><span class="st">OBV 能量潮策略完整分析</span></div>
+    <div class="obv-wrap">
+      <div class="obv-intro"><strong>OBV（能量潮）</strong>以累積漲跌成交量判斷資金流向。以下數字皆來自 11/19 OBV JSON（以 50 日均量倍數正規化）。NVDA 的 20 日判讀為<strong>「同步下跌（量價確認空頭）」</strong>，60 日為<strong>「同步下跌（量價確認空頭）」</strong>。</div>
+      <div class="obv-grid">
+        <div class="obv-card obv-bull"><h4>✦ 長線 OBV 趨勢</h4><p>60 日價格 -30.37%、OBV -18.15 日均量，判讀為「同步下跌（量價確認空頭）」。OBV 52 週百分位 0.0，位於 60 日新低。</p></div>
+        <div class="obv-card obv-warn"><h4>⚠ 近期 OBV</h4><p>20 日價格 -31.21%、OBV -21.60 日均量，判讀為「同步下跌（量價確認空頭）」；20 日上漲/下跌量比 0.18，OBV 低於 20 日 EMA，20EMA 低於 50EMA。</p></div>
+        <div class="obv-card obv-bear"><h4>▼ 量價背離與風險</h4><p>近 10 日爆量日 11/12：量 4.47 倍 50 日均量、當日 -4.34%。近 9 週淨量（09/25 起）：+0.77、+2.37、-0.34、-2.11、-0.59、-0.98、-1.81、-9.96、-8.38，9 週中 2 週淨流入。</p></div>
+      </div>
+      <table class="obv-table">
+        <thead><tr><th>OBV 訊號</th><th>當前狀況</th><th>研判</th><th>行動意義</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--white)"><strong>60 日量價</strong></td><td>價 -30.4%，OBV -18.15</td><td><span class="tag tg-bear">量價確認空頭</span></td><td>中期大量流出</td></tr><tr><td style="color:var(--white)"><strong>20 日量價</strong></td><td>價 -31.2%，OBV -21.60</td><td><span class="tag tg-bear">加速派發</span></td><td>20 日流出 21.6 日均量</td></tr><tr><td style="color:var(--white)"><strong>OBV 均線</strong></td><td>OBV < 20EMA，20EMA 低於 50EMA</td><td><span class="tag tg-bear">空頭排列</span></td><td>無止跌訊號</td></tr><tr><td style="color:var(--white)"><strong>52 週百分位</strong></td><td>0.0%，位於 60 日新低</td><td><span class="tag tg-bear">一年最低</span></td><td>OBV 60 日新低</td></tr><tr><td style="color:var(--white)"><strong>上漲/下跌量比</strong></td><td>20 日 0.18；爆量 11/12 4.47 倍、-4.3%</td><td><span class="tag tg-bear">賣壓壓倒性</span></td><td>量比 0.18</td></tr>
+        </tbody>
+      </table>
+      <div class="obv-verdict"><strong>OBV 綜合研判：</strong>八檔中資金面最差：20 日價格 -31.21%、OBV -21.6 日均量，60 日 OBV -18.15，52 週百分位 0.0 且創 60 日新低，20 日量比僅 0.18。11/12 黃仁勳辭職日爆量 4.47 倍、-4.34%，之後兩週淨量 -9.96、-8.38，代表大型資金在財報前後持續撤出；11/17 財報優於預期也沒有帶來回流。資金面完全支持減碼，且尚未出現任何止跌訊號。</div>
+    </div>
+  </section>
+
+  <!-- 03 Plan -->
+  <section>
+    <div class="sh"><span class="sn">03</span><span class="st">交易計畫</span></div>
+    <div class="scale-grid">
+      <div class="sbox"><h3>減碼</h3><div class="bnum" style="color:var(--red)">30–40%</div><div class="snote">立即（模型）</div></div><div class="sbox"><h3>心理停損</h3><div class="bnum" style="color:var(--red)">$142.24</div><div class="snote">距現價 -2.6%<br>不到 0.4 ATR</div></div><div class="sbox"><h3>反彈減碼區</h3><div class="bnum" style="color:var(--orange)">$168–171</div><div class="snote">距現價 +15.4%～+17.3%</div></div>
+    </div>
+    <div class="trigger-box">
+      <h3>模型的回補條件</h3>
+      <div class="tr-row"><div class="trn">01</div><div>MACD 金叉，並放量站回 10 日 EMA $168.47</div></div><div class="tr-row"><div class="trn">02</div><div>下季應收帳款／存貨增速放緩，且雲端廠給出明確的多年資本支出指引</div></div><div class="tr-row"><div class="trn">03</div><div>跌破 $142.24 後下一參考區 <strong>$120–125</strong>（-17.8%～-14.4%）</div></div>
+    </div>
+    <div class="wb">⚠️ 停損 $142.24 距現價僅 2.6%、不到 0.4 個 ATR，極易被正常波動觸發；本頁僅轉述模型提案，不構成建議。</div>
+  </section>
+
+  <!-- 04 Summary -->
+  <section>
+    <div class="sh"><span class="sn">04</span><span class="st">幕僚戰略總評</span></div>
+    <div class="sum-box">
+      <p><strong style="color:var(--white)">投組經理結論：</strong>Underweight——技術結構確認破壞，營運資金惡化（應收、存貨增速高於營收），雲端廠自研晶片威脅加速；11/13 Hold 決策 -10.4% 的教訓是「基本面救不了破掉的線型」。</p>
+      <p><strong style="color:var(--white)">風險團隊觀點：</strong>激進派主張立即大幅減碼；保守派傾向保留核心部位等待超賣反彈；中立派「先減 30–40%、反彈再減、保留選擇權」被採納。</p>
+      <p><strong style="color:var(--orange)">① 新聞補充：</strong>11/19 NVDA 收 $145.98、跌 3.3%，盤中觸及 52 週低點 $145.71，成交量約 3.1 億股、近 3 個月均量的兩倍。Nvidia 11/17 公布創紀錄 Q3 營收 1,158 億美元（年增 103%），Vera Rubin NVL72 已出貨，Q4 指引約 1,300 億美元，但股價仍受執行長交接、美國 11/16 收緊中國遠端使用先進晶片規定，以及新國會可能加強 AI 監管拖累；Morgan Stanley 目標價下修至 260 美元、維持 Overweight。同日標普 500 跌 2.02%、六連跌，AMD 跌 7.7%。</p>
+      <p><strong style="color:var(--orange)">② 可疑數據：</strong>交易員稱「應收帳款由 2,780 億升至 6,310 億、存貨翻倍至 3,160 億美元」：原表為 <strong>278 億→631 億</strong>、<strong>150 億→316 億</strong>（五季），放大了 10 倍；決策已更正。多方研究員稱「TTM 自由現金流約 9,920 億美元」，原表為 992.4 億，同樣放大 10 倍。基本面表最新季營收 962.2 億美元，與公司 11/17 公布的 1,158 億不一致，疑為資料源未更新。</p>
+      <p><strong style="color:var(--orange)">③ 模型品質：</strong>本報告使用 OpenRouter 免費模型（NVIDIA Nemotron），常見單位錯誤、引用過期收盤價與推理跳躍，請作為參考而非唯一依據。</p>
+      <p><strong style="color:var(--orange)">④ 目標價說明：</strong>模型目標價為 12 個月（或報告所列期間）前瞻估值，<strong>不是買進訊號</strong>。本輪決策未給出目標價（decision.md 截斷），網頁不另行推估。</p>
+      <p>新聞來源：<a href="https://www.fool.com/coverage/stock-market-today/2026/11/19/stock-market-today-nov-19-nvidia-slides-as-investors-weigh-ceo-transition-fallout-despite-strong-q3-results/" style="color:var(--orange2)" target="_blank" rel="noopener">Motley Fool：Nvidia 執行長交接衝擊</a>、<a href="https://www.fool.com/coverage/stock-market-today/2026/11/19/stock-market-today-nov-19-dow-plunges-1-100-points-as-the-s-and-p-500-suffers-its-6th-straight-day-of-losses/" style="color:var(--orange2)" target="_blank" rel="noopener">Motley Fool：11/19 道指重挫 1,101 點、標普六連跌</a>、<a href="https://predictionmarketspicks.com/articles/anthropic-ipo-selloff-fed-hike-odds-kalshi-polymarket-november-2026" style="color:var(--orange2)" target="_blank" rel="noopener">PredictionMarketsPicks：12 月升息機率 95%</a></p>
+    </div>
+  </section>
+
+  <!-- 05 Staff Review -->
+  <section>
+    <div class="sh"><span class="sn">05</span><span class="st">幕僚複審辯論</span></div>
+    <div class="obv-wrap">
+      <div class="obv-intro"><strong>複審方法：</strong>以 TradingAgents 分析師提供的原始數據（技術面、基本面、OBV），先以 11/19 收盤價 $145.98 校正，並補查近期新聞，再由幕僚獨立進行一輪多空辯論。標示為「疑似錯誤」的數據不作為論據。</div>
+      <table class="obv-table">
+        <thead><tr><th>數據</th><th>報告值</th><th>校正後</th><th>狀態</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--white)"><strong>收盤價</strong></td><td>$150.96（11/18）</td><td>$145.98（11/19，52 週新低）</td><td><span class="tag tg-warn">報告過期</span></td></tr><tr><td style="color:var(--white)"><strong>應收帳款／存貨</strong></td><td>2,780→6,310 億／3,160 億</td><td>278→631 億／316 億美元</td><td><span class="tag tg-bear">疑似錯誤</span></td></tr><tr><td style="color:var(--white)"><strong>TTM 自由現金流</strong></td><td>約 9,920 億（多方）</td><td>992.4 億美元</td><td><span class="tag tg-bear">疑似錯誤</span></td></tr><tr><td style="color:var(--white)"><strong>最新季營收</strong></td><td>962.2 億（基本面表）</td><td>公司公布 1,158 億美元</td><td><span class="tag tg-warn">報告過期</span></td></tr><tr><td style="color:var(--white)"><strong>停損距離</strong></td><td>$142.24</td><td>-2.6%，約 0.4 ATR</td><td><span class="tag tg-bull">已驗證</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="dg">
+      <div class="dc dc-bull">
+        <h3>▲ 多方最強論證</h3>
+        <div class="fac"><span style="color:var(--green)">▲</span><span>公司公布 Q3 營收 1,158 億美元、Q4 指引約 1,300 億，需求端沒有轉弱證據</span></div><div class="fac"><span style="color:var(--green)">▲</span><span>前瞻本益比約 8.8 倍，RSI 21.10 為極端超賣</span></div><div class="fac"><span style="color:var(--green)">▲</span><span>應收帳款 631 億在季營收逾千億下，週轉約 50 天，仍屬可控</span></div>
+      </div>
+      <div class="dc dc-bear">
+        <h3>▼ 空方最強論證</h3>
+        <div class="fac"><span style="color:var(--red)">▼</span><span>20 日 OBV -21.6、量比 0.18、OBV 52 週百分位 0、60 日新低——財報後資金仍持續撤出</span></div><div class="fac"><span style="color:var(--red)">▼</span><span>執行長辭職＋中國遠端算力禁令＋AI 監管，三項非財報風險同時存在</span></div><div class="fac"><span style="color:var(--red)">▼</span><span>應收帳款五季成長 127%、存貨 111%，若雲端廠消化庫存，營收指引有下修風險</span></div>
+      </div>
+    </div>
+    <div class="trigger-box">
+      <h3>交叉反駁</h3>
+      <div class="tr-row"><div class="trn">01</div><div>多方回應：財報與指引是全市場最強，8.8 倍本益比已計入大量壞消息，超賣反彈隨時發生。</div></div><div class="tr-row"><div class="trn">02</div><div>空方回應：財報強卻跌到 52 週新低，說明市場在折價治理與政策風險，OBV 完全沒有止跌。</div></div><div class="tr-row"><div class="trn">03</div><div>勝負關鍵：<strong>OBV 極端派發</strong>。在資金面出現第一個止跌訊號前，低本益比無法提供下檔保護，維持 Underweight。</div></div>
+    </div>
+    <div class="sum-box">
+      <p><strong style="color:var(--white)">幕僚評級：</strong><span class="vp vp-sell" style="display:inline-block;margin:0 8px">UNDERWEIGHT</span>與模型一致</p>
+      <p>與模型一致（Underweight）。20/60 日 OBV 同步下跌、量比 0.18、OBV 一年最低，資金面是八檔中最差；執行長交接與中國遠端算力禁令屬於估值以外的風險。不降為 Sell，因為公司公布的 Q3 營收 1,158 億、Q4 指引約 1,300 億，前瞻本益比約 8.8 倍，RSI 21 處於極端超賣，出清的風險報酬不佳。</p>
+      <p><strong style="color:var(--orange)">依現價的觀察條件：</strong></p><p>▶ $142.24（-2.6%）：收盤跌破即模型心理停損觸發，下一參考區 $120–125</p><p>▶ OBV 出現單週淨流入、或 20 日量比回到 0.5 以上，才算第一個止跌訊號</p><p>▶ 反彈至 $168–171（+15.4%～+17.3%）是模型的再減碼區；新任執行長與中國規定的後續說明是催化劑</p>
+      <p style="color:var(--muted)">幕僚複審使用與模型相同的原始資料，只是加上資料校正、最新價格與補查新聞，並非獨立資料來源；僅供研究參考。</p>
+    </div>
+  </section>
+
+  <div class="disc">▶ 免責聲明｜本頁由 TradingAgents 多 Agent 系統（OpenRouter 免費模型 NVIDIA Nemotron）自動生成，OBV 數據由輪替腳本依 Yahoo 日線計算，Claude 補充新聞與校正。僅供研究參考，不構成投資建議。<a href="index.html" style="color:var(--orange2)">← 返回輪替監控</a></div>
+
+  <footer>
+    <div class="fi">
+      <p>© 2026 · PAK600 戰略研究室 · NVDA · ROTATION WATCH · <a href="index.html" style="color:var(--orange2)">返回 index.html</a></p>
+      <p>TRADINGAGENTS + ANTHROPIC CLAUDE</p>
+    </div>
+  </footer>
+</div>
+<script data-goatcounter="https://pak600.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

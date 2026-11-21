@@ -1,42 +1,50 @@
 [
- {
-  "date": "2026-11-18",
-  "source": "Bloomberg",
-  "tag": "總體 📉",
-  "title": "📉 美股五連跌，10 年期殖利率回落至 5.06%、金價重挫 2.7%",
-  "summary": "S&P 500 五連跌；債市反彈使 10 年期殖利率降至 5.06%，但 Fed 理事 Waller 稱通膨仍往錯誤方向。金價跌 2.7% 至 3,744 美元、美元走強，長債與黃金同受利率主導。",
-  "url": "https://www.swissinfo.ch/eng/stocks-fall-as-nvidias-earnings-rally-sputters:-markets-wrap/92397458"
- },
- {
-  "date": "2026-11-18",
-  "source": "Yahoo Finance",
-  "tag": "記憶體 SK 海力士 💾",
-  "title": "💾 Nvidia 財報後漲轉跌，Kospi 由 SK 海力士領漲 2%",
-  "summary": "Nvidia 開盤漲 2.7% 後翻黑跌 2.6%，美光由漲轉跌 3%、CoreWeave 跌 5.8%。亞洲盤 Kospi 漲 2%，由三星與 SK 海力士帶動，記憶體在 AI 股震盪中仍有承接。",
-  "url": "https://ca.finance.yahoo.com/news/asian-markets-mostly-decline-wall-035255840.html"
- },
- {
-  "date": "2026-11-17",
-  "source": "CNBC",
-  "tag": "NVDA 半導體 🧠",
-  "title": "🧠 Nvidia Q3 營收 1,158 億美元，Q4 指引 1,300 億",
-  "summary": "Q3 營收年增約 103%、資料中心 1,076 億美元；Q4 指引約 1,300 億美元優於預期，並追加 1,500 億美元回購。對台積電、光通訊與記憶體供應鏈是需求面的正面訊號。",
-  "url": "https://www.cnbc.com/2026/11/17/nvidia-nvda-earnings-report-q3-2027.html"
- },
- {
-  "date": "2026-11-17",
-  "source": "Seeking Alpha",
-  "tag": "NVDA 治理 ⚖️",
-  "title": "⚖️ Nvidia 董事長：黃仁勳不會回任執行長",
-  "summary": "財報優於預期並擴大回購，但董事長表示黃仁勳不會回任；他 11/12 辭職後已被要求赴國會作證。治理不確定性與 AI 支出放緩疑慮，仍壓抑 AI 半導體評價。",
-  "url": "https://seekingalpha.com/news/4673703-nvidia-perks-up-as-q3-results-guidance-top-estimates-adds-150b-to-buyback"
- },
- {
-  "date": "2026-11-13",
-  "source": "Motley Fool",
-  "tag": "NBIS AI 雲端 ☁️",
-  "title": "☁️ Nebius 容量延遲下修 ARR 目標，股價兩日重挫",
-  "summary": "Q3 營收年增 571% 至 9.81 億美元，但第三方機房延遲，ARR 目標改為 2027 年 2 月約 70 億美元並上調資本支出。AI 雲端瓶頸已從 GPU 轉向電力與機房交付。",
-  "url": "https://fool.com/investing/2026/11/13/why-nebius-group-stock-plunged-again-today"
- }
+  {
+    "date": "2026-11-20",
+    "source": "CNBC",
+    "tag": "長債／殖利率 🏦",
+    "title": "🏦 避險資金湧入，美債殖利率大幅回落",
+    "summary": "11/20 股市重挫、資金轉進公債，殖利率與實質殖利率明顯回落；此前 10 年期一度升至 5.17%。長債短線受惠避險，但 12 月升息定價未退，利率方向仍是長債與 AI 部位的共同變數。",
+    "url": "https://www.cnbc.com/2026/11/20/treasury-yields-bonds-inflation.html"
+  },
+  {
+    "date": "2026-11-20",
+    "source": "CNBC",
+    "tag": "黃金 GLD 🥇",
+    "title": "🥇 金價創八個月最差一週，美元與升息預期施壓",
+    "summary": "現貨金 11/20 再跌約 3.7% 至約 3,531 美元，為八個月來最差一週。殖利率回落當天金價仍跌，顯示是去槓桿賣壓；GLD 收 322.87 美元，跌破 330 美元並逼近年低。",
+    "url": "https://www.cnbc.com/amp/2026/11/20/gold-federal-reserve-price-dollar-metals.html"
+  },
+  {
+    "date": "2026-11-20",
+    "source": "Seeking Alpha",
+    "tag": "AI 光通訊 GLW 🔦",
+    "title": "🔦 康寧單日重挫約 11%，科技股主導賣壓",
+    "summary": "康寧 11/20 收在約 94 美元、單日跌近 11%，報導指出主因是科技類股整體拋售而非公司利空。AI 光通訊籃子同步走弱，Fabrinet 跌破 11 月低點，OBV 顯示資金持續撤出整個族群。",
+    "url": "https://seekingalpha.com/news/4675318-corning-drops-11-percent-amid-technology-led-market-slide"
+  },
+  {
+    "date": "2026-11-19",
+    "source": "CNBC",
+    "tag": "總體 📉",
+    "title": "📉 標普、道瓊進入修正，那指抹去 2026 年漲幅",
+    "summary": "AI 股拋售擴大，標普 500 與道瓊收在修正區、那斯達克抹去全年漲幅，賣壓延續到 11/20。市場寬度分數降至 34.1（轉弱區），建議股票曝險 40–60%、提高現金並轉向防禦類股。",
+    "url": "https://www.cnbc.com/amp/2026/11/19/stock-market-today-live-updates.html"
+  },
+  {
+    "date": "2026-11-18",
+    "source": "24/7 Wall St",
+    "tag": "Fed／利率 🏛️",
+    "title": "🏛️ 交易員押注 12 月升息機率升至 95%",
+    "summary": "通膨數據偏熱、殖利率站上 5%，期貨市場定價聯準會 12 月升息的機率約 95%。升息預期同時壓抑高估值 AI 軟體、AI 電力基建與無收益的黃金，是本輪輪替多數標的轉弱的共同背景。",
+    "url": "https://247wallst.com/investing/2026/11/18/traders-now-see-a-95-chance-the-fed-hikes-rates-in-december/"
+  },
+  {
+    "date": "2026-11-18",
+    "source": "UPI",
+    "tag": "半導體 NVDA 🟩",
+    "title": "🟩 輝達季營收 1,158 億美元，銷售與獲利倍增",
+    "summary": "輝達 FY2027 第三季營收約 1,158 億美元、年增約一倍，資料中心業務持續強勁並上調展望。但財報後 AI 基建股仍遭拋售，顯示市場擔心的是 AI 資本支出的融資與回報，而非當前需求。",
+    "url": "https://www.upi.com/Top_News/US/2026/11/18/NVIDIA-announces-bumper-results/2411794995278/"
+  }
 ]
