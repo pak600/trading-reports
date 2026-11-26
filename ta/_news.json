@@ -1,50 +1,50 @@
 [
   {
-    "date": "2026-11-24",
-    "source": "Motley Fool",
-    "tag": "NVDA 🤖",
-    "title": "🤖 輝達回吐 5.9%、市值蒸發 2,400 億美元，Bernstein 升評",
-    "summary": "黃仁勳復任隔日，輝達 11/24 跌 5.86% 收 155.38 美元、量約三個月均量兩倍；Bernstein 同日升評、目標價 200 美元。AMD 跌 8.9%，AI 晶片反彈仍缺資金續航。",
-    "url": "https://www.fool.com/coverage/stock-market-today/2026/11/24/stock-market-today-nov-24-nvidia-gives-back-usd240-billion-in-market-value-despite-wall-street-upgrade-signaling-29-upside/"
+    "date": "2026-11-25",
+    "source": "CNBC",
+    "tag": "NVDA／AI 半導體 🤖",
+    "title": "🤖 黃仁勳回任行情退燒，輝達領跌科技股",
+    "summary": "輝達 11/25 收跌約 3.9%；AMD、美光、Marvell 盤中重挫逾 9%，CoreWeave、Nebius 跌幅居前。AI 資本支出疑慮再起，光通訊與 AI 雲端族群仍在去槓桿。",
+    "url": "https://www.cnbc.com/2026/11/25/nvidia-ai-stock-tech-selloff.html"
+  },
+  {
+    "date": "2026-11-25",
+    "source": "CNBC",
+    "tag": "殖利率／Fed 🏦",
+    "title": "🏦 熱 PCE 後美債殖利率不升反降，避險買盤進場",
+    "summary": "10 月核心 PCE 3.3% 高於預期，12 月升息 1 碼已完全定價；但股市震盪下資金湧入公債，10 年期殖利率回落至約 4.85%、30 年期約 5.25%，長債 ETF 量價轉強。",
+    "url": "https://www.cnbc.com/2026/11/25/treasury-yields-bonds-inflation.html"
+  },
+  {
+    "date": "2026-11-25",
+    "source": "Korea JoongAng Daily",
+    "tag": "000660.KS／記憶體 💾",
+    "title": "💾 SK 海力士重挫約 11%，KOSPI 跌破 5,000 點",
+    "summary": "晶片賣壓重返韓股，SK 海力士單日跌約 11% 至約 ₩1,030,000，外資持續賣超。HBM 長約雖覆蓋 2027–28 年過半產能，記憶體股評價仍隨美國 AI 族群劇烈波動。",
+    "url": "https://www.koreajoongangdaily.com/business/kospi-plunges-back-below-5000-as-chip-selloff-returns/12990750"
+  },
+  {
+    "date": "2026-11-25",
+    "source": "ABC News／AP",
+    "tag": "美股大盤 📉",
+    "title": "📉 道瓊抹平千點跌幅收高，那指收跌 0.62%",
+    "summary": "11/25 美股收盤分歧：道瓊 +0.33%、S&P 500 -0.25%、那指 -0.62%，VIX 升至約 28。政府同日提議對歐盟、日韓等夥伴加徵最高 20% 關稅，半導體除外。",
+    "url": "https://abcnews.com/Business/wireStory/major-us-stock-indexes-fared-wednesday-11252026-138453529"
   },
   {
     "date": "2026-11-24",
-    "source": "Yahoo Finance",
-    "tag": "Fed／黃金 🏦",
-    "title": "🏦 12 月升息機率約 95%，晶片股重挫、金價續弱",
-    "summary": "市場定價 12 月升息一碼機率約 95%，10 年期殖利率約 4.9%；那指跌 1.48%、道瓊漲 0.85%，資金轉向價值股。金價期貨約 3,534 美元續弱，長債與高估值 AI 股同受利率壓制。",
-    "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-chip-stocks-nvidia-140629923.html"
+    "source": "MarketBeat",
+    "tag": "GEV／AI 電力基建 ⚡",
+    "title": "⚡ GE Vernova 遭下調評級，單日重挫逾 5%",
+    "summary": "Erste 將 GE Vernova 下調至持有，指燃氣機組新增由 20 GW 降至 11 GW、風電虧損擴大，Q3 自由現金流多來自預收款。AI 電力設備股在升息與審批疑慮下持續修正。",
+    "url": "https://www.marketbeat.com/instant-alerts/price-ge-vernova-nyse-gev-stock-falls-48-heres-why-2026-11-24/"
   },
   {
     "date": "2026-11-24",
-    "source": "BNN Bloomberg",
-    "tag": "AI 軟體／電力 ⚡",
-    "title": "⚡ Anthropic 跌破上市價，CoreWeave、GEV 走弱",
-    "summary": "AP 報導 11/24 Anthropic 跌破 83 美元上市價，CoreWeave 跌約 9%、GE Vernova 跌 4.6%；市場憂心 AI 投資回收與高殖利率，AI 軟體與電力基建同承壓。",
-    "url": "https://www.bnnbloomberg.ca/investing/market-outlook/2026/11/24/tech-stocks-wane-a-day-after-a-huang-rally-as-anthropic-tumbles-below-its-initial-offering-price/"
-  },
-  {
-    "date": "2026-11-23",
-    "source": "Yahoo Finance",
-    "tag": "AI 半導體 🤖",
-    "title": "🤖 輝達復任黃仁勳，那指單日大漲逾 6%",
-    "summary": "輝達董事會復任黃仁勳，11/23 輝達大漲約 31%、那指收漲 6.51%，終結七連跌，Nebius 盤中最多漲約三成；但 Nomura 認為主要是空頭回補的機械式反彈，續航待資金面確認。",
-    "url": "https://sg.finance.yahoo.com/news/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-surge-after-nvidia-reinstates-jensen-huang-182039397.html"
-  },
-  {
-    "date": "2026-11-23",
-    "source": "Motley Fool",
-    "tag": "記憶體／SK 海力士 💾",
-    "title": "💾 美光單日飆 19%，SK 海力士盤前漲 9%",
-    "summary": "黃仁勳復任加上 Citi 稱 AI 支出疑慮被高估，美光 11/23 大漲 19% 收 707.70 美元、量增約七成，SK 海力士盤前漲約 9%；記憶體反彈最強，美光 12/17 財報是下一關。",
-    "url": "https://www.fool.com/coverage/stock-market-today/2026/11/23/stock-market-today-nov-23-micron-surges-19-as-nvidia-ceo-change-calms-ai-spending-fears/"
-  },
-  {
-    "date": "2026-11-23",
-    "source": "Yahoo Finance",
-    "tag": "Fed／殖利率 🏦",
-    "title": "🏦 12 月升息定價仍約九成，殖利率五連降",
-    "summary": "市場仍定價 12/9 FOMC 升息一碼機率約九成，但 10 年期殖利率由 5.13% 降至 11/20 的 4.95%、五連降。利率仍是長債與高估值 AI 股的共同變數，短線避險買盤撐住長債。",
-    "url": "https://sg.finance.yahoo.com/news/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-surge-after-nvidia-reinstates-jensen-huang-182039397.html"
+    "source": "Fortune",
+    "tag": "黃金 GLD 🥇",
+    "title": "🥇 金價徘徊 3,600 美元，一年低點後仍難反彈",
+    "summary": "現貨金價 11/24 約 3,631 美元、11/25 收約 3,601 美元；11 月中旬跌破一年低點後，實質殖利率走高與美元連四週走強持續壓抑金價，ETF 資金僅小幅回補。",
+    "url": "https://fortune.com/article/current-price-of-gold-11-24-202/"
   }
 ]
