@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANT 輪替分析｜2026-11-26</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=IBM+Plex+Mono:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0800;
+    --surface: #130e00;
+    --surface2: #1a1200;
+    --border: #2a1f00;
+    --border2: #3d2e00;
+    --orange: #ff9900;
+    --orange2: #ffb300;
+    --blue: #00a8e0;
+    --red: #e53935;
+    --green: #43a047;
+    --muted: #3d2e00;
+    --text: #c8a870;
+    --text2: #6a5020;
+    --white: #fff8e8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(255,153,0,0.06) 0%, transparent 50%),
+      linear-gradient(rgba(255,153,0,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,153,0,0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 36px 36px, 36px 36px;
+    pointer-events:none; z-index:0;
+  }
+  .container { max-width:1080px; margin:0 auto; padding:0 24px 80px; position:relative; z-index:1; }
+
+  header {
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--border2);
+    position:relative; overflow:hidden;
+  }
+  header::after {
+    content:'TREASURY';
+    position:absolute; right:-20px; top:0;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:160px; font-weight:900;
+    color:rgba(255,153,0,0.04);
+    letter-spacing:4px; line-height:1;
+    pointer-events:none; white-space:nowrap;
+  }
+  .eyebrow {
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px; font-weight:600;
+    letter-spacing:4px; color:var(--orange);
+    text-transform:uppercase; margin-bottom:16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before { content:''; display:inline-block; width:28px; height:1px; background:var(--orange); }
+  h1 {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:clamp(60px,10vw,120px);
+    font-weight:900; line-height:0.85;
+    color:var(--white); letter-spacing:2px; margin-bottom:12px;
+  }
+  h1 em { font-style:normal; color:var(--orange); }
+  .meta-row { display:flex; align-items:center; gap:0; flex-wrap:wrap; margin-top:16px; }
+  .mi { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text2); letter-spacing:1px; }
+  .ms { color:var(--border2); margin:0 12px; }
+
+  /* Analyst row */
+  .ar {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:1px; background:var(--border);
+    border:1px solid var(--border2); margin:32px 0 0;
+  }
+  @media(max-width:680px){ .ar { grid-template-columns:repeat(2,1fr); } }
+  .ac { background:var(--surface); padding:16px; text-align:center; }
+  .an { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--text2); text-transform:uppercase; margin-bottom:10px; }
+  .vp { display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; letter-spacing:2px; padding:4px 14px; }
+  .vp-hold { background:rgba(255,179,0,0.08); color:var(--orange2); border:1px solid rgba(255,179,0,0.25); }
+  .vp-buy  { background:rgba(67,160,71,0.08); color:var(--green); border:1px solid rgba(67,160,71,0.25); }
+  .vp-sell { background:rgba(229,57,53,0.08); color:var(--red); border:1px solid rgba(229,57,53,0.25); }
+
+  /* Final verdict */
+  .fv {
+    margin:12px 0 32px; padding:24px 28px;
+    background:linear-gradient(135deg,rgba(67,160,71,0.06),transparent);
+    border:1px solid rgba(67,160,71,0.2); border-left:5px solid var(--green);
+    display:flex; align-items:flex-start; gap:24px;
+  }
+  @media(max-width:600px){ .fv { flex-direction:column; gap:14px; header::after { display:none; } } }
+  .fvb {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:68px; font-weight:900; color:var(--green); line-height:0.85; min-width:160px; letter-spacing:2px;
+  }
+  .fvb span { display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; color:rgba(67,160,71,0.5); margin-top:8px; }
+  .fvc h2 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; color:var(--green); text-transform:uppercase; margin-bottom:10px; }
+  .fvc p { font-size:13px; line-height:1.7; color:var(--text); }
+
+  /* Metrics */
+  .mg { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border2); margin:28px 0; }
+  @media(max-width:700px){ .mg { grid-template-columns:repeat(2,1fr); } }
+  .mc { background:var(--surface); padding:16px 14px; position:relative; }
+  .mc::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .mc-bull::after { background:var(--green); }
+  .mc-bear::after { background:var(--red); }
+  .mc-warn::after { background:var(--orange); }
+  .mc-neu::after  { background:var(--muted); }
+  .mc-lbl { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text2); margin-bottom:8px; }
+  .mc-val { font-family:'Barlow Condensed',sans-serif; font-size:30px; font-weight:700; color:var(--white); line-height:1; margin-bottom:4px; }
+  .mc-sig { font-family:'IBM Plex Mono',monospace; font-size:10px; line-height:1.4; }
+  .mc-bull .mc-sig { color:var(--green); }
+  .mc-bear .mc-sig { color:var(--red); }
+  .mc-warn .mc-sig { color:var(--orange); }
+  .mc-neu  .mc-sig { color:var(--text2); }
+
+  section { margin:52px 0; }
+  .sh { display:flex; align-items:center; gap:14px; margin-bottom:22px; padding-bottom:10px; border-bottom:1px solid var(--border2); }
+  .sn { font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; color:var(--orange); letter-spacing:2px; }
+  .st { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:700; color:var(--white); letter-spacing:2px; }
+
+  .dg { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:600px){ .dg { grid-template-columns:1fr; } }
+  .dc { background:var(--surface); border:1px solid var(--border2); padding:20px; }
+  .dc-bull { border-top:3px solid var(--green); }
+  .dc-bear { border-top:3px solid var(--red); }
+  .dc h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; }
+  .dc-bull h3 { color:var(--green); }
+  .dc-bear h3 { color:var(--red); }
+  .fac { display:flex; gap:10px; font-size:12.5px; margin-bottom:10px; line-height:1.5; color:var(--text); }
+
+  /* OBV */
+  .obv-wrap { background:var(--surface); border:1px solid var(--border2); border-top:3px solid var(--blue); padding:24px; }
+  .obv-intro { font-size:13px; line-height:1.8; color:var(--text); margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border2); }
+  .obv-intro strong { color:var(--blue); }
+  .obv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  @media(max-width:600px){ .obv-grid { grid-template-columns:1fr; } }
+  .obv-card { background:var(--bg); border:1px solid var(--border2); padding:14px; }
+  .obv-card h4 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+  .obv-card p { font-size:12px; color:var(--text); line-height:1.6; }
+  .obv-bull h4 { color:var(--blue); }
+  .obv-warn h4 { color:var(--orange); }
+  .obv-bear h4 { color:var(--red); }
+  .obv-bull { border-top:2px solid var(--blue); }
+  .obv-warn { border-top:2px solid var(--orange); }
+  .obv-bear { border-top:2px solid var(--red); }
+
+  .obv-table { width:100%; border-collapse:collapse; font-size:12.5px; margin:16px 0; }
+  .obv-table th { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text2); padding:10px 12px; text-align:left; border-bottom:1px solid var(--border2); }
+  .obv-table td { padding:10px 12px; border-bottom:1px solid rgba(42,31,0,0.5); vertical-align:top; line-height:1.5; }
+  .obv-table tr:hover td { background:rgba(255,153,0,0.02); }
+
+  .obv-verdict { background:rgba(0,168,224,0.04); border:1px solid rgba(0,168,224,0.15); border-left:4px solid var(--blue); padding:16px 20px; margin-top:16px; font-size:13px; line-height:1.7; color:var(--text); }
+  .obv-verdict strong { color:var(--blue); }
+
+  /* Scale-in plan */
+  .scale-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+  @media(max-width:700px){ .scale-grid { grid-template-columns:1fr; } }
+  .sbox { background:var(--surface); border:1px solid var(--border2); padding:18px; }
+  .sbox h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+  .sbox .bnum { font-family:'Barlow Condensed',sans-serif; font-size:40px; font-weight:700; line-height:1; margin:6px 0; }
+  .snote { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); margin-top:8px; line-height:1.5; }
+
+  .tag { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:1px; padding:2px 8px; }
+  .tg-bull { background:rgba(67,160,71,0.07); color:var(--green); border:1px solid rgba(67,160,71,0.2); }
+  .tg-bear { background:rgba(229,57,53,0.07); color:var(--red); border:1px solid rgba(229,57,53,0.2); }
+  .tg-warn { background:rgba(255,153,0,0.07); color:var(--orange); border:1px solid rgba(255,153,0,0.2); }
+  .tg-blue { background:rgba(0,168,224,0.07); color:var(--blue); border:1px solid rgba(0,168,224,0.2); }
+
+  .trigger-box { background:var(--surface); border:1px solid var(--border2); border-left:4px solid var(--green); padding:18px 22px; margin:14px 0; }
+  .trigger-box h3 { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:12px; }
+  .tr-row { display:flex; gap:12px; font-size:12.5px; padding:8px 0; border-bottom:1px solid rgba(42,31,0,0.4); line-height:1.5; color:var(--text); }
+  .tr-row:last-child { border-bottom:none; }
+  .trn { font-family:'Barlow Condensed',monospace; font-size:22px; font-weight:700; color:var(--orange); min-width:24px; line-height:1.2; }
+
+  .wb { background:rgba(229,57,53,0.03); border:1px solid rgba(229,57,53,0.15); border-left:4px solid var(--red); padding:16px 20px; margin:14px 0; font-size:13px; line-height:1.7; color:var(--text); }
+  .wb strong { color:var(--red); }
+
+  .sum-box { background:var(--surface); border:1px solid var(--border2); padding:24px; font-size:13px; line-height:1.85; color:var(--text); }
+  .sum-box p { margin-bottom:14px; }
+  .sum-box p:last-child { margin-bottom:0; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--orange); letter-spacing:1px; }
+
+  footer { border-top:1px solid var(--border2); padding:28px 0; margin-top:60px; }
+  .fi { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer p { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); letter-spacing:1px; }
+  .disc { background:rgba(255,153,0,0.02); border:1px solid rgba(255,153,0,0.08); padding:14px 18px; margin-top:20px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text2); line-height:1.6; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  .container > * { animation:fadeUp 0.5s ease both; }
+  header { animation-delay:0s; }
+  .ar { animation-delay:0.06s; }
+  .fv { animation-delay:0.10s; }
+  .mg { animation-delay:0.14s; }
+  section:nth-of-type(1) { animation-delay:0.18s; }
+  section:nth-of-type(2) { animation-delay:0.22s; }
+  section:nth-of-type(3) { animation-delay:0.26s; }
+  section:nth-of-type(4) { animation-delay:0.30s; }
+  section:nth-of-type(5) { animation-delay:0.34s; }
+  section:nth-of-type(6) { animation-delay:0.38s; }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<div class="eyebrow">NASDAQ · ANT · ANTHROPIC, PBC · AI 軟體／大型語言模型</div>
+<h1>Anthropic<br><em>ANT</em></h1>
+<div class="meta-row">
+<span class="mi">收盤參考 $82.79（11/25）</span><span class="ms">|</span><span class="mi">分析日 2026-11-26（感恩節休市）</span><span class="ms">|</span><span class="mi">三日輪替第 2 組</span><span class="ms">|</span><span class="mi">TradingAgents（Nemotron 免費模型）＋ Claude 幕僚校正</span>
+</div>
+</header>
+
+<div class="ar">
+<div class="ac"><div class="an">技術面</div><div class="vp vp-sell">偏空（僅 5 日資料）</div></div>
+<div class="ac"><div class="an">基本面</div><div class="vp vp-hold">高成長／巨額虧損</div></div>
+<div class="ac"><div class="an">交易員</div><div class="vp vp-sell">SELL</div></div>
+<div class="ac"><div class="an">投資組合經理</div><div class="vp vp-sell">SELL</div></div>
+</div>
+
+<div class="fv" style="border-left-color:var(--red);background:linear-gradient(135deg, rgba(255,82,82,0.06), transparent)">
+<div class="fvb" style="color:var(--red)">SELL<span>投組經理最終裁決</span></div>
+<div class="fvc">
+<h2 style="color:var(--red)">最終裁決｜分批限價全數出清，不轉進其他 AI 股</h2>
+<p>模型主張全數出清，以分批限價單在 10 日 EMA（$86.33）附近或短線反彈時執行，避免在 RSI 6.33 的恐慌低點市價拋售；資金轉入現金或短期國庫券。僅在研發／營收比可持續降至 1 倍以下、連兩季 GAAP 營業利益轉正、資產負債表改善等條件同時滿足時才重新評估。未給目標價。</p>
+</div>
+</div>
+
+<div class="mg">
+<div class="mc mc-neu"><div class="mc-lbl">收盤參考</div><div class="mc-val">$82.79</div><div class="mc-sig">11/25 收盤（IPO 價 $83）</div></div>
+<div class="mc mc-warn"><div class="mc-lbl">10日EMA</div><div class="mc-val">$86.33</div><div class="mc-sig">▼ 現價低 4.1%（5 日資料）</div></div>
+<div class="mc mc-warn"><div class="mc-lbl">50日SMA</div><div class="mc-val">$87.68</div><div class="mc-sig">⚠ 僅 5 日平均，無意義</div></div>
+<div class="mc mc-warn"><div class="mc-lbl">200日SMA</div><div class="mc-val">$87.68</div><div class="mc-sig">⚠ 僅 5 日平均，無意義</div></div>
+<div class="mc mc-warn"><div class="mc-lbl">MACD</div><div class="mc-val">-0.60</div><div class="mc-sig">⚠ 資料不足</div></div>
+<div class="mc mc-warn"><div class="mc-lbl">RSI</div><div class="mc-val">6.33</div><div class="mc-sig">⚠ 5 日樣本失真</div></div>
+<div class="mc mc-bear"><div class="mc-lbl">ATR</div><div class="mc-val">13.72</div><div class="mc-sig">約 16.6% 日波動</div></div>
+<div class="mc mc-neu"><div class="mc-lbl">模型目標價</div><div class="mc-val">未給出</div><div class="mc-sig">—</div></div>
+</div>
+
+<!-- 01 Bull vs Bear -->
+<section>
+<div class="sh"><span class="sn">01</span><span class="st">多空論戰</span></div>
+<div class="dg">
+<div class="dc dc-bull">
+<h3>▲ 多方論點</h3>
+<div class="fac"><span style="color:var(--green)">▲</span><span>Q3 營收 169.56 億美元，年增約 1,127%</span></div>
+<div class="fac"><span style="color:var(--green)">▲</span><span>Q3 營業活動現金流 +26.40 億美元，首度轉正</span></div>
+<div class="fac"><span style="color:var(--green)">▲</span><span>現金加短期投資約 1,318 億美元，流動比率 12.08</span></div>
+<div class="fac"><span style="color:var(--green)">▲</span><span>Q3 營業虧損僅 -5.67 億美元</span></div>
+<div class="fac"><span style="color:var(--green)">▲</span><span>RSI 極度超賣，短線可能反彈</span></div>
+</div>
+<div class="dc dc-bear">
+<h3>▼ 空方論點</h3>
+<div class="fac"><span style="color:var(--red)">▼</span><span>掛牌 5 日跌破 IPO 價 $83</span></div>
+<div class="fac"><span style="color:var(--red)">▼</span><span>股東權益 -1,498.73 億美元，總負債 3,041.93 億</span></div>
+<div class="fac"><span style="color:var(--red)">▼</span><span>Q3 淨虧損 -232.91 億美元，前瞻本益比 161.6 倍</span></div>
+<div class="fac"><span style="color:var(--red)">▼</span><span>單季資本支出 239.80 億美元</span></div>
+<div class="fac"><span style="color:var(--red)">▼</span><span>API 轉換成本低，開源與雲端大廠模型競爭</span></div>
+</div>
+</div>
+</section>
+
+<!-- 02 OBV -->
+<section>
+<div class="sh"><span class="sn">02</span><span class="st">OBV 能量潮策略完整分析</span></div>
+<div class="obv-wrap">
+<div class="obv-intro"><strong>本輪未取得 OBV 數據</strong>：ANT 於 11/19 掛牌，至 11/25 僅 5 個交易日，輪替腳本回報「OBV 失敗：資料不足（5 天）」。以下只做定性說明。同理，報告中的 50/200 日均線、布林中軌（皆為 $87.68）其實只是 5 日平均，RSI 6.33 與 MACD 也因樣本過短而失真，不作為技術判斷依據。</div>
+<div class="obv-verdict"><strong>OBV 綜合研判：</strong>首日成交量最大（報告顯示約 8.57 億股），之後量能遞減、價格逐日走低，屬典型新股「首日換手、承銷穩定結束後回落」的型態。需累積至少 20 個交易日才能計算有意義的 OBV；在此之前，資金面<strong>無法用量價指標確認</strong>，應以解禁時程與指數納入的供需變化為主。</div>
+</div>
+</section>
+
+<!-- 03 Plan -->
+<section>
+<div class="sh"><span class="sn">03</span><span class="st">交易計畫</span></div>
+<div class="scale-grid">
+<div class="sbox"><h3>出清方式</h3><div class="bnum" style="color:var(--red)">分批限價</div><div class="snote">10 日 EMA $86.33 附近（+4.3%）</div></div>
+<div class="sbox"><h3>IPO 價</h3><div class="bnum" style="color:var(--orange)">$83</div><div class="snote">距現價 +0.3%</div></div>
+<div class="sbox"><h3>目標價</h3><div class="bnum" style="color:var(--muted)">未給出</div><div class="snote">—</div></div>
+</div>
+<div class="trigger-box">
+<h3>模型的操作條件</h3>
+<div class="tr-row"><div class="trn">01</div><div>分批限價全數出清，參考 10 日 EMA $86.33（+4.3%）或短線反彈</div></div>
+<div class="tr-row"><div class="trn">02</div><div>不轉入其他高 Beta AI／半導體股，資金轉現金或短期國庫券</div></div>
+<div class="tr-row"><div class="trn">03</div><div>重新評估：研發／營收比 &lt; 1 倍、連兩季 GAAP 營業利益轉正、資產負債表改善</div></div>
+</div>
+<div class="wb">⚠️ ATR 13.72 約占股價 16.6%，單日波動極大；技術指標樣本只有 5 天。本頁僅轉述模型提案，不構成建議。</div>
+</section>
+
+<!-- 04 Summary -->
+<section>
+<div class="sh"><span class="sn">04</span><span class="st">幕僚戰略總評</span></div>
+<div class="sum-box">
+<p><strong style="color:var(--white)">投組經理結論：</strong>Sell——模型認定 ANT 為「結構性基本面崩塌」：研發支出為營收 5.6 倍、資產負債表資不抵債、估值無法支撐。三位風險分析師方向一致。</p>
+<p><strong style="color:var(--white)">風險團隊觀點：</strong>激進、中立、保守三方皆同意出清，分歧僅在執行方式；投組經理採分批限價、避開恐慌低點。</p>
+<p><strong style="color:var(--orange)">① 新聞補充：</strong>11/19 Anthropic 以每股 $83 定價（高於 $70–78 區間），發行 9.8 億股，承銷商全數行使 1.47 億股超額配售，合計約 935 億美元；首日開 $111.50、收 $97.17。主承銷 Morgan Stanley 一天後即結束穩定操作，11/24 首度收在 IPO 價下方 $81.91（-6.5%），報導指出因素包括 Axios 有關模型安全疑慮的報導、執行長於上市翌日出售約 337 萬股，以及科技股拋售。11/25 收 $82.79。MSCI 將於 11/30 收盤後納入 ANT；首批約 2.99 億股於 12/15 與 1/5 解禁，1/19 與 2/2 再解禁約 3.49 億股。非承銷團券商目標價 $105–155，11/23 Singular Research 首評買進、目標 $181.90；承銷團的首次評等預估在 12 月中旬（掛牌約 25 天後，未經公告確認）。</p>
+<p><strong style="color:var(--orange)">② 可疑數據：</strong>模型的核心證據幾乎全部<strong>放大 10 倍或誤讀</strong>：① 「研發 9,499 億美元 vs 營收 1,696 億（5.6 倍）」：原表研發 94.99 億、SG&amp;A 55.92 億，兩者合計正好等於營業費用 150.91 億，研發／營收實為 <strong>0.56 倍</strong>。② 「股東權益 -1.5 兆、總負債 3.04 兆、總資產 1.54 兆」：原表分別為 -1,498.73 億、3,041.93 億、1,543.20 億美元。③ 「流動性 1.3 兆」：實為約 1,318 億美元。④ 「資不抵債」是誤讀：S-1 顯示負權益主因可轉換優先股列在夾層權益，以及可轉債與 SAFE 的非現金公允價值損失（1H26 約 724 億美元）。⑤ 基本面 TTM 毛利率 22.3% 與 Q3 毛利率 85.7% 落差過大，口徑存疑。</p>
+<p><strong style="color:var(--orange)">③ 模型品質：</strong>本報告使用 OpenRouter 免費模型（NVIDIA Nemotron），常見單位錯誤、引用過期收盤價與推理跳躍，請作為參考而非唯一依據。</p>
+<p><strong style="color:var(--orange)">④ 目標價說明：</strong>模型目標價為 12 個月（或報告所列期間）前瞻估值，<strong>不是買進訊號</strong>。模型未給目標價。</p>
+<p><strong style="color:var(--orange)">⑤ 利益衝突揭露：</strong>本頁的幕僚校正與複審由 Anthropic 開發的 AI（Claude）撰寫，而 ANT 是 Anthropic 本身的股票，存在利益衝突。幕僚已盡量只做可驗證的數據校正，但評級仍可能有偏誤，請以原始財報與第三方資料自行判斷。</p>
+<p>新聞來源：<a href="https://www.fool.com/investing/2026/11/19/why-anthropic-stock-is-up-today/" style="color:var(--orange2)" target="_blank" rel="noopener">Motley Fool：Why Anthropic stock is up (and down) today</a>、<a href="https://www.aljazeera.com/economy/2026/11/19/anthropic-starts-trading-in-the-us-after-blockbuster-ipo" style="color:var(--orange2)" target="_blank" rel="noopener">Al Jazeera：Anthropic 掛牌交易</a>、<a href="https://finance.yahoo.com/markets/stocks/articles/anthropic-falls-below-ipo-price-122810237.html" style="color:var(--orange2)" target="_blank" rel="noopener">Yahoo Finance：Anthropic 跌破 IPO 價</a>、<a href="https://www.techtimes.com/articles/331481/20261125/anthropic-stock-falls-below-83-ipo-price-after-morgan-stanley-ended-price-support-early.htm" style="color:var(--orange2)" target="_blank" rel="noopener">TechTimes：穩定操作提前結束與解禁時程</a>、<a href="https://www.thestar.com.my/tech/tech-news/2026/11/20/anthropic-draws-bullish-wall-street-calls-ahead-of-nasdaq-debut" style="color:var(--orange2)" target="_blank" rel="noopener">The Star：華爾街首批看多評等</a>、<a href="https://sec-api.io/insights/anthropic-ant-s-1-ipo-sec-filing-analysis" style="color:var(--orange2)" target="_blank" rel="noopener">sec-api：Anthropic S-1 分析</a></p>
+</div>
+</section>
+
+<!-- 05 Staff Review -->
+<section>
+<div class="sh"><span class="sn">05</span><span class="st">幕僚複審辯論</span></div>
+<div class="obv-wrap">
+<div class="obv-intro"><strong>複審方法：</strong>以 TradingAgents 分析師提供的原始數據（技術面、基本面），以 11/25 收盤 $82.79 校正（11/26 感恩節休市；無 OBV 數據），並補查 IPO 公開資料與新聞，再由幕僚獨立進行一輪多空辯論。標示為「疑似錯誤」的數據不作為論據。</div>
+<table class="obv-table">
+<thead><tr><th>數據</th><th>報告值</th><th>校正後</th><th>狀態</th></tr></thead>
+<tbody>
+<tr><td style="color:var(--white)"><strong>收盤價</strong></td><td>$82.79（11/25）</td><td>$82.79，與新聞報導一致</td><td><span class="tag tg-bull">已驗證</span></td></tr>
+<tr><td style="color:var(--white)"><strong>研發／營收</strong></td><td>9,499 億 vs 1,696 億（5.6 倍）</td><td>94.99 億 vs 169.56 億（0.56 倍）</td><td><span class="tag tg-bear">疑似錯誤</span></td></tr>
+<tr><td style="color:var(--white)"><strong>股東權益</strong></td><td>-1.5 兆美元（資不抵債）</td><td>-1,498.73 億；主因優先股列夾層權益</td><td><span class="tag tg-bear">疑似錯誤</span></td></tr>
+<tr><td style="color:var(--white)"><strong>流動性</strong></td><td>1.3 兆美元</td><td>約 1,318 億美元</td><td><span class="tag tg-bear">疑似錯誤</span></td></tr>
+<tr><td style="color:var(--white)"><strong>技術指標</strong></td><td>50/200 日線 $87.68、RSI 6.33</td><td>僅 5 日資料，指標失真</td><td><span class="tag tg-warn">無法查證</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="dg">
+<div class="dc dc-bull">
+<h3>▲ 多方最強論證</h3>
+<div class="fac"><span style="color:var(--green)">▲</span><span>Q3 營收約 170 億美元、季增約 47%，營業活動現金流 +26.40 億</span></div>
+<div class="fac"><span style="color:var(--green)">▲</span><span>研發／營收校正後為 0.56 倍，營業虧損僅 -5.67 億</span></div>
+<div class="fac"><span style="color:var(--green)">▲</span><span>約 1,318 億美元流動性；11/30 後 MSCI 納入帶來被動買盤</span></div>
+</div>
+<div class="dc dc-bear">
+<h3>▼ 空方最強論證</h3>
+<div class="fac"><span style="color:var(--red)">▼</span><span>市值約 1.1 兆美元，對 TTM 營收約 31 倍，前瞻本益比 161.6 倍</span></div>
+<div class="fac"><span style="color:var(--red)">▼</span><span>12/15 起分批解禁，首批約 2.99 億股，供給壓力明確</span></div>
+<div class="fac"><span style="color:var(--red)">▼</span><span>跌破 IPO 價、穩定操作提前結束，執行長上市翌日即出售持股</span></div>
+</div>
+</div>
+<div class="trigger-box">
+<h3>交叉反駁</h3>
+<div class="tr-row"><div class="trn">01</div><div>多方回應：模型的「燒錢與資不抵債」論據不成立：研發是營收的 0.56 倍，負權益是會計分類。</div></div>
+<div class="tr-row"><div class="trn">02</div><div>空方回應：即使財務沒有崩塌，31 倍營收的估值加上一個月內的解禁潮，短期供需仍偏空。</div></div>
+<div class="tr-row"><div class="trn">03</div><div>勝負關鍵：<strong>錯誤論據 vs 解禁與估值</strong>。模型的 Sell 建立在 10 倍錯誤上，因此不採；但解禁時程與高估值是真實壓力，幕僚降為 Underweight 而非 Hold。</div></div>
+</div>
+<div class="sum-box">
+<p><strong style="color:var(--white)">幕僚評級：</strong><span class="vp vp-sell" style="display:inline-block;margin:0 8px">UNDERWEIGHT</span>與模型分歧（模型：Sell）</p>
+<p>與模型分歧（模型 <strong>Sell</strong>）。翻盤論點是<strong>研發／營收與「資不抵債」兩項核心證據皆為錯讀</strong>：研發是營收的 0.56 倍而非 5.6 倍，負權益主因可轉換優先股的會計分類。不升至 Hold，因為市值對營收約 31 倍、12/15 起陸續解禁、價格已跌破 IPO 價且缺乏可用的技術與 OBV 數據。（利益衝突：本評級由 Anthropic 開發的 Claude 撰寫，請見第 04 節揭露。）</p>
+<p><strong style="color:var(--orange)">依現價的觀察條件：</strong></p><p>▶ IPO 價 $83（+0.3%）與 11/25 盤中低點 $73.85（-10.8%）：收盤失守 $73.85 代表承接轉弱</p><p>▶ 11/30 MSCI 納入與 12 月中旬承銷團首次評等；12/15 首批約 2.99 億股解禁前後的量價</p><p>▶ 累積滿 20 個交易日後的首份 OBV：觀察 20 日上漲/下跌量比是否高於 1.0</p>
+<p style="color:var(--muted)">幕僚複審使用與模型相同的原始資料，只是加上資料校正、最新價格與補查新聞，並非獨立資料來源；僅供研究參考。</p>
+</div>
+</section>
+
+<div class="disc">▶ 免責聲明｜本頁由 TradingAgents 多 Agent 系統（OpenRouter 免費模型 NVIDIA Nemotron）自動生成，OBV 數據由輪替腳本依 Yahoo 日線計算，Claude 補充新聞與校正。僅供研究參考，不構成投資建議。<a href="index.html" style="color:var(--orange2)">← 返回輪替監控</a></div>
+
+<footer>
+<div class="fi">
+<p>© 2026 · PAK600 戰略研究室 · ANT · ROTATION WATCH · <a href="index.html" style="color:var(--orange2)">返回 index.html</a></p>
+<p>TRADINGAGENTS + ANTHROPIC CLAUDE</p>
+</div>
+</footer>
+</div>
+<script data-goatcounter="https://pak600.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
