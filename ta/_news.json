@@ -1,50 +1,50 @@
 [
   {
-    "date": "2026-11-25",
-    "source": "Trading Economics",
+    "date": "2026-11-27",
+    "source": "Yahoo Finance",
+    "tag": "美股大盤 📈",
+    "title": "📈 黑色星期五美股收高，標普單週大漲 5.6%",
+    "summary": "11/27 提早收盤，標普 +1.60%、那指 +2.31%、SOX +4.69%，AI 與記憶體股領漲；標普單週約 +5.6%，為去年 4 月來最佳，但前一週曾重挫約 8%，仍在 200 日線下。",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-major-indexes-140450439.html"
+  },
+  {
+    "date": "2026-11-27",
+    "source": "Investing.com",
     "tag": "Fed／殖利率 🏦",
-    "title": "🏦 核心 PCE 升至 3.3%，市場押注 12 月升息",
-    "summary": "10 月核心 PCE 年增 3.3%，三年來最高；避險買盤讓 10 年期美債殖利率反降約 12bp 至 4.81%。市場定價 12 月升息機率約 96%，長債與高估值科技股仍受利率左右。",
-    "url": "https://tradingeconomics.com/united-states/core-pce-price-index-annual-change"
+    "title": "🏦 12 月升息機率約 99%，1 月再升息成焦點",
+    "summary": "CME FedWatch 顯示 12 月升息 1 碼機率約 99%、1 月再升約 60%；10 年期殖利率升至約 4.94%。核心 PCE 年增 3.3% 高於預期，長債與 AI 股仍受利率左右。",
+    "url": "https://www.investing.com/analysis/feds-december-rate-hike-is-priced-in-but-january-remains-uncertain-200692473"
   },
   {
-    "date": "2026-11-25",
-    "source": "Al Jazeera",
-    "tag": "SPCX 🚀",
-    "title": "🚀 FCC 核准 SpaceX 百萬顆太空資料中心衛星",
-    "summary": "FCC 核准 SpaceX「Starmind」計畫，最多 100 萬顆軌道資料中心衛星。SpaceX 搭上 AI 算力題材，但 SPCX 收 $127.44，仍低於 IPO 價 $135。",
-    "url": "https://www.aljazeera.com/news/2026/11/25/us-grants-spacex-approval-for-1-million-space-data-centres"
+    "date": "2026-11-27",
+    "source": "TokenPost",
+    "tag": "SK 海力士 💾",
+    "title": "💾 關稅疑慮緩解，SK 海力士大漲 5.4%",
+    "summary": "美方擬對台課最高 15% 關稅但晶片擬豁免，SK 海力士收 ₩1,110,000（+5.41%）、KOSPI +4.34%，美光同日 +7.6%；但兩者仍在 50／200 日線之下，資金尚未確認回流。",
+    "url": "https://www.tokenpost.com/news/investing/63352"
   },
   {
-    "date": "2026-11-25",
-    "source": "Trading Economics",
-    "tag": "黃金 🥇",
-    "title": "🥇 金價跌破 3,500 美元，美元與升息預期施壓",
-    "summary": "現貨金價一度跌破每盎司 3,500 美元，為 2025 年 8 月下旬以來低點，月跌約 12%。美元走強、市場押注升息壓抑無息資產，之後回升至約 3,577 美元。",
-    "url": "https://tradingeconomics.com/commodity/gold"
-  },
-  {
-    "date": "2026-11-24",
-    "source": "Yahoo Finance",
-    "tag": "ANT 🤖",
-    "title": "🤖 Anthropic 掛牌第四天跌破 IPO 價 83 美元",
-    "summary": "Anthropic 11/24 收 $81.91，首度低於承銷價。主承銷提前結束穩定操作、執行長出售持股與科技股拋售為主因；MSCI 將於 11/30 後納入，12 月中起陸續解禁。",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/anthropic-falls-below-ipo-price-122810237.html"
-  },
-  {
-    "date": "2026-11-24",
+    "date": "2026-11-27",
     "source": "24/7 Wall St",
-    "tag": "AI 光通訊 💡",
-    "title": "💡 光通訊股回吐，Lumentum、Coherent 跌 6%",
-    "summary": "AI 反彈隔日降溫，Lumentum 與 Coherent 下跌約 6%；Applied Optoelectronics 因 22 億美元雲端大廠供貨合約逆勢上漲。光通訊需求仍強，但個股波動劇烈。",
-    "url": "https://247wallst.com/investing/2026/11/24/applied-optoelectronics-climbs-5-on-2-2-billion-hyperscaler-supply-deal-lumentum-and-coherent-drop-6/"
+    "tag": "COHR 🔦",
+    "title": "🔦 光通訊股反彈，Coherent 單日漲 12%",
+    "summary": "光通訊股自 11/25 熱 PCE 引發的 AI 賣壓中反彈，Coherent 漲約 12%、Lumentum 與 AAOI 約 7%，無公司特定消息；AI 光通訊仍高度連動利率與輝達，需看量能延續。",
+    "url": "https://247wallst.com/investing/2026/11/27/coherent-jumps-12-as-optical-stocks-rebound-from-wednesdays-ai-selloff-applied-optoelectronics-and-lumentum-rise-7/"
   },
   {
-    "date": "2026-11-23",
+    "date": "2026-11-26",
+    "source": "24/7 Wall St",
+    "tag": "NVDA 🖥️",
+    "title": "🖥️ 美國晶片新規衝擊亞洲 AI 資料中心貸款",
+    "summary": "11/19 生效的遠端算力新規讓多筆亞洲 AI 資料中心融資凍結或延後；輝達約 320 億美元新雲端合約仰賴夥伴取得融資，AI 基建資金鏈風險上升。",
+    "url": "https://247wallst.com/investing/2026/11/26/new-u-s-chip-rule-is-now-hitting-ai-data-center-loans-not-just-nvidia-chips/"
+  },
+  {
+    "date": "2026-11-25",
     "source": "Yahoo Finance",
-    "tag": "NVDA／半導體 🔧",
-    "title": "🔧 黃仁勳復任，輝達單日大漲 31%",
-    "summary": "輝達董事會恢復黃仁勳執行長職務並新設出口管制委員會。輝達單日漲約 31%、創 2003 年來最大漲幅，費半漲 14%；但 11/25 輝達回落 3.9%，反彈持續性待觀察。",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/jensen-huang-return-gives-nvda-223822871.html"
+    "tag": "AI 算力融資 💰",
+    "title": "💰 CoreWeave 傳籌組 45 億美元 GPU 擔保貸款",
+    "summary": "據彭博，CoreWeave 以 GPU 與 Meta 合約為擔保籌組 45 億美元貸款，初步利率 7–7.5%；但其 2031 年債券殖利率約 18%，GPU 資產化融資條件分化。",
+    "url": "https://finance.yahoo.com/technology/ai/articles/coreweave-bankers-reportedly-ready-4-210216828.html"
   }
 ]
